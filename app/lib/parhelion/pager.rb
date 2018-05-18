@@ -4,7 +4,7 @@ module Parhelion
   # Generate a list of page numbers
   class Pager
     attr_reader :rows,
-                :result_length,
+                :result_count,
                 :active_page,
                 :marker,
                 :range_klass,
@@ -12,20 +12,19 @@ module Parhelion
 
     def initialize(active_page: 1,
                    rows: 10,
-                   result_length: 0,
+                   result_count: 0,
                    marker: '...',
                    range_klass: PagerRange)
-
-      @active_page = active_page.to_i
+      @active_page   = active_page.to_i
       @rows          = rows
-      @result_length = result_length
+      @result_count  = result_count
       @marker        = marker
       @range_klass   = range_klass
       @ranger        = range_klass.new(last: last_page)
     end
 
     def pages
-      return [] if result_length <= 1
+      return [] if result_count <= 1
       [
         prefix,
         mark_first,
@@ -51,11 +50,11 @@ module Parhelion
     private
 
     def prefix
-      remove_dupes([first_page, second_page])
+      remove_dupes [first_page, second_page]
     end
 
     def suffix
-      remove_dupes([penultimate_page, last_page])
+      remove_dupes [penultimate_page, last_page]
     end
 
     # Check the range arrays to see any of our prefix/suffix numbers already
@@ -71,6 +70,10 @@ module Parhelion
     end
 
     def range_second
+      # Don't show the second range if it is not needed.
+      # In this case it would default to [4], so we'd have [1,2,3,4,4] returned
+      # from the pages method
+      return [] if range_first.last == last_page
       @range_second ||=
         ranger.from(range_first.last + 1).to(range_first.last + infix_length)
     end
@@ -80,6 +83,7 @@ module Parhelion
     end
 
     def mark_second
+      return unless range_second.last
       mark(range_second.last < last_page)
     end
 
@@ -96,7 +100,7 @@ module Parhelion
     end
 
     def last_page
-      (result_length / rows.to_f).ceil
+      (result_count / rows.to_f).ceil
     end
   end
 end
