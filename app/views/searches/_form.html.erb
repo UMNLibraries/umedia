@@ -1,0 +1,15 @@
+
+  <%= form_tag searches_path, :method => :get do %>
+  <%= label_tag 'q', 'Search:', style: 'display:none' %>
+    <div class="input-group input-group-lg col-md-8">
+      <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...' %>
+      <span class="input-group-btn">
+        <%= button_tag "Search", :name => nil, class: 'btn btn-primary' %>
+      </span>
+    </div>
+  <% end %>
+  <% if query(search_params).active?%>
+    <div class="start-over">
+      <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> start over'), searches_url %>
+    </div>
+  <% end %>

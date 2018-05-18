@@ -1,0 +1,7 @@
+<% if facet.active? %>
+  <%= link_to raw("#{facet.value} (#{count}) <span class=\"glyphicon glyphicon-remove\"></span>"),
+              searches_path(facet.link_params),
+              class: 'remove' %>
+<% else %>
+  <%= link_to "#{facet.value} (#{count})", searches_path(facet.link_params) %>
+<% end %>

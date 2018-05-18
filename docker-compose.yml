@@ -1,0 +1,53 @@
+version: '2'
+services:
+  solr:
+    image: solr:7.3.0
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./cores:/opt/solr/server/solr/cores
+  web:
+    build: .
+    env_file:
+      - .env
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    links:
+      - solr
+      - db
+      - redis
+    depends_on:
+      - solr
+      - db
+    environment:
+      - GEONAMES_USER
+      - GEONAMES_TOKEN
+  sidekiq:
+      build: .
+      command: bundle exec sidekiq  -c 10 -r /mdl_search
+      volumes:
+        - .:/mdl_search
+      links:
+        - redis
+      env_file:
+        - .env
+      environment:
+        - GEONAMES_USER
+        - GEONAMES_TOKEN
+  redis:
+    image: redis:latest
+  db:
+    image: library/mysql:5.6.22
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    volumes:
+      - db-data:/var/lib/mysql
+  redis:
+    image: redis:latest
+volumes:
+  db-data:
+    driver: local

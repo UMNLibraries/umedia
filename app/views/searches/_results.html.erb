@@ -1,0 +1,3 @@
+<%   response["response"]["docs"].each do |doc| %>
+  <%= render 'result', doc: doc, search_params: search_params %>
+<% end %>
