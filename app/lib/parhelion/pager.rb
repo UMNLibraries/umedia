@@ -28,7 +28,7 @@ module Parhelion
     end
 
     def pages
-      return [] if result_count <= 1
+      return [] if no_pages
       [
         prefix,
         mark_first,
@@ -37,6 +37,10 @@ module Parhelion
         mark_second,
         suffix
       ].flatten.compact
+    end
+
+    def no_pages
+      last_page <= 1
     end
 
     def first_page
