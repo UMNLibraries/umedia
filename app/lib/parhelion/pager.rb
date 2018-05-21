@@ -23,6 +23,10 @@ module Parhelion
       @ranger        = range_klass.new(last: last_page)
     end
 
+    def display?
+      pages.length.positive?
+    end
+
     def pages
       return [] if result_count <= 1
       [
