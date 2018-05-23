@@ -30,4 +30,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  search:
+    facets:
+      type: 'Type'
+      format: 'Format'
+      date_created: 'Created'
+      subject_ss: 'Subject'
+      creator_ss: 'Creator'
+      publisher_s: 'Publisher'
+      contributor_ss: 'Contributor'
+      parent_collection_s: 'Parent Collection'
