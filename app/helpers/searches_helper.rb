@@ -1,25 +1,12 @@
 module SearchesHelper
-  def facet_list(search: :MISSING_SEARCH,
-                 field: :MISSING_FIELD,
-                 search_params: :MISSING_SEARCH_PARAMS)
-    search.facet(field).rows.map do |facet|
-      [
-        facet_query(field,
-                    facet.value,
-                    query(search_params)),
-        facet.count
-      ]
-    end
-  end
-
   def query(search_params)
     Parhelion::Query.new(params: search_params)
   end
 
-  def facet_query(field, value, query)
+  def facet_link(field, value, search_params)
     Parhelion::FacetQuery.new(field: field,
                               value: value,
-                              query: query)
+                              query: query(search_params))
   end
 
   def field_query(path, query)
