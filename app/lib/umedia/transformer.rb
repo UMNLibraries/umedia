@@ -2,9 +2,6 @@
 
 module Umedia
   # Field transformation mappings and related code for CDMBL
-
-  # We're getting some very bad no good data in the transc field
-
   class Transformer
     class RemoveHashFormatter
       def self.format(values)
@@ -32,8 +29,8 @@ module Umedia
         {dest_path: 'format', origin_path: 'format', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMBL::StripFormatter]},
         # Topics
-        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
+        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
         {dest_path: 'language', origin_path: 'langua', formatters: [CDMBL::StripFormatter]},
         # Geographic Details
         {dest_path: 'city', origin_path: 'city', formatters: [CDMBL::StripFormatter]},
