@@ -18,7 +18,11 @@
 <div class="col-md-12"></div>
 
 <div class="sidebar col-md-3">
-
+  <% if pager.result_count > 0 %>
+    <%= render 'facet_list',
+              facet_list: facet_list,
+              search_params: search_params %>
+  <% end %>
 </div>
 
 <div class="search-results col-md-9">
