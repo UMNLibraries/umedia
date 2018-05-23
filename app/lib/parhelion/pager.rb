@@ -15,12 +15,28 @@ module Parhelion
                    result_count: 0,
                    marker: '...',
                    range_klass: PagerRange)
-      @active_page   = active_page.to_i
+      @active_page   = active_page.positive? ? active_page : 1
       @rows          = rows
       @result_count  = result_count
       @marker        = marker
       @range_klass   = range_klass
       @ranger        = range_klass.new(last: last_page)
+    end
+
+    def previous_page
+      previous? ? active_page - 1 : first_page
+    end
+
+    def next_page
+      next? ? active_page + 1 : last_page
+    end
+
+    def previous?
+      active_page - 1 >= first_page
+    end
+
+    def next?
+      active_page < last_page
     end
 
     def display?

@@ -1,4 +1,5 @@
 require 'test_helper'
+# TODO: yes, this test is horrible.
 module Parhelion
   class PagerTest < ActiveSupport::TestCase
     describe 'when there are fewer ' do
@@ -17,6 +18,17 @@ module Parhelion
         Pager.new(active_page: 2, rows: 25, result_count: 100).display?.must_equal(true)
         Pager.new(active_page: 0, rows: 25, result_count: 0).display?.must_equal(false)
         Pager.new(active_page: 1, rows: 50, result_count: 3).pages.must_equal([])
+
+        Pager.new(active_page: 5, rows: 50, result_count: 300).previous_page.must_equal(4)
+        Pager.new(active_page: 2, rows: 50, result_count: 100).previous_page.must_equal(1)
+        Pager.new(active_page: 1, rows: 50, result_count: 100).previous_page.must_equal(1)
+        Pager.new(active_page: 1, rows: 50, result_count: 100).next_page.must_equal(2)
+        Pager.new(active_page: 2, rows: 50, result_count: 100).next_page.must_equal(2)
+
+        Pager.new(active_page: 1, rows: 50, result_count: 100).previous?.must_equal(false)
+        Pager.new(active_page: 2, rows: 50, result_count: 100).previous?.must_equal(true)
+        Pager.new(active_page: 1, rows: 50, result_count: 100).next?.must_equal(true)
+        Pager.new(active_page: 2, rows: 50, result_count: 100).next?.must_equal(false)
       end
     end
   end
