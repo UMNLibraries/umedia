@@ -1,35 +1,18 @@
 require 'test_helper'
 module Parhelion
   class FacetTest < ActiveSupport::TestCase
-    describe 'when a facet is not active' do
-      let(:params) { {'q' => 'finance'} }
-      let(:query) { Query.new(params: params) }
-      it 'creates a link query with its value' do
-        facet = FacetQuery.new(field: 'publisher',
-                               value: 'bar',
-                               query: query)
-
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"publisher"=>"bar"}})
-      end
+    it 'knows its name' do
+      facet = Facet.new(rows: ['UMN', 222], name: 'publisher')
+      facet.name.must_equal('publisher')
     end
-    describe 'when a facet param is active' do
-      let(:params) { {'q' => 'finance', 'facets' => {'publisher' => 'bar', 'year' => '1998'}} }
-      let(:query) { Query.new(params: params) }
-      it 'creates a link query string without the facet value' do
-        facet = FacetQuery.new(field: 'publisher',
-                          value: 'bar',
-                          query: query)
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"year"=>"1998"}})
-      end
+    it 'decomposes rsolr facet row data into FacetRow objects' do
+      facet = Facet.new(rows: ['UMN', 222], name: 'publisher')
+      facet.map { |f| f.must_equal(FacetRow.new(value: 'UMN', count: 222)) }
     end
-    describe 'when a facet param is the last active facet' do
-      let(:params) { {'q' => 'finance', 'facets' => {'publisher' => 'bar'}} }
-      let(:query) { Query.new(params: params) }
-      it 'removes the facet params altogether' do
-        facet = FacetQuery.new(field: 'publisher',
-                          value: 'bar',
-                          query: query)
-        facet.link_params.must_equal({"q"=>"finance"})
+    describe 'when there are no rows' do
+      it 'should tell us not to display the facet' do
+        facet = Facet.new(rows: [], name: 'publisher')
+        facet.display?.must_equal(false)
       end
     end
   end
