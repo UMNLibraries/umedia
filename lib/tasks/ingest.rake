@@ -1,22 +1,25 @@
 namespace :umedia_ingest do
   desc 'Index All UMedia Collections'
+  desc 'Index a single collection'
+  task :batch, [:set_spec] => :environment  do |t, args|
+    run_etl!([args[:set_spec]])
+  end
+
   task collections: [:environment] do
-    puts "Indexing Sets: '#{umedia_etl.set_specs.join(', ')}'"
-    CDMBL::ETLBySetSpecs.new(set_specs: umedia_etl.set_specs,
-                             etl_config: umedia_etl.config)
-                        .run!
+    run_etl!(etl.set_specs)
   end
 
   desc 'Index A Sample UMedia Collection'
   task collection_sample: [:environment] do
-    set_spec = umedia_etl.set_specs.sample(1)
-    puts "Indexing Set: '#{set_spec}'"
-    CDMBL::ETLBySetSpecs.new(set_specs: set_spec,
-                             etl_config: umedia_etl.config)
-                        .run!
+    run_etl!(etl.set_specs.sample(1))
   end
 
-  def umedia_etl
-    @umedia_etl ||= UmediaETL.new
+  def run_etl!(set_specs = [])
+    puts "Indexing Sets: '#{set_specs.join(', ')}'"
+    CDMBL::ETLBySetSpecs.new(set_specs: set_specs, etl_config: etl.config).run!
+  end
+
+  def etl
+    @etl ||= UmediaETL.new
   end
 end
