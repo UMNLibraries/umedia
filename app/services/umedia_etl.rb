@@ -6,7 +6,7 @@ class UmediaETL
               :set_spec_filter,
               :solr_connection
   def initialize(oai_endpoint: 'http://cdm16022.contentdm.oclc.org/oai/oai.php',
-                 set_spec_pattern: /'^ul_([a-zA-Z0-9])*\s-\s'/,
+                 set_spec_pattern: /^ul_([a-zA-Z0-9])*\s-\s/,
                  field_mappings: Umedia::Transformer.field_mappings,
                  filter_callback: CDMBL::RegexFilterCallback,
                  set_spec_filter: CDMBL::FilteredSetSpecs,
@@ -37,15 +37,15 @@ class UmediaETL
 
   private
 
-  def umedia_filter
+  def filter
     filter_callback.new(field: 'setName',
                         pattern: set_spec_pattern,
-                        inclusive: false)
+                        inclusive: true)
   end
 
   def filtered_set_specs
     set_spec_filter.new(oai_base_url: oai_endpoint,
-                        callback: umedia_filter).set_specs
+                        callback: filter).set_specs
   end
 
   def solr_config
