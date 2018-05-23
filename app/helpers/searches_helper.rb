@@ -18,4 +18,12 @@ module SearchesHelper
                              desc: desc,
                              query: query(search_params))
   end
+
+  def pager(search_params, result_count)
+    rows = search_params.fetch('rows', 50).to_i
+    page = search_params.fetch('page', 1).to_i
+    Parhelion::Pager.new(active_page: page,
+                         rows: rows,
+                         result_count: result_count)
+  end
 end
