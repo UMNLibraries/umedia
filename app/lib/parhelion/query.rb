@@ -25,10 +25,6 @@ module Parhelion
       params.fetch(field, default)
     end
 
-    def value_at(path = '')
-      path.split('/').inject(params) { |memo, field| memo.fetch(field, {}) }
-    end
-
     def active?
       !params.empty?
     end

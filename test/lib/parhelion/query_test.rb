@@ -50,15 +50,5 @@ module Parhelion
            .fetch('ferb',  '')
            .must_equal('')
     end
-
-    it 'returns values given a hash path' do
-      query = Query.new(params: { 'foo' => 'bar',
-                                  'facets' => {
-                                    'publisher' => 'Tribune',
-                                    'year' => '1998'
-                                  } })
-      query.value_at('facets/publisher').must_equal('Tribune')
-      query.value_at('facets/not-here').must_equal({})
-    end
   end
 end
