@@ -9,13 +9,13 @@ module Parhelion
                                value: 'bar',
                                query: query)
 
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"publisher"=>"bar"}})
+        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"publisher"=>["bar"]}})
       end
     end
     describe 'when a facet param is active' do
       let(:params) { {'q' => 'finance', 'facets' => {'publisher' => 'bar', 'year' => '1998'}} }
       let(:query) { Query.new(params: params) }
-      it 'creates a link query string without the facet value' do
+      it 'creates a link query without the facet value' do
         facet = FacetQuery.new(field: 'publisher',
                           value: 'bar',
                           query: query)
@@ -23,13 +23,24 @@ module Parhelion
       end
     end
     describe 'when a facet param is the last active facet' do
-      let(:params) { {'q' => 'finance', 'facets' => {'publisher' => 'bar'}} }
+      let(:params) { {'q' => 'finance', 'facets' => {'publisher' => ['bar']}} }
       let(:query) { Query.new(params: params) }
       it 'removes the facet params altogether' do
         facet = FacetQuery.new(field: 'publisher',
                           value: 'bar',
                           query: query)
         facet.link_params.must_equal({"q"=>"finance"})
+      end
+    end
+
+    describe 'when multiple values of a single facet are selected' do
+      let(:params) { {'q' => 'finance', 'facets' => {'subject' => ['Minnesota', 'Duluth'], 'year' => '1998'}} }
+      let(:query) { Query.new(params: params) }
+      it 'creates a link query  without the facet value' do
+        facet = FacetQuery.new(field: 'subject',
+                          value: 'Duluth',
+                          query: query)
+        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"subject"=>["Minnesota"], "year"=>"1998"}})
       end
     end
   end

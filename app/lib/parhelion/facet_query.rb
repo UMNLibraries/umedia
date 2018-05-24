@@ -11,27 +11,46 @@ module Parhelion
     end
 
     def active?
-      query_value != {}
-    end
-
-    def query_value
-      query.value_at("facets/#{field}")
+      query_values.include? value
     end
 
     def link_params
-      if active?
-        if without_field.empty?
-          query.except 'facets'
-        else
-          query.merge 'facets' => without_field
-        end
+      if !current_link.fetch('facets', []).empty?
+        query.merge current_link
       else
-        query.deep_merge 'facets' => { field => value }
+        query.except 'facets'
       end
     end
 
-    def without_field
-      query.fetch('facets').except field
+    private
+
+    def query_values
+      [facets.fetch(field, [])].flatten
+    end
+
+    def facets
+      query.fetch('facets', {})
+    end
+
+    def current_link
+      active? ? facets_without_value : facets_with_value
+    end
+
+    def facets_with_value
+      { 'facets' => facets.merge(field => (query_values << value).uniq) }
+    end
+
+    def facets_without_value
+      return facets_without_field if without_value == []
+      { 'facets' => facets.merge(field => without_value) }
+    end
+
+    def facets_without_field
+      { 'facets' => facets.except(field) }
+    end
+
+    def without_value
+      query_values.reject { |val| val == value }
     end
   end
 end
