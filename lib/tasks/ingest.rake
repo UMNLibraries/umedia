@@ -5,6 +5,7 @@ namespace :umedia_ingest do
     run_etl!([args[:set_spec]])
   end
 
+  desc 'Index all collections'
   task collections: [:environment] do
     run_etl!(etl.set_specs)
   end
