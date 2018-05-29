@@ -10,7 +10,7 @@ class UmediaETL
                  field_mappings: Umedia::Transformer.field_mappings,
                  filter_callback: CDMBL::RegexFilterCallback,
                  set_spec_filter: CDMBL::FilteredSetSpecs,
-                 solr_connection: SolrConnection.new)
+                 solr_connection: SolrClient.new)
     @oai_endpoint     = oai_endpoint
     @set_spec_pattern = set_spec_pattern
     @field_mappings   = field_mappings

@@ -1,5 +1,5 @@
-# Basic solr connection config
-class SolrConnection
+# Basic solr connection config and solr conveniences
+class SolrClient
   attr_reader :core_name, :solr_klass
   def initialize(core_name: ENV['RAILS_ENV'], solr_klass: RSolr)
     @core_name = core_name
@@ -12,6 +12,19 @@ class SolrConnection
 
   def url
     "#{base_url}:8983/solr/#{core_name}"
+  end
+
+  def delete_index
+    solr.delete_by_query '*:*'
+    solr.commit
+  end
+
+  def commit
+    solr.commit
+  end
+
+  def optimize
+    solr.optimize
   end
 
   private
