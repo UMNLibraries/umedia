@@ -5,17 +5,17 @@ module Parhelion
   class Pager
     attr_reader :rows,
                 :result_count,
-                :active_page,
+                :current_page,
                 :marker,
                 :range_klass,
                 :ranger
 
-    def initialize(active_page: 1,
+    def initialize(current_page: 1,
                    rows: 10,
                    result_count: 0,
                    marker: '...',
                    range_klass: PagerRange)
-      @active_page   = active_page.positive? ? active_page : 1
+      @current_page   = current_page.positive? ? current_page : 1
       @rows          = rows
       @result_count  = result_count
       @marker        = marker
@@ -23,20 +23,29 @@ module Parhelion
       @ranger        = range_klass.new(last: last_page)
     end
 
+
+    def start_page
+      current_page == 1 ? 1 : current_page + rows
+    end
+
+    def end_page
+      current_page == 1 ?  rows : rows + rows
+    end
+
     def previous_page
-      previous? ? active_page - 1 : first_page
+      previous? ? current_page - 1 : first_page
     end
 
     def next_page
-      next? ? active_page + 1 : last_page
+      next? ? current_page + 1 : last_page
     end
 
     def previous?
-      active_page - 1 >= first_page
+      current_page - 1 >= first_page
     end
 
     def next?
-      active_page < last_page
+      current_page < last_page
     end
 
     def display?
@@ -90,7 +99,7 @@ module Parhelion
     end
 
     def range_first
-      @range_first ||= ranger.from(active_page - infix_length).to(active_page)
+      @range_first ||= ranger.from(current_page - infix_length).to(current_page)
     end
 
     def range_second

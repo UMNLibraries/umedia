@@ -1,0 +1,5 @@
+<% if value.respond_to?(:join) %>
+  <%= value.join('; ') %>
+<% else %>
+  <%= value %>
+<% end %>

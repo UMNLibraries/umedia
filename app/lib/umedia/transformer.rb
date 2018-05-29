@@ -8,9 +8,18 @@ module Umedia
         values unless values.is_a?(Hash)
       end
     end
+
+    class RemoveHashFormatter
+      def self.format(values)
+        values unless values.is_a?(Hash)
+      end
+    end
     def self.field_mappings
       [
         {dest_path: 'id', origin_path: 'id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
+        {dest_path: 'set_spec', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::SetSpecFormatter]},
+        {dest_path: 'collection_name', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::CollectionNameFormatter]},
+        {dest_path: 'collection_description', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::CollectionDescriptionFormatter, CDMBL::FilterBadCollections]},
         # Full Record View
         {dest_path: 'title', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'title_sort', origin_path: 'title', formatters: [CDMBL::StripFormatter]},

@@ -1,7 +1,6 @@
 namespace :umedia_ingest do
-  desc 'Index All UMedia Collections'
   desc 'Index a single collection'
-  task :batch, [:set_spec] => :environment  do |t, args|
+  task :collection, [:set_spec] => :environment  do |t, args|
     run_etl!([args[:set_spec]])
   end
 

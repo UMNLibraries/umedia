@@ -32,7 +32,10 @@
 </div>
 
 <div class="search-results col-md-9">
-  <%= render 'document_list', document_list: document_list, search_params: search_params %>
+  <%= render 'document_list',
+             current_page: pager.current_page,
+             document_list: document_list,
+             search_params: search_params %>
 </div>
 
 <div class="col-md-12 pull-right">

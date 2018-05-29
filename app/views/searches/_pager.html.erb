@@ -15,7 +15,7 @@
         <% if page == pager.marker %>
           <li class="disabled"><a href="#" onclick="return false;"><%= pager.marker %></a></li>
         <% else %>
-          <li class="<%= pager.active_page == page ? 'active' : ''%>">
+          <li class="<%= pager.current_page == page ? 'active' : ''%>">
             <%= link_to page, query(search_params).merge(page: page)%>
           </li>
         <% end %>
