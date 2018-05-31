@@ -14,7 +14,7 @@ module Umedia
       @facet_params = facet_params
       @facet_fields = facet_fields
       @rows         = rows
-      @page         = page
+      @page         = page - 1 > 0 ? page - 1 : 0
       @client       = client
     end
 
