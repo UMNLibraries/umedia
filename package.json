@@ -1,5 +1,7 @@
 {
   "name": "umedia",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "stimulus": "^1.0.1"
+  }
 }
