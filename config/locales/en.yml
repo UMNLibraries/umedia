@@ -33,13 +33,14 @@ en:
   search:
     facets:
       type: 'Type'
-      format: 'Format'
+      format_facet: 'Format'
       date_created_ss: 'Created'
       subject_ss: 'Subject'
       creator_ss: 'Creator'
       publisher_s: 'Publisher'
       contributor_ss: 'Contributor'
-      parent_collection_s: 'Parent Collection'
+      collection_name_s: 'Collection'
+      has_children: 'Has Children'
     index_fields:
       date_created_ss: 'Created'
       description: 'Description'
