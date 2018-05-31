@@ -8,6 +8,7 @@
 .icon-sheet-music { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe806;&nbsp;'); }
 .icon-link { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe807;&nbsp;'); }
 .icon-json { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe808;&nbsp;'); }
+.icon-docs { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c5;&nbsp;'); }
 .icon-text { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f6;&nbsp;'); }
 .icon-archive { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf187;&nbsp;'); }
 .icon-bank { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf19c;&nbsp;'); }

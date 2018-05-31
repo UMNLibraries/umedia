@@ -101,6 +101,12 @@
       ]
     },
     {
+      "uid": "c8585e1e5b0467f28b70bce765d5840c",
+      "css": "docs",
+      "code": 61637,
+      "src": "fontawesome"
+    },
+    {
       "uid": "b67bc197969f2e05012c5e38e9c66f42",
       "css": "sheet-music",
       "code": 59397,
