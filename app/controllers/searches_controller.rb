@@ -15,10 +15,14 @@ class SearchesController < ApplicationController
     @search ||= Umedia::Search.new(
       rows: rows,
       q: search_params.fetch('q', ''),
-      facet_params: search_params.to_h.fetch('facets', {}).symbolize_keys,
+      facet_params: facet_params,
       facet_fields: facet_fields,
       page: page
     ).response
+  end
+
+  def facet_params
+    search_params.to_h.fetch('facets', {}).symbolize_keys
   end
 
   def facet_list
@@ -52,17 +56,18 @@ class SearchesController < ApplicationController
   def facet_fields
     [
       :type,
-      :format,
+      :format_facet,
       :date_created_ss,
       :subject_ss,
       :creator_ss,
       :publisher_s,
       :contributor_ss,
-      :parent_collection_s
+      :collection_name_s,
+      :has_children
     ]
   end
 
   def search_params
-    params.permit(:q, :page, :rows, :sort, facets: facet_fields)
+    params.permit(:q, :page, :rows, :sort, facets: facet_fields.map { |facet| {facet => []} })
   end
 end
