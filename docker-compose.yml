@@ -27,7 +27,7 @@ services:
       build: .
       command: bundle exec sidekiq  -c 10 -r /mdl_search
       volumes:
-        - .:/mdl_search
+        - .:/app
       links:
         - redis
       env_file:
