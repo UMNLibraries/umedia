@@ -17,11 +17,9 @@ services:
       - "3000:3000"
     links:
       - solr
-      - db
       - redis
     depends_on:
       - solr
-      - db
     environment:
       - GEONAMES_USER
       - GEONAMES_TOKEN
@@ -39,15 +37,5 @@ services:
         - GEONAMES_TOKEN
   redis:
     image: redis:latest
-  db:
-    image: library/mysql:5.6.22
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: db
-    volumes:
-      - db-data:/var/lib/mysql
   redis:
     image: redis:latest
-volumes:
-  db-data:
-    driver: local
