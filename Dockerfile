@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y yarn
 RUN mkdir /app
 WORKDIR /app
 ADD . /app
-RUN yarn install
 RUN gem install bundler
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install --without production
