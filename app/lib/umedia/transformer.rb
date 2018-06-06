@@ -105,7 +105,6 @@ module Umedia
         {dest_path: 'kaltura_video', origin_path: 'kaltub', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'kaltura_video_playlist', origin_path: 'kaltuc', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'kaltura_combo_playlist', origin_path: 'kaltud', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'compound_objects', origin_path: 'page', formatters: [CDMBL::ToJsonFormatter]},
         {dest_path: 'has_children', origin_path: '/', formatters: [HasChildrenFormatter]},
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
         {dest_path: 'parent_id', origin_path: 'parent_id', formatters: []},
