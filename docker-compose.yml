@@ -25,7 +25,7 @@ services:
       - GEONAMES_TOKEN
   sidekiq:
       build: .
-      command: bundle exec sidekiq  -c 10 -r /mdl_search
+      command: bundle exec sidekiq  -c 10 -r /app
       volumes:
         - .:/app
       links:
