@@ -48,10 +48,10 @@ module Umedia
     def kaltura_mappings
       [
         { field: 'kaltur', viewer: 'kaltura_audio' },
-        { field: 'kaltura', viewer: 'kaltura_audio_playlist' },
-        { field: 'kalturb', viewer: 'kaltura_video' },
-        { field: 'kalturc', viewer: 'kaltura_video_playlist' },
-        { field: 'kalturd', viewer: 'kaltura_combo_playlist' }
+        { field: 'kaltua', viewer: 'kaltura_audio_playlist' },
+        { field: 'kaltub', viewer: 'kaltura_video' },
+        { field: 'kaltuc', viewer: 'kaltura_video_playlist' },
+        { field: 'kaltud', viewer: 'kaltura_combo_playlist' }
       ]
     end
   end
