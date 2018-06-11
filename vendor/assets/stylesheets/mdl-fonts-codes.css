@@ -8,6 +8,10 @@
 .icon-sheet-music:before { content: '\e806'; } /* '' */
 .icon-link:before { content: '\e807'; } /* '' */
 .icon-json:before { content: '\e808'; } /* '' */
+.icon-zoom-in:before { content: '\e809'; } /* '' */
+.icon-zoom-out:before { content: '\e80a'; } /* '' */
+.icon-home:before { content: '\e80b'; } /* '' */
+.icon-resize-full-alt:before { content: '\f0b2'; } /* '' */
 .icon-docs:before { content: '\f0c5'; } /* '' */
 .icon-text:before { content: '\f0f6'; } /* '' */
 .icon-archive:before { content: '\f187'; } /* '' */

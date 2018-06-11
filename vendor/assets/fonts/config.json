@@ -107,6 +107,30 @@
       "src": "fontawesome"
     },
     {
+      "uid": "68c7be0f4cab6b82d5725b1ba7cec4d6",
+      "css": "zoom-in",
+      "code": 59401,
+      "src": "elusive"
+    },
+    {
+      "uid": "295287b96e50d494ba38a1ed9e06d8db",
+      "css": "zoom-out",
+      "code": 59402,
+      "src": "elusive"
+    },
+    {
+      "uid": "829c06a0a3b73b02a6224f4bbb73d99c",
+      "css": "home",
+      "code": 59403,
+      "src": "elusive"
+    },
+    {
+      "uid": "b013f6403e5ab0326614e68d1850fd6b",
+      "css": "resize-full-alt",
+      "code": 61618,
+      "src": "fontawesome"
+    },
+    {
       "uid": "b67bc197969f2e05012c5e38e9c66f42",
       "css": "sheet-music",
       "code": 59397,
