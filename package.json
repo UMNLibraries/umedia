@@ -1,13 +1,18 @@
 {
-  "name": "umedia",
-  "private": true,
   "dependencies": {
+    "//": "sad, adj added here because: https://github.com/yarnpkg/yarn/issues/3933#issuecomment-315203589",
+    "ajv": "5",
     "@rails/webpacker": "3.5",
+    "jquery-ujs": "^1.2.2",
+    "openseadragon": "^2.3.1",
+    "query-string": "^6.1.0",
+    "stampit": "^4.1.2",
     "stimulus": "^1.0.1"
   },
   "devDependencies": {
     "babel-jest": "^23.0.1",
     "jest": "^23.1.0",
+    "jquery": "^3.3.1",
     "regenerator-runtime": "^0.11.1",
     "webpack-dev-server": "2.11.2"
   },
@@ -18,6 +23,9 @@
     "moduleDirectories": [
       "node_modules",
       "app/javascript/packs"
+    ],
+    "setupFiles": [
+      "./test/javascript/jest-setup.js"
     ]
   },
   "scripts": {
