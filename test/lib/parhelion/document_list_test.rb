@@ -12,15 +12,11 @@ module Parhelion
       }
 
       doc_hash = {'title' => 'blah', 'publisher' => 'me'}
-      field_order = %w[publisher title]
       results = [doc_hash]
-      resp = DocumentList.new(results: results,
-                          field_order: field_order)
+      resp = DocumentList.new(results: results)
       resp.map do |doc|
-        doc.must_equal Document.new(doc_hash: doc_hash,
-                                    field_order: field_order)
+        doc.must_equal Document.new(doc_hash: doc_hash)
       end
-
     end
   end
 end
