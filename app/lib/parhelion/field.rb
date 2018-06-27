@@ -18,7 +18,11 @@ module Parhelion
     end
 
     def display?
-      !value.empty?
+      if value.respond_to?(:empty?)
+        !value.empty?
+      else
+        true
+      end
     end
 
     # Helpful for tests and maybe more
