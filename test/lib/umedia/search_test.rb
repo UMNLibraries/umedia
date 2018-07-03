@@ -8,7 +8,10 @@ module Umedia
       paginator = Minitest::Mock.new
       client.expect :new, response, []
       response.expect :solr, paginator, []
-      paginator.expect :paginate, false, [1, 50, "search", {:params=>{:q=>"", :"q.alt"=>"*:*", :"facet.field"=>[], :"facet.limit"=>15, :fq=>["record_type:primary"], :start=>1}}]
+      paginator.expect :paginate, false, [1,
+                                          50,
+                                          "search",
+                                           {:params=>{:q=>"", :"q.alt"=>"*:*", :"facet.field"=>[], :"facet.limit"=>15, :fq=>["record_type:primary"]}}]
       Search.new(q: '',
                  facet_params: {},
                  facet_fields: [],

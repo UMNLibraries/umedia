@@ -14,7 +14,7 @@ module Umedia
       @facet_params = facet_params
       @facet_fields = facet_fields
       @rows         = rows
-      @page         = page - 1 > 0 ? page - 1 : 0
+      @page         = page
       @client       = client
     end
 
@@ -24,8 +24,7 @@ module Umedia
         'q.alt': '*:*',
         'facet.field': facet_fields,
         'facet.limit': 15,
-        fq: ['record_type:primary'].concat(facet_query),
-        start: page
+        fq: ['record_type:primary'].concat(facet_query)
       }
     end
 
