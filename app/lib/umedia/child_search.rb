@@ -5,7 +5,7 @@ module Umedia
   class ChildSearch
     attr_reader :q, :fl, :parent_id, :client, :document_list_klass
     def initialize(q: '',
-                   fl: 'title, id, parent_id',
+                   fl: 'title, id, parent_id, viewer_types, object',
                    parent_id: '',
                    client: SolrClient,
                    document_list_klass: Parhelion::DocumentList)
@@ -14,6 +14,10 @@ module Umedia
       @parent_id = parent_id
       @client = client
       @document_list_klass = document_list_klass
+    end
+
+    def empty?
+      response['response']['docs'].length == 0
     end
 
     def documents

@@ -13,7 +13,7 @@ module Umedia
       solr = Minitest::Mock.new
       client.expect :new, response, []
       response.expect :solr, solr, []
-      solr.expect :get, {'highlighting' => 'highlighting here', 'response' => { 'docs' =>[{id: 'sdfsdf:sdf'}]} }, ["child_search", {:params=>{:q=>"", :"q.alt"=>"*:*", :sort=>"child_index asc", :hl=>"on", :fl=>"title, id, parent_id", :"hl.method"=>"unified", :fq=>["parent_id:\"9942\""], :rows=>2000}}]
+      solr.expect :get, {'highlighting' => 'highlighting here', 'response' => { 'docs' =>[{id: 'sdfsdf:sdf'}]} }, ["child_search", {:params=>{:q=>"", :"q.alt"=>"*:*", :sort=>"child_index asc", :hl=>"on", :fl=>"title, id, parent_id, viewer_types, object", :"hl.method"=>"unified", :fq=>["parent_id:\"9942\""], :rows=>2000}}]
       search = ChildSearch.new(q: '', parent_id: parent_id, client: client, document_list_klass: document_list_klass)
       search.documents.must_equal [{:foo=>"bar"}]
       search.highlighting.must_equal 'highlighting here'
