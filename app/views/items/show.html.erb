@@ -1,2 +1,22 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="back-to-search">
+  <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> back to search'),
+              {controller: 'searches', action: 'index', anchor: document.id}.merge(search_params) %>
+</div>
+<div data-controller="viewer"
+     data-viewer-id="<%= params['id'] %>"
+     data-viewer-child_id="<%= params['child_id'] %>"
+     data-viewer-url="/viewers">
+    <% if !children.empty? %>
+      <div id="viewer-display" class="col-md-9"></div>
+      <div id="viewer-sidebar" class="col-md-3">
+        <%= render 'sidebar', children: children, document: document %>
+      </div>
+    <% else %>
+      <div id="viewer-display" class="col-md-12"></div>
+    <% end %>
+</div>
+
+
+
+
+

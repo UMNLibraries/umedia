@@ -16,6 +16,10 @@ module Umedia
       @child_search_klass = child_search_klass
     end
 
+    def empty?
+      documents.empty?
+    end
+
     def documents
       child_search_klass.new(parent_id: parent_id).documents
     end

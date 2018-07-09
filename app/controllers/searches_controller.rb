@@ -31,8 +31,7 @@ class SearchesController < ApplicationController
   end
 
   def document_list
-    Parhelion::DocumentList.new(results: search['response']['docs'],
-                                field_order: %w[id title])
+    Parhelion::DocumentList.new(results: search['response']['docs'])
   end
 
   def pager
@@ -63,7 +62,7 @@ class SearchesController < ApplicationController
       :publisher_s,
       :contributor_ss,
       :collection_name_s,
-      :has_children
+      :page_count
     ]
   end
 

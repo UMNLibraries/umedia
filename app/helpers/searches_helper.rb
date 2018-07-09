@@ -26,8 +26,4 @@ module SearchesHelper
                          rows: rows,
                          result_count: result_count)
   end
-
-  def render_index_field(field)
-    render 'index_field', field: field
-  end
 end

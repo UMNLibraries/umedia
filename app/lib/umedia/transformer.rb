@@ -9,19 +9,25 @@ module Umedia
       end
     end
 
-    class HasChildrenFormatter
+    class PageCountFormatter
       def self.format(values)
         if values['page'].respond_to?(:length)
-          values['page'].length > 0 ? 1 : 0
+          values['page'].length
         else
-          0
+          1
         end
       end
     end
 
-    class ViewerTypeFormatter
+    class ViewerTypesFormatter
       def self.format(values)
-        ViewerMap.new(record: values).viewer
+        pages = values.fetch('page', [])
+        pages = if pages.respond_to?(:map)
+          pages.map { |page| ViewerMap.new(record: page).viewer }
+        else
+          []
+        end
+        pages.insert(0, ViewerMap.new(record: values).viewer)
       end
     end
 
@@ -44,9 +50,17 @@ module Umedia
       end
     end
 
+    class ObjectFormatter
+      def self.format(value)
+        collection, id = value.split('/')
+        "https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/#{collection}/id/#{id}"
+      end
+    end
+
     def self.field_mappings
       [
         {dest_path: 'id', origin_path: 'id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
+        {dest_path: 'object', origin_path: 'id', formatters: [ObjectFormatter]},
         {dest_path: 'set_spec', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::SetSpecFormatter]},
         {dest_path: 'collection_name', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, UmediaCollectionNameFormatter]},
         {dest_path: 'collection_description', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::CollectionDescriptionFormatter, CDMBL::FilterBadCollections]},
@@ -105,10 +119,11 @@ module Umedia
         {dest_path: 'kaltura_video', origin_path: 'kaltub', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'kaltura_video_playlist', origin_path: 'kaltuc', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'kaltura_combo_playlist', origin_path: 'kaltud', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'has_children', origin_path: '/', formatters: [HasChildrenFormatter]},
+        {dest_path: 'page_count', origin_path: '/', formatters: [PageCountFormatter]},
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
-        {dest_path: 'parent_id', origin_path: 'parent_id', formatters: []},
-        {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]}
+        {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
+        {dest_path: 'viewer_types', origin_path: '/', formatters: [ViewerTypesFormatter]},
+        {dest_path: 'child_index', origin_path: 'child_index', formatters: []}
       ]
     end
   end

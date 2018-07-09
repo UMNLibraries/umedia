@@ -21,6 +21,7 @@ module Umedia
       end.compact.first
     end
 
+
     def format_mapping
       case format
       when 'jp2'
@@ -28,7 +29,7 @@ module Umedia
       when 'pdf'
         'pdf'
       when 'cpd'
-        'NO_VIEWER'
+        "NO_VIEWER for #{format}"
       else
         raise "Unknown viewer format: #{format}"
       end
@@ -45,13 +46,15 @@ module Umedia
       ]
     end
 
+    # Order matters here: if there is a playlist, there will also be audio, but
+    # we just want the playlist.
     def kaltura_mappings
       [
-        { field: 'kaltur', viewer: 'kaltura_audio' },
+        { field: 'kaltud', viewer: 'kaltura_combo_playlist' },
         { field: 'kaltua', viewer: 'kaltura_audio_playlist' },
-        { field: 'kaltub', viewer: 'kaltura_video' },
         { field: 'kaltuc', viewer: 'kaltura_video_playlist' },
-        { field: 'kaltud', viewer: 'kaltura_combo_playlist' }
+        { field: 'kaltur', viewer: 'kaltura_audio' },
+        { field: 'kaltub', viewer: 'kaltura_video' }
       ]
     end
   end

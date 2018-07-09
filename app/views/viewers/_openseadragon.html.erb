@@ -1,0 +1,16 @@
+<div class="osd">
+  <div class="openseadragon" id="osd-viewer">
+    <ul class="osd-toolbar">
+      <li><a id="zoom-in"><i class="glyphicon glyphicon-zoom-in"></i></a></li>
+      <li><a id="zoom-out"><i class="glyphicon glyphicon-zoom-out"></i></a></li>
+      <li><a id="rotate-right" alt="Rotate Right" style="display: inline-block; position: relative;" ><i class="glyphicon glyphicon-repeat"></i></a></li>
+      <li><a id="reset"><i class="glyphicon glyphicon-home"></i></a></li>
+      <li><a id="full-page"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+    </ul>
+  </div>
+</div>
+
+<span id="osd-config" data-config="<%=
+  viewer_document.config.to_json
+%>">
+

@@ -40,10 +40,11 @@ en:
       publisher_s: 'Publisher'
       contributor_ss: 'Contributor'
       collection_name_s: 'Collection'
-      has_children: 'Has Children'
+      page_count: 'Page Count'
     index_fields:
       date_created_ss: 'Created'
       description: 'Description'
       creator: 'Creator'
       contributor: 'Contributor'
       contributing_organization: 'Contributed By'
+      page_count: 'Page Count'
