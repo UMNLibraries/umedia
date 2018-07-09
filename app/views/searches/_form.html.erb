@@ -2,7 +2,7 @@
   <%= form_tag searches_path, :method => :get do %>
   <%= label_tag 'q', 'Search:', style: 'display:none' %>
     <div class="input-group input-group-lg col-md-8">
-      <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...' %>
+      <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...', value: params[:q] %>
       <span class="input-group-btn">
         <%= button_tag "Search", :name => nil, class: 'btn btn-primary' %>
       </span>

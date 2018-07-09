@@ -1,12 +1,22 @@
-<div class="card-panel panel panel-default">
-  <div class="panel-body">
-    <%= link_to doc.field_title.value,  search_path(doc.id, search_params), name: doc.id %>
-    <dl class="document-metadata dl-horizontal dl-invert">
-      <%= render_index_field(doc.field_description) %>
-      <%= render_index_field(doc.field_creator) %>
-      <%= render_index_field(doc.field_contributor) %>
-      <%= render_index_field(doc.field_date_created_ss) %>
-      <%= render_index_field(doc.field_contributing_organization) %>
-    </dl>
+<% cache doc do %>
+  <a name="<%= doc.id %>"></a>
+  <div class="card-panel panel panel-default">
+      <% title_icon_class = 'icon-docs' if doc.field_page_count.value && doc.field_page_count.value > 1 %>
+      <div class="panel-body">
+      <%= link_to doc.field_title.value,  item_path(doc.id, search_params), class: "#{title_icon_class} col-md-12" %>
+      <dl class="document-metadata dl-horizontal dl-invert col-md-10">
+        <%= render 'index_field', field: doc.field_description %>
+        <%= render 'index_field', field: doc.field_creator %>
+        <%= render 'index_field', field: doc.field_contributor %>
+        <%= render 'index_field', field: doc.field_date_created_ss %>
+        <%= render 'index_field', field: doc.field_contributing_organization %>
+        <%= render 'index_field', field: doc.field_page_count if doc.field_page_count.value && doc.field_page_count.value > 1 %>
+      </dl>
+      <img src="<%= thumbnail.cdn_url %>"
+        class="thumbnail col-md-2"
+        alt="<%= doc.field_title.value %>"
+        title="<%= doc.field_title.value %>"
+        onerror="this.onerror=null;this.src=noThumbnail('<%= doc.id %>', '<%= thumbnail.url %>');" />
+    </div>
   </div>
-</div>
+<% end %>
