@@ -26,14 +26,19 @@
 
 
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self, :https
-  policy.font_src    :self, :https, :data
-  policy.img_src     :self, :https, :data, 'www.lib.umn.edu'
-  policy.object_src  :none
-  policy.script_src  :self, :https
-  policy.style_src   :self, :https, :unsafe_inline
+  policy.default_src :self, :https, :blob
+  policy.font_src    :self, :https, :data, 'fonts.googleapis.com', 'cdnapi.kaltura.com', 'fonts.gstatic.com'
+  policy.img_src     :self, :https, :data, 'www.lib.umn.edu', 'cfvod.kaltura.com', 'http://www.google-analytics.com'
+  policy.object_src  :self, 'cdm16022.contentdm.oclc.org', 'cdnapisec.kaltura.com', 'cdnapi.kaltura.com', 'cfvod.kaltura.com'
+  policy.script_src  :self, :https, :unsafe_inline, :unsafe_eval, 'cdnapi.kaltura.com', 'google-analytics.com', 'www.google-analytics.com'
+  policy.style_src   :self, :https, :unsafe_inline, 'fonts.googleapis.com'
+  policy.connect_src :self, :https, 'cdm16022.contentdm.oclc.org'
+  policy.worker_src  :self, :blob
 
   # Specify URI for violation reports
   # policy.report_uri "/csp-violation-report-endpoint"
-  policy.connect_src :self, :https, 'http://0.0.0.0:3035', 'ws://0.0.0.0:3035' if Rails.env.development?
+  if Rails.env.development?
+    policy.connect_src :self, :https, 'http://0.0.0.0:3035', 'ws://0.0.0.0:3035', 'cdm16022.contentdm.oclc.org'
+    policy.script_src  :self, :https, :unsafe_inline, :unsafe_eval, 'cdnapi.kaltura.com', 'google-analytics.com', 'www.google-analytics.com', 'localhost:3000'
+  end
 end
