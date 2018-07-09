@@ -23,6 +23,10 @@ services:
     environment:
       - GEONAMES_USER
       - GEONAMES_TOKEN
+      - UMEDIA_NAILER_CDN_URI
+      - UMEDIA_NAILER_API_URI
+      - UMEDIA_NAILER_API_KEY
+      - UMEDIA_NAILER_THUMB_FALLBACK_URL
   sidekiq:
       build: .
       command: bundle exec sidekiq  -c 10 -r /app
