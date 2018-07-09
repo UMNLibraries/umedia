@@ -1,0 +1,98 @@
+// Place all the styles related to the viewers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.osd {
+  position: relative;
+  background-color: black;
+}
+
+#osd-viewer {
+  height: 800px;
+
+}
+
+.osd-toolbar {
+  padding:0;
+  position: absolute;
+  top: 0;
+}
+
+.osd-toolbar li {
+  display: inline-block;
+}
+
+.osd-toolbar > li {
+  list-style:none;
+}
+.osd-toolbar a {
+  z-index: 1;
+  width:30px;
+  height:30px;
+  font-height:30px;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  margin-right:1px;
+  cursor:pointer;
+  text-align:center
+}
+
+.osd-toolbar a:hover {
+  background: rgba(158, 46, 0, 0.6); text-decoration:none
+}
+
+.osd-toolbar a > i {
+  width:30px;
+  height:30px;
+  line-height:30px;
+  font-size:15px;
+  padding-top:2px
+}
+
+#sidebar {
+  max-height: 800px;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+#sidebar-pages {
+  .sidebar-thumbnail {
+    text-align: center;
+  }
+  .thumbnail {
+    display: inline;
+  }
+  max-height: 750px;
+  overflow-y: auto;
+  em {
+    font-weight: bold;
+  }
+  .no-results {
+    margin-top: 75px;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+  }
+}
+
+.highlight {
+  .highlight-label {
+    font-weight: bold;
+  }
+}
+
+form.child-search {
+  margin-bottom: 5px;
+}
+
+.kaltura-video-player,
+.kaltura-compound-player, {
+  height: 500px;
+}
+
+.clear-search {
+  text-align: center;
+  padding: 15px;
+  a {
+    background-color: #337ab7;
+  }
+}
