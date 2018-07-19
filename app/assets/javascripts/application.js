@@ -10,18 +10,3 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require bootstrap-sprockets
-//= require turbolinks
-//= require_tree .
-
-function noThumbnail(document_id, original_url) {
-  // Wait for the JS stack to clear before running our searches
-  setTimeout(cacheThumbnail.bind(null, document_id, original_url), 0);
-  return original_url;
-}
-
-function cacheThumbnail(document_id, original_url) {
-  console.log(`Caching thumbnail image for document ${document_id} located at: ${original_url}`);
-  $.get('/thumbnails/'.concat(document_id));
-}
