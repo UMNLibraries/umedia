@@ -1,0 +1,8 @@
+<% facet_crumbs = facet_crumbs(facet_list, search_params) %>
+<% if !facet_crumbs.empty? %>
+  <div class="search-breadcrumbs well">
+    <%= render 'facet_crumbs', facets: facet_crumbs(facet_list, search_params) %>
+  </div>
+<% end %>
+
+

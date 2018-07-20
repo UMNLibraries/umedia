@@ -1,0 +1,22 @@
+  <% if facet_link.active? %>
+  <%
+    if facet_link.active?
+      remove = " <span class=\"glyphicon glyphicon-remove\"></span>"
+      remove_class = 'remove'
+    end
+  %>
+
+  <span class="btn-group appliedFilter constraint filter filter-type_ssi">
+    <span class="constraint-value btn btn-sm btn-default btn-disabled">
+        <span class="filterName"><%= I18n.t("search.facets.#{name}") %></span>
+        <span class="filterValue" title="<%= facet_row.to_s %>"><%= facet_row.to_s %></span>
+    </span>
+
+      <%= link_to searches_path(facet_link.link_params),
+                  class: "btn btn-default btn-sm remove dropdown-toggle remove-crumb" do %>
+        <span class="glyphicon glyphicon-remove"></span>
+        <span class="sr-only">Remove constraint <%= name %>: <%= I18n.t("search.facets.#{name}")%></span>
+
+      <% end %>
+  </span>
+<% end %>

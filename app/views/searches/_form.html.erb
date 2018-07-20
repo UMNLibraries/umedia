@@ -4,7 +4,7 @@
     <div class="input-group input-group-lg col-md-8">
       <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...', value: params[:q] %>
       <span class="input-group-btn">
-        <%= button_tag "Search", :name => nil, class: 'btn btn-primary' %>
+        <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-lg btn-umn-maroon' %>
       </span>
     </div>
   <% end %>

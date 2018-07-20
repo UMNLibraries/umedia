@@ -31,6 +31,12 @@ module Umedia
       end
     end
 
+    class ViewerTypeFormatter
+      def self.format(value)
+        ViewerMap.new(record: value).viewer
+      end
+    end
+
     class UmediaCollectionNameFormatter
       def self.format(value)
         value['oai_sets'].fetch(value['setSpec'], {})
@@ -78,7 +84,7 @@ module Umedia
         {dest_path: 'caption', origin_path: 'captio', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'notes', origin_path: 'additi', formatters: [CDMBL::StripFormatter]},
         # Physical Description
-        {dest_path: 'type', origin_path: 'type', formatters: [CDMBL::Titlieze, CDMBL::StripFormatter]},
+        {dest_path: 'types', origin_path: 'type', formatters: [CDMBL::StripFormatter, CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::UniqueFormatter]},
         {dest_path: 'format', origin_path: 'format', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'format_facet', origin_path: 'format', formatters: [SplitPipeFormatter, TakeFirstFormatter, CDMBL::StripFormatter]},
         {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMBL::StripFormatter]},
@@ -122,7 +128,8 @@ module Umedia
         {dest_path: 'page_count', origin_path: '/', formatters: [PageCountFormatter]},
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
         {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
-        {dest_path: 'viewer_types', origin_path: '/', formatters: [ViewerTypesFormatter]},
+        {dest_path: 'child_viewer_types', origin_path: '/', formatters: [ViewerTypesFormatter]},
+        {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]},
         {dest_path: 'child_index', origin_path: 'child_index', formatters: []}
       ]
     end

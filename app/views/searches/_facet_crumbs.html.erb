@@ -1,0 +1,7 @@
+<% facets.map do |facet| %>
+  <%= render 'facet_crumb',
+            name: facet[:name],
+            facet_row: facet[:row],
+            search_params: facet[:search_params],
+            facet_link: facet[:link] %>
+<% end %>

@@ -26,4 +26,17 @@ module SearchesHelper
                          rows: rows,
                          result_count: result_count)
   end
+
+  def facet_crumbs(facet_list, search_params)
+    facet_list.map do |facet|
+      facet.map do |facet_row|
+        {
+          link: facet_link(facet.name, facet_row.value, search_params),
+          row: facet_row,
+          name: facet.name,
+          search_params: search_params
+        }
+      end.select { |facet| facet[:link].active? }
+    end.flatten
+  end
 end

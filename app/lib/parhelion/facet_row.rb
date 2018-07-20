@@ -13,7 +13,7 @@ module Parhelion
     end
 
     def to_s
-      "#{value} (#{count})"
+      "#{value}"
     end
   end
 end

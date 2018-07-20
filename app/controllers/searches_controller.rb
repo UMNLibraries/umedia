@@ -54,7 +54,7 @@ class SearchesController < ApplicationController
 
   def facet_fields
     [
-      :type,
+      :types,
       :format_facet,
       :date_created_ss,
       :subject_ss,

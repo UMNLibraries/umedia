@@ -29,7 +29,7 @@ module Umedia
       when 'pdf'
         'pdf'
       when 'cpd'
-        "NO_VIEWER for #{format}"
+        'COMPOUND_PARENT_NO_VIEWER'
       else
         raise "Unknown viewer format: #{format}"
       end

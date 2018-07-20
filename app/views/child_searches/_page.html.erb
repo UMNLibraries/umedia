@@ -1,4 +1,5 @@
-<% active = current_page?(item_path(id: child.field_parent_id.value, child_id: child.id)) ? 'active' : ''%>
+<% path = item_path(id: child.field_parent_id.value, child_id: child.id) %>
+<% active = (current_page?(path)) ? 'active' : ''%>
 <%= link_to item_path(id: child.field_parent_id.value, child_id: child.id),
                   'data-action': 'viewer#select',
                   'data-id': child.field_parent_id.value,
@@ -17,5 +18,8 @@
           onerror="this.onerror=null;this.src=noThumbnail('<%= child.id %>', '<%= thumbnail.url %>');" />
     </div>
 
+
   <%= render 'child_searches/highlight', highlighting: highlighting, child: child %>
 <% end %>
+
+<%= render 'child_searches/download', config: download_config(child) %>

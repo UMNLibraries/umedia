@@ -4,6 +4,6 @@
     remove_class = 'remove'
   end
 %>
-<%= link_to raw("#{facet_row.to_s}#{remove}"),
+<%= link_to raw("#{facet_row.to_s} (#{facet_row.count}) #{remove}"),
             searches_path(facet_link.link_params),
             class: remove_class %>

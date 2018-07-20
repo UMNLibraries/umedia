@@ -5,7 +5,7 @@ module Umedia
   class ChildSearch
     attr_reader :q, :fl, :parent_id, :client, :document_list_klass
     def initialize(q: '',
-                   fl: 'title, id, parent_id, viewer_types, object',
+                   fl: 'title, id, object, parent_id, child_viewer_types, viewer_type',
                    parent_id: '',
                    client: SolrClient,
                    document_list_klass: Parhelion::DocumentList)
@@ -37,7 +37,6 @@ module Umedia
         sort: 'child_index asc',
         hl: 'on',
         fl: fl,
-        hl: 'on',
         'hl.method': 'unified',
         fq: ["parent_id:\"#{parent_id}\""],
         rows: 2000

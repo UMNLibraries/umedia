@@ -12,7 +12,7 @@ class ThumbnailsController < ActionController::Base
   def thumb_url
     @thumb_url ||=
       Umedia::Thumbnail.new(object_url: doc.field_object.value,
-                            viewer_type: doc.field_viewer_types.value.first,
+                            viewer_type: doc.field_child_viewer_types.value.first,
                             entry_id: doc.field_kaltura_video.value)
   end
 

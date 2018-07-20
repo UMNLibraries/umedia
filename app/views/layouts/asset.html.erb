@@ -7,13 +7,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'thumbnailer' %>
-    <script src="https://cdnapisec.kaltura.com/p/1369852/sp/136985200/embedIframeJs/uiconf_id/41902002/partner_id/1369852"></script>
-    <script src="https://cdnapisec.kaltura.com/p/1369852/sp/136985200/embedIframeJs/uiconf_id/42156071/partner_id/1369852"></script>
   </head>
 
   <body>
-    <%= render '/shared/header' %>
     <div class="container" name="main" id="main">
       <%= yield %>
     </div>

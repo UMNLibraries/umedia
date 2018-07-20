@@ -1,3 +1,39 @@
 .pager-info-number {
   font-weight: bold;
 }
+
+.search-breadcrumbs {
+  .facet-count {
+    display: none;
+  }
+  .filterName {
+    cursor: default;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  padding: 15px;
+  background-color: #ecedf0;
+  border-color: #d3d4d7;
+  margin: 10px 0 20px;
+}
+
+.filterName:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e080";
+  font-size: 70%;
+  padding-left: 4px;
+  color: #777777;
+}
+
+.umedia-pager .pagination > .active > a {
+  background-color: #7a0019;
+  border-color: #7a0019;
+}
+
+.remove-crumb.btn-default:hover {
+  .glyphicon-remove {
+    color: white;
+  }
+  background-color: #7a0019;
+  border-color: #7a0019;
+}

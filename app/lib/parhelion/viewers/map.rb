@@ -10,7 +10,7 @@ module Parhelion
       end
 
       def to_viewer
-        mappings.fetch(document.field_viewer_types.value.first)
+        mappings.fetch(document.field_child_viewer_types.value.first)
       end
 
       private
