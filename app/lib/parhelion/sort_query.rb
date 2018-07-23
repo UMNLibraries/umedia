@@ -3,33 +3,23 @@
 module Parhelion
   # Encapsulates sort toggle logic
   class SortQuery
-    attr_reader :asc, :desc, :query
-    def initialize(asc: :missing_asc, desc: :missing_desc, query: Query.new)
-      @asc   = asc
-      @desc  = desc
-      @query = query
+    attr_reader :value, :query
+    def initialize(value: 'score desc, title desc',
+                   query: Query.new)
+      @value  = value
+      @query  = query
     end
 
-    def is_ascending?
-      query.fetch('sort') == asc
-    end
-
-    def is_active?
-      sort_params == asc || sort_params == desc
+    def active?
+      query.params['sort'] == value
     end
 
     def link_params
-      if is_ascending?
-        query.merge 'sort' => desc
+      if !active?
+        query.merge('sort' => value)
       else
-        query.merge 'sort' => asc
+        query.except 'sort'
       end
-    end
-
-    private
-
-    def sort_params
-      query.fetch('sort', '')
     end
   end
 end

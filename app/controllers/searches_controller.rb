@@ -17,8 +17,13 @@ class SearchesController < ApplicationController
       q: search_params.fetch('q', ''),
       facet_params: facet_params,
       facet_fields: facet_fields,
-      page: page
+      page: page,
+      sort: sort
     ).response
+  end
+
+  def sort
+    search_params.fetch(:sort, 'score desc, title desc')
   end
 
   def facet_params

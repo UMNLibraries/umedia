@@ -2,20 +2,21 @@ require 'test_helper'
 module Parhelion
   class SortQueryTest < ActiveSupport::TestCase
     describe 'if no sort params exist' do
-      it 'defaults to an ascending sort' do
+      it 'defaults to a score-based sort and is inactive' do
         params = {'q' => 'finance'}
         query =  Query.new(params: params)
-        sort = SortQuery.new(asc: 'title_asc', desc: 'title_desc', query: query)
-        sort.link_params.must_equal({'q'=>'finance', 'sort'=>'title_asc'})
+        sort_query = SortQuery.new(query: query)
+        sort_query.active?.must_equal false
+        sort_query.link_params.must_equal({'q'=>'finance', 'sort'=>'score desc, title desc'})
       end
     end
 
-    describe 'if sort is ascending' do
-      it 'switches to a descending sort' do
-        params = {'q' => 'finance', 'sort' => 'title_asc'}
+    describe 'if a sort param exists and is the same as the sort query' do
+      it 'knows it is active' do
+        params = {'q' => 'finance', 'sort' => 'title asc'}
         query =  Query.new(params: params)
-        sort = SortQuery.new(asc: 'title_asc', desc: 'title_desc', query: query)
-        sort.link_params.must_equal('q' => 'finance', 'sort' => 'title_desc')
+        sort_query = SortQuery.new(value: 'title asc', query: query)
+        sort_query.active?.must_equal true
       end
     end
   end

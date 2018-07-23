@@ -1,30 +1,13 @@
-<% relevance = sort_query('relevance', 'relevance', search_params) %>
-<% file_name =  sort_query('file_name_desc', 'file_name_asc', search_params) %>
-
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <% if relevance.is_active? || (!relevance.is_active? && !file_name.is_active?) %>
-      Sort By Relevancy
-      <span class="glyphicon glyphicon-chevron-down"></span>
-    <% else %>
-      Sort By Indexing Order
-    <% end %>
-    <% if file_name.is_ascending? && file_name.is_active? %>
-          <span class="glyphicon glyphicon-chevron-down"></span>
-    <% elsif !file_name.is_ascending? && file_name.is_active? %>
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    <% end %>
+<div id="sort-dropdown" class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      Sort by <%= sort_list.active_label %> <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
-    <li>
-      <%= link_to raw("Relevance <span class=\"glyphicon glyphicon-chevron-down\"></span>"), searches_path(relevance.link_params) %>
-    </li>
-    <li>
-      <% if file_name.is_ascending? || !file_name.is_active? %>
-        <%= link_to raw("Indexing Order <span class=\"glyphicon glyphicon-chevron-down\"></span>"), searches_path(file_name.link_params) %>
-      <% else %>
-        <%= link_to raw("Indexing Order <span class=\"glyphicon glyphicon-chevron-up\"></span>"), searches_path(file_name.link_params) %>
-      <% end %>
-    </li>
+  <ul class="dropdown-menu" role="menu">
+    <% sort_list.map do |sort| %>
+        <% active = sort[:query].active? ? 'active' : '' %>
+        <li class="<%= active %>">
+          <%= link_to sort[:label],  searches_path(sort[:query].link_params) %>
+        </li>
+    <% end %>
   </ul>
 </div>

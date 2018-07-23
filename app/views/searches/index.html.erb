@@ -12,12 +12,14 @@
   </div>
 
   <div class="pagit col-md-12">
-    <div class="pull-right">
-      <%= render 'pager', pager: pager, search_params: search_params %>
+    <div class="col-md-3">
+      <%= render 'config', search_params: search_params  %>
     </div>
-  </div>
-  <div class="sort col-md-3">
-
+    <div class="col-md-9">
+      <div class="pull-right">
+        <%= render 'pager', pager: pager, search_params: search_params %>
+      </div>
+    </div>
   </div>
 </div>
 

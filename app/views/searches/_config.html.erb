@@ -1,0 +1,3 @@
+<div class="search-config">
+  <%= render 'sort', sort_list: Umedia::SortList.new(query: Parhelion::Query.new(params: search_params)) %>
+</div>
