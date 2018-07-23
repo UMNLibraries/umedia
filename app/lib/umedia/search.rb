@@ -7,7 +7,7 @@ module Umedia
     def initialize(q: '',
                    facet_params: {},
                    facet_fields: [],
-                   rows: 50,
+                   rows: 20,
                    page: 1,
                    sort: 'score desc, title desc',
                    client: SolrClient)
@@ -27,6 +27,7 @@ module Umedia
         'facet.field': facet_fields,
         'facet.limit': 15,
         sort: sort,
+        rows: rows,
         fq: ['record_type:primary'].concat(facet_query)
       }
     end

@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'details-toggle' %>
+
 <div class="back-to-search">
   <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> back to search'),
               {controller: 'searches', action: 'index', anchor: document.id}.merge(search_params) %>

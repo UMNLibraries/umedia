@@ -18,8 +18,13 @@ class SearchesController < ApplicationController
       facet_params: facet_params,
       facet_fields: facet_fields,
       page: page,
-      sort: sort
+      sort: sort,
+      rows: rows
     ).response
+  end
+
+  def rows
+    search_params[:rows] ? search_params[:rows] : 20
   end
 
   def sort

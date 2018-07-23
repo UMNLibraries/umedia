@@ -4,10 +4,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
     <% sort_list.map do |sort| %>
-        <% active = sort[:query].active? ? 'active' : '' %>
-        <li class="<%= active %>">
-          <%= link_to sort[:label],  searches_path(sort[:query].link_params) %>
-        </li>
+      <li><%= link_to sort[:label],  searches_path(sort[:query].link_params) %></li>
     <% end %>
   </ul>
 </div>

@@ -1,3 +1,8 @@
 <div class="search-config">
-  <%= render 'sort', sort_list: Umedia::SortList.new(query: Parhelion::Query.new(params: search_params)) %>
+  <% if result_count > 1 %>
+    <%= render 'sort', sort_list: Umedia::SortList.new(query: Parhelion::Query.new(params: search_params)) %>
+  <% end %>
+  <% if result_count > 10 %>
+    <%= render 'per_page', result_count: result_count, per_pages: [10, 20, 50, 100], search_params: search_params %>
+  <% end %>
 </div>
