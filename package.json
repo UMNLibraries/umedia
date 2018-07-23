@@ -1,13 +1,16 @@
 {
   "dependencies": {
     "//": "sad, adj added here because: https://github.com/yarnpkg/yarn/issues/3933#issuecomment-315203589",
-    "ajv": "5",
     "@rails/webpacker": "3.5",
+    "ajv": "5",
+    "bootstrap-sass": "3.3.7",
     "jquery-ujs": "^1.2.2",
     "openseadragon": "^2.3.1",
     "query-string": "^6.1.0",
+    "rails-ujs": "^5.2.0",
     "stampit": "^4.1.2",
-    "stimulus": "^1.0.1"
+    "stimulus": "^1.0.1",
+    "turbolinks": "^5.1.1"
   },
   "devDependencies": {
     "babel-jest": "^23.0.1",
