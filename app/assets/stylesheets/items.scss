@@ -2,6 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.full-record-citation {
+  margin-top: 15px;
+  .dl-horizontal dt {
+    width: 200px;
+  }
+  .dl-horizontal dd {
+    margin-left: 210px;
+  }
+}
+
+ul.image-download {
+  list-style: none;
+  margin: 5px 0 15px 0;
+  padding: 0;
+  .glyphicon-download {
+    font-size: 1.2em;
+  }
+}
+
 .item-details {
   margin-top: 25px;
 }
