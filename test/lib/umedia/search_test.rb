@@ -11,7 +11,9 @@ module Umedia
       paginator.expect :paginate, false, [1,
                                           50,
                                           "search",
-                                           {:params=>{:q=>"", :"q.alt"=>"*:*", :"facet.field"=>[], :"facet.limit"=>15, :fq=>["record_type:primary"]}}]
+                                          {:params=>{:q=>"", :"q.alt"=>"*:*", :"facet.field"=>[], :"facet.limit"=>15, :sort=>"score desc, title desc", :fq=>["record_type:primary"]}}
+                                         ]
+
       Search.new(q: '',
                  facet_params: {},
                  facet_fields: [],
