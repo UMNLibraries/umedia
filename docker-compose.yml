@@ -17,7 +17,7 @@ services:
       - "3000:3000"
     links:
       - solr
-      - redis
+      - redis_cache
     depends_on:
       - solr
     environment:
@@ -47,6 +47,9 @@ services:
     ports:
       - '3035:3035'
   redis:
-    image: redis:latest
-  redis:
-    image: redis:latest
+    image: redis:4.0.10
+  redis_cache:
+    image: redis:4.0.10
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+        - ./docker/redis-cache.conf:/usr/local/etc/redis/redis.conf
