@@ -12,5 +12,4 @@ RUN mkdir /app
 WORKDIR /app
 ADD . /app
 RUN gem install bundler
-RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install --jobs 20 --retry 5
