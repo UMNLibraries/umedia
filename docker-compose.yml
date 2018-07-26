@@ -18,18 +18,18 @@ services:
       - redis_cache
     depends_on:
       - solr
-  sidekiq:
+  sidekiq_1:
       build: .
-      command: bundle exec sidekiq  -c 5 -r /app
+      command: bundle exec sidekiq  -c 1 -r /app
       volumes:
         - .:/app
       links:
         - redis
       env_file:
         - .env
-  sidekiq:
+  sidekiq_2:
     build: .
-    command: bundle exec sidekiq  -c 5 -r /app
+    command: bundle exec sidekiq  -c 1 -r /app
     volumes:
       - .:/app
     links:
