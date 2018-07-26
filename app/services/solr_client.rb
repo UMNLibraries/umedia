@@ -30,6 +30,6 @@ class SolrClient
   private
 
   def base_url
-    core_name == 'production' ? 'http://localhost' : 'http://solr'
+    'http://solr'
   end
 end
