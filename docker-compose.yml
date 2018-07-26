@@ -7,10 +7,18 @@ services:
     volumes:
       - ./cores:/opt/solr/server/solr/cores
   web:
+    build:
+      context: .
+      dockerfile: ./docker/web/DockerFile
+    depends_on:
+      - app
+    ports:
+      - 80:80
+  app:
     build: .
     env_file:
       - .env
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bundle exec puma -w 2 -p 3000
     volumes:
       - .:/app
     ports:
@@ -20,25 +28,24 @@ services:
       - redis_cache
     depends_on:
       - solr
-    environment:
-      - GEONAMES_USER
-      - GEONAMES_TOKEN
-      - UMEDIA_NAILER_CDN_URI
-      - UMEDIA_NAILER_API_URI
-      - UMEDIA_NAILER_API_KEY
-      - UMEDIA_NAILER_THUMB_FALLBACK_URL
   sidekiq:
       build: .
-      command: bundle exec sidekiq  -c 10 -r /app
+      command: bundle exec sidekiq  -c 5 -r /app
       volumes:
         - .:/app
       links:
         - redis
       env_file:
         - .env
-      environment:
-        - GEONAMES_USER
-        - GEONAMES_TOKEN
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq  -c 5 -r /app
+    volumes:
+      - .:/app
+    links:
+      - redis
+    env_file:
+      - .env
   webpacker:
     build: .
     command: ./bin/webpack-dev-server
