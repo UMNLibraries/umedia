@@ -6,14 +6,6 @@ services:
       - "8983:8983"
     volumes:
       - ./cores:/opt/solr/server/solr/cores
-  web:
-    build:
-      context: .
-      dockerfile: ./docker/web/DockerFile
-    depends_on:
-      - app
-    ports:
-      - 80:80
   app:
     build: .
     env_file:
