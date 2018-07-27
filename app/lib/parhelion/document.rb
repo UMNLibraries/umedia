@@ -9,6 +9,10 @@ module Parhelion
       @field_klass = field_klass
     end
 
+    def type
+      doc_hash.fetch('types', []).first
+    end
+
     def id
       doc_hash.fetch('id')
     end

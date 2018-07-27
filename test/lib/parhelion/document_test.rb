@@ -8,6 +8,12 @@ module Parhelion
         doc.is_compound?.must_equal(false)
       end
 
+      it 'knows that it is a compound' do
+        doc_hash = { 'title' => 'foo', 'creator' => %w[blah blergh], 'types' => ['Still Image'] }
+        doc = Document.new(doc_hash: doc_hash)
+        doc.type.must_equal('Still Image')
+      end
+
       it 'responds with a field when given a message prefixed with "field"' do
         doc_hash = { 'title' => 'foo', 'creator' => %w[blah blergh] }
         doc = Document.new(doc_hash: doc_hash)
