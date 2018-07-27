@@ -55,7 +55,7 @@ module Umedia
 
     def image_downloads
       available_sizes.map do |size|
-        image_download("#{size['width']}, #{size['height']}", "#{size['width']} x #{size['height']}")
+        image_download("#{size['width']},#{size['height']}", "#{size['width']} x #{size['height']}")
       end << image_download('full', 'Full')
     end
 
