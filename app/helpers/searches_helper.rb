@@ -39,4 +39,8 @@ module SearchesHelper
       end.select { |facet| facet[:link].active? }
     end.flatten
   end
+
+  def truncate_field(value, truncate_it)
+    truncate_it ? truncate(value, length: 350) : value
+  end
 end
