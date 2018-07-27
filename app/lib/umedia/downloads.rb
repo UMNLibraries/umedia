@@ -1,3 +1,5 @@
+require "rest-client"
+
 module Umedia
   class Downloads
     attr_reader :viewer_type,
@@ -5,17 +7,23 @@ module Umedia
                 :id,
                 :parent_id,
                 :parent_collection,
-                :cdn_endpoint
+                :cdn_endpoint,
+                :rest_client_klass
     def initialize(viewer_type: 'image',
                    id: :MISSING_ID,
                    parent_id: :MISSING_PARENT_ID,
-                   cdn_endpoint: 'http://cdm16022.contentdm.oclc.org')
+                   cdn_endpoint: 'http://cdm16022.contentdm.oclc.org',
+                   rest_client_klass: RestClient)
       @viewer_type = viewer_type
       @collection  = id.split(':').first
       @id = id.split(':').last
       @parent_id = parent_id.split(':').last
-      @parent_collection = parent_id.split(':').first
       @cdn_endpoint = cdn_endpoint
+      @rest_client_klass = rest_client_klass
+    end
+
+    def is_child?
+      id != parent_id
     end
 
     def downloads
@@ -34,15 +42,25 @@ module Umedia
     end
 
     def download_all_url
-      "#{cdn_endpoint}/utils/getfile/collection/#{parent_collection}/id/#{parent_id}/filename/print/page/download/fparams/forcedownload"
+      "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{parent_id}/filename/print/page/download/fparams/forcedownload"
+    end
+
+    def available_sizes
+      JSON.parse(rest_client_klass.get(info_url).body)['sizes']
+    end
+
+    def info_url
+      "#{cdn_endpoint}/digital/iiif/#{collection}/#{parent_id}/info.json"
     end
 
     def image_downloads
-      [
-        { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/150,150/0/default.jpg", label: '(150 x 150 download)' },
-        { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/800,800/0/default.jpg", label: '(800 x 800 download)' },
-        { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/1920,1920/0/default.jpg", label: '(1920 x 1920 download)' }
-      ]
+      available_sizes.map do |size|
+        image_download("#{size['width']}, #{size['height']}", "#{size['width']} x #{size['height']}")
+      end << image_download('full', 'Full')
+    end
+
+    def image_download(size, label)
+      { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/#{size}/0/default.jpg", label: "(#{label} download)" }
     end
   end
 end
