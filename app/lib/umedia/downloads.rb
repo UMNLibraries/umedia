@@ -45,8 +45,8 @@ module Umedia
       "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{parent_id}/filename/print/page/download/fparams/forcedownload"
     end
 
-    def available_sizes
-      JSON.parse(rest_client_klass.get(info_url).body)['sizes']
+    def info
+      @info ||= JSON.parse(rest_client_klass.get(info_url).body)
     end
 
     def info_url
@@ -54,9 +54,15 @@ module Umedia
     end
 
     def image_downloads
-      available_sizes.map do |size|
-        image_download("#{size['width']},#{size['height']}", "#{size['width']} x #{size['height']}")
-      end << image_download('full', 'Full')
+      desired_sizes.map do |size|
+        if info['height'] >= size && info['width'] >= size
+          image_download("#{size},#{size}", "#{size} x #{size}")
+        end
+      end.compact << image_download('full', 'Full')
+    end
+
+    def desired_sizes
+      [150, 800, 1920]
     end
 
     def image_download(size, label)
