@@ -66,7 +66,7 @@ module Umedia
     end
 
     def image_download(size, label)
-      { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/#{size}/0/default.jpg", label: "(#{label} download)" }
+      { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/#{size}/0/default.jpg", label: "(#{label} Download)" }
     end
   end
 end
