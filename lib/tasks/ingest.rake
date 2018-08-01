@@ -14,6 +14,11 @@ namespace :umedia_ingest do
     run_etl!(etl.set_specs.sample(1))
   end
 
+  desc 'Nuke Redis Queue'
+  task clear_redis: [:environment] do
+    Sidekiq::Queue.new.clear
+  end
+
   def run_etl!(set_specs = [])
     puts "Indexing Sets: '#{set_specs.join(', ')}'"
     CDMBL::ETLBySetSpecs.new(set_specs: set_specs, etl_config: etl.config).run!
