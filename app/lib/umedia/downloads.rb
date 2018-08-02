@@ -50,7 +50,7 @@ module Umedia
     end
 
     def info_url
-      "#{cdn_endpoint}/digital/iiif/#{collection}/#{parent_id}/info.json"
+      "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/info.json"
     end
 
     def image_downloads
