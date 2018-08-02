@@ -1,7 +1,7 @@
 require 'test_helper'
 module Parhelion
-  class DocumentListTest < ActiveSupport::TestCase
-    it 'produces a list of documents' do
+  class ItemListTest < ActiveSupport::TestCase
+    it 'produces a list of items' do
       response = {
         'responseHeader' => {'blah' => 'blah '},
         'response' => {
@@ -13,9 +13,9 @@ module Parhelion
 
       doc_hash = {'title' => 'blah', 'publisher' => 'me'}
       results = [doc_hash]
-      resp = DocumentList.new(results: results)
+      resp = ItemList.new(results: results)
       resp.map do |doc|
-        doc.must_equal Document.new(doc_hash: doc_hash)
+        doc.must_equal Item.new(doc_hash: doc_hash)
       end
     end
   end

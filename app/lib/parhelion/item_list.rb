@@ -2,16 +2,16 @@
 
 module Parhelion
   # A light wrapper around an RSolr result hash
-  class DocumentList
+  class ItemList
     include Enumerable
     attr_reader :results,
                 :start,
-                :doc_klass
+                :item_klass
 
     def initialize(results: [],
-                   doc_klass: Document)
+                   item_klass: Item)
       @results     = results
-      @doc_klass   = doc_klass
+      @item_klass  = item_klass
     end
 
     def empty?
@@ -20,7 +20,7 @@ module Parhelion
 
     def each(&block)
       results.each do |doc|
-        yield doc_klass.new(doc_hash: doc)
+        yield item_klass.new(doc_hash: doc)
       end
     end
   end

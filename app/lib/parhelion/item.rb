@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Parhelion
-  # Converts a result hash into an Document object with Field Object children
-  class Document
+  # Converts a result hash into an Item object with Field Object children
+  class Item
     attr_reader :doc_hash, :field_klass
     def initialize(doc_hash: {}, field_klass: Field)
       @doc_hash    = doc_hash
@@ -13,12 +13,42 @@ module Parhelion
       doc_hash.fetch('types', []).first
     end
 
-    def id
+    # rails doc id is used for the item path
+    # items/coll123:999 <-- path id
+    def path_id
       doc_hash.fetch('id')
+    end
+
+    def id
+      doc_ids.last
+    end
+
+    # If an item doesn't have a parent ID field,
+    # it is its own parent
+    def parent_id
+      parent_ids.last
+    end
+
+    def collection
+      doc_ids.first
     end
 
     def is_compound?
       doc_hash.fetch('page_count', 1) > 1
+    end
+
+    def ==(other)
+      doc_hash == other.doc_hash
+    end
+
+    private
+
+    def doc_ids
+      path_id.split(':')
+    end
+
+    def parent_ids
+      doc_hash.fetch('parent_id', path_id).split(':')
     end
 
     def method_missing(method_name, *arguments, &block)
@@ -32,12 +62,6 @@ module Parhelion
     def respond_to_missing?(method_name, include_private = false)
       method_name.to_s.start_with?('field_') || super
     end
-
-    def ==(other)
-      doc_hash == other.doc_hash
-    end
-
-    private
 
     def field(name, value)
       field = doc_hash.key?(name) ? field_klass : MissingField
