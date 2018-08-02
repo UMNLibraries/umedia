@@ -8,7 +8,7 @@ module Parhelion
     end
     it 'knows how to stringify itself for display' do
       facet = FacetRow.new(value: 'UMN', count: 122)
-      facet.to_s.must_equal("UMN (122)")
+      facet.to_s.must_equal("UMN")
     end
   end
 end
