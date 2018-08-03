@@ -1,11 +1,20 @@
 require 'test_helper'
 module Parhelion
   class ItemTest < ActiveSupport::TestCase
-    describe 'when it has no parent id' do
-      it 'is its own parent' do
-        doc_hash = { 'id' => 'fooCollection:1235' }
+    describe 'when it has childern' do
+      it 'produces correct height and width' do
+        doc_hash = { 'id' => 'p16022coll142:147', 'page_count' => 50 }
         item = Item.new(doc_hash: doc_hash)
-        item.parent_id.must_equal(doc_hash['id'].split(':').last)
+        item.height.must_equal(777)
+        item.width.must_equal(1187)
+      end
+    end
+
+    describe 'when it does ot have childern' do
+      it 'produces correct height and width of zero' do
+        item = Item.new(doc_hash: { 'id' => 'p16022coll194:188'})
+        item.height.must_equal(0)
+        item.width.must_equal(0)
       end
     end
 
@@ -22,7 +31,7 @@ module Parhelion
         doc_hash = { 'id' => 'fooCollection:123', 'title' => 'foo', 'creator' => %w[blah blergh] }
         item = Item.new(doc_hash: doc_hash)
         item.id.must_equal('123')
-        item.collection.must_equal('fooCollection:123')
+        item.collection.must_equal('fooCollection')
       end
 
       it 'knows that it is a compound' do

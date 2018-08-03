@@ -3,10 +3,21 @@
 module Parhelion
   # Converts a result hash into an Item object with Field Object children
   class Item
-    attr_reader :doc_hash, :field_klass
-    def initialize(doc_hash: {}, field_klass: Field)
-      @doc_hash    = doc_hash
-      @field_klass = field_klass
+    attr_reader :doc_hash, :field_klass, :cdn_iiif_klass
+    def initialize(doc_hash: {},
+                   field_klass: Field,
+                   cdn_iiif_klass: CdmIiif)
+      @doc_hash     = doc_hash
+      @field_klass  = field_klass
+      @cdn_iiif_klass = cdn_iiif_klass
+    end
+
+    def height
+      iiif_info.fetch('height', 0)
+    end
+
+    def width
+      iiif_info.fetch('width', 0)
     end
 
     def type
@@ -41,7 +52,16 @@ module Parhelion
       doc_hash == other.doc_hash
     end
 
+
     private
+
+    def iiif_info
+      if is_compound?
+        @iiif_info ||= cdn_iiif_klass.new(id: id, collection: collection).info
+      else
+        {}
+      end
+    end
 
     def doc_ids
       path_id.split(':')
