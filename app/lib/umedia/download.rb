@@ -4,14 +4,11 @@ module Umedia
     extend Forwardable
     def_delegators :@item, :[], :id, :parent_id, :collection, :height, :width
 
-    attr_reader :viewer,
-                :item,
+    attr_reader :item,
                 :cdn_endpoint
 
-    def initialize(viewer: 'image',
-                   item: :MISSING_ID,
+    def initialize(item: :MISSING_ID,
                    cdn_endpoint: 'http://cdm16022.contentdm.oclc.org')
-      @viewer = viewer
       @item = item
       @cdn_endpoint = cdn_endpoint
     end
@@ -21,7 +18,7 @@ module Umedia
     end
 
     def urls
-      case viewer
+      case item.field_viewer_type.value
       when /^kaltura/
         []
       when 'image'
