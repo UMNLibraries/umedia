@@ -1,33 +1,27 @@
-require "rest-client"
-
 module Umedia
-  class Downloads
-    attr_reader :viewer_type,
-                :collection,
-                :id,
-                :parent_id,
-                :parent_collection,
-                :cdn_endpoint,
-                :rest_client_klass
-    def initialize(viewer_type: 'image',
-                   id: :MISSING_ID,
-                   parent_id: :MISSING_PARENT_ID,
-                   cdn_endpoint: 'http://cdm16022.contentdm.oclc.org',
-                   rest_client_klass: RestClient)
-      @viewer_type = viewer_type
-      @collection  = id.split(':').first
-      @id = id.split(':').last
-      @parent_id = parent_id.split(':').last
+  # Provide access to item download urls
+  class Download
+    extend Forwardable
+    def_delegators :@item, :[], :id, :parent_id, :collection, :height, :width
+
+    attr_reader :viewer,
+                :item,
+                :cdn_endpoint
+
+    def initialize(viewer: 'image',
+                   item: :MISSING_ID,
+                   cdn_endpoint: 'http://cdm16022.contentdm.oclc.org')
+      @viewer = viewer
+      @item = item
       @cdn_endpoint = cdn_endpoint
-      @rest_client_klass = rest_client_klass
     end
 
     def is_child?
       id != parent_id
     end
 
-    def downloads
-      case viewer_type
+    def urls
+      case viewer
       when /^kaltura/
         []
       when 'image'
@@ -37,6 +31,8 @@ module Umedia
       end
     end
 
+    private
+
     def pdf_download
       "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{id}/filename"
     end
@@ -45,17 +41,9 @@ module Umedia
       "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{parent_id}/filename/print/page/download/fparams/forcedownload"
     end
 
-    def info
-      @info ||= JSON.parse(rest_client_klass.get(info_url).body)
-    end
-
-    def info_url
-      "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/info.json"
-    end
-
     def image_downloads
       desired_sizes.map do |size|
-        if info['height'] >= size && info['width'] >= size
+        if height >= size && width >= size
           image_download("#{size},#{size}", "#{size} x #{size}")
         end
       end.compact << image_download('full', 'Full')
