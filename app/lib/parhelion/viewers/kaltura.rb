@@ -1,23 +1,25 @@
 module Parhelion
   module Viewers
     class Kaltura
-      attr_reader :document, :entry_id, :uri
+      extend Forwardable
+      def_delegators :@item, :[], :id, :collection
+      attr_reader :item, :entry_id, :uri
       def initialize(entry_id: '',
-                     document: Parhelion::Document.new,
+                     item: Parhelion::Item.new,
                      uri: 'https://cdm16022.contentdm.oclc.org')
         @entry_id = entry_id
-        @document = document
+        @item = item
         @uri = uri
       end
 
       def partial_name
-        if document.field_kaltura_video_playlist.value
+        if item.field_kaltura_video_playlist.value
           'kaltura_compound'
-        elsif document.field_kaltura_video.value
+        elsif item.field_kaltura_video.value
           'kaltura_video'
-        elsif document.field_kaltura_audio_playlist.value
+        elsif item.field_kaltura_audio_playlist.value
           'kaltura_compound'
-        elsif document.field_kaltura_audio.value
+        elsif item.field_kaltura_audio.value
           'kaltura_audio'
         end
       end
@@ -41,18 +43,6 @@ module Parhelion
 
       def target_id
         'kaltura_player'
-      end
-
-      def id
-        doc_ids.last
-      end
-
-      def collection
-        doc_ids.first
-      end
-
-      def doc_ids
-        document.id.split(':')
       end
 
       def src

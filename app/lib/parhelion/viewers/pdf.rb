@@ -1,10 +1,13 @@
 module Parhelion
   module Viewers
     class PDF
-      attr_reader :document, :uri
-      def initialize(document: Parhelion::Document.new,
+      extend Forwardable
+      def_delegators :@item, :[], :id, :parent_id, :collection
+
+      attr_reader :item, :uri
+      def initialize(item: Parhelion::Item.new,
                      uri: 'https://cdm16022.contentdm.oclc.org')
-        @document = document
+        @item = item
         @uri = uri
       end
 
@@ -13,7 +16,7 @@ module Parhelion
       end
 
       def title
-        document.field_title.value
+        item.field_title.value
       end
 
       def src
@@ -25,25 +28,7 @@ module Parhelion
       end
 
       def is_primary?
-        document.field_record_type.value == 'primary'
-      end
-
-      private
-
-      def id
-        doc_ids.last
-      end
-
-      def parent_id
-        document.field_parent_id.value
-      end
-
-      def collection
-        doc_ids.first
-      end
-
-      def doc_ids
-        document.id.split(':')
+        item.field_record_type.value == 'primary'
       end
     end
   end
