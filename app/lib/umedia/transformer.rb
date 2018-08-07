@@ -44,15 +44,15 @@ module Umedia
       end
     end
 
-    class SplitPipeFormatter
-      def self.format(values)
-        values.split('|') if values.respond_to?(:split)
+    class FormatNameFormatter
+      def self.format(value)
+        value.split('|').first
       end
     end
 
-    class TakeFirstFormatter
-      def self.format(values)
-        values.first if values.respond_to?(:first)
+    class SemiSplitFirstFormatter
+      def self.format(value)
+        value.split(';').first
       end
     end
 
@@ -86,7 +86,7 @@ module Umedia
         # Physical Description
         {dest_path: 'types', origin_path: 'type', formatters: [CDMBL::StripFormatter, CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::UniqueFormatter]},
         {dest_path: 'format', origin_path: 'format', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'format_facet', origin_path: 'format', formatters: [SplitPipeFormatter, TakeFirstFormatter, CDMBL::StripFormatter]},
+        {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter]},
         {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMBL::StripFormatter]},
         # Topics
         {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::StripFormatter]},
@@ -103,7 +103,9 @@ module Umedia
         {dest_path: 'scale', origin_path: 'scale', formatters: [CDMBL::StripFormatter]},
         # Collection Information
         {dest_path: 'parent_collection', origin_path: 'a', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'parent_collection_name', origin_path: 'a', formatters: [SemiSplitFirstFormatter]},
         {dest_path: 'contributing_organization', origin_path: 'contra', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'contributing_organization_name', origin_path: 'contra', formatters: [SemiSplitFirstFormatter]},
         {dest_path: 'contact_information', origin_path: 'contac', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'fiscal_sponsor', origin_path: 'fiscal', formatters: [CDMBL::StripFormatter]},
         # Identifiers
