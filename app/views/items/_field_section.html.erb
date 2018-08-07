@@ -1,0 +1,8 @@
+<% if !values.empty? %>
+  <%= raw "<h3>#{label}</h3>" if label %>
+  <dl class="item-metadata dl-horizontal dl-invert col-md-12">
+  <% values.map do |field| %>
+    <%= render 'item_field', facet_field: field.facet, value: field.value, name: field.name %>
+  <% end %>
+  </dl>
+<% end %>

@@ -10,14 +10,14 @@ class ItemsController < SearchesController
 
   def show
     response.headers['Content-Language'] = I18n.locale.to_s
-    render locals: { document: document,
+    render locals: { item: item,
                      children: children,
                      search_params: search_params}
   end
 
-  def document
-    Rails.cache.fetch("document/#{id}") do
-      Umedia::DocumentSearch.new(id: id).document
+  def item
+    Rails.cache.fetch("item/#{id}") do
+      Umedia::ItemSearch.new(id: id).item
     end
   end
 

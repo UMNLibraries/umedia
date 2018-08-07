@@ -1,20 +1,20 @@
 <div class="back-to-search">
   <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> back to search'),
-              {controller: 'searches', action: 'index', anchor: document.id}.merge(search_params) %>
+              {controller: 'searches', action: 'index', anchor: "#{item.collection}:#{item.id}"}.merge(search_params) %>
 </div>
 
-<h1><%= document.field_title.value %></h1>
+<h1><%= item.field_title.value %></h1>
 
-<%= render 'viewer', document: document, children: children %>
+<%= render 'viewer', item: item, children: children %>
 
-<% cache document do %>
+<% cache item do %>
   <div class="item-metadata col-md-12">
     <ul class="nav nav-pills">
       <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
       <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
     </ul>
-    <%= render 'citation', document: document %>
-    <%= render 'details', document: document %>
+    <%= render 'citation', item: item %>
+    <%= render 'details', item: item %>
   </div>
 <% end %>
 

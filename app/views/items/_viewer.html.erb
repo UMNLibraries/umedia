@@ -5,15 +5,15 @@
     <% if !children.empty? %>
       <div id="viewer-display" class="col-md-9"></div>
       <div id="viewer-sidebar" class="col-md-3">
-        <%= render 'sidebar', children: children, document: document %>
+        <%= render 'sidebar', children: children, item: item %>
       </div>
     <% else %>
       <div id="viewer-display" class="col-md-12"></div>
     <% end %>
 </div>
 
-<% if children.empty? && document.type == 'Still Image'%>
+<% if children.empty? && item.type == 'Still Image'%>
   <div class="single-item-download pull-right">
-    <%= render 'child_searches/download', downloads: single_item_download_config(document) %>
+    <%= render 'child_searches/download', download: download_config(item) %>
   </div>
 <% end %>
