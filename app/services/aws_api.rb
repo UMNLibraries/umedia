@@ -10,12 +10,12 @@ class AwsApi
     @post_klass = post_klass
   end
 
-  def upload!
-    res = http_klass.start(uri.hostname,
+  def post
+    http_klass.start(uri.hostname,
                            uri.port,
                            :use_ssl => true) do |http|
       http.request(post_request)
-    end
+    end.body
   end
 
   def post_request
