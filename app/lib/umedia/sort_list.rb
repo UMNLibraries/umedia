@@ -29,7 +29,7 @@ module Umedia
 
     def mappings
       [
-        {label: 'Default Relevance', sort: 'score desc, title desc' },
+        {label: 'Relevance', sort: 'score desc, title desc' },
         {label: 'Title: A to Z', sort: 'title asc, date_created_sort desc' },
         {label: 'Title: Z to A', sort: 'title desc, date_created_sort desc' },
         {label: 'Creator: A to Z', sort: 'creator_sort asc, title asc' },
