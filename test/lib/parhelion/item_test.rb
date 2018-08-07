@@ -2,19 +2,20 @@ require 'test_helper'
 module Parhelion
   class ItemTest < ActiveSupport::TestCase
     describe 'when it has childern' do
-      it 'produces correct height and width' do
+      # Usually, we don't request height/width of a parent
+      it 'produces correct height and width of zero' do
         doc_hash = { 'id' => 'p16022coll142:147', 'page_count' => 50 }
         item = Item.new(doc_hash: doc_hash)
-        item.height.must_equal(777)
-        item.width.must_equal(1187)
+        item.height.must_equal(0)
+        item.width.must_equal(0)
       end
     end
 
     describe 'when it does ot have childern' do
-      it 'produces correct height and width of zero' do
+      it 'produces correct height and width' do
         item = Item.new(doc_hash: { 'id' => 'p16022coll194:188'})
-        item.height.must_equal(0)
-        item.width.must_equal(0)
+        item.height.must_equal(777)
+        item.width.must_equal(1187)
       end
     end
 

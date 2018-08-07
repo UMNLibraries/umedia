@@ -52,11 +52,10 @@ module Parhelion
       doc_hash == other.doc_hash
     end
 
-
     private
 
     def iiif_info
-      if is_compound?
+      if !is_compound?
         @iiif_info ||= cdn_iiif_klass.new(id: id, collection: collection).info
       else
         {}
