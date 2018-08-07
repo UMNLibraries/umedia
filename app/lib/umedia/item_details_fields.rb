@@ -23,7 +23,7 @@ module Umedia
     def value(name, facet)
       field = item.public_send("field_#{name}")
       field.define_singleton_method(:facet) do
-        facet
+        (facet) ? name : false
       end
       field
     end
