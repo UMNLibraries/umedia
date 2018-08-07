@@ -1,3 +1,5 @@
 <% facet_list.map do |facet| %>
-  <%= render 'facet', facet: facet, heading: I18n.t("search.facets.#{facet.name}"), search_params: search_params %>
+  <% if sidebar_facet_fields.include?(facet.name) %>
+    <%= render 'facet', facet: facet, heading: I18n.t("search.facets.#{facet.name}"), search_params: search_params %>
+  <% end %>
 <% end %>

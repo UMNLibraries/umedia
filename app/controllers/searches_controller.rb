@@ -2,9 +2,10 @@ class SearchesController < ApplicationController
   def index
     response.headers["Content-Language"] = I18n.locale.to_s
     render locals: {
-      document_list: document_list,
+      item_list: item_list,
       facet_list: facet_list,
       search_params: search_params.to_h,
+      sidebar_facet_fields: facet_fields.map(&:to_s),
       pager: pager
     }
   end
@@ -16,7 +17,7 @@ class SearchesController < ApplicationController
       rows: rows,
       q: search_params.fetch('q', ''),
       facet_params: facet_params,
-      facet_fields: facet_fields,
+      facet_fields: facet_fields_all,
       page: page,
       sort: sort,
       rows: rows
@@ -40,8 +41,8 @@ class SearchesController < ApplicationController
       search.fetch('facet_counts', {}).fetch('facet_fields', {}))
   end
 
-  def document_list
-    Parhelion::DocumentList.new(results: search['response']['docs'])
+  def item_list
+    Parhelion::ItemList.new(results: search['response']['docs'])
   end
 
   def pager
@@ -65,7 +66,7 @@ class SearchesController < ApplicationController
   def facet_fields
     [
       :types,
-      :format_facet,
+      :format_name,
       :date_created_ss,
       :subject_ss,
       :creator_ss,
@@ -76,7 +77,26 @@ class SearchesController < ApplicationController
     ]
   end
 
+
+  def facet_fields_hidden
+    [
+      :format_name,
+      :subject_fast_ss,
+      :city,
+      :state,
+      :country,
+      :region,
+      :continent,
+      :parent_collection_name,
+      :contributing_organization_name
+    ]
+  end
+
+  def facet_fields_all
+    facet_fields.concat(facet_fields_hidden)
+  end
+
   def search_params
-    params.permit(:q, :page, :rows, :sort, facets: facet_fields.map { |facet| {facet => []} })
+    params.permit(:q, :page, :rows, :sort, facets: facet_fields_all.map { |facet| {facet => []} })
   end
 end

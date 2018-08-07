@@ -1,4 +1,4 @@
-  <% children.documents.each_with_index.map do |child, page| %>
+  <% children.items.each_with_index.map do |child, page| %>
       <%= render 'child_searches/page', child: child,
                                         page: page,
                                         highlighting: children.highlighting.fetch(child.id, {}),

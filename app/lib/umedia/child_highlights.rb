@@ -4,7 +4,7 @@ module Umedia
   # When you want all child records along with highlights of a search phrase
   #
   # Runs two child searches: one that gets all children and one that searches
-  # children for a query phrase. The former is used for the documents list
+  # children for a query phrase. The former is used for the items list
   # and the latter for highlights.
   class ChildHighlights
     attr_reader :q, :parent_id, :child_search_klass
@@ -17,11 +17,11 @@ module Umedia
     end
 
     def empty?
-      documents.empty?
+      items.empty?
     end
 
-    def documents
-      child_search_klass.new(parent_id: parent_id).documents
+    def items
+      child_search_klass.new(parent_id: parent_id).items
     end
 
     def highlighting

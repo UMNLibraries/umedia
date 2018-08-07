@@ -1,5 +1,2 @@
-<% if value.respond_to?(:join) %>
-  <%= value.join('; ') %>
-<% else %>
-  <%= value %>
-<% end %>
+<%= raw format_values(auto_links(value), facet_field) %>
+

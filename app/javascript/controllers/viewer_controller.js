@@ -24,6 +24,7 @@ export default class extends Controller {
   search(e) {
     e.preventDefault();
     if (this.searchTextTarget.value.trim() == '') return;
+    // REFACTORS
     $('.clear-search').attr('class', 'clear-search');
     ViewerUrl({ q: this.searchTextTarget.value}).update();
     this.viewer.pagesSideLoad(this.data.get("id"),

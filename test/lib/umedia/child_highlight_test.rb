@@ -8,12 +8,12 @@ module Umedia
       child_search_klass = Minitest::Mock.new
       child_search_obj = Minitest::Mock.new
       child_search_klass.expect :new, child_search_obj, [{:parent_id=>9942}]
-      child_search_obj.expect :documents, [{foo: 'bar'}], []
+      child_search_obj.expect :items, [{foo: 'bar'}], []
 
       child_search_klass.expect :new, child_search_obj, [{:q=>"", :parent_id=>9942}]
       child_search_obj.expect :highlighting, [{highlight: 'bar'}], []
       search = ChildHighlights.new(q: '', parent_id: parent_id, child_search_klass: child_search_klass)
-      search.documents
+      search.items
       search.highlighting
       child_search_klass.verify
     end

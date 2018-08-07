@@ -3,7 +3,7 @@ require 'net/http'
 
 class Thumbnailer
   attr_reader :cdn_uri,
-              :item_hash,
+              :doc_hash,
               :api_uri,
               :api_key,
               :thumb_fallback_url,
@@ -11,7 +11,7 @@ class Thumbnailer
               :file_exists_klass,
               :aws_api_klass
 
-  def initialize(item_hash: :missing_item_hash,
+  def initialize(doc_hash: :missing_doc_hash,
                  thumb_url: :missing_thumb_url,
                  cdn_uri: ENV['UMEDIA_NAILER_CDN_URI'],
                  api_uri: ENV['UMEDIA_NAILER_API_URI'],
@@ -20,7 +20,7 @@ class Thumbnailer
                  file_exists_klass: RemoteFileExists,
                  aws_api_klass: AwsApi)
     @cdn_uri            = cdn_uri
-    @item_hash          = item_hash
+    @doc_hash          = doc_hash
     @api_uri            = api_uri
     @thumb_fallback_url = CGI.escape thumb_fallback_url
     @thumb_url          = CGI.escape thumb_url
@@ -44,11 +44,10 @@ class Thumbnailer
   end
 
   def cdn_url
-    "#{cdn_uri}/#{item_hash}.png"
+    "#{cdn_uri}/#{doc_hash}.png"
   end
 
   def upload
-    Rails.logger.info("==========#{api_url.inspect}")
-    aws_api_klass.new(url: api_url, api_key: api_key).upload!
+    aws_api_klass.new(url: api_url, api_key: api_key).post
   end
 end

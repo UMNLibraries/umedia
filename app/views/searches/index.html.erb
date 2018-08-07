@@ -33,14 +33,15 @@
   <% if pager.result_count > 0 %>
     <%= render 'facet_list',
               facet_list: facet_list,
-              search_params: search_params %>
+              search_params: search_params,
+              sidebar_facet_fields: sidebar_facet_fields %>
   <% end %>
 </div>
 
 <div class="search-results col-md-9">
-  <%= render 'document_list',
+  <%= render 'item_list',
              current_page: pager.current_page,
-             document_list: document_list,
+             item_list: item_list,
              search_params: search_params %>
 </div>
 

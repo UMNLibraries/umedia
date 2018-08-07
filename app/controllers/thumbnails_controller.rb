@@ -5,7 +5,7 @@ class ThumbnailsController < ActionController::Base
   end
 
   def upload!
-    Thumbnailer.new(item_hash: thumb_url.hash,
+    Thumbnailer.new(doc_hash: thumb_url.hash,
                     thumb_url: thumb_url.url).upload!
   end
 
@@ -17,7 +17,7 @@ class ThumbnailsController < ActionController::Base
   end
 
   def doc
-    @doc ||= Umedia::DocumentSearch.new(id: thumbnail_params[:item_id]).document
+    @doc ||= Umedia::ItemSearch.new(id: thumbnail_params[:item_id]).item
   end
 
   def thumbnail_params

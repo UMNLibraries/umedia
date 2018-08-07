@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Umedia
   # Provide access to item download urls
   class Download
