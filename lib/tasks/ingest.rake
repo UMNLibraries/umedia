@@ -1,4 +1,4 @@
-namespace :umedia_ingest do
+namespace :ingest do
   desc 'Index a single collection'
   task :collection, [:set_spec] => :environment  do |t, args|
     run_etl!([args[:set_spec]])
