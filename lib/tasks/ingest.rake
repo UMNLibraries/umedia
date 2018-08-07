@@ -14,8 +14,8 @@ namespace :ingest do
     run_etl!(etl.set_specs.sample(1))
   end
 
-  desc 'Nuke Redis Queue'
-  task clear_redis: [:environment] do
+  desc 'Nuke Sidekiq Queue'
+  task clear_sidekiq: [:environment] do
     Sidekiq::Queue.new.clear
   end
 
