@@ -44,8 +44,10 @@ class UmediaETL
   end
 
   def filtered_set_specs
-    set_spec_filter.new(oai_base_url: oai_endpoint,
-                        callback: filter).set_specs
+    Rails.cache.fetch("set_specs", expires_in: 12.hours) do
+      set_spec_filter.new(oai_base_url: oai_endpoint,
+                          callback: filter).set_specs
+    end
   end
 
   def solr_config
