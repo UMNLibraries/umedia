@@ -78,4 +78,5 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'cdmbl'
 gem 'fontello_rails_converter'
 gem 'webpacker', '~> 3.5'
-gem "lograge"
+gem 'lograge'
+gem 'rinku'

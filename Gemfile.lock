@@ -202,6 +202,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rinku (2.0.4)
     rsolr (2.2.1)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
@@ -296,6 +297,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.0)
   redis (~> 4.0)
+  rinku
   rsolr
   sass-rails (~> 5.0)
   selenium-webdriver
