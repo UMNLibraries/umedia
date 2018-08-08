@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Umedia
   class SearchTest < ActiveSupport::TestCase
-    it 'passes a search configuration to the solr client ' do
+    it 'passes a search configuration to the solr client' do
       client = Minitest::Mock.new
       response = Minitest::Mock.new
       paginator = Minitest::Mock.new
@@ -11,12 +11,10 @@ module Umedia
       paginator.expect :paginate, false, [1,
                                           50,
                                           "search",
-                                          {:params=>{:q=>"", :"q.alt"=>"*:*", :"facet.field"=>[], :"facet.limit"=>15, :sort=>"score desc, title desc", :fq=>["record_type:primary"]}}
-                                         ]
+                                          {:params=>{:q=>"", :"q.alt"=>"*:*", :sort=>"score desc, title desc", :rows=>50, :"facet.field"=>[], :"facet.limit"=>15, :"facet.prefix"=>"", :"facet.sort"=>"count", :"facet.offset"=>0, :fq=>["record_type:primary"]}}
+                                          ]
 
       Search.new(q: '',
-                 facet_params: {},
-                 facet_fields: [],
                  rows: 50,
                  page: 1,
                  client: client).response
