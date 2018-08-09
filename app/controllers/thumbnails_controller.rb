@@ -1,6 +1,6 @@
 class ThumbnailsController < ActionController::Base
   def update
-    upload! if (!doc.nil?)
+    upload! if (!item.nil?)
     render plain: "OK"
   end
 
@@ -11,13 +11,13 @@ class ThumbnailsController < ActionController::Base
 
   def thumb_url
     @thumb_url ||=
-      Umedia::Thumbnail.new(object_url: doc.field_object.value,
-                            viewer_type: doc.field_child_viewer_types.value.first,
-                            entry_id: doc.field_kaltura_video.value)
+      Umedia::Thumbnail.new(object_url: item.field_object.value,
+                            viewer_type: item.field_child_viewer_types.value.first,
+                            entry_id: item.field_kaltura_video.value)
   end
 
-  def doc
-    @doc ||= Umedia::ItemSearch.new(id: thumbnail_params[:item_id]).item
+  def item
+    @item ||= Umedia::ItemSearch.new(id: thumbnail_params[:item_id]).item
   end
 
   def thumbnail_params
