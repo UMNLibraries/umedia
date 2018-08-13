@@ -4,11 +4,11 @@
       <% letters.map do |letter| %>
         <li class="<%= (letter == active) ? 'active' : '' %>" >
           <%= link_to letter,
-                      facets_path(facet_params.merge(letter: letter)),
+                      facets_path(facet_params.merge(letter: letter, facet_offset: 0)),
                       'data-turbolinks': false,
                       'aria-label': letter,
                       'data-action': 'searches#facetModal',
-                      'data-query': modal_query({ letter: letter }, facet_params) %>
+                      'data-query': modal_query({ letter: letter, facet_offset: 0 }, facet_params) %>
         </li>
       <% end %>
     </ol>
