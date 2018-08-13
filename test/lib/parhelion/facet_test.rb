@@ -15,5 +15,17 @@ module Parhelion
         facet.display?.must_equal(false)
       end
     end
+    describe 'when a facet has 15 or more rows' do
+      it 'indicates a more link' do
+        facet = Facet.new(rows: (0...30).to_a)
+        facet.more?.must_equal(true)
+      end
+    end
+    describe 'when a facet has fewer than 15 rows' do
+      it 'indicates no more link' do
+        facet = Facet.new(rows: (0...29).to_a)
+        facet.more?.must_equal(false)
+      end
+    end
   end
 end
