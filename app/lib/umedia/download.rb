@@ -30,8 +30,6 @@ module Umedia
       end
     end
 
-    private
-
     def pdf_download
       "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{id}/filename"
     end
@@ -39,6 +37,8 @@ module Umedia
     def download_all_url
       "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{parent_id}/filename/print/page/download/fparams/forcedownload"
     end
+
+    private
 
     def image_downloads
       desired_sizes.map do |size|
