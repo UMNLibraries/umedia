@@ -14,6 +14,6 @@
 
 <% if children.empty? && item.type == 'Still Image'%>
   <div class="single-item-download pull-right">
-    <%= render 'child_searches/download', download: download_config(item) %>
+    <%= render 'child_searches/download', downloads: download_config(item) %>
   </div>
 <% end %>
