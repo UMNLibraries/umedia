@@ -13,9 +13,9 @@ module Parhelion
 
     describe 'when it does ot have childern' do
       it 'produces correct height and width' do
-        item = Item.new(doc_hash: { 'id' => 'p16022coll194:188'})
-        item.height.must_equal(777)
-        item.width.must_equal(1187)
+        item = Item.new(doc_hash: { 'id' => 'p16022coll122:0'})
+        item.height.must_equal(4961)
+        item.width.must_equal(2115)
       end
     end
 
