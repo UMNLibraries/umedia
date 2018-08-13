@@ -1,0 +1,21 @@
+
+// TODO: Figure out how to properly override this style
+.btn-umn-maroon {
+  color: #ffffff !important;
+}
+
+.umedia {
+  .pagination > .active > a,
+  .nav.umn-nav-pills > .active > a  {
+    background-color: #7a0019;
+    border-color: #7a0019;
+  }
+  .pagination > .active > a:hover,
+  .nav.umn-nav-pills > li > a:hover,
+  .nav.umn-nav-pills > li.active > a:hover {
+    background-color: #47000f;
+    border-color: #0a0002;
+  }
+}
+
+
