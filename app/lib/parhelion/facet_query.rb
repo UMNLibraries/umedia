@@ -16,10 +16,15 @@ module Parhelion
 
     def link_params
       if !current_link.fetch('facets', []).empty?
-        query.merge current_link
+        sanitized_query.merge current_link
       else
-        query.except 'facets'
+        sanitized_query.except 'facets'
       end
+    end
+
+    # Facet links must reset paging
+    def sanitized_query
+      query.except('page')
     end
 
     private
@@ -29,8 +34,9 @@ module Parhelion
     end
 
     def facets
-      query.fetch('facets', {})
+      sanitized_query.fetch('facets', {})
     end
+
 
     def current_link
       active? ? facets_without_value : facets_with_value

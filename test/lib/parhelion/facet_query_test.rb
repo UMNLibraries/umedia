@@ -1,6 +1,17 @@
 require 'test_helper'
 module Parhelion
   class FacetQueryTest < ActiveSupport::TestCase
+    describe 'when a pager param is present' do
+      let(:params) { {'q' => 'finance', 'page' => '1'} }
+      let(:query) { Query.new(params: params) }
+      it 'removes the page param' do
+        facet = FacetQuery.new(field: 'publisher',
+                               value: 'bar',
+                               query: query)
+
+        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"publisher"=>["bar"]}})
+      end
+    end
     describe 'when a facet is not active' do
       let(:params) { {'q' => 'finance'} }
       let(:query) { Query.new(params: params) }
