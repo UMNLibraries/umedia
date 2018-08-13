@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   get 'child_searches/index'
   get 'items/show'
-  get 'facets/show'
-  get 'facet/index'
+  get 'facets', to: 'facets#index', as: 'facets'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
