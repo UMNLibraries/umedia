@@ -11,7 +11,7 @@ module Parhelion
       end
     end
 
-    describe 'when it does ot have childern' do
+    describe 'when it does not have childern' do
       it 'produces correct height and width' do
         item = Item.new(doc_hash: { 'id' => 'p16022coll122:0'})
         item.height.must_equal(4961)
