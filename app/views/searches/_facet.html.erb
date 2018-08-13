@@ -8,7 +8,17 @@
                        facet_row: facet_row,
                        facet_link: facet_link(facet.name, facet_row.value, search_params) %></li>
       <% end %>
+
       </ul>
+
+      <% if facet.more? %>
+        <div data-controller="searches">
+          <%= link_to 'more...', facets_path(search_params.merge(facet_field: facet.name)),
+                'data-action': 'searches#facetModal',
+                'data-query': URI.parse(facets_path(search_params.merge(facet_field: facet.name))).query,
+                class: 'more-link' %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
