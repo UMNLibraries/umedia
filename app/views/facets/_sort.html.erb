@@ -1,21 +1,24 @@
-<nav aria-label="Sort">
-  <ul class="nav nav-pills umn-nav-pills" <%= data_controller(facet_params) %>>
-  <li role="presentation"
-      class="<%= (facet_params[:facet_sort] == 'index') ? 'active' : '' %>">
-    <%= link_to raw('A-Z Sort'),
-                    query(facet_params).merge(facet_sort: 'index'),
-                    'data-turbolinks': false,
-                    'aria-label': "A-Z Sort",
-                    'data-action': 'searches#facetModal',
-                    'data-query': modal_query({ facet_sort: 'index' }, facet_params) %>
-  </li>
-  <li role="presentation"
-      class="<%= (facet_params[:facet_sort] == 'count' || !facet_params[:facet_sort]) ? 'active' : '' %>">
-    <%= link_to raw('Numerical Sort'),
-          query(facet_params).merge(facet_sort: 'count'),
-          'data-turbolinks': false,
-          'aria-label': "Numerical Sort",
-          'data-action': 'searches#facetModal',
-          'data-query': modal_query({ facet_sort: 'count' }, facet_params) %>
-  </ul>
-</nav>
+<% # TODO: we need a way to no  show indexes on numeric fields, or maybe a different one  %>
+<% if facet_params["facet_field"] != 'date_created_ss' %>
+  <nav aria-label="Sort">
+    <ul class="nav nav-pills umn-nav-pills" <%= data_controller(facet_params) %>>
+    <li role="presentation"
+        class="<%= (facet_params[:facet_sort] == 'index') ? 'active' : '' %>">
+      <%= link_to raw('A-Z Sort'),
+                      query(facet_params).merge(facet_sort: 'index', facet_offset: 0),
+                      'data-turbolinks': false,
+                      'aria-label': "A-Z Sort",
+                      'data-action': 'searches#facetModal',
+                      'data-query': modal_query({ facet_sort: 'index', facet_offset: 0 }, facet_params) %>
+    </li>
+    <li role="presentation"
+        class="<%= (facet_params[:facet_sort] == 'count' || !facet_params[:facet_sort]) ? 'active' : '' %>">
+      <%= link_to raw('Numerical Sort'),
+            query(facet_params).merge(facet_sort: 'count', facet_offset: 0, letter: '' ),
+            'data-turbolinks': false,
+            'aria-label': "Numerical Sort",
+            'data-action': 'searches#facetModal',
+            'data-query': modal_query({ facet_sort: 'count', facet_offset: 0, letter: '' }, facet_params) %>
+    </ul>
+  </nav>
+<% end %>

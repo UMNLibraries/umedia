@@ -2,12 +2,14 @@
   <li class="dropdown">
     <a class="dropdown-toggle" id="image-download-dropdown" role="button" data-toggle="dropdown" alt="download image" title="download image" href="#"><span class="glyphicon glyphicon-download"></span></b></a>
     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="image-download-dropdown">
-      <% download.urls.map do |download| %>
-        <li role="presentation"><a target="_blank" role="menuitem" tabindex="-1" href="<%= download[:url] %>"><%= download[:label] %></a></li>
+      <% downloads.urls.map do |download| %>
+        <li role="presentation">
+          <a target="_blank" role="menuitem" tabindex="-1" href="<%= download[:url] %>"><%= download[:label] %></a>
+        </li>
       <% end %>
-      <% if download.is_child? %>
+      <% if downloads.is_child? %>
         <li role="presentation" class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= download.download_all_url %>">Download All Images (<em>large file</em>)</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= downloads.download_all_url %>">Download All Images (<em>large file</em>)</a></li>
       <% end %>
     </ul>
   </li>
