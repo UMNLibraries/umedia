@@ -16,7 +16,7 @@
         class="thumbnail col-md-2"
         alt="<%= item.field_title.value %>"
         title="<%= item.field_title.value %>"
-        onerror="this.onerror=null;this.src=noThumbnail('<%= item.id %>', '<%= thumbnail.url %>');" />
+        onerror="this.onerror=null;this.src=noThumbnail('<%= "#{item.collection}:#{item.id}" %>', '<%= thumbnail.url %>');" />
     </div>
   </div>
 <% end %>
