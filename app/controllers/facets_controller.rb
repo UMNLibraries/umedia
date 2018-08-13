@@ -84,7 +84,6 @@ class FacetsController < ApplicationController
                   :facet_prefix,
                   :modal,
                   :q,
-                  :page,
                   :rows,
                   :sort,
                   facets: facet_fields_all.map { |facet| {facet => [] } })
