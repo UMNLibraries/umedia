@@ -2,7 +2,11 @@ module Umedia
   module Citation
     class CommaJoinFormatter
       def self.format(value)
-        value.join(', ')
+        if respond_to?(:join)
+          value.join(', ')
+        else
+          value
+        end
       end
     end
 
