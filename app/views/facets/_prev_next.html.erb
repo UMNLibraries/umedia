@@ -1,0 +1,21 @@
+<nav aria-label="Page navigation">
+  <ul class="pagination" <%= data_controller(facet_params) %> >
+  <li class="<%= facet_search.prev_class %>">
+    <%= link_to raw('&laquo; Previous'),
+                    query(facet_params).merge(facet_offset: facet_search.prev_page),
+                    'data-turbolinks': false,
+                    'aria-label': "Previous",
+                    'data-action': 'searches#facetModal',
+                    'data-query': modal_query({ facet_offset: facet_search.prev_page }, facet_params),
+                    class: facet_search.prev_class %>
+  </li>
+  <li class="<%= facet_search.next_class %>">
+    <%= link_to raw('Next  &raquo;'),
+          query(facet_params).merge(facet_offset: facet_search.next_page),
+          'data-turbolinks': false,
+          'aria-label': "Next",
+          'data-action': 'searches#facetModal',
+          'data-query': modal_query({ facet_offset: facet_search.next_page }, facet_params),
+          class: facet_search.next_class %>
+  </ul>
+</nav>

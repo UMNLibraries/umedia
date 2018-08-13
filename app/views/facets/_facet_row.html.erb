@@ -1,0 +1,10 @@
+<%
+  if facet_link.active?
+    remove = " <span class=\"glyphicon glyphicon-remove\"></span>"
+    remove_class = 'remove'
+  end
+%>
+<%= link_to raw("#{facet_row.to_s} (#{facet_row.count}) #{remove}"),
+            searches_path(facet_link.link_params),
+            'data-turbolinks': false,
+            class: remove_class %>

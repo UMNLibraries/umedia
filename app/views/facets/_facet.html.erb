@@ -1,0 +1,9 @@
+<% if facet.display? %>
+  <ul>
+  <% facet.each do |facet_row| %>
+    <li><%= render 'facet_row',
+                    facet_row: facet_row,
+                    facet_link: facet_link(facet.name, facet_row.value, facet_params) %></li>
+  <% end %>
+  </ul>
+<% end %>

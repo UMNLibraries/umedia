@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h2 class="pull-left"><%= I18n.t("search.facets.#{facet.name}") %></h2>
+    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+
+  <% if facet_params[:facet_sort] == 'index' %>
+    <div class="col-md-12">
+      <%= render 'a_z', facet_params: facet_params, letters: ('A'...'Z'), active: facet_params.fetch(:letter, '')  %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= render 'facet', facet: facet, facet_params: facet_params %>
+</div>
+<div class="modal-footer">
+<div class="pull-left">
+  <%= render 'prev_next', facet_search: facet_search, facet_params: facet_params %>
+</div>
+  <div class="pull-right">
+    <%= render 'sort', facet_search: facet_search, facet_params: facet_params %>
+  </div>
+</div>
+
+

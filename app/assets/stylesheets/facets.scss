@@ -1,3 +1,29 @@
 // Place all the styles related to the facets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.facet-a-z {
+  text-align: center;
+  .pagination {
+    li > a {
+      padding: 1px 5px;
+    }
+  }
+}
+
+#facetModal {
+  ul {
+    list-style: none;
+  }
+}
+
+.umedia {
+  .modal-header {
+    padding-bottom: 0;
+    margin-bottom: 15px;
+  }
+}
+
+#facetModalBody ul {
+  margin-top: 15px;
+}

@@ -1,0 +1,16 @@
+<% if facet_params[:facet_sort] != 'count' %>
+  <div class="facet-a-z">
+    <ol class="pagination"<%= data_controller(facet_params) %>>
+      <% letters.map do |letter| %>
+        <li class="<%= (letter == active) ? 'active' : '' %>" >
+          <%= link_to letter,
+                      facets_path(facet_params.merge(letter: letter)),
+                      'data-turbolinks': false,
+                      'aria-label': letter,
+                      'data-action': 'searches#facetModal',
+                      'data-query': modal_query({ letter: letter }, facet_params) %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+<% end %>
