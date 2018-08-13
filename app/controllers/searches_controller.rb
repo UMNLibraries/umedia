@@ -16,7 +16,7 @@ class SearchesController < ApplicationController
     @search ||= Umedia::Search.new(
       rows: rows,
       q: search_params.fetch('q', ''),
-      facet_search: facet_search,
+      facet_config: facet_config,
       page: page,
       sort: sort
     ).response
@@ -27,6 +27,15 @@ class SearchesController < ApplicationController
       params: facet_params,
       fields: facet_fields_all
     )
+  end
+
+  def facet_config
+    Umedia::FacetConfig.new(
+      {
+        params: facet_params,
+        fields: facet_fields_all
+      }
+    ).config
   end
 
   def rows
