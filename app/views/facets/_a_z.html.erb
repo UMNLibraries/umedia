@@ -1,5 +1,4 @@
 <% # TODO: we need a way to no  show indexes on numeric fields, or maybe a different one  %>
-<%= facet_params.inspect %>
 <% if facet_params[:facet_sort] != 'count' && facet_params["facet_field"] != 'date_created_ss' %>
   <div class="facet-a-z">
     <ol class="pagination"<%= data_controller(facet_params) %>>
