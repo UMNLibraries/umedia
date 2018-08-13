@@ -3,25 +3,25 @@
 module Umedia
   # Add facet serch configs for use in Umedia::Search
   class FacetConfig
-    attr_reader :params, :prefix, :sort, :offset, :limit, :field
+    attr_reader :params, :prefix, :sort, :offset, :limit, :fields
     def initialize(params: {},
                    prefix: '',
                    sort: 'count',
                    offset: 0,
                    limit: 15,
-                   field: :MISSING_FACET_FIELD)
+                   fields: :MISSING_FACET_FIELDS)
 
       @params = params
       @prefix = prefix
       @sort   = sort
       @offset = offset.to_i
       @limit  = limit.to_i
-      @field  = field
+      @fields = fields
     end
 
     def config
       {
-        'facet.field'  => [field],
+        'facet.field'  => fields,
         'facet.limit'  => limit,
         'facet.prefix' => prefix,
         'facet.sort'   => sort,
