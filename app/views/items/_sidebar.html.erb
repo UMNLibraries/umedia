@@ -15,7 +15,7 @@
     </div>
       <% clear_active = (params[:query] && params[:query] != '') ? '' : 'hidden' %>
       <div class="clear-search <%= clear_active %>">
-        <%= link_to 'Clear Search', item_path(item.id), class: 'btn btn-primary', role: 'button' %>
+        <%= link_to 'Clear Search', item_path("#{item.collection}:#{item.id}"), class: 'btn btn-primary', role: 'button' %>
       </div>
   <% end %>
   <div class="list-group" id="sidebar-pages">
