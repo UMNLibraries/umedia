@@ -55,11 +55,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 ################################
-# Gems added Post Installation #
+# Gems Added                   #
 ################################
 
 group :test do
   gem 'minitest-spec-rails'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
