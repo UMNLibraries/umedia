@@ -11,7 +11,7 @@ module Umedia
                       formatters: cite[:formatters],
                       value: cite[:name]).to_s
           end.join
-          citation.must_equal "creator. creation_date. \"title.\"  contributing_organization, Accessed 07/13/2018. url"
+          citation.must_equal "creator. creation_date. \"title.\"  contributing_organization, Accessed #{Time.now.strftime('%m/%d/%Y')}. https://umedia.lib.umn.edu/item/id"
         end
       end
     end
