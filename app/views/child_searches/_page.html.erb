@@ -15,7 +15,7 @@
           data-src="<%= thumbnail.cdn_url %>"
           alt="<%= child.field_title.value %>"
           title="<%= child.field_title.value %>"
-          onerror="this.onerror=null;this.src=noThumbnail('<%= child.id %>', '<%= thumbnail.url %>');" />
+          onerror="this.onerror=null;this.src=noThumbnail('<%= "#{child.collection}:#{child.id}" %>', '<%= thumbnail.url %>');" />
     </div>
 
 
