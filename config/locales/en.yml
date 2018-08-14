@@ -63,7 +63,7 @@ en:
         date_created_ss: 'Date Created'
         historical_era: 'Historical Era'
         creator_ss: 'Creator'
-        contributor_ss: 'Contributor'
+        contributor: 'Contributor '
         publisher: 'Publisher'
         caption: 'Caption'
         notes: 'Notes'
