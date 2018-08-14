@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cdm16022.contentdm.oclc.org/digital/iiif/p16022coll122/0/info.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.5.1p57
+      Host:
+      - cdm16022.contentdm.oclc.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Aug 2018 14:49:55 GMT
+      Server:
+      - Jetty(9.2.19.v20160908)
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Oclc-Requestid:
+      - W3LsE0NPlyCsgaGPI-gV8gAAABY
+      X-Oclc-Selfid:
+      - d6a4965e-23ea-4a21-b747-1fbecd8eab1b
+      X-Application-Context:
+      - application:prod:8080
+      Content-Type:
+      - application/json;charset=UTF-8
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Etag:
+      - '"035c5900378e88f8a2c5342c0ceaf425a-gzip"'
+      Set-Cookie:
+      - JSESSIONID=141ac3d9-bfe2-4fdf-9955-17f01bf4388d;Path=/digital/;HttpOnly
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '281'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA32QwW6DMAyG730KxLkisRsQ7amnvcTUAwopeAoEkWibVvXdlyYFplGRQ+T88Wf/9m2XJOlZmt6pb5eekrR1bjgxRkTXjAyrBmLUVY1iyJ5Z2Yc1fboPINUTYz0k6w4KjpiFzN7VXWaklpkZG1ZTQ67SoTAbQpo0WgMi47FYq6hpHx7EsYCgfFHtWi8gQB6EYTRX0spL7/6ZbLrV6lNpiGZ98mUq4IzvuzVpdON8Hzs3uoXby1ZWWr1V0plx+X2c4DgeXEKxhOUSQvEML5M2jwocRdDus2dLP6+c/F9O3MffHcY6+9cY8LxcYyjKbSzH45oCFHyTwkKsqQK3ITjgGjoAX9azu/8Cu/d2P78CAAA=
+    http_version: 
+  recorded_at: Tue, 14 Aug 2018 14:49:55 GMT
+recorded_with: VCR 4.0.0
