@@ -12,7 +12,7 @@ module Umedia
       solr = Minitest::Mock.new
       client.expect :new, response, []
       response.expect :solr, solr, []
-      solr.expect :get, {'response' => { 'docs' =>[{id: 'sdfsdf:sdf'}]} }, ['item', { params: { id: id } }]
+      solr.expect :get, {'response' => { 'docs' =>[{id: 'sdfsdf:sdf'}]} }, ['document', { params: { id: id } }]
       ItemSearch.new(id: id, client: client, item_klass: item_klass).item
       item_klass.verify
       item_obj.verify
