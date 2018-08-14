@@ -9,8 +9,7 @@ module Umedia
       client.expect :new, response, []
       response.expect :solr, paginator, []
       paginator.expect :paginate, false,
-        [1, 50, "search", {:params=>{:q=>"", :"q.alt"=>"*:*", :sort=>"score desc, title desc", :rows=>50, "facet.field"=>[:MISSING_FACET_FIELD], "facet.limit"=>15, "facet.prefix"=>"", "facet.sort"=>"count", "facet.offset"=>0, :fq=>["record_type:primary"]}}]
-
+      [1, 50, "search", {:params=>{:q=>"", :"q.alt"=>"*:*", :sort=>"score desc, title desc", :rows=>50, "facet.field"=>:MISSING_FACET_FIELDS, "facet.limit"=>15, "facet.prefix"=>"", "facet.sort"=>"count", "facet.offset"=>0, :fq=>["record_type:primary"]}}]
 
       Search.new(q: '',
                  rows: 50,
