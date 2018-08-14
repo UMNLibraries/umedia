@@ -17,8 +17,6 @@ module Umedia
                       suffix: field[:suffix],
                       formatters: field[:formatters],
                       value: value).to_s
-          else
-            nil
           end
         end.compact.join
       end
@@ -26,10 +24,8 @@ module Umedia
       def field_value(field)
         if field[:value]
           field[:value]
-        elsif field[:name] != '/'
-          doc.send("field_#{field[:name]}").value
         else
-          doc
+          doc.send("field_#{field[:name]}").value
         end
       end
     end
