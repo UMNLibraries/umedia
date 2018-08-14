@@ -1,7 +1,18 @@
 <% # TODO: we need a way to no  show indexes on numeric fields, or maybe a different one  %>
 <% if facet_params[:facet_sort] != 'count' && facet_params["facet_field"] != 'date_created_ss' %>
-  <div class="facet-a-z">
-    <ol class="pagination"<%= data_controller(facet_params) %>>
+  <div class="facet-a-z" <%= data_controller(facet_params) %>>
+    <% if facet_params[:letter] && facet_params[:letter] != '' %>
+      <div class="btn-group-s col-md-12" id="clear-a-z" role="group" aria-label="...">
+        <%= link_to raw("Clear <strong>#{facet_params[:letter]}</strong> Filter"),
+                facets_path(facet_params.merge(letter: '', facet_offset: 0)),
+                class: "btn btn-default",
+                'data-turbolinks': false,
+                'aria-label': 'Clear',
+                'data-action': 'searches#facetModal',
+                'data-query': modal_query({ letter: '', facet_offset: 0 }, facet_params) %>
+      </div>
+    <% end %>
+    <ol class="pagination">
       <% letters.map do |letter| %>
         <li class="<%= (letter == active) ? 'active' : '' %>" >
           <%= link_to letter,

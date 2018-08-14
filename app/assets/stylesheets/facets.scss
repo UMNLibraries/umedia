@@ -3,8 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .facet-a-z {
-  text-align: center;
+  #clear-a-z {
+    padding-left: 0;
+  }
   .pagination {
+    text-align: center;
+    margin-top: 10px;
     li > a {
       padding: 1px 5px;
     }
