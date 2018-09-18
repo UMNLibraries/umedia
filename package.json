@@ -4,6 +4,7 @@
     "@rails/webpacker": "3.5",
     "ajv": "5",
     "bootstrap-sass": "3.3.7",
+    "jquery-ui": "^1.12.1",
     "jquery-ujs": "^1.2.2",
     "openseadragon": "^2.3.1",
     "query-string": "^6.1.0",

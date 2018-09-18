@@ -17,6 +17,9 @@ application.load(definitionsFromContext(context))
 import "jquery"
 import "jquery-ujs"
 import "bootstrap-sass"
+
+import 'jquery-ui/ui/widgets/slider';
+
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
