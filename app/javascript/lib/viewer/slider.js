@@ -5,26 +5,33 @@ export default stampit({
     recordCount: null,
     step: null,
     currentPage: null,
+    orientation: null,
+    reverse: null,
     sliderElem: null,
     sliderNumElem: null,
-    callback: null
+    callback: null,
   },
   init({ recordCount,
         step = 3,
         currentPage = 1,
+        orientation = 'vertical',
+        reverse = true,
         sliderElem,
         sliderNumElem,
         callback }) {
 
+    this.reverse = reverse;
     this.lastPage = Math.ceil(Number(recordCount) / step);
-    this.start = -currentPage;
+    this.start = (reverse) ? -currentPage : currentPage;
+    this.orientation = orientation;
     this.callback = callback;
     this.sliderElem = sliderElem;
 
     this.setRange =  function(pagerPage) {
       const endRange = pagerPage * step;
+      const end = (endRange <= recordCount) ? endRange : recordCount;
       const startRange = endRange - step + 1;
-      sliderNumElem.val(`${startRange} - ${endRange}`);
+      sliderNumElem.val(`${startRange} - ${end} of ${recordCount}`);
     }
 
     // Initialize the range display
@@ -38,16 +45,21 @@ export default stampit({
     init() {
       const { slide, lastPage, start } = this
       const self = this;
+      const orientation = this.orientation;
+      const direction = (this.reverse) ? -1 : 1;
+      const min = (this.reverse) ? lastPage * direction : direction;
+      const max = (this.reverse) ? direction : lastPage;
+
       // JQuery.ui vertical slider orients max value at the top of the slider and
       // minimum value at the bottom. To reverse this, we use negative values and
       // return the absolute - positive - value of the page
       this.sliderElem.slider({
-        orientation: "vertical",
-        min: -lastPage,
-        max: -1,
+        orientation: orientation,
+        min: min,
+        max: max,
         value: start,
         slide: function( event, ui ) {
-          slide(ui.value * -1, self)
+          slide(ui.value * direction, self)
         }
       });
     }

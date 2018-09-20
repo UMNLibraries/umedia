@@ -20,10 +20,10 @@ it('slides', () => {
   expect(sliderConfig.min).toEqual(-18);
   expect(sliderConfig.orientation).toEqual('vertical');
   expect(sliderConfig.value).toEqual(-1);
-  expect(sliderNumElem.val.mock.calls[0][0]).toEqual('1 - 3');
+  expect(sliderNumElem.val.mock.calls[0][0]).toEqual('1 - 3 of 54');
 
   slider.slide(3, slider);
-  expect(sliderNumElem.val.mock.calls[1][0]).toEqual('7 - 9');
+  expect(sliderNumElem.val.mock.calls[1][0]).toEqual('7 - 9 of 54');
   expect(callback.mock.calls[0][0]).toEqual(3);
 
 });
