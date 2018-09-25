@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get 'search', to: 'searches#index', as: 'searches'
   get 'item/:id/(:child_id)', to: 'items#show', as: 'item'
   get 'viewers/:id/(:child_id)', to: 'viewers#show', as: 'viewer'
-  get 'child_search/:id/:q', to: 'child_searches#index', as: 'child_search'
+  get 'child_search/:id/:active_child_id/:rows/(:q)', to: 'child_searches#index', as: 'child_search'
   get 'thumbnails/:item_id' => 'thumbnails#update', as: 'thumbnail'
 end
