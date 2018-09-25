@@ -23,14 +23,6 @@ export default stampit({
           doc.getElementById("viewer-display").innerHTML = html;
           loadPlugins(that);
         });
-    },
-    pagesSideLoad(id, searchText = '') {
-      let doc = this.doc;
-      return this.wind.fetch(`/child_search/${id}/${searchText}`)
-        .then(response => response.text())
-        .then(html => {
-          doc.getElementById("sidebar-pages").innerHTML = html;
-        });
     }
   }
 });
