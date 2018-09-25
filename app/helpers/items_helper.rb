@@ -38,6 +38,8 @@ module ItemsHelper
   def auto_link(value)
     if value.is_a?(String)
       Rinku.auto_link value
+    else
+      value
     end
   end
 
