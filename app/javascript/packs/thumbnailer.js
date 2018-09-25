@@ -1,8 +1,6 @@
 var noThumbnail = function(item_id, original_url) {
   console.log(`Caching thumbnail image for document ${item_id} located at: ${original_url}`);
-  setTimeout(() => {
-    cacheThumb(item_id);
-  }, 1);
+  $.get('/thumbnails/'.concat(item_id));
   return original_url;
 }
 
