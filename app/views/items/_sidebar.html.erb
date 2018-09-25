@@ -18,7 +18,25 @@
         <%= link_to 'Clear Search', item_path("#{item.collection}:#{item.id}"), class: 'btn btn-primary', role: 'button' %>
       </div>
   <% end %>
-  <div class="list-group" id="sidebar-pages">
-    <%= render 'child_searches/pages', children: children, highlighting: {} %>
+
+  <div class="col-md-12 sidebar-pages-and-slider">
+
+    <% if (children.num_found > 3) %>
+      <input type="text" id="sidebar-page-num" readonly>
+    <% end %>
+
+    <div class="col-md-2 sidebar-slider-horizontal">
+      <div id="sidebar-slider-horizontal"></div>
+    </div>
+
+    <div class="col-md-10">
+      <div class="list-group" id="sidebar-pages">
+      </div>
+    </div>
+
+    <div class="col-md-2 sidebar-slider-vertical">
+      <div id="sidebar-slider-vertical"></div>
+    </div>
+
   </div>
 </div>

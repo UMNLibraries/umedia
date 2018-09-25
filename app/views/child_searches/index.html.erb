@@ -1,5 +1,7 @@
-<% if children.items.results.length > 0 %>
-  <%= render 'pages', children: children %>
+<span id="child-search-record-count"><%= child_search.num_found %></span>
+
+<% if child_search.items.results.length > 0 %>
+  <%= render 'pages', children: child_search %>
 <% else %>
  <div class="no-results">No Results</div>
 <% end %>

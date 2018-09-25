@@ -5,15 +5,4 @@
 
 <h1><%= item.field_title.value %></h1>
 
-<%= render 'viewer', item: item, children: children %>
-
-<% cache item do %>
-  <div class="item-metadata col-md-12">
-    <ul class="nav nav-pills umn-nav-pills">
-      <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
-      <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
-    </ul>
-    <%= render 'citation', item: item %>
-    <%= render 'details', item: item %>
-  </div>
-<% end %>
+<%= render 'viewer', item: item, children: children, child_page: child_page %>

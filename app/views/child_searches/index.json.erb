@@ -1,0 +1,28 @@
+<%
+  pages = children.items.each_with_index.map do |child, page|
+    path = item_path(id: child.field_parent_id.value, child_id: child.id)
+    active = (current_page?(path)) ? 'active' : ''
+    thumbnail = Umedia::Thumbnail.new(object_url: child.field_object.value,
+                                      viewer_type: child.field_viewer_type.value,
+                                      entry_id: child.field_kaltura_video.value)
+    {
+      page: page,
+      path: path,
+      active: active,
+      data_id: child.field_parent_id.value,
+      data_child_id: "#{child.collection}:#{child.id}",
+      query: sanitize(params[:q]),
+      class: "sidebar-page list-group-item #{active}",
+      id: "sidebar-page-#{page}",
+      title: child.field_title.value,
+      thumbnail: {
+        cdn_url: thumbnail.cdn_url,
+        alt: child.field_title.value,
+        title: child.field_title.value,
+        url: thumbnail.url
+      }
+    }
+  end
+%>
+
+<%= raw pages.to_json %>

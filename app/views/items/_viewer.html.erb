@@ -1,12 +1,29 @@
 <div data-controller="viewer"
+     data-viewer-sidebar_page="<%= params.fetch('sidebar_page', 1) %>"
      data-viewer-id="<%= params['id'] %>"
-     data-viewer-child_id="<%= params['child_id'] %>"
-     data-viewer-url="/viewers">
+     data-viewer-child_id="<%= params.fetch('child_id', children.items.first.doc_hash['id']) %>"
+     data-viewer-child_page="<%= params.fetch('child_page', 1) %>"
+     data-viewer-query="<%= params['query'] %>"
+     data-viewer-url="/viewers"
+     id="viewer-data">
     <% if !children.empty? %>
-      <div id="viewer-display" class="col-md-9"></div>
-      <div id="viewer-sidebar" class="col-md-3">
-        <%= render 'sidebar', children: children, item: item %>
-      </div>
+        <div id="item-content" class="col-md-8">
+          <div id="viewer-display"></div>
+          <% cache item do %>
+            <div class="item-metadata item-metadata-large col-md-12">
+              <ul class="nav nav-pills umn-nav-pills">
+                <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
+                <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
+              </ul>
+              <%= render 'citation', item: item %>
+              <%= render 'details', item: item %>
+            </div>
+          <% end %>
+
+        </div>
+        <div id="viewer-sidebar" class="col-md-4">
+          <%= render 'sidebar', children: children, item: item, child_page: child_page  %>
+        </div>
     <% else %>
       <div id="viewer-display" class="col-md-12"></div>
     <% end %>
@@ -17,3 +34,16 @@
     <%= render 'child_searches/download', downloads: download_config(item) %>
   </div>
 <% end %>
+
+
+<% cache item do %>
+  <div class="item-metadata item-metadata-small col-md-12">
+    <ul class="nav nav-pills umn-nav-pills">
+      <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
+      <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
+    </ul>
+    <%= render 'citation', item: item %>
+    <%= render 'details', item: item %>
+  </div>
+<% end %>
+</div>
