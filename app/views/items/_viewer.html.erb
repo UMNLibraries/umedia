@@ -1,7 +1,7 @@
 <div data-controller="viewer"
      data-viewer-sidebar_page="<%= params.fetch('sidebar_page', 1) %>"
      data-viewer-id="<%= params['id'] %>"
-     data-viewer-child_id="<%= params.fetch('child_id', children.items.first.doc_hash['id']) %>"
+     data-viewer-child_id="<%= params.fetch('child_id', first_child(children, params['id'])) %>"
      data-viewer-child_page="<%= params.fetch('child_page', 1) %>"
      data-viewer-query="<%= params['query'] %>"
      data-viewer-url="/viewers"
