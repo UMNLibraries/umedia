@@ -9,16 +9,15 @@
     <% if !children.empty? %>
         <div id="item-content" class="col-md-8">
           <div id="viewer-display"></div>
-          <% cache item do %>
-            <div class="item-metadata item-metadata-large col-md-12">
-              <ul class="nav nav-pills umn-nav-pills">
-                <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
-                <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
-              </ul>
-              <%= render 'citation', item: item %>
-              <%= render 'details', item: item %>
-            </div>
-          <% end %>
+
+          <div class="item-metadata item-metadata-large col-md-12">
+            <ul class="nav nav-pills umn-nav-pills">
+              <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
+              <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
+            </ul>
+            <%= render 'citation', item: item %>
+            <%= render 'details', item: item %>
+          </div>
 
         </div>
         <div id="viewer-sidebar" class="col-md-4">
@@ -34,9 +33,6 @@
     <%= render 'child_searches/download', downloads: download_config(item) %>
   </div>
 <% end %>
-
-
-<% cache item do %>
   <div class="item-metadata item-metadata-small col-md-12">
     <ul class="nav nav-pills umn-nav-pills">
       <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
@@ -45,5 +41,4 @@
     <%= render 'citation', item: item %>
     <%= render 'details', item: item %>
   </div>
-<% end %>
 </div>
