@@ -3,7 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-// Mobile Stuff
+ul.downloads-list {
+  list-style: none;
+}
 
 $viewer-height: 800px;
 $sidebar-height: 1000px;

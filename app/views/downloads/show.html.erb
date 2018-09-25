@@ -1,0 +1,11 @@
+<ul id="menu1" class="downloads-list" role="menu" aria-labelledby="image-download-dropdown">
+  <% downloads.urls.map do |download| %>
+    <li role="presentation">
+      <a target="_blank" role="menuitem" tabindex="-1" href="<%= download[:url] %>"><%= download[:label] %></a>
+    </li>
+  <% end %>
+  <% if downloads.is_child? %>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= downloads.download_all_url %>">All Images (<em>large PDF</em>)</a></li>
+  <% end %>
+</ul>

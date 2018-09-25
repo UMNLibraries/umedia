@@ -21,3 +21,5 @@
 
   <%= render 'child_searches/highlight', highlighting: highlighting, child: child %>
 <% end %>
+
+<%= render 'download', id: "#{child.collection}:#{child.id}" %>

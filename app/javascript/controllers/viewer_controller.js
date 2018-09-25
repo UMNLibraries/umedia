@@ -47,6 +47,16 @@ export default class extends Controller {
     this.sidebarPages.sideLoad();
   }
 
+  toggleDownload(e) {
+    e.preventDefault();
+    const id = e.currentTarget.dataset.child_id;
+    window.fetch(`/downloads/${id}`)
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById(`downloads-toggle-${id}`).innerHTML = html;
+    });
+  }
+
   search(e) {
     e.preventDefault();
     if (this.searchTextTarget.value.trim() == '') return;

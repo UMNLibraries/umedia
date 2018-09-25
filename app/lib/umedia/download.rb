@@ -45,7 +45,7 @@ module Umedia
         if height >= size && width >= size
           image_download("#{size},#{size}", "#{size} x #{size}")
         end
-      end.compact << image_download('full', 'Full')
+      end.compact
     end
 
     def desired_sizes
