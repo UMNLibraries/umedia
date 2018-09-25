@@ -46,6 +46,7 @@ export default stampit({
         this.sideLoad();
         this.urlKlass({ id: sidebar.id, child_id: sidebar.child_id, sidebar_page: page}).update();
       }
+
       return this.fetcher.fetch(this.searchUrl())
         .then(response => response.text())
         .then(html => {
@@ -62,7 +63,7 @@ export default stampit({
         })
         .then((recordCount) => {
 
-          // Add the slider element that allows users to scroll through pages
+          // Add the slider element - allows users to scroll through pages
 
           // Desktop / Laptop Version (shown/hidden via css media queries)
           sliderKlass({ recordCount: recordCount,
