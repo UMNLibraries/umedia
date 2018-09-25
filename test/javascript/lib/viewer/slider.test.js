@@ -5,7 +5,8 @@ it('slides', () => {
     val: jest.fn()
   }
   const sliderElem = {
-    slider: jest.fn()
+    slider: jest.fn(),
+    show: jest.fn()
   }
   const callback = jest.fn();
 
@@ -21,6 +22,7 @@ it('slides', () => {
   expect(sliderConfig.orientation).toEqual('vertical');
   expect(sliderConfig.value).toEqual(-1);
   expect(sliderNumElem.val.mock.calls[0][0]).toEqual('1 - 3 of 54');
+  expect(sliderElem.show.mock.calls[0]).toEqual([])
 
   slider.slide(3, slider);
   expect(sliderNumElem.val.mock.calls[1][0]).toEqual('7 - 9 of 54');

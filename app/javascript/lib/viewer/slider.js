@@ -1,5 +1,8 @@
 import stampit from 'stampit';
+import ToggleSlider from './toggle_slider.js';
 
+// TODO: factor shared variables to init and differing vars to methods init()
+// since we not init both a vertical and horizontal slider
 export default stampit({
   props: {
     recordCount: null,
@@ -9,7 +12,9 @@ export default stampit({
     reverse: null,
     sliderElem: null,
     sliderNumElem: null,
+    showSlider: null,
     callback: null,
+    toggleSliderKlass: null,
   },
   init({ recordCount,
         step = 3,
@@ -18,7 +23,9 @@ export default stampit({
         reverse = true,
         sliderElem,
         sliderNumElem,
-        callback }) {
+        showSlider = true,
+        callback,
+        toggleSliderKlass = ToggleSlider }) {
 
     this.reverse = reverse;
     this.lastPage = Math.ceil(Number(recordCount) / step);
@@ -26,6 +33,9 @@ export default stampit({
     this.orientation = orientation;
     this.callback = callback;
     this.sliderElem = sliderElem;
+
+    // Show/hide slider (useful if we have enough results)
+    toggleSliderKlass(sliderElem, showSlider)
 
     this.setRange =  function(pagerPage) {
       const endRange = pagerPage * step;
