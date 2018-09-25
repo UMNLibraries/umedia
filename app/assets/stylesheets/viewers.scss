@@ -1,14 +1,40 @@
 // Place all the styles related to the viewers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// Mobile Stuff
+
+$viewer-height: 800px;
+$sidebar-height: 1000px;
+
 .osd {
   position: relative;
   background-color: black;
 }
 
 #osd-viewer {
-  height: 800px;
+  height: $viewer-height;
+}
 
+#sidebar-slider-vertical {
+  height: 583px;
+  margin-top: 6px;
+}
+
+.sidebar-pages-and-slider {
+  margin-top: 15px;
+}
+
+#sidebar-page-num {
+  border: 0;
+  color: #f6931f;
+  font-weight:bold;
+  display: inline-block;
+}
+
+#child-search-record-count {
+  display: none;
 }
 
 .osd-toolbar {
@@ -49,7 +75,6 @@
 }
 
 #sidebar {
-  max-height: 800px;
   overflow: hidden;
   overflow-y: hidden;
 }
@@ -61,7 +86,6 @@
   .thumbnail {
     display: inline;
   }
-  max-height: 750px;
   overflow-y: auto;
   em {
     font-weight: bold;
@@ -94,5 +118,44 @@ form.child-search {
   padding: 15px;
   a {
     background-color: #337ab7;
+  }
+}
+
+.loader {
+  overflow: hidden;
+  margin-top: 25px;
+  text-align: center;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #79071F;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+// MOBILE
+
+.sidebar-slider-horizontal {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 991px) {
+  .sidebar-slider-vertical,
+  .item-metadata-large {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar-slider-horizontal,
+  .item-metadata-small {
+    display: none;
   }
 }
