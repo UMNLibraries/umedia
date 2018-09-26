@@ -27,13 +27,14 @@
       <div id="viewer-display" class="col-md-12"></div>
     <% end %>
 </div>
-
 <% if children.empty? && item.type == 'Still Image'%>
   <div class="single-item-download pull-right">
-    <%= render 'child_searches/download', downloads: download_config(item) %>
+    <%= render 'download', downloads: download_config(item) %>
   </div>
 <% end %>
-  <div class="item-metadata item-metadata-small col-md-12">
+
+<% if children.empty? %>
+  <div class="item-metadata col-md-12">
     <ul class="nav nav-pills umn-nav-pills">
       <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
       <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
@@ -41,4 +42,16 @@
     <%= render 'citation', item: item %>
     <%= render 'details', item: item %>
   </div>
+<% end %>
+
+  <% if !children.empty? %>
+    <div class="item-metadata item-metadata-small col-md-12">
+      <ul class="nav nav-pills umn-nav-pills">
+        <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
+        <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
+      </ul>
+      <%= render 'citation', item: item %>
+      <%= render 'details', item: item %>
+    </div>
+  <% end %>
 </div>
