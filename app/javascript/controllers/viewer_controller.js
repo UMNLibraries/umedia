@@ -50,11 +50,18 @@ export default class extends Controller {
   toggleDownload(e) {
     e.preventDefault();
     const id = e.currentTarget.dataset.child_id;
-    window.fetch(`/downloads/${id}`)
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById(`downloads-toggle-${id}`).innerHTML = html;
-    });
+    const isOpen = e.currentTarget.dataset.is_open == 'true';
+    if (isOpen) {
+      document.getElementById(`downloads-toggle-${id}`).innerHTML = '';
+      e.currentTarget.setAttribute('data-is_open', 'false');
+    } else {
+      e.currentTarget.setAttribute('data-is_open', 'true');
+      window.fetch(`/downloads/${id}`)
+      .then(response => response.text())
+        .then(html => {
+          document.getElementById(`downloads-toggle-${id}`).innerHTML = html;
+        });
+    }
   }
 
   search(e) {
