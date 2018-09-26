@@ -1,0 +1,12 @@
+<ul class="image-download">
+  <li class="dropdown">
+    <a class="dropdown-toggle" id="image-download-dropdown" role="button" data-toggle="dropdown" alt="download image" title="download image" href="#"><span class="glyphicon glyphicon-download"></span></b></a>
+    <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="image-download-dropdown">
+      <% downloads.urls.map do |download| %>
+        <li role="presentation">
+          <a target="_blank" role="menuitem" tabindex="-1" href="<%= download[:url] %>"><%= download[:label] %></a>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
