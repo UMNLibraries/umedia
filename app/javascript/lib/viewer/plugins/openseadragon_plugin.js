@@ -1,7 +1,6 @@
 import stampit from 'stampit';
 import OpenSeadragon from 'openseadragon';
 
-
 export default stampit({
   props: {
     $: null,
@@ -23,6 +22,13 @@ export default stampit({
       this.rotateImage = function rotateImage() {
         seadragon.viewport.setRotation(currentRotation += 90);
       }
+
+      // Work-around - keep the focus on the currently viewed item
+      seadragon.addHandler("full-screen", function(config) {
+        if (config.fullScreen === false) {
+          location.reload();
+        }
+    });
     }
   },
   methods: {
