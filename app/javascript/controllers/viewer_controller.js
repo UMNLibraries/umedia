@@ -13,6 +13,28 @@ export default class extends Controller {
   constructor(scope, jquery = $) {
     super(scope);
     this.viewer = Viewer({doc: document, wind: window, $: $});
+
+    this.backButtonClickHandlerInit();
+  }
+
+  // Replay state pushed into the URL as requests to our viewer
+  // to make for a more seamless back button experience
+  backButtonClickHandlerInit() {
+    // Include child page navigation in back button nav
+    const load = this.load;
+    window.addEventListener("popstate", function(event) {
+      const viewer = Viewer({doc: document, wind: window, $: $});
+      console.log(event.state.child_id)
+      if (event.state.child_id) {
+          const [sidebar, sidebarPages] =
+            load(event.state.id,
+                  event.state.child_id,
+                  event.state.sidebar_page,
+                  event.state.query);
+          SidebarPagesLoad({...sidebarPages, sidebar}).sideLoad();
+          viewer.viewerSideLoad(event.state.id, event.state.child_id)
+        }
+    }, false);
   }
 
   load(id, child_id, page, query) {
@@ -98,21 +120,5 @@ export default class extends Controller {
                 child_id: sidebar.child_id,
                 sidebar_page: sidebar.page }).update();
 
-    // Include child page navigation in back button nav
-    const load = this.load;
-    window.addEventListener("popstate", function(event) {
-      if (event.state.child_id) {
-        load(event.state.id,
-             event.state.child_id,
-             event.state.sidebar_page,
-             event.state.query);
-      }
-    }, false);
-  }
-
-  resetSidebarActivePages() {
-    $('.sidebar-page').each(function( index ) {
-      $( this ).attr('class', 'sidebar-page list-group-item');
-    });
   }
 }
