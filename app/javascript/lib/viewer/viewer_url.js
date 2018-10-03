@@ -24,6 +24,9 @@ export default stampit({
     this.sidebar_page = sidebar_page;
     const defaultPath = this.pathName;
 
+    this.id = id;
+    this.child_id = child_id;
+
     const idsPath = function() {
       return [id, child_id].filter(id => id).join('/')
     }
@@ -32,10 +35,10 @@ export default stampit({
       return (idsPath() != '') ? `/item/${idsPath()}` : defaultPath;
     }
 
-    const queryParams = function() {
+    this.queryParams = function() {
       return { ...queryString.parse(search), ...{query: q}, ...{sidebar_page: sidebar_page} }
     }
-
+    const queryParams = this.queryParams;
     this.newURL = function() {
       const searchString = queryString.stringify(queryParams());
       return `${origin}${pathName()}?${searchString}`
@@ -44,7 +47,12 @@ export default stampit({
   },
   methods: {
     update() {
-      this.history.pushState(null,"", this.newURL());
+      const state = {
+          ...this.queryParams(),
+          id: this.id,
+          child_id: this.child_id
+        };
+      this.history.pushState(state, "", this.newURL());
     }
   }
 });
