@@ -51,8 +51,7 @@ export default class extends Controller {
         sidebarPagesElem: $('#sidebar-pages'),
         sidebarNumElem: $('#sidebar-page-num'),
         sliderHorizontalElem: document.getElementById('sidebar-slider-horizontal'),
-        sliderVerticalElem: document.getElementById('sidebar-slider-vertical'),
-        inputElem: document.getElementById('sidebar-page-nav')
+        sliderVerticalElem: document.getElementById('sidebar-slider-vertical')
       }
     })
     return [ sidebar, sidebarPages ]
