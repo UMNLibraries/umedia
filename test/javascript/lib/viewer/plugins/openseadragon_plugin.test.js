@@ -12,8 +12,9 @@ const $ = jest.fn(() => {
 
 const setRotation = jest.fn();
 const viewport = jest.fn({ setRotation: setRotation })
+const addHandler = jest.fn();
 const OSD = jest.fn(() => {
-  return { viewport: viewport }
+  return { viewport: viewport, addHandler: addHandler }
 })
 
 it('looks for an OSD config and consumes it', async () => {
@@ -21,4 +22,5 @@ it('looks for an OSD config and consumes it', async () => {
   expect($.mock.calls[0][0]).toBe('#osd-config');
   expect($.mock.calls[1][0]).toBe('#rotate-right');
   expect(data.mock.calls[0][0]).toBe('config');
+  expect(addHandler.mock.calls[0][0]).toEqual('full-screen')
 });
