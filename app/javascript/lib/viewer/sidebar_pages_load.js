@@ -91,16 +91,16 @@ export default stampit({
                         height: height(recordCount),
                         callback: sliderCallback});
 
-            sliderKlass({ recordCount: recordCount,
-                          step: perPage,
-                          start: sidebar.page,
-                          orientation: 'horizontal',
+          sliderKlass({ recordCount: recordCount,
+                        step: perPage,
+                        start: sidebar.page,
+                        orientation: 'horizontal',
                         sliderElem: elements.sliderHorizontalElem,
-                          sliderNumElem: elements.sidebarNumElem,
-                          inputElem: elements.inputElem,
-                          showSlider: recordCount > perPage,
-                          height: '19px',
-                          callback: sliderCallback});
+                        sliderNumElem: elements.sidebarNumElem,
+                        inputElem: elements.inputElem,
+                        showSlider: recordCount > perPage,
+                        height: '19px',
+                        callback: sliderCallback});
 
        });
     }
