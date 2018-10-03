@@ -1,6 +1,7 @@
 import stampit from 'stampit';
 import Slider from './slider.js'
 import ViewerUrl from './viewer_url.js';
+import noUiSlider from 'nouislider';
 
 // Load content from a given endpoint and inject it into the page
 export default stampit({
@@ -50,6 +51,8 @@ export default stampit({
       return this.fetcher.fetch(this.searchUrl())
         .then(response => response.text())
         .then(html => {
+
+
           elements.sidebarPagesElem.html(html);
           let parser = new DOMParser();
           let doc = parser.parseFromString(html, "text/html");
@@ -65,35 +68,41 @@ export default stampit({
 
           // Add the slider element - allows users to scroll through pages
 
+          const height = (count) => {
+            if (count >= 600) {
+              return '800px';
+            } else if (recordCount >= 1000) {
+              return '1000px';
+            } else {
+              return '668px';
+            }
+          }
+
           // Desktop / Laptop Version (shown/hidden via css media queries)
           sliderKlass({ recordCount: recordCount,
                         step: perPage,
-                        currentPage: sidebar.page,
+                        start: sidebar.page,
+                        reverse: false,
                         orientation: 'vertical',
                         sliderElem: elements.sliderVerticalElem,
                         sliderNumElem: elements.sidebarNumElem,
+                        inputElem: elements.inputElem,
                         showSlider: recordCount > perPage,
-                        callback: sliderCallback}).init();
+                        height: height(recordCount),
+                        callback: sliderCallback});
 
-          // Mobile Version (shown/hidden via css media queries)
-          sliderKlass({ recordCount: recordCount,
-                        step: perPage,
-                        currentPage: sidebar.page,
-                        reverse: false,
-                        orientation: 'horizontal',
+            sliderKlass({ recordCount: recordCount,
+                          step: perPage,
+                          start: sidebar.page,
+                          orientation: 'horizontal',
                         sliderElem: elements.sliderHorizontalElem,
-                        sliderNumElem: elements.sidebarNumElem,
-                        showSlider: recordCount > perPage,
-                        callback: sliderCallback}).init();
+                          sliderNumElem: elements.sidebarNumElem,
+                          inputElem: elements.inputElem,
+                          showSlider: recordCount > perPage,
+                          height: '19px',
+                          callback: sliderCallback});
 
-          if (recordCount > 600) {
-            elements.sliderVerticalElem.css('height', '800px');
-          }
-
-          if (recordCount >= 1000) {
-            elements.sliderVerticalElem.css('height', '1000px');
-          }
-        });
+       });
     }
   }
 });

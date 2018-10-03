@@ -2,8 +2,8 @@
 
 export default (sliderElem, showSlider) => {
   if (showSlider) {
-    sliderElem.show();
+    sliderElem.setAttribute('style', '');
   } else {
-    sliderElem.hide();
+    sliderElem.setAttribute('style', 'display:none;');
   }
 }
