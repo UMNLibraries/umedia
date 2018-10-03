@@ -14,5 +14,5 @@ it('updates a search parameter', async () => {
     history: history,
   });
   viewer.update();
-  expect(pushState.mock.calls[0]).toEqual( [ null,'', 'http://localhost//item/coll:1234?query=minnesota&sidebar_page=1' ]);
+  expect(pushState.mock.calls[0]).toEqual( [{"child_id": false, "id": "coll:1234", "query": "minnesota", "sidebar_page": 1}, "", "http://localhost//item/coll:1234?query=minnesota&sidebar_page=1"]);
 });
