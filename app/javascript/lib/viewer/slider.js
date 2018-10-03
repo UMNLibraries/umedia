@@ -8,11 +8,9 @@ export default stampit({
     recordCount: null,
     step: null,
     start: null,
-    reverse: null,
     orientation: null,
     sliderElem: null,
     sliderNumElem: null,
-    inputElem: null,
     showSlider: null,
     height: null,
     margin: '0 auto 30px',
@@ -23,11 +21,9 @@ export default stampit({
   init({ recordCount,
          step = 3,
          start = 1,
-         reverse = false,
          orientation = 'vertical',
          sliderElem,
          sliderNumElem,
-         inputElem,
          showSlider = true,
          height = '660px',
          callback,
@@ -37,15 +33,12 @@ export default stampit({
     start = Number(start);
     step = Number(step);
 
-    const sliderStep = step;
-
     // Show/hide slider (useful if we have enough results)
     toggleSliderKlass(sliderElem, showSlider);
 
     if (sliderElem.hasChildNodes()) {
       sliderElem.noUiSlider.destroy();
     }
-
 
     sliderKlass.create(sliderElem, {
       range: {
@@ -58,7 +51,7 @@ export default stampit({
     });
 
 
-    sliderElem.sliderKlass.on('update', function (pages, handle) {
+    sliderElem.noUiSlider.on('update', function (pages, handle) {
       const page = Number(pages[handle]);
       if (page !== start) callback(page)
       const endRange = page * step;
@@ -70,9 +63,8 @@ export default stampit({
     sliderElem.style.height = height;
     sliderElem.style.margin = this.margin;
 
-
     function setSliderHandle(value) {
-      sliderElem.sliderKlass.set([value, null]);
+      sliderElem.noUiSlider.set([value, null]);
     }
 
     document.onkeydown = arrowNav;
