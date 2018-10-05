@@ -1,5 +1,6 @@
 <% active = (active_child_id == "#{child.collection}:#{child.id}") ? 'active' : ''%>
 <%= link_to item_path(id: child.field_parent_id.value, child_id: child.id),
+                  'data-no-turbolinks': 'data-no-turbolinks',
                   'data-action': 'viewer#select',
                   'data-id': child.field_parent_id.value,
                   'data-child_id': "#{child.collection}:#{child.id}",
