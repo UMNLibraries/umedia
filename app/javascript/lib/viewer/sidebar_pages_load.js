@@ -69,10 +69,16 @@ export default stampit({
           // Add the slider element - allows users to scroll through pages
 
           const height = (count) => {
-            if (count >= 600) {
+            if (count >= 400) {
               return '800px';
-            } else if (recordCount >= 1000) {
-              return '1000px';
+            } else if (recordCount >= 50) {
+              return '668px';
+            } else if (recordCount >= 30 ) {
+              return '400px';
+            } else if (recordCount >= 15 ) {
+              return '300px';
+            } else if (recordCount >= 4 ) {
+              return '30px';
             } else {
               return '668px';
             }
