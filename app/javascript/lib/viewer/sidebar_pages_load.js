@@ -85,7 +85,17 @@ export default stampit({
                         sliderNumElem: elements.sidebarNumElem,
                         showSlider: recordCount > perPage,
                         callback: sliderCallback}).init();
+
+          if (recordCount >= 1000) {
+            elements.sliderVerticalElem.css('height', '800px');
+          } else if (recordCount < 20 ) {
+            elements.sliderVerticalElem.css('height', '100px');
+          } else if (recordCount < 100 ) {
+            elements.sliderVerticalElem.css('height', '300px');
+          }
         });
+
+
     }
   }
 });
