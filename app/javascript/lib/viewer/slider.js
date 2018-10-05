@@ -72,6 +72,28 @@ export default stampit({
           slide(ui.value * direction, self)
         }
       });
+
+      const triggerSlide = (page) => {
+        page = (page > this.lastPage) ? this.lastPage : page;
+        page = (page < 1) ? 1 : page;
+        const slider = this.sliderElem;
+        slider.slider('option', 'value', page);
+        slider.slider('option','slide')
+               .call(slider,null,{ handle: $(this.sliderElem, slider), value: page });
+      }
+
+      const arrowNav = (e) => {
+        e = e || window.event;
+        // Arrow Left
+        if (e.keyCode == '37') {
+          triggerSlide(Number(start) - 1)
+        }
+        // Arrow Right
+        else if (e.keyCode == '39') {
+          triggerSlide(Number(start) + 1)
+        }
+      }
+      document.onkeydown = arrowNav;
     }
   }
 });
