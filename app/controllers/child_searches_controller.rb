@@ -32,6 +32,6 @@ class ChildSearchesController < ApplicationController
   end
 
   def child_params
-    params.permit(:q, :rows, :page, :active_child_id)
+    params.permit(:q, :rows, :page, :active_child_id, :id)
   end
 end
