@@ -2,7 +2,6 @@ import stampit from 'stampit';
 import ToggleSlider from './toggle_slider.js';
 import noUiSlider from 'nouislider';
 
-
 export default stampit({
   props: {
     recordCount: null,
@@ -49,7 +48,6 @@ export default stampit({
       orientation: orientation,
       start: [start],
     });
-
 
     sliderElem.noUiSlider.on('update', function (pages, handle) {
       const page = Number(pages[handle]);
