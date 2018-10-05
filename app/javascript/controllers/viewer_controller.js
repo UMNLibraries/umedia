@@ -24,6 +24,7 @@ export default class extends Controller {
     const load = this.load;
     window.addEventListener("popstate", function(event) {
       const viewer = Viewer({doc: document, wind: window, $: $});
+      console.log(event.state.child_id)
       if (event.state.child_id) {
           const [sidebar, sidebarPages] =
             load(event.state.id,
@@ -50,8 +51,8 @@ export default class extends Controller {
       elements: {
         sidebarPagesElem: $('#sidebar-pages'),
         sidebarNumElem: $('#sidebar-page-num'),
-        sliderHorizontalElem: document.getElementById('sidebar-slider-horizontal'),
-        sliderVerticalElem: document.getElementById('sidebar-slider-vertical')
+        sliderHorizontalElem: $('#sidebar-slider-horizontal'),
+        sliderVerticalElem: $('#sidebar-slider-vertical')
       }
     })
     return [ sidebar, sidebarPages ]

@@ -19,7 +19,6 @@ $sidebar-height: 1000px;
   height: $viewer-height;
 }
 
-
 #sidebar-slider-vertical {
   height: 662px;
   margin: 6px 0 10px;
@@ -27,10 +26,6 @@ $sidebar-height: 1000px;
 
 .sidebar-pages-and-slider {
   margin-top: 15px;
-}
-
-#sidebar-page-nav {
-  width: 50px;
 }
 
 #sidebar-page-num {
@@ -154,7 +149,7 @@ form.child-search {
 }
 
 @media (max-width: 991px) {
-  #sidebar-slider-vertical,
+  .sidebar-slider-vertical,
   .item-metadata-large {
     display: none;
   }

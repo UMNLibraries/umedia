@@ -1,7 +1,6 @@
 import stampit from 'stampit';
 import Slider from './slider.js'
 import ViewerUrl from './viewer_url.js';
-import noUiSlider from 'nouislider';
 
 // Load content from a given endpoint and inject it into the page
 export default stampit({
@@ -51,8 +50,6 @@ export default stampit({
       return this.fetcher.fetch(this.searchUrl())
         .then(response => response.text())
         .then(html => {
-
-
           elements.sidebarPagesElem.html(html);
           let parser = new DOMParser();
           let doc = parser.parseFromString(html, "text/html");
@@ -68,47 +65,27 @@ export default stampit({
 
           // Add the slider element - allows users to scroll through pages
 
-          const height = (count) => {
-            if (count >= 400) {
-              return '800px';
-            } else if (recordCount >= 50) {
-              return '668px';
-            } else if (recordCount >= 30 ) {
-              return '400px';
-            } else if (recordCount >= 15 ) {
-              return '300px';
-            } else if (recordCount >= 4 ) {
-              return '30px';
-            } else {
-              return '668px';
-            }
-          }
-
           // Desktop / Laptop Version (shown/hidden via css media queries)
           sliderKlass({ recordCount: recordCount,
                         step: perPage,
-                        start: sidebar.page,
-                        reverse: false,
+                        currentPage: sidebar.page,
                         orientation: 'vertical',
                         sliderElem: elements.sliderVerticalElem,
                         sliderNumElem: elements.sidebarNumElem,
-                        inputElem: elements.inputElem,
                         showSlider: recordCount > perPage,
-                        height: height(recordCount),
-                        callback: sliderCallback});
+                        callback: sliderCallback}).init();
 
+          // Mobile Version (shown/hidden via css media queries)
           sliderKlass({ recordCount: recordCount,
                         step: perPage,
-                        start: sidebar.page,
+                        currentPage: sidebar.page,
+                        reverse: false,
                         orientation: 'horizontal',
                         sliderElem: elements.sliderHorizontalElem,
                         sliderNumElem: elements.sidebarNumElem,
-                        inputElem: elements.inputElem,
                         showSlider: recordCount > perPage,
-                        height: '19px',
-                        callback: sliderCallback});
-
-       });
+                        callback: sliderCallback}).init();
+        });
     }
   }
 });

@@ -18,6 +18,11 @@ import "jquery"
 import "jquery-ujs"
 import "bootstrap-sass"
 
+import 'jquery-ui/ui/widgets/slider';
+// jquery-ui-touch-punch adds mobile support to jquery ui
+// and must be included *after* jquery ui
+import "jquery-ui-touch-punch"
+
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
