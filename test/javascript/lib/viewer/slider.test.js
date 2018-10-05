@@ -18,7 +18,10 @@ it('slides', () => {
     sliderKlass: sliderKlass,
     style: {
       height: jest.fn()
-    }
+    },
+    noUiSlider: {
+      on: jest.fn(),
+    },
   }
   const callback = jest.fn();
 
@@ -28,11 +31,7 @@ it('slides', () => {
            sliderKlass: sliderKlass,
            callback: callback })
 
-  const sliderParams = sliderKlass.create.mock.calls[0][0];
-  expect(sliderParams).toBe(sliderElem)
-  expect(sliderKlass.on.mock.calls[0][0]).toEqual('update')
   expect(sliderElem.setAttribute.mock.calls[0][0]).toEqual('style');
   expect(sliderElem.hasChildNodes.mock.calls).toEqual([[]]);
-
-
+  expect(sliderElem.noUiSlider.on.mock.calls[0][0]).toEqual('update');
 });
