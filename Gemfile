@@ -64,13 +64,6 @@ group :test do
   gem 'webmock'
 end
 
-group :development do
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.3", require: false
-  gem 'capistrano-bundler', '~> 1.3'
-  gem 'capistrano-passenger'
-end
-
 gem 'rsolr'
 gem 'sidekiq'
 gem 'sidekiq-failures'
