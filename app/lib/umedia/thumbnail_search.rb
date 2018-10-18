@@ -25,8 +25,8 @@ module Umedia
       @response ||=
         (client.new.solr.get 'select',
           params: {
-            q: '*:*',
-            fl: 'id, object, viewer_type, kaltura_video'
+            q: 'record_type:secondary',
+            fl: 'id, object, child_viewer_types, kaltura_video'
           }
         )['response']
     end
