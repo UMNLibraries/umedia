@@ -4,6 +4,7 @@ import ViewerUrl from '../lib/viewer/viewer_url.js';
 import Resize from '../lib/viewer/resize.js';
 import SidebarPagesLoad from '../lib/viewer/sidebar_pages_load.js';
 import Sidebar from '../lib/viewer/sidebar.js';
+import DownloadToggle from '../lib/viewer/toggle_download.js'
 
 
 // TODO: finish the job of extracting code out of this controller
@@ -71,19 +72,8 @@ export default class extends Controller {
 
   toggleDownload(e) {
     e.preventDefault();
-    const id = e.currentTarget.dataset.child_id;
-    const isOpen = e.currentTarget.dataset.is_open == 'true';
-    if (isOpen) {
-      document.getElementById(`downloads-toggle-${id}`).innerHTML = '';
-      e.currentTarget.setAttribute('data-is_open', 'false');
-    } else {
-      e.currentTarget.setAttribute('data-is_open', 'true');
-      window.fetch(`/downloads/${id}`)
-      .then(response => response.text())
-        .then(html => {
-          document.getElementById(`downloads-toggle-${id}`).innerHTML = html;
-        });
-    }
+    DownloadToggle(document.getElementById(`downloads-toggle-${e.currentTarget.dataset.child_id}`),
+                   e.currentTarget, window);
   }
 
   search(e) {
