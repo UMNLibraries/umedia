@@ -22,11 +22,10 @@ module Umedia
       @thumbs ||=
         docs.map do |doc|
           Umedia::Thumbnail.new(object_url: doc['object'],
-                                viewer_type: doc['viewer_type'],
+                                viewer_type: doc['child_viewer_types'].first,
                                 entry_id: doc['kaltura_video'])
         end
     end
-
 
     def valid?(cdn_url)
       Net::HTTP.get_response(URI(cdn_url)).code == 200
