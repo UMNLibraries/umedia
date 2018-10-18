@@ -1,23 +1,25 @@
 import SidebarPagesLoad from '../../../../app/javascript/lib/viewer/sidebar_pages_load.js';
 
 const fetchPromise = new Promise((resolve, reject) => {
-  resolve({text: () => '<span id="child-search-record-count">25</span> blah <b>blah</b>'});
+  resolve({text: () => '<span id="child-search-record-count">19</span> blah <b>blah</b>'});
 });
 
 const fetcher = {
   fetch: () => fetchPromise
 }
 
+const sliderVerticalElem = {
+  css: jest.fn()
+}
 const sliderHorizontalElem = jest.fn();
-const sliderVerticalElem = jest.fn();
 const sidebarNumElem = jest.fn();
 
 const elements = {
   sidebarPagesElem: {
     html: jest.fn()
   },
-  sliderHorizontalElem: sliderHorizontalElem,
   sliderVerticalElem: sliderVerticalElem,
+  sliderHorizontalElem: sliderHorizontalElem,
   sidebarNumElem: sidebarNumElem,
 }
 
@@ -46,12 +48,12 @@ it('sideloads pages', async () => {
   // the result count from HTML since we only need that one piece of data from
   // the results. If we need more data down the road, we can turn this into
   // a JSON response.
-  expect(elements.sidebarPagesElem.html.mock.calls[0][0]).toEqual('<span id=\"child-search-record-count\">25</span> blah <b>blah</b>');
+  expect(elements.sidebarPagesElem.html.mock.calls[0][0]).toEqual('<span id=\"child-search-record-count\">19</span> blah <b>blah</b>');
 
   const verticalSlideConfig = sliderKlass.mock.calls[0][0];
   expect(verticalSlideConfig.currentPage).toEqual(1);
   expect(verticalSlideConfig.orientation).toEqual('vertical');
-  expect(verticalSlideConfig.recordCount).toEqual(25);
+  expect(verticalSlideConfig.recordCount).toEqual(19);
   expect(verticalSlideConfig.step).toEqual(3);
   expect(verticalSlideConfig.showSlider).toEqual(true);
   expect(verticalSlideConfig.sliderElem).toBe(sliderVerticalElem);
@@ -60,7 +62,7 @@ it('sideloads pages', async () => {
   const horizontalSlideConfig = sliderKlass.mock.calls[1][0];
   expect(horizontalSlideConfig.currentPage).toEqual(1);
   expect(horizontalSlideConfig.orientation).toEqual('horizontal');
-  expect(horizontalSlideConfig.recordCount).toEqual(25);
+  expect(horizontalSlideConfig.recordCount).toEqual(19);
   expect(horizontalSlideConfig.step).toEqual(3);
   expect(horizontalSlideConfig.showSlider).toEqual(true);
   expect(horizontalSlideConfig.sliderElem).toBe(sliderHorizontalElem);
