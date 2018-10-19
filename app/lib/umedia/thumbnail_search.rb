@@ -16,7 +16,7 @@ module Umedia
     end
 
     def stop?
-      (response['numFound'] - (page * rows)) <= 0
+      (response['numFound'] - (page * rows)) < 0
     end
 
     def docs
@@ -27,10 +27,9 @@ module Umedia
 
     def response
       @response ||=
-        (client.new.solr.get 'select',
+        (client.new.solr.paginate page, rows, 'select',
           params: {
             q: q,
-            rows: rows,
             fl: 'id, object, child_viewer_types, kaltura_video'
           }
         )['response']
