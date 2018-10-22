@@ -2,7 +2,6 @@
   <p class="list-group-item-text">
     <%= raw highlighter(highlighting.fetch('title', false), 'Title') %>
     <%= raw highlighter(highlighting.fetch('dls_identifier', false), 'Identifier') %>
-    <%= raw highlighter(highlighting.fetch('child_viewer_types', false), 'Type') %>
     <%= raw highlighter(highlighting.fetch('transcription', false), 'Image Text') %>
   </p>
 <% end %>

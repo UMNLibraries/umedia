@@ -2,6 +2,6 @@
   <%= render 'item', item: item,
                      search_params: search_params,
                      thumbnail: Umedia::Thumbnail.new(object_url: item.field_object.value,
-                                                      viewer_type: item.field_child_viewer_types.value.first,
+                                                      viewer_type: item.field_first_viewer_type.value,
                                                       entry_id: item.field_kaltura_video.value) %>
 <% end %>

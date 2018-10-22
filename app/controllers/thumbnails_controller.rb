@@ -12,12 +12,15 @@ class ThumbnailsController < ActionController::Base
   def thumb_url
     @thumb_url ||=
       Umedia::Thumbnail.new(object_url: item.field_object.value,
-                            viewer_type: item.field_child_viewer_types.value.first,
+                            viewer_type: item.field_first_viewer_type.value,
                             entry_id: item.field_kaltura_video.value)
   end
 
   def item
-    @item ||= Umedia::ItemSearch.new(id: thumbnail_params[:item_id]).item
+    @item ||=
+      Rails.cache.fetch("item/#{thumbnail_params[:item_id]}") do
+        Umedia::ItemSearch.new(id: thumbnail_params[:item_id]).item
+      end
   end
 
   def thumbnail_params

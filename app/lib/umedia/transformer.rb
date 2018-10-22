@@ -19,15 +19,14 @@ module Umedia
       end
     end
 
-    class ViewerTypesFormatter
-      def self.format(values)
-        pages = values.fetch('page', [])
-        pages = if pages.respond_to?(:map)
-          pages.map { |page| ViewerMap.new(record: page).viewer }
+    class FirstViewerTypeFormatter
+      def self.format(value)
+        pages = value.fetch('page', [])
+        if !pages.empty?
+          ViewerMap.new(record: pages.first).viewer
         else
-          []
+          ViewerMap.new(record: value).viewer
         end
-        pages.insert(0, ViewerMap.new(record: values).viewer)
       end
     end
 
@@ -130,7 +129,7 @@ module Umedia
         {dest_path: 'page_count', origin_path: '/', formatters: [PageCountFormatter]},
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
         {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
-        {dest_path: 'child_viewer_types', origin_path: '/', formatters: [ViewerTypesFormatter]},
+        {dest_path: 'first_viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
         {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]},
         {dest_path: 'child_index', origin_path: 'child_index', formatters: []}
       ]

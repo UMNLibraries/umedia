@@ -7,7 +7,7 @@ module Umedia
     def initialize(q: '',
                    page: 1,
                    rows: 3,
-                   fl: 'title, id, object, parent_id, child_viewer_types, viewer_type',
+                   fl: 'title, id, object, parent_id, first_viewer_type, viewer_type',
                    parent_id: '',
                    client: SolrClient,
                    item_list_klass: Parhelion::ItemList)

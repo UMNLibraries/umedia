@@ -30,7 +30,7 @@ module Umedia
         (client.new.solr.paginate page, rows, 'select',
           params: {
             q: q,
-            fl: 'id, object, child_viewer_types, kaltura_video'
+            fl: 'id, object, first_viewer_type, kaltura_video'
           }
         )['response']
     end
