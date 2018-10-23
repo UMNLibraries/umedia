@@ -13,8 +13,7 @@ module Umedia
     end
 
     def item
-      @item ||=
-      item_klass.new(doc_hash: response['response']['docs'].first)
+      @item ||= item_klass.new(doc_hash: response['response']['docs'].first)
     end
 
     private
