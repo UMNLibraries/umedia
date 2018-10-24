@@ -1,0 +1,8 @@
+<div class="item-details col-md-12">
+  <% field_sections.map do |section| %>
+    <%= render 'field_section', label: section[:label],
+                                values: Umedia::ItemDetailsFields.new(
+                                          field_configs: section[:fields],
+                                          item: item).displayables %>
+  <% end %>
+</div>
