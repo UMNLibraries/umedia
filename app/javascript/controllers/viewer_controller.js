@@ -25,7 +25,6 @@ export default class extends Controller {
     const load = this.load;
     window.addEventListener("popstate", function(event) {
       const viewer = Viewer({doc: document, wind: window, $: $});
-      console.log(event.state.child_id)
       if (event.state.child_id) {
           const [sidebar, sidebarPages] =
             load(event.state.id,
