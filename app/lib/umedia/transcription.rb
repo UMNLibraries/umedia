@@ -6,19 +6,26 @@ module Umedia
                    item_klass: Item,
                    children_klass: Children)
       @id = id
+      # if check_exists == true, we'll only search for one row
       @check_exists = check_exists
       @item_klass = item_klass
       @children_klass = children_klass
     end
 
+    # Limit only to children with transcript data
+    # this is the equivalent of a solr not null query
+    def fq
+      ['transcription:[* TO *]']
+    end
+
     def transcriptions
       if item.is_compound?
-        children_klass.find(id, check_exists: check_exists).map do |child|
+        children_klass.find(id, check_exists: check_exists, fq: fq).map do |child|
           child.field_transcription.value
         end
       else
         [item.field_transcription.value]
-      end
+      end.reject(&:blank?)
     end
 
     def item
