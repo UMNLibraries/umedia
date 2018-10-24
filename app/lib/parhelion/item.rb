@@ -24,9 +24,9 @@ module Parhelion
       doc_hash.fetch('types', []).first
     end
 
-    # rails doc id is used for the item path
+    # Solr index identifier, also used in item path
     # items/coll123:999 <-- path id
-    def path_id
+    def index_id
       doc_hash.fetch('id')
     end
 
@@ -63,11 +63,11 @@ module Parhelion
     end
 
     def doc_ids
-      path_id.split(':')
+      index_id.split(':')
     end
 
     def parent_ids
-      doc_hash.fetch('parent_id', path_id).split(':')
+      doc_hash.fetch('parent_id', index_id).split(':')
     end
 
     def method_missing(method_name, *arguments, &block)

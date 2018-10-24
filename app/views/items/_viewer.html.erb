@@ -9,20 +9,11 @@
     <% if !children.empty? %>
         <div id="item-content" class="col-md-8">
           <div id="viewer-display"></div>
-
-          <div class="item-metadata item-metadata-large col-md-12">
-            <ul class="nav nav-pills umn-nav-pills">
-              <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
-              <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
-            </ul>
-            <%= render 'citation', item: item %>
-            <%= render 'details', item: item %>
-          </div>
-
         </div>
         <div id="viewer-sidebar" class="col-md-4">
           <%= render 'sidebar', children: children, item: item, child_page: child_page  %>
         </div>
+        <%= render partial: 'metadata', locals: {item: item, css_class: "item-metadata col-md-12"} %>
     <% else %>
       <div id="viewer-display" class="col-md-12"></div>
     <% end %>
@@ -33,25 +24,7 @@
   </div>
 <% end %>
 
-<% if children.empty? %>
-  <div class="item-metadata col-md-12">
-    <ul class="nav nav-pills umn-nav-pills">
-      <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
-      <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
-    </ul>
-    <%= render 'citation', item: item %>
-    <%= render 'details', item: item %>
-  </div>
-<% end %>
-
-  <% if !children.empty? %>
-    <div class="item-metadata item-metadata-small col-md-12">
-      <ul class="nav nav-pills umn-nav-pills">
-        <li role="presentation" class="active details-pill"><a href="#">Details</a></li>
-        <li role="presentation" class="citation-pill"><a href="#">Cite This Item</a></li>
-      </ul>
-      <%= render 'citation', item: item %>
-      <%= render 'details', item: item %>
-    </div>
+  <% if children.empty? %>
+    <%= render partial: 'metadata', locals: {item: item, css_class: "item-metadata col-md-12"} %>
   <% end %>
 </div>

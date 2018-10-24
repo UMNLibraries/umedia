@@ -1,0 +1,21 @@
+<div data-controller="metadata"
+     data-metadata-id="<%= params['id'] %>"
+     id="metadata-metadata">
+
+      <div class="<%= css_class %>">
+        <ul class="nav nav-pills umn-nav-pills">
+          <li role="presentation" class="metadata-pill" id="metadata-details">
+            <a data-action="click->metadata#showSection" data-section="details" href="#">Details</a>
+          </li>
+          <li role="presentation" class="metadata-pill" id="metadata-cites">
+            <a data-action="click->metadata#showSection" data-section="cites" href="#">Cite This Item</a>
+          </li>
+          <% if has_transcript?(item.index_id) %>
+            <li role="presentation" class="metadata-pill" id="metadata-transcriptions">
+              <a data-action="click->metadata#showSection" data-section="transcriptions" href="#">Transcript</a>
+            </li>
+          <% end %>
+        </ul>
+        <div id="metadata-area"></div>
+      </div>
+</div>

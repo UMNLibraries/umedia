@@ -3,7 +3,7 @@
   <div class="card-panel panel panel-default">
       <% title_icon_class = 'icon-docs' if item.field_page_count.value && item.field_page_count.value > 1 %>
       <div class="panel-body">
-      <%= link_to item.field_title.value,  item_path(item.path_id, search_params), class: "#{title_icon_class} col-md-12" %>
+      <%= link_to item.field_title.value,  item_path(item.index_id, search_params), class: "#{title_icon_class} col-md-12" %>
       <dl class="item-metadata dl-horizontal dl-invert col-md-10">
         <%= render 'index_field', field: item.field_description, truncated: true %>
         <%= render 'index_field', field: item.field_creator, truncated: false %>
