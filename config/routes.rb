@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'downloads/:id', to: 'downloads#show', as: 'downloads'
   get 'viewers/:id/(:child_id)', to: 'viewers#show', as: 'viewer'
   get 'transcriptions/:id', to: 'transcriptions#show', as: 'transcripts'
+  get 'translations/:id', to: 'translations#show', as: 'translations'
   get 'details/:id', to: 'details#show', as: 'details'
   get 'cites/:id', to: 'cites#show', as: 'cites'
   get 'child_search/:id/:active_child_id/:rows/(:q)', to: 'child_searches#index', as: 'child_search'

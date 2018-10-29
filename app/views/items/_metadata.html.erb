@@ -15,6 +15,11 @@
               <a data-action="click->metadata#showSection" data-section="transcriptions" href="#">Transcript</a>
             </li>
           <% end %>
+          <% if has_translation?(item.index_id) %>
+            <li role="presentation" class="metadata-pill" id="metadata-translations">
+              <a data-action="click->metadata#showSection" data-section="translations" href="#">Translation</a>
+            </li>
+          <% end %>
         </ul>
         <div id="metadata-area"></div>
       </div>

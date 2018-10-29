@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Umedia
-  class TranscriptionTest < ActiveSupport::TestCase
+  class TranslationTest < ActiveSupport::TestCase
     describe 'when an item is a compound' do
       it 'returns an array of transcript values' do
         item_klass = Minitest::Mock.new
