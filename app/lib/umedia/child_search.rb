@@ -8,7 +8,7 @@ module Umedia
                    fq: [],
                    page: 1,
                    rows: 3,
-                   fl: 'title, id, object, parent_id, first_viewer_type, viewer_type',
+                   fl: 'title, id, object, parent_id, first_viewer_type, viewer_type, child_index',
                    parent_id: '',
                    client: SolrClient,
                    item_list_klass: Parhelion::ItemList)

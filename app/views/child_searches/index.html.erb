@@ -1,3 +1,8 @@
+<% clear_active = (params[:q] && params[:q] != '') ? '' : 'hidden' %>
+<div class="clear-search <%= clear_active %>">
+  <%= link_to 'Clear Search', item_path(id: params[:id], child_id:params[:active_child_id], child_index: params[:child_index]), class: 'btn btn-primary', role: 'button' %>
+</div>
+
 <span id="child-search-record-count"><%= child_search.num_found %></span>
 
 <% if child_search.items.results.length > 0 %>

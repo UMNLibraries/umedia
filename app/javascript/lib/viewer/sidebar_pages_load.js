@@ -29,7 +29,7 @@ export default stampit({
         this.perPage(),
         sidebar.query
       ].join('/')
-      return `/child_search/${paths}?page=${sidebar.page}`
+      return `/child_search/${paths}?page=${sidebar.page}&child_index=${sidebar.child_index}`
     }
     this.perPage = () => {
       return (sidebar.query !== '') ? 2 : 3;

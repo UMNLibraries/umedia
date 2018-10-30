@@ -37,11 +37,12 @@ export default class extends Controller {
     }, false);
   }
 
-  load(id, child_id, page, query) {
+  load(id, child_id, page, query, child_index = false) {
     const sidebar = Sidebar({
       id: id,
       child_id: child_id,
       page: page,
+      child_index: child_index,
       query: query
     })
 
@@ -62,7 +63,8 @@ export default class extends Controller {
     [ this.sidebar, this.sidebarPages ] = this.load(this.data.get("id"),
                                                     this.data.get("child_id"),
                                                     this.data.get("sidebar_page"),
-                                                    this.data.get("query"))
+                                                    this.data.get("query"),
+                                                    this.data.get("child_index"))
 
     this.viewer.viewerSideLoad(this.data.get("id"),
                                this.data.get("child_id"));
@@ -94,8 +96,8 @@ export default class extends Controller {
 
   select(event) {
     event.preventDefault();
-
     const sidebar = Sidebar({ ...this.sidebar,
+                              ...{ child_index: event.currentTarget.dataset.child_index },
                               ...{ page: event.currentTarget.dataset.sidebar_page },
                               ...{ child_id: event.currentTarget.dataset.child_id }
                             });
@@ -107,6 +109,7 @@ export default class extends Controller {
     ViewerUrl({ q: sidebar.query,
                 id: sidebar.id,
                 child_id: sidebar.child_id,
+                child_index: sidebar.child_index,
                 sidebar_page: sidebar.page }).update();
 
   }

@@ -1,15 +1,8 @@
 class ChildSearchesController < ApplicationController
   def index
-    respond_to do |format|
-      format.html {
-        render layout: false,
-               locals: { child_search: child_search }
-      }
-      format.json {
-        render format: [:json],
-               locals: { child_search: child_search }
-      }
-    end
+    render layout: false,
+           locals: { child_search: child_search,
+                     child_index: child_params[:child_index] }
   end
 
   def child_search
@@ -32,6 +25,6 @@ class ChildSearchesController < ApplicationController
   end
 
   def child_params
-    params.permit(:q, :rows, :page, :active_child_id)
+    params.permit(:q, :rows, :page, :active_child_id, :child_index)
   end
 end

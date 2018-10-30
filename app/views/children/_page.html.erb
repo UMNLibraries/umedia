@@ -4,6 +4,7 @@
                   'data-action': 'viewer#select',
                   'data-id': child.field_parent_id.value,
                   'data-child_id': "#{child.collection}:#{child.id}",
+                  'data-child_index': child.field_child_index.value,
                   'data-query': sanitize(params[:q]),
                   class: "sidebar-page list-group-item #{active}",
                   id: "sidebar-page-#{page}" do %>

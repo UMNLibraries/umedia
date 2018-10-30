@@ -10,6 +10,7 @@ export default stampit({
     pathName: document.location.pathname,
     id: false,
     child_id: false,
+    child_index: null,
     sidebar_page: null,
   },
   init({ history = this.history,
@@ -18,6 +19,7 @@ export default stampit({
          q = this.q,
          id = this.id,
          child_id = this.child_id,
+         child_index = this.child_index,
          sidebar_page = 1 }) {
 
     this.history = history;
@@ -36,7 +38,10 @@ export default stampit({
     }
 
     this.queryParams = function() {
-      return { ...queryString.parse(search), ...{query: q}, ...{sidebar_page: sidebar_page} }
+      return { ...queryString.parse(search),
+               ...{query: q},
+               ...{child_index: child_index},
+               ...{sidebar_page: sidebar_page} }
     }
     const queryParams = this.queryParams;
     this.newURL = function() {
