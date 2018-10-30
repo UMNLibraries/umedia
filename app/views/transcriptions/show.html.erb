@@ -1,5 +1,3 @@
-<% transcriptions.map do |transcription| %>
-
-<%= render 'transcription', transcript: transcription %>
-
+<% transcriptions.map do |item| %>
+  <%= render 'transcription', item: item %>
 <% end %>

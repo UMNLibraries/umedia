@@ -20,13 +20,11 @@ module Umedia
 
     def translations
       if item.is_compound?
-        children_klass.find(id,
-                            check_exists: check_exists,
-                            fq: fq).map do |child|
-          child.field_translation.value
+        children_klass.find(id, check_exists: check_exists, fq: fq).map do |child|
+          child
         end
       else
-        [item.field_translation.value]
+        [item]
       end.reject(&:blank?)
     end
 

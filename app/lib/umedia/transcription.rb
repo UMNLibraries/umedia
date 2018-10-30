@@ -21,10 +21,10 @@ module Umedia
     def transcriptions
       if item.is_compound?
         children_klass.find(id, check_exists: check_exists, fq: fq).map do |child|
-          child.field_transcription.value
+          child
         end
       else
-        [item.field_transcription.value]
+        item
       end.reject(&:blank?)
     end
 

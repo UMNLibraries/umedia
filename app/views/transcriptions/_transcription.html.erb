@@ -1,5 +1,6 @@
-<% if transcript %>
+<% if item.field_transcription.value %>
   <div class="transcription">
-    <%= sanitize(transcript) %>
+    <h3 class="title"><%= item.field_title.value %></h3>
+    <div><%= sanitize(item.field_transcription.value) %></div>
   </div>
 <% end %>
