@@ -7,7 +7,7 @@ module Umedia
         id = 'foo124'
         search_klass = Minitest::Mock.new
         search_klass_obj = Minitest::Mock.new
-        search_klass.expect :new, search_klass_obj, [{:parent_id=>"foo124", fl: '*', rows: 10000}]
+        search_klass.expect :new, search_klass_obj, [{:parent_id=>"foo124", :fl=>"*", :rows=>10000, :fq=>[]}]
         search_klass_obj.expect :items, nil, []
         Children.find(id, search_klass: search_klass)
         search_klass.verify
@@ -20,7 +20,7 @@ module Umedia
         id = 'foo124'
         search_klass = Minitest::Mock.new
         search_klass_obj = Minitest::Mock.new
-        search_klass.expect :new, search_klass_obj, [{:parent_id=>"foo124", fl: '*', rows: 1}]
+        search_klass.expect :new, search_klass_obj, [{:parent_id=>"foo124", :fl=>"*", :rows=>1, :fq=>[]}]
         search_klass_obj.expect :items, nil, []
         Children.find(id, search_klass: search_klass, check_exists: true)
         search_klass.verify
