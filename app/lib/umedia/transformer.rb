@@ -90,7 +90,7 @@ module Umedia
         # Topics
         {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::StripFormatter]},
         {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'language', origin_path: 'langua', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'language', origin_path: 'langua', formatters: [CDMBL::StripFormatter,CDMBL::SplitFormatter, CDMBL::StripFormatter]},
         # Geographic Details
         {dest_path: 'city', origin_path: 'city', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'state', origin_path: 'state', formatters: [CDMBL::StripFormatter]},
