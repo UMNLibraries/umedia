@@ -6,6 +6,6 @@ class TranscriptionsController < ApplicationController
 
   def transcrips
     @transcrips ||=
-      Umedia::FieldData.new(id: params[:id], field: 'transcription').data
+      Umedia::FieldData.new(id: params[:id], field: 'transcription').items
   end
 end
