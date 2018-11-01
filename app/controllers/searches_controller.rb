@@ -87,7 +87,8 @@ class SearchesController < ApplicationController
       :publisher_s,
       :contributor_ss,
       :collection_name_s,
-      :page_count
+      :page_count,
+      :language
     ]
   end
 

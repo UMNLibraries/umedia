@@ -48,6 +48,7 @@ en:
       continent: 'Continent'
       parent_collection_name: 'Parent Collection'
       contributing_organization_name: 'Contributing Organization'
+      language: 'Language'
     index_fields:
       date_created_ss: 'Created'
       description: 'Description'
