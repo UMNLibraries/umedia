@@ -2,18 +2,16 @@ require 'net/http'
 
 module MetadataHelper
   def has_transcript?(id)
-    transcription(id).field_transcription.value
+    field_data(id, 'transcription')
   end
 
   def has_translation?(id)
-    translation(id).field_translation.value
+    field_data(id, 'translation')
   end
 
-  def transcription(id)
-    Umedia::Transcription.new(id: id, check_exists: true).transcriptions.first
-  end
-
-  def translation(id)
-    Umedia::Translation.new(id: id, check_exists: true).translations.first
+  def field_data(id, field)
+    Umedia::FieldData.new(id: id,
+                          field: field,
+                          check_exists: true).data.first
   end
 end
