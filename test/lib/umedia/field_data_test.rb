@@ -26,18 +26,43 @@ module Umedia
     end
 
     describe 'when a record is not a compound' do
-      it 'finds children' do
-        id = 'foo124'
-        item_klass = Minitest::Mock.new
-        item_klass_obj = Minitest::Mock.new
-        item_klass.expect :find, item_klass_obj, [id]
-        item_klass_obj.expect :is_compound?, false, []
-        items = FieldData.new(id: id,
-                             field: 'translation',
-                             item_klass: item_klass).items
+      describe 'and when the field has data' do
+        it 'finds children' do
+          id = 'foo124'
+          item_klass = Minitest::Mock.new
+          item_klass_obj = Minitest::Mock.new
+          item_klass_field_obj = Minitest::Mock.new
+          item_klass.expect :find, item_klass_obj, [id]
+          item_klass_obj.expect :field_translation, item_klass_field_obj, []
+          item_klass_field_obj.expect :value, 'stuff', []
+          item_klass_obj.expect :is_compound?, false, []
+          items = FieldData.new(id: id,
+                              field: 'translation',
+                              item_klass: item_klass).items
 
-        items.must_equal([item_klass_obj])
-        item_klass.verify
+          items.must_equal([item_klass_obj])
+          item_klass_obj.verify
+          item_klass_field_obj.verify
+          item_klass.verify
+        end
+      end
+      describe 'and when the field has no data' do
+        it 'finds children' do
+          id = 'foo124'
+          item_klass = Minitest::Mock.new
+          item_klass_obj = Minitest::Mock.new
+          item_klass_field_obj = Minitest::Mock.new
+          item_klass.expect :find, item_klass_obj, [id]
+          item_klass_obj.expect :field_translation, item_klass_field_obj, []
+          item_klass_field_obj.expect :value, nil, []
+          item_klass_obj.expect :is_compound?, false, []
+          items = FieldData.new(id: id,
+                              field: 'translation',
+                              item_klass: item_klass).items
+
+          items.must_equal([])
+          item_klass.verify
+        end
       end
     end
   end
