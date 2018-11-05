@@ -62,6 +62,20 @@ module Umedia
       end
     end
 
+    class AttachmentFormatFormatter
+      def self.format(value)
+        return value unless value.respond_to?(:split)
+        case (value.split('.').last)
+        when 'pdf'
+          'pdf'
+        when 'jp2'
+          'iiif'
+        else
+          false
+        end
+      end
+    end
+
     def self.field_mappings
       [
         {dest_path: 'id', origin_path: 'id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
@@ -131,7 +145,9 @@ module Umedia
         {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
         {dest_path: 'first_viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
         {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]},
-        {dest_path: 'child_index', origin_path: 'child_index', formatters: []}
+        {dest_path: 'child_index', origin_path: 'child_index', formatters: []},
+        {dest_path: 'attachment', origin_path: 'find', formatters: []},
+        {dest_path: 'attachment_format', origin_path: 'find', formatters: [AttachmentFormatFormatter]}
       ]
     end
   end

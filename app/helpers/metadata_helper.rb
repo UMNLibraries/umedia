@@ -1,15 +1,5 @@
-require 'net/http'
-
 module MetadataHelper
-  def has_transcript?(id)
-    field_data?(id, 'transcription')
-  end
-
-  def has_translation?(id)
-    field_data?(id, 'translation')
-  end
-
-  def field_data?(id, field)
+  def has_field?(field, id)
     !Umedia::FieldData.new(id: id,
                            field: field,
                            check_exists: true).items.empty?

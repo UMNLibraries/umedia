@@ -1,7 +1,8 @@
 export default (path, innerAreaElem, fetcher = window) => {
-  fetcher.fetch(path)
+  return fetcher.fetch(path)
     .then(response => response.text())
     .then(html => {
       innerAreaElem.innerHTML = html;
+      return innerAreaElem;
     });
 }
