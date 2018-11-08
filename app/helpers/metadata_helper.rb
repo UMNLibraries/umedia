@@ -4,4 +4,15 @@ module MetadataHelper
                            field: field,
                            check_exists: true).empty?
   end
+
+  def attachement_label(type)
+    case type
+    when 'pdf'
+      'PDF Transcript'
+    when 'image'
+      'Attached Image'
+    else
+      'Attachment'
+    end
+  end
 end

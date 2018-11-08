@@ -22,7 +22,7 @@
           <% end %>
           <% if has_field?('attachment', item.index_id) %>
             <li role="presentation" class="metadata-pill" id="metadata-attachments">
-              <a data-action="click->metadata#showSection" data-section="attachments" href="#">Attachment</a>
+              <a data-action="click->metadata#showSection" data-section="attachments" href="#"><%= attachement_label(item.field_attachment_format.value) %></a>
             </li>
           <% end %>
         </ul>
