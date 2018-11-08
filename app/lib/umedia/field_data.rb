@@ -29,7 +29,7 @@ module Umedia
       if item.is_compound?
         children.empty?
       else
-        item?
+        !item?
       end
     end
 
@@ -49,7 +49,7 @@ module Umedia
 
     # check a non-compound to see if a value exists for the given field
     def item?
-      item.public_send("field_#{field}").public_send("value")
+      !item.public_send("field_#{field}").public_send("value").blank?
     end
 
     def item
