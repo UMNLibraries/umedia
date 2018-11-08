@@ -10,7 +10,7 @@ class AttachmentsController < ApplicationController
 
   def item
     @item ||=
-      Umedia::FieldData.new(id: params[:id],
+      Umedia::FieldData.new(parent_id: params[:id],
                             field: 'attachment_format').items.first
   end
 end
