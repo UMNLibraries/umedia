@@ -29,11 +29,24 @@ class ItemsController < SearchesController
   def children
     if !has_search?
       Rails.cache.fetch("compound_children/#{id}") do
-        Umedia::ChildSearch.new(parent_id: id, page: child_page)
+        search(search_params)
       end
     else
-      Umedia::ChildSearch.new(parent_id: id, q: items_params[:query], page: child_page)
+      search(search_params.merge(q: items_params[:query]))
     end
+  end
+
+  def search(params)
+    Umedia::ChildSearch.new(parent_id: id,
+                            search_config: Parhelion::SearchConfig.new(params))
+  end
+
+  def search_params
+    {
+      page: child_page,
+      rows: 3,
+      fl: '*'
+    }
   end
 
   def id

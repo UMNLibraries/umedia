@@ -7,9 +7,15 @@ class ChildSearchesController < ApplicationController
 
   def child_search
     @child_search ||= Umedia::ChildSearch.new(parent_id: params.fetch(:id),
-                                              q: child_params[:q],
-                                              page: current_page,
-                                              rows: child_rows)
+                                              search_config: search_config)
+  end
+
+  def search_config
+    Parhelion::SearchConfig.new(
+      q: child_params[:q],
+      page: current_page,
+      rows: child_rows
+    )
   end
 
   def child_rows

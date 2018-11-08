@@ -3,27 +3,31 @@
 module Umedia
   # Search for Child records
   class ChildSearch
-    attr_reader :q, :fq, :page, :rows, :fl, :parent_id, :client, :item_list_klass
-    def initialize(q: '',
-                   fq: [],
-                   page: 1,
-                   rows: 3,
-                   fl: 'title, id, object, parent_id, first_viewer_type, viewer_type, child_index',
-                   parent_id: '',
+    extend Forwardable
+
+    def_delegators :@search_config, :page, :rows, :hash
+
+    attr_reader :search_config, :parent_id, :client, :item_list_klass
+
+    def initialize(parent_id: :MISSING_PARENT_ID,
+                   search_config: Parhelion::SearchConfig,
                    client: SolrClient,
                    item_list_klass: Parhelion::ItemList)
-      @q = q
-      @fq = fq
-      @page = page
-      @rows = rows
-      @fl = fl
+
+      raise_missing(parent_id, :MISSING_PARENT_ID)
+
+      @search_config = search_config
       @parent_id = parent_id
       @client = client
       @item_list_klass = item_list_klass
     end
 
+    def raise_missing(arg, cond)
+      raise ArgumentError.new("Required Argument: #{arg}") if arg == cond
+    end
+
     def empty?
-      response['response']['docs'].length == 0
+      num_found == 0
     end
 
     def num_found
@@ -38,15 +42,19 @@ module Umedia
       response['highlighting']
     end
 
+    private
+
     def response
-      @response ||= client.new.solr.paginate page, rows, 'child_search', params: {
-        q: q,
-        sort: 'child_index asc',
+      @response ||= client.new.solr.paginate page, rows, 'child_search', params: params
+    end
+
+    def params
+      search_config.to_h.merge(
         hl: 'on',
-        fl: fl,
+        sort: 'child_index asc',
         'hl.method': 'unified',
-        fq: fq + ["parent_id:\"#{parent_id}\""]
-      }
+        fq: search_config.fq + ["parent_id:\"#{parent_id}\""]
+      )
     end
   end
 end

@@ -1,19 +1,25 @@
 module Umedia
   # Retrieve an item or its children where data is not null for a given field
   class FieldData
-    attr_reader :id, :field, :check_exists, :item_klass, :children_klass
-    def initialize(id: :MISSING_ID,
+    extend Forwardable
+
+    def_delegator :@children, :empty?
+
+    attr_reader :parent_id, :field, :item_klass, :children
+    def initialize(parent_id: :MISSING_PARENT_ID,
                    field: :MISSING_SOLR_FIELD_NAME,
                    check_exists: false,
                    item_klass: Item,
                    children_klass: Children)
-      @id = id
+      @parent_id = parent_id
       @field = field
       # if check_exists == true, we'll only search for one row. Otherwise, we
       # retrieve all children whwere a given field is not null.
-      @check_exists = check_exists
       @item_klass = item_klass
-      @children_klass = children_klass
+
+      @children = children_klass.new(parent_id: parent_id,
+                                     check_exists: check_exists,
+                                     fq: fq).find
     end
 
     # Limit only to children with transcript data
@@ -24,7 +30,7 @@ module Umedia
 
     def items
       if item.is_compound?
-        children_klass.find(id, check_exists: check_exists, fq: fq).map do |child|
+        children.map do |child|
           child
         end
       elsif item?
@@ -42,7 +48,7 @@ module Umedia
     end
 
     def item
-      @item ||= item_klass.find(id)
+      @item ||= item_klass.find(parent_id)
     end
   end
 end
