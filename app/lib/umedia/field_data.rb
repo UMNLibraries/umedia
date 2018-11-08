@@ -1,10 +1,6 @@
 module Umedia
   # Retrieve an item or its children where data is not null for a given field
   class FieldData
-    extend Forwardable
-
-    def_delegator :@children, :empty?
-
     attr_reader :parent_id, :field, :item_klass, :children
     def initialize(parent_id: :MISSING_PARENT_ID,
                    field: :MISSING_SOLR_FIELD_NAME,
@@ -19,7 +15,7 @@ module Umedia
 
       @children = children_klass.new(parent_id: parent_id,
                                      check_exists: check_exists,
-                                     fq: fq).find
+                                     fq: fq)
     end
 
     # Limit only to children with transcript data
@@ -28,9 +24,18 @@ module Umedia
       ["#{field}:[* TO *]"]
     end
 
+    # A little faster than items.emtpy? when check_exists is set to true
+    def empty?
+      if item.is_compound?
+        children.empty?
+      else
+        item?
+      end
+    end
+
     def items
       if item.is_compound?
-        children.map do |child|
+        children.find.map do |child|
           child
         end
       elsif item?
