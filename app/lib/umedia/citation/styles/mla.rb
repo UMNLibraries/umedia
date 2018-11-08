@@ -21,10 +21,10 @@ module Umedia
           [
             { name: 'creator', prefix: '', suffix: '.', formatters: [Umedia::Citation::CommaJoinFormatter]},
             { name: 'title', prefix: ' ', suffix: '.', formatters: [ItalicizeFormatter]},
-            { name: 'date_created', prefix: ' ', suffix: '.', formatters: []},
+            { name: 'date_created', prefix: ' ', suffix: '.', formatters: [CommaJoinFormatter]},
             { name: 'contributing_organization', prefix: ' ', suffix: ', ', formatters: [] },
             { name: 'id', prefix: '', suffix: '', formatters: [MLAURLFormatter] },
-            { name: 'accessed', prefix: ' Accessed ', suffix: '.', formatters: [MLADateFormatter] }
+            { name: 'id', prefix: ' Accessed ', suffix: '.', formatters: [MLADateFormatter] }
           ]
         end
       end

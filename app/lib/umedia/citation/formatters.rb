@@ -1,8 +1,14 @@
 module Umedia
   module Citation
+    class ItemUrlFormatter
+      def self.format(id)
+        "http://umedia.lib.umn.edu/item/#{id}"
+      end
+    end
+
     class CommaJoinFormatter
       def self.format(value)
-        if respond_to?(:join)
+        if value.respond_to?(:join)
           value.join(', ')
         else
           value

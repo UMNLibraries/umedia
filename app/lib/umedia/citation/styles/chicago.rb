@@ -14,7 +14,7 @@ module Umedia
         def self.mappings
           [
             { name: 'creator', prefix: '', suffix: '. ', formatters: [CommaJoinFormatter] },
-            { name: 'creation_date', prefix: '', suffix: '. ', formatters: [] },
+            { name: 'date_created', prefix: ' ', suffix: '.', formatters: [CommaJoinFormatter]},
             { name: 'title', prefix: '"', suffix: '." ', formatters: [] },
             { name: 'contributing_organization', prefix: ' ', suffix: ', ', formatters: [] },
             { name: 'current_date', prefix: 'Accessed ', suffix: '. ', formatters: [ChicagoDateFormatter]},
