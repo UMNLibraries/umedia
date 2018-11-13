@@ -3,10 +3,10 @@
   <%= link_to 'Clear Search', item_path(id: params[:id], child_id:params[:active_child_id], child_index: params[:child_index]), class: 'btn btn-primary', role: 'button' %>
 </div>
 
-<span id="child-search-record-count"><%= child_search.num_found %></span>
+<span id="child-search-record-count"><%= num_found %></span>
 
-<% if child_search.items.results.length > 0 %>
-  <%= render 'pages', children: child_search %>
+<% if children.items.results.length > 0 %>
+  <%= raw pages %>
 <% else %>
  <div class="no-results">No Results</div>
 <% end %>

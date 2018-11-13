@@ -1,12 +1,13 @@
 class ChildSearchesController < ApplicationController
   def index
     render layout: false,
-           locals: { child_search: child_search,
+           locals: { children: children,
                      child_index: child_params[:child_index] }
   end
 
-  def child_search
-    @child_search ||= Umedia::ChildSearch.new(parent_id: params.fetch(:id),
+  def children
+    @children ||= Umedia::ChildSearch.new(parent_id: params.fetch(:id),
+                                              include_attachments: false,
                                               search_config: search_config)
   end
 

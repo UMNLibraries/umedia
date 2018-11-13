@@ -1,5 +1,33 @@
 module ChildSearchesHelper
 
+  def children
+    @children
+  end
+
+  def pages
+    children.items.each_with_index.map do |child, page|
+      render 'child_searches/page', child: child,
+                                    page: page,
+                                    active_child_id: params['active_child_id'],
+                                    highlighting: highlighting(child),
+                                    thumbnail: thumbnail(child)
+    end.join(' ')
+  end
+
+  def highlighting(child)
+    children.highlighting.fetch("#{child.collection}:#{child.id}", {})
+  end
+
+  def thumbnail(child)
+    Umedia::Thumbnail.new(object_url: child.field_object.value,
+                          viewer_type: child.field_viewer_type.value,
+                          entry_id: child.field_kaltura_video.value)
+  end
+
+  def num_found
+    @children.num_found
+  end
+
   def hl(highlight, field)
     return highlight.fetch(field, [])
   end

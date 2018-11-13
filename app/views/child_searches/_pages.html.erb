@@ -1,9 +1,0 @@
-<% children.items.each_with_index.map do |child, page| %>
-    <%= render 'child_searches/page', child: child,
-                                      page: page,
-                                      active_child_id: params['active_child_id'],
-                                      highlighting: children.highlighting.fetch("#{child.collection}:#{child.id}", {}),
-                                      thumbnail: Umedia::Thumbnail.new(object_url: child.field_object.value,
-                                                                      viewer_type: child.field_viewer_type.value,
-                                                                      entry_id: child.field_kaltura_video.value) %>
-<% end %>
