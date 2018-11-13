@@ -55,9 +55,9 @@ module Umedia
         search_config_klass_obj = Minitest::Mock.new
         search_config_klass.expect :new, search_config_klass_obj, [{:fl=>"*", :rows=>0, :fq=>[]}]
         search_klass.expect :new, search_klass_obj, [{parent_id: id, search_config: search_config_klass_obj}]
-        search_klass_obj.expect :empty?, true, []
+        search_klass_obj.expect :num_found, 0, []
         children = Children.new(check_exists: true, parent_id: id, search_klass: search_klass, search_config_klass: search_config_klass)
-        children.empty?.must_equal true
+        children.num_found.must_equal 0
         search_klass.verify
         search_klass_obj.verify
       end
