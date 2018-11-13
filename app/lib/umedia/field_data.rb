@@ -27,7 +27,7 @@ module Umedia
     # A little faster than items.emtpy? when check_exists is set to true
     def empty?
       if item.is_compound?
-        children.empty?
+        children.num_found == 0
       else
         !item?
       end

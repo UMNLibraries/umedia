@@ -62,17 +62,9 @@ module Umedia
       end
     end
 
-    class AttachmentFormatFormatter
-      def self.format(value)
-        return value unless value.respond_to?(:split)
-        case (value.split('.').last)
-        when 'pdf'
-          'pdf'
-        when 'jp2'
-          'iiif'
-        else
-          false
-        end
+    class AttachmentFormatter
+      def self.format(record)
+        Umedia::EtlFormatters::Attachment.new(record: record).format
       end
     end
 
@@ -147,7 +139,7 @@ module Umedia
         {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]},
         {dest_path: 'child_index', origin_path: 'child_index', formatters: []},
         {dest_path: 'attachment', origin_path: 'find', formatters: []},
-        {dest_path: 'attachment_format', origin_path: 'find', formatters: [AttachmentFormatFormatter]}
+        {dest_path: 'attachment_format', origin_path: '/', formatters: [AttachmentFormatter]}
       ]
     end
   end

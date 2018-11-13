@@ -7,7 +7,7 @@ module Umedia
   class Children
     extend Forwardable
 
-    def_delegator :@search, :empty?
+    def_delegator :@search, :num_found
 
     attr_reader :parent_id, :search
     def initialize(parent_id: :MISSING_PARENT_ID,
