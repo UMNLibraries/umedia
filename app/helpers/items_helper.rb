@@ -1,12 +1,18 @@
 module ItemsHelper
-  def download_configs(docs)
-    docs.map do |doc|
-      download_config(doc)
-    end
+  def item
+    @item
   end
 
-  def download_config(item)
-    Umedia::Download.new(item: item)
+  def sidebar
+    @sidebar
+  end
+
+  def search_params
+    @search_params
+  end
+
+  def child_page_num
+    @child_page_num
   end
 
   def format_values(values, facet)

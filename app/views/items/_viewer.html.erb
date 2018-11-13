@@ -1,31 +1,29 @@
 <div data-controller="viewer"
      data-viewer-sidebar_page="<%= params.fetch('sidebar_page', 1) %>"
      data-viewer-id="<%= params['id'] %>"
-     data-viewer-child_id="<%= params.fetch('child_id', first_child(children, params['id'])) %>"
-     data-viewer-child_page="<%= params.fetch('child_page', 1) %>"
+     data-viewer-child_id="<%= params.fetch('child_id', sidebar.first_page) %>"
+     data-viewer-child_page="<%= child_page_num %>"
      data-viewer-child_index="<%= params.fetch('child_index', 0) %>"
      data-viewer-query="<%= params['query'] %>"
      data-viewer-url="/viewers"
      id="viewer-data">
-    <% if !children.empty? %>
+    <% if sidebar.show? %>
         <div id="item-content" class="col-md-8">
           <div id="viewer-display"></div>
         </div>
         <div id="viewer-sidebar" class="col-md-4">
-          <%= render 'sidebar', children: children, item: item, child_page: child_page  %>
+          <%= render 'sidebar' %>
         </div>
-        <%= render partial: 'metadata', locals: {item: item, css_class: "item-metadata col-md-12"} %>
+        <%= render partial: 'metadata' %>
     <% else %>
       <div id="viewer-display" class="col-md-12"></div>
     <% end %>
 </div>
-<% if children.empty? && item.type == 'Still Image'%>
+
+<% if !sidebar.show? && item.image? %>
   <div class="single-item-download pull-right">
-    <%= render 'download', downloads: download_config(item) %>
+    <%= render 'download', downloads: item.download_config %>
   </div>
 <% end %>
 
-  <% if children.empty? %>
-    <%= render partial: 'metadata', locals: {item: item, css_class: "item-metadata col-md-12"} %>
-  <% end %>
-</div>
+ <%= render partial: 'metadata' if !sidebar.show?  %>

@@ -10,14 +10,11 @@ class ItemsController < SearchesController
 
   def show
     response.headers['Content-Language'] = I18n.locale.to_s
-    render locals: { item: item,
-                     children: children,
-                     search_params: search_params,
-                     child_page: child_page }
-  end
+    @child_page_num = child_page_num
+    @search_params = search_params
 
-  def child_page
-    (items_params[:child_page]) ? items_params[:child_page] : 1
+    @item ||= ItemPresenter.new(item, view_context)
+    @sidebar ||= ViewerSidebarPresenter.new(children, view_context)
   end
 
   def item
@@ -27,34 +24,36 @@ class ItemsController < SearchesController
   end
 
   def children
-    if !has_search?
-      Rails.cache.fetch("compound_children/#{id}") do
-        search(search_params)
-      end
-    else
-      search(search_params.merge(q: items_params[:query]))
-    end
+    @children ||= search(search_params.merge(q: items_params.fetch(:query, '')))
   end
 
   def search(params)
     Umedia::ChildSearch.new(parent_id: id,
+                            # Attachments are things like transcripts; these
+                            # exist only on kaltura records or items that have
+                            # been explicitly set at the designated attachment.
+                            # We do not therefore want attachments to be
+                            # counted in sidebar queries
+                            include_attachments: false,
                             search_config: Parhelion::SearchConfig.new(params))
+  end
+
+  def child_page_num
+    params.fetch(:child_page, 1)
   end
 
   def search_params
     {
-      page: child_page,
-      rows: 3,
+      page: child_page_num,
+      # we only need the first result of a sidebar query; this is passed to
+      # viewer_controller.js so that it knows which child to display on load
+      rows: 1,
       fl: '*'
     }
   end
 
   def id
-    params.fetch(:id)
-  end
-
-  def has_search?
-    items_params.fetch(:query, '') != ''
+    params[:id]
   end
 
   def items_params

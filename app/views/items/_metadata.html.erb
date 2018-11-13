@@ -1,8 +1,8 @@
 <div data-controller="metadata"
      data-metadata-id="<%= params['id'] %>"
-     data-metadata-attachment-format="<%= item.field_attachment_format.value %>"
+     data-metadata-attachment-format="<%= attachment_format %>"
      id="metadata-metadata">
-      <div class="<%= css_class %>">
+      <div class="item-metadata col-md-12">
         <ul class="nav nav-pills umn-nav-pills">
           <li role="presentation" class="metadata-pill" id="metadata-details">
             <a data-action="click->metadata#showSection" data-section="details" href="#">Details</a>
@@ -10,19 +10,19 @@
           <li role="presentation" class="metadata-pill" id="metadata-cites">
             <a data-action="click->metadata#showSection" data-section="cites" href="#">Cite This Item</a>
           </li>
-          <% if has_field?('transcription', item.index_id) %>
+          <% if has_field?('transcription') %>
             <li role="presentation" class="metadata-pill" id="metadata-transcriptions">
               <a data-action="click->metadata#showSection" data-section="transcriptions" href="#">Transcript</a>
             </li>
           <% end %>
-          <% if has_field?('translation', item.index_id) %>
+          <% if has_field?('translation') %>
             <li role="presentation" class="metadata-pill" id="metadata-translations">
               <a data-action="click->metadata#showSection" data-section="translations" href="#">Translation</a>
             </li>
           <% end %>
-          <% if has_field?('attachment', item.index_id) %>
+          <% if has_field?('attachment_format') %>
             <li role="presentation" class="metadata-pill" id="metadata-attachments">
-              <a data-action="click->metadata#showSection" data-section="attachments" href="#"><%= attachement_label(item.field_attachment_format.value) %></a>
+              <a data-action="click->metadata#showSection" data-section="attachments" href="#"><%= attachement_label %></a>
             </li>
           <% end %>
         </ul>
