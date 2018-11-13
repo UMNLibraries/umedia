@@ -22,7 +22,7 @@ services:
       - solr
   sidekiq_1:
       build: .
-      command: bundle exec sidekiq  -c 1 -r /app
+      command: bundle exec sidekiq -q critical,2 -q default -c 1 -r /app
       volumes:
         - .:/app
       links:
@@ -31,7 +31,7 @@ services:
         - .env
   sidekiq_2:
     build: .
-    command: bundle exec sidekiq  -c 1 -r /app
+    command: bundle exec sidekiq -q critical,2 -q default -c 1 -r /app
     volumes:
       - .:/app
     links:
