@@ -1,6 +1,8 @@
 
   <%= form_tag searches_path, :method => :get do %>
   <%= label_tag 'q', 'Search:', style: 'display:none' %>
+    <%= raw hidden_facet_values %>
+    <%= hidden_field_tag "sort", params[:sort] %>
     <div class="input-group input-group-lg col-md-8">
       <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...', value: params[:q] %>
       <span class="input-group-btn">
@@ -10,6 +12,6 @@
   <% end %>
   <% if query(search_params).active?%>
     <div class="start-over">
-      <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> start over'), searches_url %>
+      <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> start over'), searches_url, class: 'btn btn-default start-over' %>
     </div>
   <% end %>

@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
   def index
     response.headers["Content-Language"] = I18n.locale.to_s
+    @facet_fields_all = facet_fields_all
     render locals: {
       item_list: item_list,
       facet_list: facet_list,
@@ -20,13 +21,6 @@ class SearchesController < ApplicationController
       page: page,
       sort: sort
     ).response
-  end
-
-  def facet_search
-    Umedia::FacetSearch.new(
-      params: facet_params,
-      fields: facet_fields_all
-    )
   end
 
   def facet_config

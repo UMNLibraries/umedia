@@ -1,4 +1,17 @@
 module SearchesHelper
+
+  def facet_params
+    params.permit(facets: @facet_fields_all.map { |facet| {facet => []} })[:facets]
+  end
+
+  def hidden_facet_values
+    facet_params.to_h.map do |name, values|
+      values.map do |value|
+        hidden_field_tag "facets[#{name}][]", value
+      end
+    end.join("\n")
+  end
+
   def query(search_params)
     Parhelion::Query.new(params: search_params)
   end
