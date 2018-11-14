@@ -6,7 +6,7 @@ module Umedia
     module Styles
       class ChicagoDateFormatter
         def self.format(value)
-          Time.now.strftime('%m/%d/%Y')
+          Time.now.strftime('%B %d, %Y')
         end
       end
 
@@ -17,7 +17,7 @@ module Umedia
             { name: 'date_created', prefix: ' ', suffix: '.', formatters: [CommaJoinFormatter]},
             { name: 'title', prefix: '"', suffix: '." ', formatters: [] },
             { name: 'contributing_organization', prefix: ' ', suffix: ', ', formatters: [] },
-            { name: 'current_date', prefix: 'Accessed ', suffix: '. ', formatters: [ChicagoDateFormatter]},
+            { name: 'id', prefix: 'Accessed ', suffix: '. ', formatters: [ChicagoDateFormatter]},
             { name: 'id', prefix: '', suffix: '', formatters: [URLFormatter] }
           ]
         end
