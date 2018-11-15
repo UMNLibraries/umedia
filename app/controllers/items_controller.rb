@@ -11,8 +11,7 @@ class ItemsController < SearchesController
   def show
     response.headers['Content-Language'] = I18n.locale.to_s
     @child_page_num = child_page_num
-    @search_params = search_params
-
+    @items_params = items_params
     @item ||= ItemPresenter.new(item, view_context)
     @sidebar ||= ViewerSidebarPresenter.new(children, view_context)
   end
@@ -56,7 +55,11 @@ class ItemsController < SearchesController
     params[:id]
   end
 
+  def facet_fields_all
+    Umedia::FacetFieldConfig.new.all
+  end
+
   def items_params
-    params.permit(:query, :child_page)
+    params.permit(:query, :child_page, :q, :page, :rows, :sort, facets: facet_fields_all.map { |facet| {facet => []} })
   end
 end

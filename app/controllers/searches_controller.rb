@@ -71,38 +71,16 @@ class SearchesController < ApplicationController
     Parhelion::Query.new(params: search_params)
   end
 
-  def facet_fields
-    [
-      :types,
-      :format_name,
-      :date_created_ss,
-      :subject_ss,
-      :creator_ss,
-      :publisher_s,
-      :contributor_ss,
-      :collection_name_s,
-      :page_count,
-      :language
-    ]
-  end
-
-
-  def facet_fields_hidden
-    [
-      :format_name,
-      :subject_fast_ss,
-      :city,
-      :state,
-      :country,
-      :region,
-      :continent,
-      :parent_collection_name,
-      :contributing_organization_name
-    ]
+  def facet_fields_config
+    Umedia::FacetFieldConfig.new
   end
 
   def facet_fields_all
-    facet_fields.concat(facet_fields_hidden)
+    facet_fields_config.all
+  end
+
+  def facet_fields
+    facet_fields_config.visible
   end
 
   def search_params
