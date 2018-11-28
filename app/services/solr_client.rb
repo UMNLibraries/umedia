@@ -27,6 +27,10 @@ class SolrClient
     solr.optimize
   end
 
+  def add(records)
+    solr.add records
+  end
+
   private
 
   def base_url
