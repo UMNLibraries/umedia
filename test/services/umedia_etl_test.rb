@@ -15,5 +15,10 @@ require 'test_helper'
           solr_config: { url: 'http://solr:8983/solr/test' }
         )
       end
+
+      it 'returns some Umedia set data' do
+        umedia_etl = UmediaETL.new(field_mappings: {})
+        umedia_etl.sets.length.positive?.must_equal true
+      end
     end
   end

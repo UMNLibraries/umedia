@@ -32,21 +32,25 @@ class UmediaETL
   end
 
   def set_specs
-    @set_specs ||= filtered_set_specs
+    @set_specs ||= filter.set_specs
+  end
+
+  def sets
+    filter.filtered_sets
   end
 
   private
 
-  def filter
+  def callback
     filter_callback.new(field: 'setName',
                         pattern: set_spec_pattern,
                         inclusive: true)
   end
 
-  def filtered_set_specs
+  def filter
     Rails.cache.fetch("set_specs", expires_in: 12.hours) do
       set_spec_filter.new(oai_base_url: oai_endpoint,
-                          callback: filter).set_specs
+                          callback: callback)
     end
   end
 
