@@ -14,6 +14,14 @@ module Umedia
       @cdn_uri = cdn_uri
     end
 
+    def to_h
+      {
+        default_url: default_url,
+        cdn_url: cdn_url,
+        url: url
+      }
+    end
+
     def url
       case viewer_type
       when 'kaltura_video'
