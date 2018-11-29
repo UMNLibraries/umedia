@@ -9,7 +9,7 @@ module Umedia
       @solr = solr
     end
 
-    def load!
+    def index!
       collections.map do |collection|
         solr.add(featured_collection_klass.new(collection: collection).to_solr)
       end

@@ -19,7 +19,7 @@ module Umedia
 
       CollectionIndexer.new(collections: collections,
                             solr: solr_client,
-                            featured_collection_klass: featured_collection_klass).load!
+                            featured_collection_klass: featured_collection_klass).index!
       solr_client.verify
       featured_collection_klass.verify
       featured_collection_klass_obj.verify
