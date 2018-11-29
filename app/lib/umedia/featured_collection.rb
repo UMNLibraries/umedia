@@ -17,9 +17,9 @@ module Umedia
       {
         id: "collection-#{collection.set_spec}",
         document_type: 'collection',
-        collection_set_spec: collection.set_spec,
-        collection_collection_name: collection.display_name,
-        collection_collection_description: collection.description,
+        set_spec: collection.set_spec,
+        collection_name: collection.display_name,
+        collection_description: collection.description,
         collection_item_count: collection_item_count,
         collection_thumbnails: thumbnail_config
       }

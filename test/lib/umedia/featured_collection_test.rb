@@ -30,8 +30,10 @@ module Umedia
         thumbnail_klass: thumbnail_klass
       )
 
-      featured.to_solr.must_equal({:id=>"collection-foo:bar23", :document_type=>"collection", :collection_set_spec=>"foo:bar23", :collection_collection_name=>"foo col", :collection_collection_description=>"it's all cats", :collection_item_count=>103, :collection_thumbnails=>"[{\"stuff\":\"here\",\"id\":\"foobrah:9er\"}]"})
-      search_klass.verify
+      featured.to_solr.must_equal(
+        {:id=>"collection-foo:bar23", :document_type=>"collection", :set_spec=>"foo:bar23", :collection_name=>"foo col", :collection_description=>"it's all cats", :collection_item_count=>103, :collection_thumbnails=>"[{\"stuff\":\"here\",\"id\":\"foobrah:9er\"}]"}
+      )
+        search_klass.verify
       search_klass_obj.verify
       thumbnail_klass.verify
       thumbnail_klass_obj.verify
