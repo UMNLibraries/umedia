@@ -25,7 +25,7 @@ module Umedia
       {
         rows: 3,
         fl:'id, first_viewer_type, kaltura_video, object',
-        q: "set_spec:#{set_spec} && document_type:item"
+        q: "set_spec:#{set_spec} && !document_type:collection"
       }
     end
   end
