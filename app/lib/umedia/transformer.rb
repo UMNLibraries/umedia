@@ -47,11 +47,12 @@ module Umedia
     class SuperCollectionNamesFormatter
       def self.format(value)
         names = value.fetch('projea', '')
-        return value if !names.respond_to?(:split)
-        names.split(';').map do |set_spec|
-          value['oai_sets'].fetch(set_spec, {})
-            .fetch(:name, '')
-            .gsub(/^ul_([a-zA-Z0-9])*\s-\s/, '')
+        if names.respond_to?(:split)
+          names.split(';').map do |set_spec|
+            value['oai_sets'].fetch(set_spec, {})
+              .fetch(:name, '')
+              .gsub(/^ul_([a-zA-Z0-9])*\s-\s/, '')
+          end
         end
       end
     end
@@ -59,10 +60,11 @@ module Umedia
     class SuperCollectionDescriptionsFormatter
       def self.format(value)
         names = value.fetch('projea', '')
-        return value if !names.respond_to?(:split)
-        names.split(';').map do |set_spec|
-          value['oai_sets'].fetch(set_spec, {})
-          .fetch(:description, '')
+        if names.respond_to?(:split)
+          names.split(';').map do |set_spec|
+            value['oai_sets'].fetch(set_spec, {})
+            .fetch(:description, '')
+          end
         end
       end
     end
