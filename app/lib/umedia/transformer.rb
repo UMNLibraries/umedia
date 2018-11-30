@@ -58,7 +58,9 @@ module Umedia
 
     class SuperCollectionDescriptionsFormatter
       def self.format(value)
-        value.fetch('projea', '').split(';').map do |set_spec|
+        names = value.fetch('projea', '')
+        return value if !names.respond_to?(:split)
+        names.split(';').map do |set_spec|
           value['oai_sets'].fetch(set_spec, {})
           .fetch(:description, '')
         end
