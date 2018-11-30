@@ -6,7 +6,7 @@ module Parhelion
     attr_reader :doc_hash, :field_klass, :cdn_iiif_klass
     def initialize(doc_hash: {},
                    field_klass: Field,
-                   cdn_iiif_klass: CdmIiif)
+                   cdn_iiif_klass: IiifConfig)
       @doc_hash     = doc_hash
       @field_klass  = field_klass
       @cdn_iiif_klass = cdn_iiif_klass
