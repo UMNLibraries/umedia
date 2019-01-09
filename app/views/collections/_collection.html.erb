@@ -1,0 +1,17 @@
+<div class="panel panel-default collection">
+  <div class="panel-body">
+    <% thumbs = (collection['collection_thumbnails']) ? JSON.parse(collection['collection_thumbnails']) : [] %>
+    <%=
+      link_to collection_path(collection) do
+        render 'thumbnail', thumbnails: thumbs, collection: collection
+      end
+    %>
+  </div>
+  <div class="panel-footer">
+    <h3><%= link_to collection['collection_name'], collection_path(collection) %></h3>
+    <div class="collection-meta">
+      <div class="collection-contributor"><%= collection['contributing_organization_name'] %></div>
+      <div class="collection-count"><%= collection['collection_item_count'] %> items</div>
+    </div>
+  </div>
+</div>

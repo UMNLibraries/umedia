@@ -53,6 +53,7 @@ class FacetsController < ApplicationController
       :publisher_s,
       :contributor_ss,
       :collection_name_s,
+      :super_collection_names_ss,
       :page_count
     ]
   end

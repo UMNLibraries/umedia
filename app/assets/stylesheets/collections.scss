@@ -1,0 +1,55 @@
+// Place all the styles related to the collections controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.collections-gallery {
+
+    .collection {
+      display: inline-block;
+      margin: 10px;
+      width: 356px;
+      .small-thumb-col {
+        padding-left: 0 !important;
+      }
+      .thumb {
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 306px;
+        border: 1px solid #ffffff;
+      }
+
+      .thumb-upper-right,
+      .thumb-lower-right {
+        height: 153px;
+      }
+      .panel-body {
+        padding-left: 30px;
+      }
+      .panel-footer {
+        overflow: hidden;
+        height: 140px;
+        h3 {
+          font-size: 1.2em;
+          margin: 0;
+        }
+        .collection-contributor {
+          margin: 5px 0 5px;
+        }
+      }
+
+      .collection-meta {
+        font-size: .9 em;
+        color: #9D9D9D;
+      }
+    }
+}
+
+.collection {
+
+  .title-cover {
+  }
+
+  .tile-container .tile {
+
+  }
+}
