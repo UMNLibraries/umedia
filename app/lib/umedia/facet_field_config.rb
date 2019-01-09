@@ -10,6 +10,7 @@ module Umedia
         :publisher_s,
         :contributor_ss,
         :collection_name_s,
+        :super_collection_name_ss,
         :page_count,
         :language
       ]

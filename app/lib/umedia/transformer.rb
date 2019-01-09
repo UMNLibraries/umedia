@@ -101,7 +101,8 @@ module Umedia
     end
 
     class FeaturedCollectionOrderFormatter
-      def self.format(order)
+      def self.format(doc)
+        order = doc.fetch('featur', false)
         !order.blank? ? order : 3
       end
     end
@@ -114,6 +115,7 @@ module Umedia
         {dest_path: 'collection_name', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, UmediaCollectionNameFormatter]},
         {dest_path: 'collection_description', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::CollectionDescriptionFormatter, CDMBL::FilterBadCollections]},
         {dest_path: 'super_collection_names', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, SuperCollectionNamesFormatter]},
+        {dest_path: 'super_collection_set_specs', origin_path: 'projea', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
         {dest_path: 'super_collection_descriptions', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, SuperCollectionDescriptionsFormatter]},
       # Full Record View
         {dest_path: 'title', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
@@ -192,7 +194,7 @@ module Umedia
         {dest_path: 'document_type', origin_path: 'id', formatters: [DocumentFormatter]},
         # Used in /collections displays to select which thumbs should display and
         # in which order - 1, 2, or 3. The default value is last: 3.
-        {dest_path: 'featured_collection_order', origin_path: 'featur', formatters: [FeaturedCollectionOrderFormatter]}
+        {dest_path: 'featured_collection_order', origin_path: '/', formatters: [FeaturedCollectionOrderFormatter]}
       ]
     end
   end

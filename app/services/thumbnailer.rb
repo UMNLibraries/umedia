@@ -2,8 +2,7 @@ require 'digest/sha1'
 require 'net/http'
 
 class Thumbnailer
-  attr_reader :cdn_uri,
-              :doc_hash,
+  attr_reader :cdn_url,
               :api_uri,
               :api_key,
               :thumb_fallback_url,
@@ -11,16 +10,14 @@ class Thumbnailer
               :file_exists_klass,
               :aws_api_klass
 
-  def initialize(doc_hash: :missing_doc_hash,
-                 thumb_url: :missing_thumb_url,
-                 cdn_uri: ENV['UMEDIA_NAILER_CDN_URI'],
+  def initialize(thumb_url: :missing_thumb_url,
+                 cdn_url: :MISSING_CDN_URL,
                  api_uri: ENV['UMEDIA_NAILER_API_URI'],
                  api_key: ENV['UMEDIA_NAILER_API_KEY'],
                  thumb_fallback_url: ENV['UMEDIA_NAILER_THUMB_FALLBACK_URL'],
                  file_exists_klass: RemoteFileExists,
                  aws_api_klass: AwsApi)
-    @cdn_uri            = cdn_uri
-    @doc_hash          = doc_hash
+    @cdn_url            = cdn_url
     @api_uri            = api_uri
     @thumb_fallback_url = CGI.escape thumb_fallback_url
     @thumb_url          = CGI.escape thumb_url
@@ -41,10 +38,6 @@ class Thumbnailer
 
   def already_uploaded?
     file_exists_klass.new(url: cdn_url).exists?
-  end
-
-  def cdn_url
-    "#{cdn_uri}/#{doc_hash}.png"
   end
 
   def upload

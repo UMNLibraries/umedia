@@ -8,19 +8,25 @@ module Umedia
           it 'produces an cdm image thumbnail url' do
             # UmageUrl mocks
             item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com'})
-            url = Url.new(item: item)
-            url.to_s.must_equal 'http://example.com'
-            url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/89dce6a446a69d6b9bdc01ac75251e4c322bcdff.png'
+            image_url_klass = Minitest::Mock.new
+            image_url_klass_obj = Minitest::Mock.new
+            image_url_klass.expect :new, image_url_klass_obj, [{ item: item, iiif_thumb: false }]
+            image_url_klass_obj.expect :to_s, 'imageurlhere', []
+            url = Url.new(item: item, iiif_thumb: false, image_url_klass: image_url_klass)
+            url.to_s.must_equal 'imageurlhere'
+            url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/87b9bff439a69511f7e7e545478972916af0b257.png'
+            image_url_klass.verify
+            image_url_klass_obj.verify
           end
         end
         describe 'and we ask for a IIIF thumbnail' do
           it 'produces an cdm image thumbnail url' do
             # UmageUrl mocks
+            item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com'})
             image_url_klass = Minitest::Mock.new
             image_url_klass_obj = Minitest::Mock.new
-            image_url_klass.expect :new, image_url_klass_obj, [{ object_url: "http://example.com", collection: 'foo123', id: '999' }]
+            image_url_klass.expect :new, image_url_klass_obj, [{ item: item, iiif_thumb: true }]
             image_url_klass_obj.expect :to_s, 'imageurlhere', []
-            item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com'})
             url = Url.new(item: item, iiif_thumb: true, image_url_klass: image_url_klass)
             url.to_s.must_equal 'imageurlhere'
             url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/87b9bff439a69511f7e7e545478972916af0b257.png'
@@ -65,11 +71,11 @@ module Umedia
       describe 'when an item is an kaltura video' do
         it 'produces a kaltura video url' do
           # KalturaVideoUrl mocks
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video', 'entry_id' => '123blerg'})
           kaltura_video_url_klass = Minitest::Mock.new
           kaltura_video_url_klass_obj = Minitest::Mock.new
-          kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ entry_id: '123blerg' }]
+          kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ item: item }]
           kaltura_video_url_klass_obj.expect :to_s, 'videourlhere', []
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video', 'entry_id' => '123blerg'})
           url = Url.new(item: item, kaltura_video_url_klass: kaltura_video_url_klass)
           url.to_s.must_equal 'videourlhere'
           url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/d055b959ed1bcb485d02e042b695f2fd131bc0b7.png'
@@ -81,11 +87,11 @@ module Umedia
       describe 'when an item is an kaltura video playlist' do
         it 'produces a kaltura video url' do
           # KalturaVideoUrl mocks
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video_playlist', 'entry_id' => '123blerg'})
           kaltura_video_url_klass = Minitest::Mock.new
           kaltura_video_url_klass_obj = Minitest::Mock.new
-          kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ entry_id: '123blerg' }]
+          kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ item: item }]
           kaltura_video_url_klass_obj.expect :to_s, 'videourlhere', []
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video_playlist', 'entry_id' => '123blerg'})
           url = Url.new(item: item, kaltura_video_url_klass: kaltura_video_url_klass)
           url.to_s.must_equal 'videourlhere'
           url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/d055b959ed1bcb485d02e042b695f2fd131bc0b7.png'
@@ -97,11 +103,11 @@ module Umedia
       describe 'when an item is an kaltura combo playlist' do
         it 'produces a kaltura video url' do
           # KalturaVideoUrl mocks
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_combo_playlist', 'entry_id' => '123blerg'})
           kaltura_video_url_klass = Minitest::Mock.new
           kaltura_video_url_klass_obj = Minitest::Mock.new
-          kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ entry_id: '123blerg' }]
+          kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ item: item }]
           kaltura_video_url_klass_obj.expect :to_s, 'videourlhere', []
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_combo_playlist', 'entry_id' => '123blerg'})
           url = Url.new(item: item, kaltura_video_url_klass: kaltura_video_url_klass)
           url.to_s.must_equal 'videourlhere'
           url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/d055b959ed1bcb485d02e042b695f2fd131bc0b7.png'

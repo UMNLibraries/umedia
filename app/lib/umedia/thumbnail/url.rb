@@ -43,9 +43,7 @@ module Umedia
         @to_s ||=
           case viewer_type
           when 'image'
-            return item.field_object.value.to_s unless iiif_thumb
-            image_url_klass.new(collection: item.collection,
-                                id: item.id)
+            image_url_klass.new(item: item, iiif_thumb: iiif_thumb)
           # Kaltura Audio Playlist
           when 'kaltura_audio_playlist'
             kaltura_audio_url_klass.new
@@ -54,13 +52,13 @@ module Umedia
             kaltura_audio_url_klass.new
           # Kaltura Combo Player (audio and video)
           when 'kaltura_combo_playlist'
-            kaltura_video_url_klass.new(entry_id: entry_id)
+            kaltura_video_url_klass.new(item: item)
           # Kaltura Video Playlist
           when 'kaltura_video_playlist'
-            kaltura_video_url_klass.new(entry_id: entry_id)
+            kaltura_video_url_klass.new(item: item)
           # Kaltura Video
           when 'kaltura_video'
-            kaltura_video_url_klass.new(entry_id: entry_id)
+            kaltura_video_url_klass.new(item: item)
           when 'pdf'
             pdf_url_klass.new
           else
@@ -72,10 +70,6 @@ module Umedia
 
       def url_hash
         Digest::SHA1.hexdigest to_s
-      end
-
-      def entry_id
-        item.field_entry_id.value
       end
 
       def viewer_type

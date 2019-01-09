@@ -5,15 +5,13 @@ class ThumbnailsController < ActionController::Base
   end
 
   def upload!
-    Thumbnailer.new(doc_hash: thumb_url.hash,
-                    thumb_url: thumb_url.url).upload!
+    Thumbnailer.new(cdn_url: thumb_url.to_cdn_s,
+                    thumb_url: thumb_url.to_s).upload!
   end
 
   def thumb_url
     @thumb_url ||=
-      Umedia::Thumbnail.new(object_url: item.field_object.value,
-                            viewer_type: item.field_first_viewer_type.value,
-                            entry_id: item.field_kaltura_video.value)
+    Umedia::Thumbnail::Url.new(item: item)
   end
 
   def item

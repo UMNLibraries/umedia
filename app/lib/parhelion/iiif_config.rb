@@ -18,10 +18,14 @@ module Parhelion
       @info ||= JSON.parse(rest_client_klass.get(info_url).body)
     end
 
+    def iiif_url
+      "#{endpoint}/digital/iiif/#{collection}/#{id}"
+    end
+
     private
 
     def info_url
-      "#{endpoint}/digital/iiif/#{collection}/#{id}/info.json"
+      "#{iiif_url}/info.json"
     end
   end
 end

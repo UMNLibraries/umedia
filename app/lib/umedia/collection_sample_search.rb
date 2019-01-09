@@ -24,8 +24,9 @@ module Umedia
     def params
       {
         rows: 3,
-        fl:'id, first_viewer_type, kaltura_video, object',
-        q: "set_spec:#{set_spec} && !document_type:collection"
+        fl:'*',
+        sort: "featured_collection_order asc"
+        q: "(set_spec:#{set_spec} || super_collection_set_specs:#{set_spec})  && !document_type:collection && !viewer_type:COMPOUND_PARENT_NO_VIEWER"
       }
     end
   end
