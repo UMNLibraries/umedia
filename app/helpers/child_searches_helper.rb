@@ -19,9 +19,7 @@ module ChildSearchesHelper
   end
 
   def thumbnail(child)
-    Umedia::Thumbnail.new(object_url: child.field_object.value,
-                          viewer_type: child.field_viewer_type.value,
-                          entry_id: child.field_kaltura_video.value)
+    Umedia::Thumbnail::Url.new(item: child)
   end
 
   def num_found
