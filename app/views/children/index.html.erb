@@ -1,7 +1,8 @@
   <% children.items.each_with_index.map do |child, page| %>
       <%= render 'page', child: child,
                          page: page,
-                          thumbnail: Umedia::Thumbnail.new(object_url: child.field_object.value,
+                          thumbnail: Umedia::Thumbnail::Url.new(
+                                                       object_url: child.field_object.value,
                                                        viewer_type: child.field_viewer_type.value,
                                                        entry_id: child.field_kaltura_video.value) %>
   <% end %>
