@@ -11,12 +11,12 @@
   <h4 class="list-group-item-heading"><%= child.field_title.value %></h4>
 
     <div class="sidebar-thumbnail">
-      <img src="<%= thumbnail.cdn_url %>"
+      <img src="<%= thumbnail.to_cdn_s %>"
           class="thumbnail"
-          data-src="<%= thumbnail.cdn_url %>"
+          data-src="<%= thumbnail.to_cdn_s %>"
           alt="<%= child.field_title.value %>"
           title="<%= child.field_title.value %>"
-          onerror="this.onerror=null;this.src=noThumbnail('<%= "#{child.collection}:#{child.id}" %>', '<%= thumbnail.url %>');" />
+          onerror="this.onerror=null;this.src=noThumbnail('<%= "#{child.collection}:#{child.id}" %>', '<%= thumbnail.to_s %>');" />
     </div>
 
 

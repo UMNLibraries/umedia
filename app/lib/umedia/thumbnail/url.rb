@@ -72,8 +72,12 @@ module Umedia
         Digest::SHA1.hexdigest to_s
       end
 
+      def is_parent?
+        @is_parent ||= item.field_page_count.value > 0
+      end
+
       def viewer_type
-        item.field_viewer_type.value
+        !is_parent? ? item.field_viewer_type.value : item.field_first_viewer_type.value
       end
     end
   end
