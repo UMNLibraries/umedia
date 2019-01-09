@@ -40,6 +40,7 @@ en:
       publisher_s: 'Publisher'
       contributor_ss: 'Contributor'
       collection_name_s: 'Collection'
+      super_collection_name_ss: 'Special Projects'
       page_count: 'Page Count'
       city: 'City'
       state: 'State'
