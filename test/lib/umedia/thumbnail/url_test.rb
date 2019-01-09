@@ -7,7 +7,7 @@ module Umedia
         describe 'and we ask for the default CDM thumbnail' do
           it 'produces an cdm image thumbnail url' do
             # UmageUrl mocks
-            item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com'})
+            item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com', 'page_count' => 0})
             image_url_klass = Minitest::Mock.new
             image_url_klass_obj = Minitest::Mock.new
             image_url_klass.expect :new, image_url_klass_obj, [{ item: item, iiif_thumb: false }]
@@ -22,7 +22,7 @@ module Umedia
         describe 'and we ask for a IIIF thumbnail' do
           it 'produces an cdm image thumbnail url' do
             # UmageUrl mocks
-            item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com'})
+            item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com', 'page_count' => 0})
             image_url_klass = Minitest::Mock.new
             image_url_klass_obj = Minitest::Mock.new
             image_url_klass.expect :new, image_url_klass_obj, [{ item: item, iiif_thumb: true }]
@@ -43,7 +43,7 @@ module Umedia
           kaltura_audio_url_klass_obj = Minitest::Mock.new
           kaltura_audio_url_klass.expect :new, kaltura_audio_url_klass_obj, []
           kaltura_audio_url_klass_obj.expect :to_s, 'audiothumburlhere', []
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_audio'})
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_audio', 'page_count' => 0})
           url = Url.new(item: item, kaltura_audio_url_klass: kaltura_audio_url_klass)
           url.to_s.must_equal 'audiothumburlhere'
           url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/f8f199197f33329f008e253414d520a70b5066ff.png'
@@ -59,7 +59,7 @@ module Umedia
           kaltura_audio_url_klass_obj = Minitest::Mock.new
           kaltura_audio_url_klass.expect :new, kaltura_audio_url_klass_obj, []
           kaltura_audio_url_klass_obj.expect :to_s, 'audiothumburlhere', []
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_audio_playlist'})
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_audio_playlist', 'page_count' => 0})
           url = Url.new(item: item, kaltura_audio_url_klass: kaltura_audio_url_klass)
           url.to_s.must_equal 'audiothumburlhere'
           url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/f8f199197f33329f008e253414d520a70b5066ff.png'
@@ -71,7 +71,7 @@ module Umedia
       describe 'when an item is an kaltura video' do
         it 'produces a kaltura video url' do
           # KalturaVideoUrl mocks
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video', 'entry_id' => '123blerg'})
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video', 'entry_id' => '123blerg', 'page_count' => 0})
           kaltura_video_url_klass = Minitest::Mock.new
           kaltura_video_url_klass_obj = Minitest::Mock.new
           kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ item: item }]
@@ -87,7 +87,7 @@ module Umedia
       describe 'when an item is an kaltura video playlist' do
         it 'produces a kaltura video url' do
           # KalturaVideoUrl mocks
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video_playlist', 'entry_id' => '123blerg'})
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_video_playlist', 'entry_id' => '123blerg', 'page_count' => 0})
           kaltura_video_url_klass = Minitest::Mock.new
           kaltura_video_url_klass_obj = Minitest::Mock.new
           kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ item: item }]
@@ -103,7 +103,7 @@ module Umedia
       describe 'when an item is an kaltura combo playlist' do
         it 'produces a kaltura video url' do
           # KalturaVideoUrl mocks
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_combo_playlist', 'entry_id' => '123blerg'})
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'kaltura_combo_playlist', 'entry_id' => '123blerg', 'page_count' => 0})
           kaltura_video_url_klass = Minitest::Mock.new
           kaltura_video_url_klass_obj = Minitest::Mock.new
           kaltura_video_url_klass.expect :new, kaltura_video_url_klass_obj, [{ item: item }]
@@ -123,12 +123,28 @@ module Umedia
           pdf_url_klass_obj = Minitest::Mock.new
           pdf_url_klass.expect :new, pdf_url_klass_obj, []
           pdf_url_klass_obj.expect :to_s, 'pdfthumburlhere', []
-          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'pdf'})
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'pdf', 'page_count' => 0})
           url = Url.new(item: item, pdf_url_klass: pdf_url_klass)
           url.to_s.must_equal 'pdfthumburlhere'
           url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/5580c0ddfaa02a0c3581a5e9888e39eff4a259c9.png'
           pdf_url_klass.verify
           pdf_url_klass_obj.verify
+        end
+      end
+
+
+      describe 'when an item is a compound with a first_viewer_type image' do
+        it 'sets the type to image' do
+          item = Parhelion::Item.new(doc_hash: {'id' => 'foo123:999', 'viewer_type' => 'image', 'object' => 'http://example.com', 'page_count' => 2, 'first_viewer_type' => 'image'})
+          image_url_klass = Minitest::Mock.new
+          image_url_klass_obj = Minitest::Mock.new
+          image_url_klass.expect :new, image_url_klass_obj, [{ item: item, iiif_thumb: false }]
+          image_url_klass_obj.expect :to_s, 'imageurlhere', []
+          url = Url.new(item: item, iiif_thumb: false, image_url_klass: image_url_klass)
+          url.to_s.must_equal 'imageurlhere'
+          url.to_cdn_s.must_equal 'https://d2y23onbq5rnfc.cloudfront.net/87b9bff439a69511f7e7e545478972916af0b257.png'
+          image_url_klass.verify
+          image_url_klass_obj.verify
         end
       end
     end
