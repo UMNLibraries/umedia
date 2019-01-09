@@ -1,4 +1,9 @@
 namespace :ingest do
+  desc 'Index Collection (name, desc) metadata'
+  task :collection_metadata => :environment  do |t, args|
+    IndexCollections.new.index!
+  end
+
   desc 'Index a single collection'
   task :collection, [:set_spec] => :environment  do |t, args|
     run_etl!([args[:set_spec]])
