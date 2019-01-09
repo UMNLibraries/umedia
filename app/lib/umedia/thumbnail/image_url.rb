@@ -5,20 +5,37 @@ module Umedia
     class ImageUrl
       extend Forwardable
       def_delegators :@iiif_config, :info, :endpoint
-      attr_reader :collection, :id
-      def initialize(collection: :MISSING_COLLECTION,
-                     id: :MISSING_ID,
+      def_delegators :@item, :id, :collection, :field_object
+      attr_reader :item, :iiif_thumb
+      def initialize(item: :MISSING_ITEM,
+                     iiif_thumb: false,
                      iiif_config_klass: Parhelion::IiifConfig)
-        @collection = collection
-        @id = id
+        @item = item
+        @iiif_thumb = iiif_thumb
         @iiif_config = iiif_config_klass.new(collection: collection, id: id)
       end
 
       def to_s
-        "#{endpoint}/digital/iiif/#{collection}/#{id}/full/#{width},/0/default.jpg"
+        iiif_thumb ? iiif_url : default_thumb_url
       end
 
       private
+
+      def default_thumb_url
+        field_object.value.to_s
+      end
+
+      def iiif_url
+        [endpoint,
+         'digital',
+         'iiif',
+         collection,
+         id,
+         'full',
+         "#{width},",
+         '0',
+         'default.jpg'].join('/')
+      end
 
       def width
         best_size ? best_size['width'] : sizes.last['width']
