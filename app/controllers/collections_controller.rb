@@ -2,6 +2,7 @@ class CollectionsController < ApplicationController
   def index
     @collections = collection_search.docs
     @num_found = collection_search.num_found
+    render layout: false if collection_params[:nolayout]
   end
 
   def collection_search
@@ -19,7 +20,7 @@ class CollectionsController < ApplicationController
   end
 
   def collection_params
-    params.permit(:page, :sort)
+    params.permit(:page, :sort, :nolayout)
   end
 
   def rows

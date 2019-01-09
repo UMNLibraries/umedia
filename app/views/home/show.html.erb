@@ -1,6 +1,10 @@
+
+<%= render 'searches/pager', pager: @pager, search_params: @home_params %>
+
+
 <div data-controller="home"
      data-home-collections_page="<%= params.fetch('page', 1) %>"
-     data-home-collections_sort="<%= params['sort'] %>"
+     data-home-collections_sort="<%= params.fetch('sort', 'set_spec desc') %>"
      id="home-controller-data">
 </div>
 

@@ -1,10 +1,14 @@
 module Umedia
   class CollectionSearch
-    attr_reader :solr, :page, :rows
-    def initialize(page: page, rows: 12, solr: SolrClient.new.solr)
+    attr_reader :solr, :page, :rows, :sort
+    def initialize(page: page,
+                   rows: 12,
+                   sort: 'set_spec desc',
+                   solr: SolrClient.new.solr)
       @solr = solr
       @page = page
       @rows = rows
+      @sort = sort
     end
 
     def docs
@@ -27,7 +31,7 @@ module Umedia
         'q.alt' => "*:*",
         fl: '*',
         page: page,
-        sort: "is_super_collection desc, set_spec desc",
+        sort: "is_super_collection desc, #{sort}",
         fq: "document_type:collection"
       }
     end
