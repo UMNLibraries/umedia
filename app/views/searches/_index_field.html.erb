@@ -1,4 +1,4 @@
-<% unless field.missing? %>
+<% unless !field.exists? %>
   <dt class="field index-field field-<%= field.name %>-label"><%= I18n.t("search.index_fields.#{field.name}") %>:</dt>
 	<dd class="field index-field field-<%= field.name %>-value"><%= render 'field_value', value: truncate_field(field.value, truncated), facet_field: false %></dd>
 <% end %>

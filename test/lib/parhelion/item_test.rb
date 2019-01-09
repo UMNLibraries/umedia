@@ -62,7 +62,6 @@ module Parhelion
           doc_hash = { 'title' => 'foo', 'creator' => %w[blah blergh] }
           item = Item.new(doc_hash: doc_hash)
           item.field_not_gonna_happen.must_be_kind_of(MissingField)
-          item.field_not_gonna_happen.missing?.must_equal true
           item.field_not_gonna_happen.exists?.must_equal false
         end
       end

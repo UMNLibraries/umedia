@@ -9,10 +9,6 @@ module Parhelion
       @name  = name
     end
 
-    def missing?
-      false
-    end
-
     def exists?
       true
     end

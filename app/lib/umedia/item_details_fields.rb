@@ -8,7 +8,7 @@ module Umedia
 
     def displayables
       fields.compact.select do |field|
-        !field.missing? && field.display?
+        field.exists? && field.display?
       end
     end
 
