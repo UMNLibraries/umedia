@@ -1,4 +1,4 @@
-<div class="panel panel-default collection">
+<div class="panel panel-default collection is-super-collection-<%= collection['is_super_collection'] %>">
   <div class="panel-body">
     <% thumbs = (collection['collection_thumbnails']) ? JSON.parse(collection['collection_thumbnails']) : [] %>
     <%=
@@ -13,5 +13,12 @@
       <div class="collection-contributor"><%= collection['contributing_organization_name'] %></div>
       <div class="collection-count"><%= collection['collection_item_count'] %> items</div>
     </div>
+      <% if collection['is_super_collection'] %>
+        <div class="featured-collection pull-right"
+             data-toggle="tooltip"
+             data-placement="bottom"
+             alt="Special Project"
+             title="Items gathered from multiple projects to highlight cross-collection themes.">Special Projects</div>
+      <% end %>
   </div>
 </div>

@@ -40,3 +40,14 @@
   width: 650px;
   background-color: rgba(255, 255, 255, 0.85);
 }
+
+.panel-default.is-super-collection-true {
+  .panel-body {
+    background-color: #f5f5f5;
+  }
+
+  .featured-collection {
+    color: #690D1F;
+    margin-top: 5px;
+  }
+}
