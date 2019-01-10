@@ -2,6 +2,7 @@ module Umedia
   class FacetFieldConfig
     def visible
       [
+        :super_collection_name_ss,
         :types,
         :format_name,
         :date_created_ss,
@@ -10,7 +11,6 @@ module Umedia
         :publisher_s,
         :contributor_ss,
         :collection_name_s,
-        :super_collection_name_ss,
         :page_count,
         :language
       ]

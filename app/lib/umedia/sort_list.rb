@@ -3,12 +3,14 @@
 module Umedia
   class SortList
     include Enumerable
-    attr_reader :query, :sort_query_klass, :params
+    attr_reader :query, :sort_query_klass, :params, :mappings
     def initialize(query: Parhelion::Query.new,
-                   sort_query_klass: Parhelion::SortQuery)
+                   sort_query_klass: Parhelion::SortQuery,
+                   mappings: false)
       @sort_query_klass = sort_query_klass
       @query = query
       @params = params
+      @mappings = mappings ? mappings : default_mappings
     end
 
     def active_label
@@ -27,7 +29,7 @@ module Umedia
 
     private
 
-    def mappings
+    def default_mappings
       [
         {label: 'Relevance', sort: 'score desc, title desc' },
         {label: 'Title: A to Z', sort: 'title asc, date_created_sort desc' },

@@ -1,3 +1,42 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.home-sort {
+  margin: 0 15px 0 25px;
+}
+
+.home-hero {
+  height: 500px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 85px;
+  z-index: -1;
+  background-image: url('uptownTheatre.png');
+}
+
+.collections {
+  margin-top: 320px;
+}
+
+#collections-home {
+  // Prevents layout from wiggling around when data is being populated
+  min-height: 1500px;
+}
+
+.home-search{
+  margin-top: 50px;
+  .start-over {
+    display: none;
+  }
+}
+
+.home-search-description {
+  margin: 15px 0 0 2px;
+  padding: 5px;
+  font-size: 1.5em;
+  color: black;
+  width: 650px;
+  background-color: rgba(255, 255, 255, 0.85);
+}

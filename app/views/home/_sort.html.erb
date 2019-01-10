@@ -1,0 +1,10 @@
+<div id="sort-dropdown" class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      Sort by <%= sort_list.active_label %> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% sort_list.map do |sort| %>
+      <li><%= link_to sort[:label],  home_path(sort[:query].link_params) %></li>
+    <% end %>
+  </ul>
+</div>

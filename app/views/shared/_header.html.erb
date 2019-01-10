@@ -5,7 +5,8 @@
         <%= render 'shared/brand' %>
       </div>
 
-      <% if !current_page?('/search') && !current_page?('/') %>
+  <%=  %>
+      <% if @show_navbar_search %>
         <%= form_tag searches_path, :method => :get do %>
         <%= label_tag 'q', 'Search:', style: 'display:none' %>
           <div class="input-group col-xs-3 pull-right">
