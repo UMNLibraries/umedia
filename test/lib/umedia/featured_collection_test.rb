@@ -66,5 +66,24 @@ module Umedia
         thumbnail_url_klass_obj.verify
       end
     end
+
+    describe 'when a collection has no items' do
+      it 'produces an empty hash' do
+        search_klass = Minitest::Mock.new
+        search_klass_obj = Minitest::Mock.new
+        search_klass.expect :new, search_klass_obj, [{set_spec: collection.set_spec}]
+        search_klass_obj.expect :num_found, 0, []
+        items = [doc_hash]
+        search_klass_obj.expect :items, items, []
+        featured = FeaturedCollection.new(
+          collection: collection,
+          search_klass: search_klass,
+          item_klass: item_klass,
+          thumbnail_url_klass: thumbnail_url_klass,
+          super_collections: ['foo col']
+        )
+        featured.to_h.must_equal({})
+      end
+    end
   end
 end

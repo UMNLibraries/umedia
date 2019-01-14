@@ -20,7 +20,7 @@ module Umedia
     end
 
     def to_h
-      return {} unless item_count >= 3
+      return {} unless item_count > 0
       {
         id: "collection-#{collection.set_spec}",
         document_type: 'collection',
