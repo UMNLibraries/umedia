@@ -213,7 +213,6 @@ h1, h2, h3, h4 {
 }
 h1, h6 {
     text-transform: uppercase;
-    border-bottom: 1px solid #999999;
 }
 h1, .brand {
     font-size: 3em;
@@ -420,3 +419,7 @@ h2#libraries a, h3.from-our-collections {
     color: #ffffff;
 }
 
+#search-browse {
+  border-radius: 6px;
+  margin-left: 20px;
+}

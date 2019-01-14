@@ -8,6 +8,24 @@
       <span class="input-group-btn">
         <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-umn-maroon' %>
       </span>
+
+      <div class="input-group input-group-lg">
+        <span class="input-group-btn">
+
+            <button class="btn btn-umn-maroon" type="button" id="search-browse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Browse
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="Browse by">
+              <li><%= link_to 'Collection', facets_path(facet_field: 'collection_name_s', facet_sort: 'index', facet_limit: '25') %></li>
+              <li><%= link_to 'Type', facets_path(facet_field: 'types', facet_sort: 'index', facet_limit: '25') %></li>
+              <li><%= link_to 'Format', facets_path(facet_field: 'format_name', facet_sort: 'index', facet_limit: '25') %></li>
+              <li><%= link_to 'Date', facets_path(facet_field: 'date_created_ss', facet_sort: 'index', facet_limit: '25') %></li>
+              <li><%= link_to 'Subject', facets_path(facet_field: 'subject_ss', facet_sort: 'index', facet_limit: '25') %></li>
+            </ul>
+          </div>
+        </span>
+
     </div>
   <% end %>
   <% if query(search_params).active?%>
