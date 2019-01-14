@@ -1,3 +1,4 @@
+<% count = collection['collection_item_count'] %>
 <div class="panel panel-default collection is-super-collection-<%= collection['is_super_collection'] %>">
   <div class="panel-body">
     <% thumbs = (collection['collection_thumbnails']) ? JSON.parse(collection['collection_thumbnails']) : [] %>
@@ -11,7 +12,7 @@
     <h3><%= link_to collection['collection_name'], collection_path(collection) %></h3>
     <div class="collection-meta">
       <div class="collection-contributor"><%= collection['contributing_organization_name'] %></div>
-      <div class="collection-count"><%= collection['collection_item_count'] %> items</div>
+      <div class="collection-count"><%= count %> <%= count > 1 ? 'items' : 'item' %></div>
     </div>
       <% if collection['is_super_collection'] %>
         <div class="featured-collection pull-right"
