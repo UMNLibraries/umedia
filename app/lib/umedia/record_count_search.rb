@@ -12,7 +12,7 @@ module Umedia
     end
 
     def response
-      @response ||= solr.get 'select', :params => { :q => 'record_type:"primary"', rows: 0 }
+      @response ||= solr.get 'select', :params => { :q => 'document_type:item && record_type:"primary"', rows: 0 }
     end
   end
 end

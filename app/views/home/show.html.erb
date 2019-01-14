@@ -1,33 +1,34 @@
-<div class="row">
-  <div class="home-hero">
-  </div>
-</div>
-
-  <div class="home-search">
-    <%= render 'searches/form', search_params: @home_params %>
-
-    <div class="home-search-description">
-      Discover <%= number_with_delimiter(@count, :delimiter => ',') %> images, maps, manuscripts, video, audio, and more. UMedia provides open access to digitized materials from across the University of Minnesota.
-    </div>
-  </div>
-
-<div class="collections">
-  <h2>UMedia Collections</h2>
-  <div class="row">
-    <div class="pull-left home-sort">
-      <%= render 'sort', sort_list: @sort_list %>
-    </div>
-
-      <%= render 'searches/pager', pager: @pager, search_params: @home_params,  prev_next_pos: 'first' %>
-    </div>
-
-  </div>
-
-
   <div data-controller="home"
       data-home-collections_page="<%= params.fetch('page', 1) %>"
       data-home-collections_sort="<%= params.fetch('sort', 'set_spec desc') %>"
+      data-home-collection_rows="<%= params.fetch('collection_rows', 20) %>"
       id="home-controller-data">
+
+      <div class="row">
+        <div class="home-hero">
+        </div>
+      </div>
+
+        <div class="home-search">
+          <%= render 'searches/form', search_params: @home_params %>
+
+          <div class="home-search-description">
+            Discover <%= number_with_delimiter(@count, :delimiter => ',') %> images, maps, manuscripts, video, audio, and more. UMedia provides open access to digitized materials from across the University of Minnesota.
+          </div>
+        </div>
+
+      <div class="collections">
+        <h2>UMedia Collections</h2>
+        <div class="row">
+          <div class="pull-left home-sort">
+            <%= render 'sort', sort_list: @sort_list %>
+          </div>
+
+            <%= render 'searches/pager', pager: @pager, search_params: @home_params,  prev_next_pos: 'first' %>
+          </div>
+
+        </div>
+
   </div>
 
   <div id="collections-home"></div>

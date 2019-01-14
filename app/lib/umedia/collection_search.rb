@@ -22,15 +22,13 @@ module Umedia
     private
 
     def query
-      solr.paginate page, 6, 'collections', params: params
+      solr.paginate page, rows, 'collections', params: params
     end
 
     def params
       {
-        rows: rows,
         'q.alt' => "*:*",
         fl: '*',
-        page: page,
         sort: "is_super_collection desc, #{sort}",
         fq: "document_type:collection"
       }

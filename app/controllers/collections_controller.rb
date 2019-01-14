@@ -10,7 +10,7 @@ class CollectionsController < ApplicationController
     @collection_search ||=
       Umedia::CollectionSearch.new(page: collection_params[:page],
                                    sort: sort,
-                                   rows: rows)
+                                   rows: legal_rows)
   end
 
   def sort
@@ -22,10 +22,15 @@ class CollectionsController < ApplicationController
   end
 
   def collection_params
-    params.permit(:page, :sort, :nolayout)
+    params.permit(:page, :sort, :nolayout, :rows)
   end
 
+  def legal_rows
+    rows <= 20 ? rows : 20
+  end
+
+  # TODO: turn this into a param
   def rows
-    20
+    collection_params.fetch(:rows, 20).to_i
   end
 end
