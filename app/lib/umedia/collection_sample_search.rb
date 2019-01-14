@@ -7,18 +7,28 @@ module Umedia
       @solr = solr
     end
 
+    # Number of Primary Records (No Child Records)
+    # Primary records are what you see in search results
+    # Child records appear only in full record page views
     def num_found
-      query.fetch('response').fetch('numFound')
+      query(num_found_params).fetch('response').fetch('numFound')
     end
 
+    # A sampling of records from primary or secondary/child pages
     def items
-      query.fetch('response').fetch('docs')
+      query(items_params).fetch('response').fetch('docs')
     end
 
-    private
-
-    def query
+    def query(params)
       solr.get 'select', params: params
+    end
+
+    def num_found_params
+      params.merge(q: "#{params[:q]} && document_type:item && record_type:primary")
+    end
+
+    def items_params
+      params.merge(q: "#{params[:q]} && document_type:item && !viewer_type:COMPOUND_PARENT_NO_VIEWER")
     end
 
     def params
@@ -26,7 +36,7 @@ module Umedia
         rows: 3,
         fl:'*',
         sort: "featured_collection_order asc",
-        q: "(set_spec:#{set_spec} || super_collection_set_specs:#{set_spec})  && !document_type:collection && !viewer_type:COMPOUND_PARENT_NO_VIEWER"
+        q: "(set_spec:#{set_spec} || super_collection_set_specs:#{set_spec})"
       }
     end
   end
