@@ -23,13 +23,14 @@
           <div class="pull-left home-sort">
             <%= render 'sort', sort_list: @sort_list %>
           </div>
-
-            <%= render 'searches/pager', pager: @pager, search_params: @home_params,  prev_next_pos: 'first' %>
+            <%= render 'searches/pager', pager: @pager, search_params: @home_params,  prev_next_pos: 'first', data_action: "home#select_page" %>
           </div>
 
         </div>
 
-  </div>
-
   <div id="collections-home"></div>
+  <%= render 'searches/pager', pager: @pager, search_params: @home_params,  prev_next_pos: 'first', data_action: "home#select_page" %>
+  </div>
 </div>
+
+

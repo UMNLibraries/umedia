@@ -10,7 +10,13 @@ export default class extends Controller {
   }
   select_page(e) {
     e.preventDefault();
-    console.log(e)
+    var page = e.target
+    $( ".pagination li" ).each(function( index ) {
+      $( this ).removeClass("active");
+    });
+    page.parentElement.className = 'active';
+    window.history.pushState({}, document.title, `/home/${page.text}`);
+    this.load(page.text, this.data.get('collections_sort'), this.data.get('collection_rows'))
   }
 
   load(page, sort, rows) {
