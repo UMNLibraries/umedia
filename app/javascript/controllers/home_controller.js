@@ -9,14 +9,13 @@ export default class extends Controller {
               this.data.get('collection_rows'))
   }
   select_page(e) {
-    e.preventDefault();
-    var page = e.target
-    $( ".pagination li" ).each(function( index ) {
-      $( this ).removeClass("active");
-    });
-    page.parentElement.className = 'active';
-    window.history.pushState({}, document.title, `/home/${page.text}`);
-    this.load(page.text, this.data.get('collections_sort'), this.data.get('collection_rows'))
+    // var page = e.target
+    // // $( ".pagination li" ).each(function( index ) {
+    // //   $( this ).removeClass("active");
+    // // });
+    // // page.parentElement.className = 'active';
+    // // window.history.pushState({}, document.title, `/home/${page.text}`);
+    // // this.load(page.text, this.data.get('collections_sort'), this.data.get('collection_rows'))
   }
 
   load(page, sort, rows) {
