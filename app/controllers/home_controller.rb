@@ -5,6 +5,7 @@ class HomeController < ApplicationController
     @sort_list = sort_list
     @facet_fields_all = []
     @count = count
+    @hide_header_search_link = true
     @collection_rows = collection_rows
   end
 
