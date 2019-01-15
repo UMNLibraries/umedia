@@ -3,13 +3,13 @@
   <%= label_tag 'q', 'Search:', style: 'display:none' %>
     <%= raw hidden_facet_values %>
     <%= hidden_field_tag "sort", params[:sort] %>
-    <div class="input-group input-group-lg col-md-8 col-xs-6">
+    <div class="input-group input-group-lg col-md-8">
       <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search UMedia...', value: params[:q] %>
       <span class="input-group-btn">
         <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-umn-maroon' %>
       </span>
 
-      <div class="input-group input-group-lg">
+      <div class="input-group input-group-lg col-sm-12">
         <span class="input-group-btn">
 
             <button class="btn btn-umn-maroon" type="button" id="search-browse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
