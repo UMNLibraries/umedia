@@ -2,6 +2,7 @@ class FacetsController < ApplicationController
   def index
     response.headers["Content-Language"] = I18n.locale.to_s
     @show_navbar_search = true
+    @browse = browse?
     render({
             locals: {
               facet: facet_list.first,
@@ -72,6 +73,10 @@ class FacetsController < ApplicationController
     ]
   end
 
+  def browse?
+    facet_params.fetch(:browse, false)
+  end
+
   def facet_fields_all
     facet_fields.concat(facet_fields_hidden)
   end
@@ -87,6 +92,7 @@ class FacetsController < ApplicationController
                   :q,
                   :rows,
                   :sort,
+                  :browse,
                   facets: facet_fields_all.map { |facet| {facet => [] } })
   end
 end
