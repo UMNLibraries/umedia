@@ -1,10 +1,32 @@
+<div id="about-page">
 <h1>About UMedia</h1>
+  UMedia provides access to digitized collections from across the University of Minnesota. These materials include photographs, archives, audio, video, maps, and more, with new items added on a regular basis. These open and freely available resources support the teaching and research needs of scholars, educators, students, and the public.
 
-The UMedia Archive seeks to implement a new system for the management and delivery of digital objects and rich media. By leveraging open-source technologies, the Libraries provides for a new user experience to the campus community, incorporating a strong repository model alongside an enhanced web interface.
-
-Managing and delivering content in this new system will be done in two ways:
-
-<ul>
-  <li>Curatorial – Allows University content managers a method for cataloging and providing access to digital collections</li>
-  <li>User-managed<li>
-</ul>
+  <div class="row">
+      <div class="col-md-4 text-center">
+        <div class="icon-bank icon"></div>
+        <div class="pages-text pages-count"><%= contributing_organization_count %></div>
+        <div class="pages-text pages-label">
+        Contributing Organizations
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="icon-archive icon"></div>
+        <div class="pages-text pages-count">
+          <%= record_count %>
+        </div>
+        <div class="pages-text pages-label">
+          Digitized Items
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="icon-cog-alt icon"></div>
+        <div class="pages-text pages-count">
+          <%= formats_count %>
+        </div>
+        <div class="pages-text pages-label">
+          Physical Formats
+        </div>
+      </div>
+    </div>
+  </div>
