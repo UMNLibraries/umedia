@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'mdl-fonts';
-  src: font-url('mdl-fonts.eot?11814968');
-  src: font-url('mdl-fonts.eot?11814968#iefix') format('embedded-opentype'),
-       font-url('mdl-fonts.woff2?11814968') format('woff2'),
-       font-url('mdl-fonts.woff?11814968') format('woff'),
-       font-url('mdl-fonts.ttf?11814968') format('truetype'),
-       font-url('mdl-fonts.svg?11814968#mdl-fonts') format('svg');
+  src: font-url('mdl-fonts.eot?20364011');
+  src: font-url('mdl-fonts.eot?20364011#iefix') format('embedded-opentype'),
+       font-url('mdl-fonts.woff2?20364011') format('woff2'),
+       font-url('mdl-fonts.woff?20364011') format('woff'),
+       font-url('mdl-fonts.ttf?20364011') format('truetype'),
+       font-url('mdl-fonts.svg?20364011#mdl-fonts') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'mdl-fonts';
-    src: font-url('mdl-fonts.svg?11814968#mdl-fonts') format('svg');
+    src: font-url('mdl-fonts.svg?20364011#mdl-fonts') format('svg');
   }
 }
 */
@@ -69,6 +69,7 @@
 %icon-home:before { @extend %icon-base; content: '\e80b'; } /* '' */
 %icon-search:before { @extend %icon-base; content: '\e80c'; } /* '' */
 %icon-help-circled:before { @extend %icon-base; content: '\e80d'; } /* '' */
+%icon-folder:before { @extend %icon-base; content: '\e80e'; } /* '' */
 %icon-resize-full-alt:before { @extend %icon-base; content: '\f0b2'; } /* '' */
 %icon-docs:before { @extend %icon-base; content: '\f0c5'; } /* '' */
 %icon-text:before { @extend %icon-base; content: '\f0f6'; } /* '' */
@@ -90,6 +91,7 @@
 .icon-home { @extend %icon-home; }
 .icon-search { @extend %icon-search; }
 .icon-help-circled { @extend %icon-help-circled; }
+.icon-folder { @extend %icon-folder; }
 .icon-resize-full-alt { @extend %icon-resize-full-alt; }
 .icon-docs { @extend %icon-docs; }
 .icon-text { @extend %icon-text; }
