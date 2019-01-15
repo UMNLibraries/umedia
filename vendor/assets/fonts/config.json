@@ -131,6 +131,18 @@
       "src": "fontawesome"
     },
     {
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "code": 59404,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "17ebadd1e3f274ff0205601eef7b9cc4",
+      "css": "help-circled",
+      "code": 59405,
+      "src": "fontawesome"
+    },
+    {
       "uid": "b67bc197969f2e05012c5e38e9c66f42",
       "css": "sheet-music",
       "code": 59397,

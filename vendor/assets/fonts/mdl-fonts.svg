@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2019 by original authors @ fontello.com</metadata>
 <defs>
 <font id="mdl-fonts" horiz-adv-x="1000" >
 <font-face font-family="mdl-fonts" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -29,6 +29,10 @@
 <glyph glyph-name="zoom-out" unicode="&#xe80a;" d="M0 403q0 185 131 316t316 131 318-131 131-316q0-141-82-256l186-186-111-111-186 186q-115-82-256-82-185 0-316 131t-131 318z m127 0q0-133 94-227t226-93 227 93 94 227-94 225-227 93-226-93-94-225z m129-65l0 127 385 0 0-127-385 0z" horiz-adv-x="1000" />
 
 <glyph glyph-name="home" unicode="&#xe80b;" d="M0-150l0 649 453 351 453-351 0-649-312 0 0 391-281 0 0-391-313 0z" horiz-adv-x="906" />
+
+<glyph glyph-name="search" unicode="&#xe80c;" d="M643 386q0 103-73 176t-177 74-177-74-73-176 73-177 177-73 177 73 73 177z m286-465q0-29-22-50t-50-21q-30 0-50 21l-191 191q-100-69-223-69-80 0-153 31t-125 84-84 125-31 153 31 152 84 126 125 84 153 31 153-31 125-84 84-126 31-152q0-123-69-223l191-191q21-21 21-51z" horiz-adv-x="928.6" />
+
+<glyph glyph-name="help-circled" unicode="&#xe80d;" d="M500 82v107q0 8-5 13t-13 5h-107q-8 0-13-5t-5-13v-107q0-8 5-13t13-5h107q8 0 13 5t5 13z m143 375q0 49-31 91t-77 65-95 23q-136 0-207-119-9-13 4-24l74-55q4-4 10-4 9 0 14 7 30 38 48 51 19 14 48 14 27 0 48-15t21-33q0-21-11-34t-38-25q-35-15-65-48t-29-70v-20q0-8 5-13t13-5h107q8 0 13 5t5 13q0 10 12 27t30 28q18 10 28 16t25 19 25 27 16 34 7 45z m214-107q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
 
 <glyph glyph-name="resize-full-alt" unicode="&#xf0b2;" d="M716 548l-198-198 198-198 80 80q17 18 39 8 22-9 22-33v-250q0-14-10-25t-26-11h-250q-23 0-32 23-10 21 7 38l81 81-198 198-198-198 80-81q17-17 8-38-10-23-33-23h-250q-15 0-25 11t-11 25v250q0 24 22 33 22 10 39-8l80-80 198 198-198 198-80-80q-11-11-25-11-7 0-14 3-22 9-22 33v250q0 14 11 25t25 11h250q23 0 33-23 9-21-8-38l-80-81 198-198 198 198-81 81q-17 17-7 38 9 23 32 23h250q15 0 26-11t10-25v-250q0-24-22-33-7-3-14-3-14 0-25 11z" horiz-adv-x="857.1" />
 
