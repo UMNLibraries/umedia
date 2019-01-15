@@ -1,6 +1,6 @@
 module AboutHelper
-  def contributing_organization_count
-    facet_count('contributing_organization_name')
+  def collections_count
+    facet_count('collection_name')
   end
 
   def formats_count
