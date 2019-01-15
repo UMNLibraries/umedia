@@ -4,7 +4,6 @@ class HomeController < ApplicationController
     @home_params = home_params.to_h
     @sort_list = sort_list
     @facet_fields_all = []
-    @count = count
     @hide_header_search_link = true
     @collection_rows = collection_rows
   end
@@ -19,12 +18,6 @@ class HomeController < ApplicationController
   def sort_list
     Umedia::SortList.new(query: Parhelion::Query.new(params: home_params),
                          mappings: sort_mappings)
-  end
-
-  def count
-    Rails.cache.fetch("item_count", expires_in: 12.hours) do
-      Umedia::RecordCountSearch.new.count
-    end
   end
 
   def sort_mappings
