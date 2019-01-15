@@ -3,14 +3,14 @@
   UMedia provides access to digitized collections from across the University of Minnesota. These materials include photographs, archives, audio, video, maps, and more, with new items added on a regular basis. These open and freely available resources support the teaching and research needs of scholars, educators, students, and the public.
 
   <div class="row">
-      <div class="col-md-4 text-center">
+      <div class="col-md-3 text-center">
         <div class="icon-bank icon"></div>
         <div class="pages-text pages-count"><%= contributing_organization_count %></div>
         <div class="pages-text pages-label">
         Contributing Organizations
         </div>
       </div>
-      <div class="col-md-4 text-center">
+      <div class="col-md-3 text-center">
         <div class="icon-archive icon"></div>
         <div class="pages-text pages-count">
           <%= record_count %>
@@ -19,7 +19,16 @@
           Digitized Items
         </div>
       </div>
-      <div class="col-md-4 text-center">
+      <div class="col-md-3 text-center">
+        <div class="icon-docs icon"></div>
+        <div class="pages-text pages-count">
+          <%= all_pages_count %>
+        </div>
+        <div class="pages-text pages-label">
+          Digitized Pages
+        </div>
+      </div>
+      <div class="col-md-3 text-center">
         <div class="icon-cog-alt icon"></div>
         <div class="pages-text pages-count">
           <%= formats_count %>
