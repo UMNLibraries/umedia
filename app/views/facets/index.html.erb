@@ -1,6 +1,8 @@
 <div class="modal-header">
     <h2 class="pull-left"><%= I18n.t("search.facets.#{facet.name}") %></h2>
-    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+    <% if !@browse %>
+      <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+    <% end %>
 
   <% if facet_params[:facet_sort] == 'index' %>
     <div class="col-md-12">
