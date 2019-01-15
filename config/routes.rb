@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get 'thumbnails/:item_id' => 'thumbnails#update', as: 'thumbnail'
   get 'collections/(:page)/(:sort)/(:nolayout)/(:rows)' => 'collections#index', as: 'collections'
   get 'home/(:page)' => 'home#show', as: 'home'
+  get 'about' => 'about#show', as: 'about'
+  get 'contact' => 'contact#show', as: 'contact'
 end
