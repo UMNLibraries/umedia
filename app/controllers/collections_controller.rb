@@ -2,7 +2,6 @@ class CollectionsController < ApplicationController
   def index
     @collections = collection_search.docs
     @num_found = collection_search.num_found
-    @show_navbar_search = true
     render layout: false if collection_params[:nolayout]
   end
 

@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   def index
     response.headers["Content-Language"] = I18n.locale.to_s
     @facet_fields_all = facet_fields_all
-    @show_navbar_search = false
+    @hide_header_search_link = true
     render locals: {
       item_list: item_list,
       facet_list: facet_list,

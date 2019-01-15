@@ -1,7 +1,6 @@
 class FacetsController < ApplicationController
   def index
     response.headers["Content-Language"] = I18n.locale.to_s
-    @show_navbar_search = true
     @browse = browse?
     render({
             locals: {

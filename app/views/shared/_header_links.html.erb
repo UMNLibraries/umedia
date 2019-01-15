@@ -1,0 +1,23 @@
+<nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
+        <ul class="nav navbar-nav" id="primary-nav">
+          <% if !@hide_header_search_link %>
+          <li>
+            <a href="/search">
+              <i class="icon-search"></i>
+              Search
+            </a>
+          </li>
+          <% end %>
+          <li>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-help-circled"></i>
+              Help
+              <b class="caret"></b>
+            </a>
+            <ul aria-labelledby="help" class="dropdown-menu" id="help" role="menu">
+              <li><%= link_to 'About', about_path %></li>
+              <li><%= link_to 'Contact', contact_path %></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>

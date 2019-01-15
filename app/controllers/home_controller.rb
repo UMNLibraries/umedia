@@ -5,7 +5,6 @@ class HomeController < ApplicationController
     @sort_list = sort_list
     @facet_fields_all = []
     @count = count
-    @show_navbar_search = false
     @collection_rows = collection_rows
   end
 
