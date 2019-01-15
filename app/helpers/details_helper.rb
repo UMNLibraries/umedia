@@ -73,7 +73,6 @@ module DetailsHelper
       },
       {
         fields: [
-          { name: 'transcription' },
           { name: 'translation' }
         ]
       }
