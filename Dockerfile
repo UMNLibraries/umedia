@@ -1,13 +1,24 @@
+# Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
+
 FROM ruby:2.5.1
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x xvfb
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get install -y nodejs
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get install apt-transport-https -y
-RUN apt-get update && apt-get install -y yarn
-RUN mkdir /app
+RUN apt-get update && apt-get install -qq -y --no-install-recommends \
+      build-essential nodejs
+# Ensure that our apt package list is updated and install a few
+# packages to ensure that we can compile assets (nodejs).
+
+RUN mkdir -p /app
 WORKDIR /app
-ADD . /app
-RUN gem install bundler
-RUN bundle install --jobs 20 --retry 5
+COPY . .
+# Add app files into docker image
+
+COPY ./docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
+# Add bundle entry point to handle bundle cache
+
+ENV BUNDLE_PATH=/bundle \
+    BUNDLE_BIN=/bundle/bin \
+    GEM_HOME=/bundle
+ENV PATH="${BUNDLE_BIN}:${PATH}"
+# Bundle installs with binstubs to our custom /bundle/bin volume path. Let system use those stubs.
+
