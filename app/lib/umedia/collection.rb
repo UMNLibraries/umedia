@@ -13,7 +13,7 @@ module Umedia
     # helps us identify which collections are reflections and which are umedia.
     # We chop this information off for public display
     def display_name
-      name.split(' - ').last
+      name.gsub(/^ul_([a-zA-Z0-9])*\s-\s/, '')
     end
   end
 end
