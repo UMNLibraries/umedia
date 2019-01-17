@@ -31,6 +31,16 @@ services:
     depends_on:
       - solr
 
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -q critical,2 -q default -c 1 -r /app
+    volumes:
+      - .:/app
+    links:
+      - redis
+    env_file:
+      - .env
+
   webpacker:
     build: .
     command: ./bin/webpack-dev-server
