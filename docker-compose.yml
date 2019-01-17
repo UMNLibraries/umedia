@@ -24,7 +24,6 @@ services:
       - .:/app
     stdin_open: true
     tty: true
-    ports: ["3000:3000"]
     links:
       - solr
       - redis_cache
