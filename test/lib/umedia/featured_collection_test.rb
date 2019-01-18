@@ -19,6 +19,8 @@ module Umedia
       items = [doc_hash]
       search_klass_obj.expect :items, items, []
 
+      search_klass_obj.expect :first_primary_item, {'contributing_organization_name' => 'Fake Org Name Here'}, []
+
       # Item Mocks
       item_klass.expect :new, item_klass_obj, [{ doc_hash: doc_hash }]
 
@@ -37,7 +39,7 @@ module Umedia
         )
 
         featured.to_h.must_equal(
-          {:id=>"collection-foo:bar23", :document_type=>"collection", :set_spec=>"foo:bar23", :collection_name=>"foo col", :collection_description=>"it's all cats", :collection_item_count=>103, :contributing_organization_name=>nil, :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"foobrah:9er\"}]", :is_super_collection=>false}
+          {:id=>"collection-foo:bar23", :document_type=>"collection", :set_spec=>"foo:bar23", :collection_name=>"foo col", :collection_description=>"it's all cats", :collection_item_count=>103, :contributing_organization_name=>"Fake Org Name Here", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"foobrah:9er\"}]", :is_super_collection=>false}
         )
         search_klass.verify
         search_klass_obj.verify
@@ -58,7 +60,8 @@ module Umedia
         )
 
         featured.to_h.must_equal(
-          {:id=>"collection-foo:bar23", :document_type=>"collection", :set_spec=>"foo:bar23", :collection_name=>"foo col", :collection_description=>"it's all cats", :collection_item_count=>103, :contributing_organization_name=>nil, :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"foobrah:9er\"}]", :is_super_collection=>true}        )
+          {:id=>"collection-foo:bar23", :document_type=>"collection", :set_spec=>"foo:bar23", :collection_name=>"foo col", :collection_description=>"it's all cats", :collection_item_count=>103, :contributing_organization_name=>"Fake Org Name Here", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"foobrah:9er\"}]", :is_super_collection=>true}
+        )
         search_klass.verify
         search_klass_obj.verify
         item_klass.verify

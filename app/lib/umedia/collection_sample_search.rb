@@ -19,12 +19,21 @@ module Umedia
       query(items_params).fetch('response').fetch('docs')
     end
 
+    def first_primary_item
+      [query(primary_params).fetch('response').fetch('docs')].flatten.first
+    end
+
+
     def query(params)
       solr.get 'select', params: params
     end
 
     def num_found_params
       params.merge(q: "#{params[:q]} && document_type:item && record_type:primary")
+    end
+
+    def primary_params
+      params.merge(q: "#{params[:q]} && record_type:primary")
     end
 
     def items_params

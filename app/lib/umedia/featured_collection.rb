@@ -49,7 +49,7 @@ module Umedia
     end
 
     def contributing_organization_name
-      items.first['contributing_organization_name']
+      item_search.first_primary_item['contributing_organization_name']
     end
 
     def item_search
