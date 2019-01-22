@@ -9,6 +9,9 @@ export default class extends Controller {
   }
 
   load(page, sort) {
-    InnerHtml(`/collections/${page}/${sort}/nolayout`, document.getElementById("collections-home"));
+    InnerHtml(`/collections/${page}/${sort}/nolayout`, document.getElementById("collections-home"))
+      .then(response => {
+        $(response).find('[data-toggle="tooltip"]').tooltip();
+      })
   }
 }
