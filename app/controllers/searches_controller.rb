@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
       q: search_params.fetch('q', ''),
       facet_config: facet_config,
       page: page,
-      sort: sort
+      sort: sort.blank? ? 'score desc, title desc' : sort
     ).response
   end
 
@@ -38,7 +38,7 @@ class SearchesController < ApplicationController
   end
 
   def sort
-    search_params.fetch(:sort, 'score desc, title desc')
+    search_params[:sort]
   end
 
   def facet_params
