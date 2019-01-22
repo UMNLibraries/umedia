@@ -2,7 +2,7 @@ module Umedia
   class CollectionSearch
     attr_reader :solr, :page, :rows, :sort
     def initialize(page: page,
-                   rows: 12,
+                   rows: ENV['UMEDIA_COLLECTION_PAGE_LIMIT'].to_i,
                    sort: 'set_spec desc',
                    solr: SolrClient.new.solr)
       @solr = solr

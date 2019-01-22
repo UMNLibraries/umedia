@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'cites/:id', to: 'cites#show', as: 'cites'
   get 'child_search/:id/:active_child_id/:rows/(:q)', to: 'child_searches#index', as: 'child_search'
   get 'thumbnails/:item_id' => 'thumbnails#update', as: 'thumbnail'
-  get 'collections/(:page)/(:sort)/(:nolayout)/(:rows)' => 'collections#index', as: 'collections'
+  get 'collections/(:page)/(:sort)/(:nolayout)' => 'collections#index', as: 'collections'
   get 'home/(:page)' => 'home#show', as: 'home'
   get 'about' => 'about#show', as: 'about'
   get 'contact' => 'contact#show', as: 'contact'

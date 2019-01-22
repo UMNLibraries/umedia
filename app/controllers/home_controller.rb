@@ -5,13 +5,11 @@ class HomeController < ApplicationController
     @sort_list = sort_list
     @facet_fields_all = []
     @hide_header_search_link = true
-    @collection_rows = collection_rows
   end
 
   def pager
     Parhelion::Pager.new(
       current_page: home_params.fetch(:page, 1).to_i,
-      rows: collection_rows,
       result_count: num_found)
   end
 
@@ -35,15 +33,10 @@ class HomeController < ApplicationController
   def num_found
     @num_found ||=
       Umedia::CollectionSearch.new(page: home_params[:page],
-                                   sort: sort,
-                                   rows: 20).num_found
+                                   sort: sort).num_found
   end
 
   def home_params
     params.permit(:page, :sort)
-  end
-
-  def collection_rows
-    20
   end
 end
