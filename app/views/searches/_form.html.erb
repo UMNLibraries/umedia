@@ -6,7 +6,7 @@
     <div class="input-group input-group-lg col-md-8">
       <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search UMedia...', value: params[:q] %>
       <span class="input-group-btn">
-        <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-umn-maroon' %>
+        <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-umn-maroon search-btn' %>
       </span>
 
       <div class="input-group input-group-lg col-sm-12">
@@ -22,6 +22,7 @@
               <li><%= link_to 'Format', facets_path(facet_field: 'format_name', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
               <li><%= link_to 'Date', facets_path(facet_field: 'date_created_ss', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
               <li><%= link_to 'Subject', facets_path(facet_field: 'subject_ss', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
+              <li><%= link_to 'Contributing Organization', facets_path(facet_field: 'contributing_organization_name', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
             </ul>
           </div>
         </span>
