@@ -3,7 +3,7 @@ services:
   solr:
     image: solr:7.3.0
     volumes:
-      - ./cores:/opt/solr/server/solr/cores
+      - ./solr_cores:/opt/solr/server/solr/cores
   app:
     build: .
     env_file:
