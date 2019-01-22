@@ -10,6 +10,7 @@ class HomeController < ApplicationController
   def pager
     Parhelion::Pager.new(
       current_page: home_params.fetch(:page, 1).to_i,
+      rows: collection_search.rows,
       result_count: num_found)
   end
 
@@ -31,9 +32,13 @@ class HomeController < ApplicationController
   end
 
   def num_found
-    @num_found ||=
+    @num_found ||= collection_search.num_found
+  end
+
+  def collection_search
+    @collection_search ||=
       Umedia::CollectionSearch.new(page: home_params[:page],
-                                   sort: sort).num_found
+          sort: sort)
   end
 
   def home_params
