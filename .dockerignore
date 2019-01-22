@@ -3,6 +3,6 @@
 .byebug_history
 /log
 /tmp
-/cores
+/solr_cores
 /docker
 *.gz
