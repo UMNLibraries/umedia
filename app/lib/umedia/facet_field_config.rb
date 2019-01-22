@@ -3,6 +3,7 @@ module Umedia
     def visible
       [
         :super_collection_name_ss,
+        :collection_name_s,
         :types,
         :format_name,
         :date_created_ss,
@@ -10,7 +11,6 @@ module Umedia
         :creator_ss,
         :publisher_s,
         :contributor_ss,
-        :collection_name_s,
         :page_count,
         :language
       ]
