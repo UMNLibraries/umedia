@@ -12,7 +12,9 @@ export default stampit({
     // plugins simply need to provide a load function to participate in the
     // plugin role
     loadPlugins(self) {
-      stampit.apply(self, self.plugins)(self).load();
+      self.plugins.map(plugin => {
+        stampit.apply(self, [plugin])(self).load();
+      });
     }
   }
 });
