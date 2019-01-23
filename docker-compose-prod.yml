@@ -20,7 +20,7 @@ services:
       - solr
   sidekiq_1:
       build: .
-      command: bundle exec sidekiq -q critical,2 -q default -c 1 -r /app
+      command: bundle exec sidekiq -q critical,2 -q default -c 5 -r /app
       volumes:
         - .:/app
       links:
@@ -29,13 +29,32 @@ services:
         - .env
   sidekiq_2:
       build: .
-      command: bundle exec sidekiq -q critical,2 -q default -c 1 -r /app
+      command: bundle exec sidekiq -q critical,2 -q default -c 5 -r /app
       volumes:
         - .:/app
       links:
         - redis
       env_file:
         - .env
+  sidekiq_3:
+      build: .
+      command: bundle exec sidekiq -q critical,2 -q default -c 5 -r /app
+      volumes:
+        - .:/app
+      links:
+        - redis
+      env_file:
+        - .env
+  sidekiq_4:
+      build: .
+      command: bundle exec sidekiq -q critical,2 -q default -c 5 -r /app
+      volumes:
+        - .:/app
+      links:
+        - redis
+      env_file:
+        - .env
+
   redis:
     image: redis:4.0.10
   redis_cache:
