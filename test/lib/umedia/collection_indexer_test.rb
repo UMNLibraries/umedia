@@ -7,7 +7,6 @@ module Umedia
       to_h = { collection_thumbnails: thumbs }
       # FeaturedCollection mocks
       collection = Collection.new(set_spec: 'foo:blah', name: 'stuff', description: 'blergh')
-      collections = [collection]
       featured_collection_klass = Minitest::Mock.new
       featured_collection_klass_obj = Minitest::Mock.new
       featured_collection_klass.expect :new, featured_collection_klass_obj, [collection: collection]
@@ -24,7 +23,7 @@ module Umedia
       thumbnailer_klass.expect :new, thumbnailer_klass_obj, [{:thumb_url=>"http://www.example.com", :cdn_url=>"http://foocdn.com"}]
       thumbnailer_klass_obj.expect :upload!, nil, []
 
-      CollectionIndexer.new(collections: collections,
+      CollectionIndexer.new(collection: collection,
                             solr: solr_client,
                             featured_collection_klass: featured_collection_klass,
                             thumbnailer_klass: thumbnailer_klass).index!

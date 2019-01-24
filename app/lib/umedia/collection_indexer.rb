@@ -1,20 +1,26 @@
+# frozen_string_literal: true
+
 module Umedia
+  # Convert a collection into a featured collection and index it
+  # And...upload a few example thumbnails for each featured collection
   class CollectionIndexer
-    attr_reader :collections, :featured_collection_klass, :solr, :thumbnailer_klass
-    def initialize(collections: :MISSING_COLLECTIONS,
+    attr_reader :collection,
+                :featured_collection_klass,
+                :solr,
+                :thumbnailer_klass
+
+    def initialize(collection: :MISSING_COLLECTION,
                    featured_collection_klass: FeaturedCollection,
                    solr: SolrClient.new,
                    thumbnailer_klass: Thumbnailer)
-      @collections = collections
+      @collection = collection
       @featured_collection_klass = featured_collection_klass
       @solr = solr
       @thumbnailer_klass = thumbnailer_klass
     end
 
     def index!
-      collections.map do |collection|
-        add(featured_collection_klass.new(collection: collection).to_h)
-      end
+      add(featured_collection_klass.new(collection: collection).to_h)
       solr.commit
     end
 
@@ -22,6 +28,7 @@ module Umedia
 
     def add(doc)
       return if doc.blank?
+
       solr.add(doc)
       upload_thumbnails(JSON.parse(doc[:collection_thumbnails]))
     end
