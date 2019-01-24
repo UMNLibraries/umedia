@@ -11,7 +11,7 @@ class HomeTest < ActiveSupport::TestCase
       Capybara.current_driver = :selenium
       visit '/home'
       sleep 1
-      find(:xpath, '//*[@id="pager-top"]/div/nav/ul/li[4]/a').click
+      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[4]/a').click
       click_link 'National Sustainable Agriculture Oral History Project'
       sleep 1
       page.must_have_content('Interview with Sister Mary Tacheny')
@@ -20,9 +20,9 @@ class HomeTest < ActiveSupport::TestCase
       Capybara.current_driver = :selenium
       visit '/home'
       sleep 1
-      find(:xpath, '//*[@id="pager-top"]/div/nav/ul/li[2]/a/span').click
-      find(:xpath, '//*[@id="pager-top"]/div/nav/ul/li[1]/a/span').click
-      find(:xpath, '//*[@id="pager-top"]/div/nav/ul/li[2]/a/span').click
+      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[4]/a').click
+      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[3]/a').click
+      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[4]/a').click
       click_link 'National Sustainable Agriculture Oral History Project'
       sleep 1
       page.must_have_content('Interview with Sister Mary Tacheny')
