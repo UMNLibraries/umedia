@@ -74,6 +74,7 @@ module Umedia
         super_collection.expect :item_count, 99, []
         super_collection.expect :item_count, 99, []
         super_collection.expect :set_spec, set_spec, []
+        super_collection.expect :set_spec, set_spec, []
         super_collection.expect :description, "herper derp", []
         super_collection.expect :display_name, 'display name here', []
         super_collection.expect :display_name, 'display name here', []
@@ -83,7 +84,7 @@ module Umedia
         # Thumbnail Mocks
         thumbnail_url_klass = Minitest::Mock.new
         thumbnail_url_klass_obj = Minitest::Mock.new
-        thumbnail_url_klass.expect :new, thumbnail_url_klass_obj, [ { item: 'one', iiif_thumb: true } ]
+        thumbnail_url_klass.expect :new, thumbnail_url_klass_obj, [ { item: iiifable_item, iiif_thumb: true } ]
         thumbnail_url_klass_obj.expect :to_h, { thumbnails: ['blah'] }, []
 
         featured = FeaturedCollection.new(
@@ -92,7 +93,7 @@ module Umedia
           thumbnail_url_klass: thumbnail_url_klass
         )
 
-        featured.to_h.must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"display name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":null}]", :is_super_collection=>true})
+        featured.to_h.must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"display name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"123:44\"}]", :is_super_collection=>true})
         super_sample_klass.verify
         super_sample_klass_obj.verify
         super_collection.verify
