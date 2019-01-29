@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 module Umedia
+  # Stand-in for a real data model. Since this changes rarely, we're starrting
+  # off with a simple class to hold supercollection config data
   class SuperCollections
     def names
       config.map { |config| config[:name] }
