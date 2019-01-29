@@ -11,7 +11,9 @@
   <div class="panel-footer">
     <h3><%= link_to collection['collection_name'], collection_path(collection) %></h3>
     <div class="collection-meta">
-      <div class="collection-contributor"><%= collection['contributing_organization_name'] %></div>
+      <div class="collection-contributor">
+      <%= (collection['is_super_collection']) ? collection['collection_description'] : collection['contributing_organization_name'] %>
+      </div>
       <div class="collection-count"><%= count %> <%= count > 1 ? 'items' : 'item' %></div>
     </div>
       <% if collection['is_super_collection'] %>
