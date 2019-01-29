@@ -13,7 +13,7 @@ require 'test_helper'
       # Set Klass Mock
       set_klass = Minitest::Mock.new
       set_klass_obj = Minitest::Mock.new
-      set_klass.expect :new, set_klass_obj, [set]
+      set_klass.expect :new, set_klass_obj, [{set: set}]
       set_klass_obj.expect :to_collection, 'collection here', []
 
       # Indexer Mock
