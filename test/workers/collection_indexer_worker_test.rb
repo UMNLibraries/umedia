@@ -26,7 +26,9 @@ require 'test_helper'
       worker.set_klass = set_klass
       worker.indexer_klass = indexer_klass
       worker.perform(set)
-      set_klass.verify
       indexer_klass.verify
+      indexer_klass_obj.verify
+      set_klass.verify
+      set_klass_obj.verify
     end
   end
