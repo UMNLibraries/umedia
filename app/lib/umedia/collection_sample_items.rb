@@ -19,7 +19,7 @@ module Umedia
       items.map do |item|
         # Parent item IDs can't be used with IIIF requests
         if item['viewer_type'] == 'COMPOUND_PARENT_NO_VIEWER'
-          query(child_params(item)).first
+          query(child_params(item)).fetch('response').fetch('docs').first
         else
           item
         end
