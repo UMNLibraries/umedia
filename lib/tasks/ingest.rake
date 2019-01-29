@@ -1,7 +1,11 @@
 namespace :ingest do
   desc 'Index Collection (name, desc) metadata'
-  task :collection_metadata => :environment  do |t, args|
-    IndexCollections.new.index!
+  task :collection_metadata, [:set_spec] => :environment  do |t, args|
+    if args[:set_spec]
+      IndexCollections.new(set_spec: args[:set_spec])
+    else
+      IndexCollections.new
+    end.index!
   end
 
   desc 'Index a single collection'
