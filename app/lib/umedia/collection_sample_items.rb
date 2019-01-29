@@ -29,13 +29,13 @@ module Umedia
     # Contributing Org info does not reside in compound parents but in their
     # children. So, we have to get the first child items to get this info.
     def contributing_organization_name
-      first_non_compound['contributing_organization_name']
+      first_non_child['contributing_organization_name']
     end
 
     private
 
-    def first_non_compound
-      [query(non_compound_params).fetch('response').fetch('docs')].flatten.first
+    def first_non_child
+      [query(non_child_params).fetch('response').fetch('docs')].flatten.first
     end
 
     def items
@@ -50,8 +50,8 @@ module Umedia
       params.merge(q: "parent_id:\"#{item['id']}\"")
     end
 
-    def non_compound_params
-      params.merge(q: "#{items_params[:q]} && !viewer_type:COMPOUND_PARENT_NO_VIEWER")
+    def non_child_params
+      params.merge(q: "#{items_params[:q]} && record_type:primary")
     end
 
     def items_params
@@ -62,6 +62,7 @@ module Umedia
       {
         rows: 3,
         fl:'*',
+        sort: 'featured_collection_order ASC',
         q: "set_spec:#{set_spec}"
       }
     end
