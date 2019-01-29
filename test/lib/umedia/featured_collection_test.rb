@@ -9,7 +9,9 @@ module Umedia
         sample_klass_obj = Minitest::Mock.new
         sample_klass.expect :new, sample_klass_obj, [{set_spec: set_spec}]
         sample_klass_obj.expect :contributing_organization_name, 'Gopher Society', []
-        sample_klass_obj.expect :iiifables, ['one'], []
+        iiifable_item = Minitest::Mock.new
+        iiifable_item.expect :index_id, '123:44', []
+        sample_klass_obj.expect :iiifables, [iiifable_item], []
 
         collection = Minitest::Mock.new
         collection.expect :item_count, 99, []
@@ -25,7 +27,7 @@ module Umedia
         # Thumbnail Mocks
         thumbnail_url_klass = Minitest::Mock.new
         thumbnail_url_klass_obj = Minitest::Mock.new
-        thumbnail_url_klass.expect :new, thumbnail_url_klass_obj, [ { item: 'one', iiif_thumb: true } ]
+        thumbnail_url_klass.expect :new, thumbnail_url_klass_obj, [ { item: iiifable_item, iiif_thumb: true } ]
         thumbnail_url_klass_obj.expect :to_h, { thumbnails: ['blah'] }, []
 
         featured = FeaturedCollection.new(
@@ -34,7 +36,7 @@ module Umedia
           thumbnail_url_klass: thumbnail_url_klass
         )
 
-        featured.to_h.must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"pretty name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":null}]", :is_super_collection=>false})
+        featured.to_h.must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"pretty name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"123:44\"}]", :is_super_collection=>false})
         sample_klass.verify
         sample_klass_obj.verify
         collection.verify
@@ -64,7 +66,9 @@ module Umedia
         super_sample_klass_obj = Minitest::Mock.new
         super_sample_klass.expect :new, super_sample_klass_obj, [{:collection_name=>"display name here"}]
         super_sample_klass_obj.expect :contributing_organization_name, 'Gopher Society', []
-        super_sample_klass_obj.expect :iiifables, ['one'], []
+        iiifable_item = Minitest::Mock.new
+        iiifable_item.expect :index_id, '123:44', []
+        super_sample_klass_obj.expect :iiifables, [iiifable_item], []
 
         super_collection = Minitest::Mock.new
         super_collection.expect :item_count, 99, []

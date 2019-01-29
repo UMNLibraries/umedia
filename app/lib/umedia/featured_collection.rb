@@ -60,7 +60,7 @@ module Umedia
 
     def thumbnail_config
       iiifables.map do |item|
-        thumb(item).merge(id: item['id'])
+        thumb(item).merge(id: item.index_id)
       end.to_json
     end
 
