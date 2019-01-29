@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Umedia
-  # Fetch a list of setSpecs and convert them into collections
+  # All it does is convert an OAI set result to a UMedia Collection
   class OaiSet
     attr_reader :set, :collection_klass
     def initialize(set: :MISSING_SET,
