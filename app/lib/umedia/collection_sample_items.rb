@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Umedia
+  # Get a few sample items for a given collection
   class CollectionSampleItems
     attr_reader :set_spec, :solr, :item_klass
     def initialize(set_spec: false,
@@ -64,4 +67,3 @@ module Umedia
     end
   end
 end
-
