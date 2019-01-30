@@ -8,7 +8,7 @@ module Umedia
                    rows: 20,
                    fl: false,
                    page: 1,
-                   sort: 'score desc, title desc',
+                   sort: 'title_sort desc',
                    client: SolrClient,
                    facet_config: FacetSearch.new.config)
       @q = q
