@@ -4,7 +4,7 @@ module DetailsHelper
       {
         fields: [
           { name: 'title' },
-          { name: 'alternative_title' },
+          { name: 'title_alternative' },
           { name: 'description' },
           { name: 'date_created_ss', facet: true },
           { name: 'historical_era' },
