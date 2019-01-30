@@ -130,6 +130,7 @@
         <field name="super_collection_set_specs" type="string" indexed="true" stored="true" multiValued="true"/>
         <field name="super_collection_descriptions" type="text_en" indexed="true" stored="true" multiValued="true"/>
         <field name="title" type="text_en" indexed="true" stored="true"  />
+        <field name="title_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false" />
         <field name="title_alternative" type="text_en" indexed="true" stored="true" />
         <field name="description" type="text_en" indexed="true" stored="true" />
         <field name="date_created" type="text_en_splitting_tight" indexed="true" stored="true" multiValued="true" />
@@ -417,8 +418,6 @@
          is that it takes up more space on disk; which is why it's not used in place of TextField
          for every fieldType in this _default schema.
 	  -->
-    <dynamicField name="*_t_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false"/>
-    <dynamicField name="*_txt_sort_multi" type="text_gen_sort" indexed="true" stored="true"/>
     <fieldType name="text_gen_sort" class="solr.SortableTextField" positionIncrementGap="100" multiValued="true">
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
