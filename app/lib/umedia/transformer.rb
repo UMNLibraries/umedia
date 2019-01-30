@@ -121,6 +121,23 @@ module Umedia
       end
     end
 
+    class SubjectFormatter
+      def self.format(subjects)
+        # Try to rip out periods from non-names
+        # e.g.
+        # African Americans. -> African Americans
+        # Newton, W. H. -> Newton, W. H.
+        # Only mace if we have more than one letter prior to a trailing period
+        subjects.map do |subject|
+          if subject =~ /[a-z]{2,}\.$/i
+            subject.gsub(/\./,'')
+          else
+            subject
+          end
+        end
+      end
+    end
+
     def self.field_mappings
       [
         {dest_path: 'id', origin_path: 'id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
@@ -151,8 +168,8 @@ module Umedia
         {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter,CDMBL::StripFormatter]},
         {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMBL::StripFormatter]},
       # Topics
-        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::StripFormatter]},
+        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, SubjectFormatter, CDMBL::StripFormatter]},
+        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, SubjectFormatter, CDMBL::StripFormatter]},
         {dest_path: 'language', origin_path: 'langua', formatters: [CDMBL::StripFormatter,CDMBL::SplitFormatter, CDMBL::StripFormatter]},
       # Geographic Details
         {dest_path: 'city', origin_path: 'city', formatters: [CDMBL::StripFormatter]},
