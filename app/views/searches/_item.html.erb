@@ -12,11 +12,13 @@
         <%= render 'index_field', field: item.field_contributing_organization, truncated: false %>
         <%= render 'index_field', truncated: false, field: item.field_page_count if item.field_page_count.value && item.field_page_count.value > 1 %>
       </dl>
+      <%= link_to item_path(item.index_id, search_params) do %>
       <img src="<%= thumbnail.to_cdn_s %>"
-        class="thumbnail col-md-2"
-        alt="<%= item.field_title.value %>"
-        title="<%= item.field_title.value %>"
-        onerror="this.onerror=null;this.src=noThumbnail('<%= "#{item.collection}:#{item.id}" %>', '<%= thumbnail.to_s %>');" />
+          class="thumbnail col-md-2"
+          alt="<%= item.field_title.value %>"
+          title="<%= item.field_title.value %>"
+          onerror="this.onerror=null;this.src=noThumbnail('<%= "#{item.collection}:#{item.id}" %>', '<%= thumbnail.to_s %>');" />
+      <% end %>
     </div>
   </div>
 <% end %>
