@@ -151,7 +151,7 @@ module Umedia
       # Full Record View
         {dest_path: 'title', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'title_sort', origin_path: 'title', formatters: [CDMBL::StripFormatter, LetterSortFormatter]},
-        {dest_path: 'title_alternative', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'title_alternative', origin_path: 'altern', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'description', origin_path: 'descri', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'date_created', origin_path: 'date', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
         {dest_path: 'date_created_sort', origin_path: 'date', formatters: [CDMBL::StripFormatter, NumberSortFormatter]},
