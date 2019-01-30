@@ -103,7 +103,7 @@ module Umedia
     class FeaturedCollectionOrderFormatter
       def self.format(doc)
         order = doc.fetch('featur', false)
-        !order.blank? ? order : 3
+        !order.blank? ? order : 999
       end
     end
 
