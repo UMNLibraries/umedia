@@ -1,0 +1,13 @@
+<% if item.field_collection_description.value %>
+  <div class="details-collections-fields">
+    <div class="field-collection-name">
+      <%= link_to item.field_collection_name.value, searches_path(collection_name_s: item.field_collection_name.value) %>
+    </div>
+
+      <% if item.field_collection_description.value %>
+        <div class="field-collection-name">
+          <%= raw item.field_collection_description.value %>
+        </div>
+      <% end %>
+  </div>
+<% end %>
