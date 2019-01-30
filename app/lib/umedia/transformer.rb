@@ -107,6 +107,20 @@ module Umedia
       end
     end
 
+    class LetterSortFormatter
+      def self.format(value)
+        value.gsub(/([^a-z]*)/i, '').downcase
+      end
+    end
+
+    class NumberSortFormatter
+      def self.format(val)
+        # Ah, library metadata; strip off the fake ranges
+        val = val.gsub(/^- /, '')
+        val = val.split('-').first.gsub(/([^0-9|\s]*)/i, '')
+      end
+    end
+
     def self.field_mappings
       [
         {dest_path: 'id', origin_path: 'id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
@@ -119,13 +133,14 @@ module Umedia
         {dest_path: 'super_collection_descriptions', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, SuperCollectionDescriptionsFormatter]},
       # Full Record View
         {dest_path: 'title', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'title_sort', origin_path: 'title', formatters: [CDMBL::StripFormatter, LetterSortFormatter]},
         {dest_path: 'title_alternative', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'description', origin_path: 'descri', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'date_created', origin_path: 'date', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'date_created_sort', origin_path: 'date', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'date_created_sort', origin_path: 'date', formatters: [CDMBL::StripFormatter, NumberSortFormatter]},
         {dest_path: 'historical_era', origin_path: 'histor', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'creator', origin_path: 'creato', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'creator_sort', origin_path: 'creato', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'creator_sort', origin_path: 'creato', formatters: [CDMBL::StripFormatter, CDMBL::JoinFormatter, LetterSortFormatter]},
         {dest_path: 'contributor', origin_path: 'contri', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
         {dest_path: 'publisher', origin_path: 'publis', formatters: [CDMBL::StripFormatter]},
         {dest_path: 'caption', origin_path: 'captio', formatters: [CDMBL::StripFormatter]},
