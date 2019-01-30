@@ -148,7 +148,7 @@ module Umedia
       # Physical Description
         {dest_path: 'types', origin_path: 'type', formatters: [CDMBL::StripFormatter, CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::UniqueFormatter]},
         {dest_path: 'format', origin_path: 'format', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter]},
+        {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter,CDMBL::StripFormatter]},
         {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMBL::StripFormatter]},
       # Topics
         {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::StripFormatter]},
