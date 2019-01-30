@@ -60,7 +60,7 @@ en:
   item:
       fields:
         title: 'Title'
-        alternative_title: 'Alternative Title'
+        title_alternative: 'Alternative Title'
         description: 'Description'
         date_created_ss: 'Date Created'
         historical_era: 'Historical Era'
