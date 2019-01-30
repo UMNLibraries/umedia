@@ -71,7 +71,7 @@ module Umedia
 
     class FormatNameFormatter
       def self.format(value)
-        value.split('|').first
+        value.split(';').map { |val| val.split('|').first }
       end
     end
 
