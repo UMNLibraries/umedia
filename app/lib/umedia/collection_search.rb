@@ -36,6 +36,7 @@ module Umedia
         q: q,
         'q.alt' => "*:*",
         fl: '*',
+        sort: sort,
         fq: "document_type:collection"
       }
     end
