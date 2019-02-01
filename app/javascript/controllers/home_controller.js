@@ -4,7 +4,7 @@ import HomeUrl from '../lib/home/url.js';
 
 export default class extends Controller {
   connect() {
-    this.query = '';
+    this.filter_q = this.data.get('filter_q');
     this.page = this.data.get('collections_page');
     this.sort = this.data.get('collections_sort');
     this.load();
@@ -30,7 +30,7 @@ export default class extends Controller {
 
   search(e) {
     e.preventDefault();
-    this.query = $('#filter_q').val();
+    this.filter_q = $('#filter_q').val();
     this.page = 1;
     this.navigate();
   }
@@ -48,17 +48,17 @@ export default class extends Controller {
   }
 
   updateUrl() {
-    HomeUrl({ page: this.page, filter_q: this.query, sort: this.sort }).update();
+    HomeUrl({ page: this.page, filter_q: this.filter_q, sort: this.sort }).update();
   }
 
   resetData() {
-    this.query = '';
+    this.filter_q = '';
     this.page = 1;
     this.sort = 'set_spec desc'
   }
 
   load() {
-    InnerHtml(`/collections/${this.page}/${this.sort}/nolayout?filter_q=${this.query}`, document.getElementById("collections-home"))
+    InnerHtml(`/collections/${this.page}/${this.sort}/nolayout?filter_q=${this.filter_q}`, document.getElementById("collections-home"))
       .then(response => {
         $(response).find('[data-toggle="tooltip"]').tooltip();
       });
