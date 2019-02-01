@@ -17,7 +17,7 @@
 
 <div class="row">
   <div class="pagit col-md-7">
-    <span><%= render 'pager_info', pager: pager %> </span>
+    <span><%= render 'pager_info', pager: pager, data_action: '' %> </span>
   </div>
 
   <div class="pagit col-md-12">
@@ -26,7 +26,7 @@
     </div>
     <div class="col-md-8">
       <div class="pull-right">
-        <%= render 'pager', pager: pager, search_params: search_params, prev_next_pos: 'last' %>
+        <%= render 'pager', pager: pager, search_params: search_params, prev_next_pos: 'last', data_action: '' %>
       </div>
     </div>
   </div>
@@ -56,6 +56,6 @@
 
 <div class="col-md-12 pull-right">
   <div class="pull-right">
-    <%= render 'pager', pager: pager, search_params: search_params, prev_next_pos: 'last' %>
+    <%= render 'pager', pager: pager, search_params: search_params, prev_next_pos: 'last', data_action: '' %>
   </div>
 </div>

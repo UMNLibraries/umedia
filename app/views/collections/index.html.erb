@@ -1,5 +1,22 @@
-<div class="collections-gallery">
-  <% @collections.each do |collection| %>
-      <%= render 'collection', collection: collection %>
-  <% end %>
+<div class="row clear collections">
+  <h2>Browse by Collection</h2>
+
+  <%= render 'prev_next_data' %>
+
+  <div class="collection-controls">
+    <%= render 'sort', sort_list: @sort_list %>
+    <%= render 'searches/pager', pager: @pager, search_params: @collection_params.merge(action: 'show', controller: 'home'),  prev_next_pos: 'first', data_action: "home#pager" %>
+    <%= render 'filter_form', collection_params: @collection_params, data_action: 'home#pager' %>
+  </div>
+
+
+  <div class="collections-gallery">
+    <% @collections.each do |collection| %>
+        <%= render 'collection', collection: collection %>
+    <% end %>
+  </div>
+
+  <div class="collection-controls">
+    <%= render 'searches/pager', pager: @pager, search_params: @collection_params.merge(action: 'show', controller: 'home'),  prev_next_pos: 'first', data_action: "home#pager" %>
+  </div>
 </div>

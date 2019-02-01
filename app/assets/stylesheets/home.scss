@@ -2,9 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.home-sort {
-  margin: 0 15px 0 25px;
-}
 
 .home-hero {
   height: 500px;
@@ -14,10 +11,6 @@
   top: 85px;
   z-index: -1;
   background-image: url(asset_path('uptownTheatre.png'));
-}
-
-.collections {
-  margin-top: 320px;
 }
 
 #collections-home {
@@ -56,4 +49,8 @@
   .icon-help-circled {
     font-size: 1.2em;
   }
+}
+
+#collections-home {
+  margin-top: 320px;
 }

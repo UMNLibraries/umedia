@@ -1,10 +1,12 @@
 <li class="<%= !pager.previous? ? 'disabled' : '' %>">
   <%= link_to raw('<span aria-hidden="true">&laquo; Previous</span>'),
   query(search_params).merge(page: pager.previous_page),
-  'aria-label': "Previous" %>
+  'aria-label': "Previous",
+  'data-action' => 'home#prev_page' %>
 </li>
 <li class="<%= !pager.next? ? 'disabled' : '' %>">
   <%= link_to raw('<span aria-hidden="true">Next &raquo;</span>'),
   query(search_params).merge(page: pager.next_page),
-  'aria-label': "Next" %>
+  'aria-label': "Next",
+  'data-action' => 'click->home#next_page' %>
 </li>

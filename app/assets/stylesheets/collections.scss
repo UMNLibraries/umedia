@@ -44,12 +44,42 @@
     }
 }
 
-.collection {
+.collection-controls {
+  #sort-dropdown {
+    margin: 0 15px 0 0;
+  }
+  margin-left: 10px;
+  .pagination {
+    margin-bottom: 10px;
+  }
+  .umedia-pager {
+    height: 55px;
+    vertical-align: bottom;
+    display:inline-block;
+  }
+}
 
-  .title-cover {
+.collections {
+  .filter-form {
+    margin-top: 15px;
+  }
+}
+
+.filter-form {
+  .input-group-md {
+    width: 350px;
   }
 
-  .tile-container .tile {
-
+  .input-group-btn {
+    vertical-align: top;
   }
+}
+.clear-collection-filter {
+  padding-left: 15px;
+}
+
+
+#next-page-val,
+#prev-page-val {
+  display: none;
 }

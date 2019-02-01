@@ -11,18 +11,18 @@ class HomeTest < ActiveSupport::TestCase
       Capybara.current_driver = :selenium
       visit '/home'
       sleep 1
-      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[4]/a').click
-      click_link 'National Sustainable Agriculture Oral History Project'
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
+      click_link 'Forecast Public Art Collection'
       sleep 1
-      page.must_have_content('Interview with Sister Mary Tacheny')
+      page.must_have_content('Newfound Street Sound Installation')
     end
     it 'nex/prev and collections are clickable' do
       Capybara.current_driver = :selenium
       visit '/home'
       sleep 1
-      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[4]/a').click
-      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[3]/a').click
-      find(:xpath, '//*[@id="home-controller-data"]/div[3]/div/div[2]/nav/ul/li[4]/a').click
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[3]/a').click
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
       click_link 'National Sustainable Agriculture Oral History Project'
       sleep 1
       page.must_have_content('Interview with Sister Mary Tacheny')
@@ -33,7 +33,7 @@ class HomeTest < ActiveSupport::TestCase
     it 'displays an all items search' do
       visit '/home'
       find(:xpath, '//*[@id="home-controller-data"]/div[2]/form/div/span/button').click
-      page.must_have_content('Interview with Wes Jackson')
+      page.must_have_content('University of Minnesota Grant Program. Monica Sheets, audio file. (Box 9, Folder 33)')
     end
   end
 

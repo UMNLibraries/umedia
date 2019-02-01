@@ -8,7 +8,7 @@
             <li class="disabled"><a href="#" onclick="return false;"><%= pager.marker %></a></li>
           <% else %>
             <li class="<%= pager.current_page == page ? 'active' : ''%>">
-              <%= link_to page, query(search_params).merge(page: page) %>
+              <%= link_to page, query(search_params).merge(page: page), 'data-action' => data_action %>
             </li>
           <% end %>
         <% end %>
