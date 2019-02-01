@@ -1,30 +1,8 @@
 class HomeController < ApplicationController
   def show
-    @pager = pager
     @home_params = home_params.to_h
-    @sort_list = sort_list
     @facet_fields_all = []
     @hide_header_search_link = true
-  end
-
-  def pager
-    Parhelion::Pager.new(
-      current_page: home_params.fetch(:page, 1).to_i,
-      rows: collection_search.rows,
-      result_count: num_found)
-  end
-
-  def sort_list
-    Umedia::SortList.new(query: Parhelion::Query.new(params: home_params),
-                         mappings: sort_mappings)
-  end
-
-  def sort_mappings
-    [
-      {label: 'Most Recently Added Collection', sort: 'set_spec desc' },
-      {label: 'Collection Name: A to Z', sort: 'collection_name_s asc' },
-      {label: 'Collection Name: Z to A', sort: 'collection_name_s desc' }
-    ]
   end
 
   def sort
@@ -37,11 +15,10 @@ class HomeController < ApplicationController
 
   def collection_search
     @collection_search ||=
-      Umedia::CollectionSearch.new(page: home_params[:page],
-          sort: sort)
+      Umedia::CollectionSearch.new(page: home_params[:page], sort: sort)
   end
 
   def home_params
-    params.permit(:page, :sort)
+    params.permit(:page, :sort, :filter_q)
   end
 end
