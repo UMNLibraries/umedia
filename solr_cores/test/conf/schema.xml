@@ -164,7 +164,7 @@
         <field name="parent_collection" type="text_en" indexed="true" stored="true" />
         <field name="parent_collection_name" type="string" indexed="true" stored="true" />
         <field name="contributing_organization" type="text_en" indexed="true" stored="true" />
-        <field name="contributing_organization_name" type="string" indexed="true" stored="true" />
+        <field name="contributing_organization_name" type="text_en" indexed="true" stored="true" />
         <field name="contact_information" type="text_en" indexed="true" stored="true" />
         <field name="fiscal_sponsor" type="text_en" indexed="true" stored="true" />
         <!-- Identifiers -->
