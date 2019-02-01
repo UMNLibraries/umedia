@@ -913,12 +913,14 @@
        <str name="qf">
           collection_name
           collection_description
-          collection_name_s
+          collection_name_s^2.4
+          contributing_organization_name^2.4
+          set_spec
        </str>
        <str name="pf">
           collection_name
           collection_description
-          collection_name_s
+          collection_name_s^2.4
        </str>
      </lst>
 
