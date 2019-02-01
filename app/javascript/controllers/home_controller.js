@@ -24,7 +24,7 @@ export default class extends Controller {
 
   prev_page(e) {
     e.preventDefault();
-    this.page = $('#next-page-val').text();
+    this.page = $('#prev-page-val').text();
     this.navigate();
   }
 
