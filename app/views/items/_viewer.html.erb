@@ -1,10 +1,10 @@
 <div data-controller="viewer"
      data-viewer-sidebar_page="<%= params.fetch('sidebar_page', 1) %>"
-     data-viewer-id="<%= params['id'] %>"
-     data-viewer-child_id="<%= params.fetch('child_id', sidebar.first_page) %>"
-     data-viewer-child_page="<%= child_page_num %>"
-     data-viewer-child_index="<%= params.fetch('child_index', 0) %>"
-     data-viewer-query="<%= params['query'] %>"
+     data-viewer-id="<%= sanitize(params['id']) %>"
+     data-viewer-child_id="<%= sanitize(params.fetch('child_id', sidebar.first_page)) %>"
+     data-viewer-child_page="<%= sanitize(child_page_num) %>"
+     data-viewer-child_index="<%= sanitize(params.fetch('child_index', 0)) %>"
+     data-viewer-query="<%= sanitize(params['query']) %>"
      data-viewer-url="/viewers"
      id="viewer-data">
     <% if sidebar.show? %>

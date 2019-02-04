@@ -1,5 +1,5 @@
 <div data-controller="metadata"
-     data-metadata-id="<%= params['id'] %>"
+     data-metadata-id="<%= sanitize(params['id']) %>"
      data-metadata-attachment-format="<%= attachment_format %>"
      id="metadata-metadata">
       <div class="item-metadata col-md-12">

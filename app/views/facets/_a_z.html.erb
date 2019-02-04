@@ -3,7 +3,7 @@
   <div class="facet-a-z" <%= data_controller(facet_params) %>>
     <% if facet_params[:letter] && facet_params[:letter] != '' %>
       <div class="btn-group-s col-md-12" id="clear-a-z" role="group" aria-label="...">
-        <%= link_to raw("Clear <strong>#{facet_params[:letter]}</strong> Filter"),
+        <%= link_to raw("Clear <strong>#{sanitize(facet_params[:letter])}</strong> Filter"),
                 facets_path(facet_params.merge(letter: '', facet_offset: 0)),
                 class: "btn btn-default",
                 'data-turbolinks': false,
