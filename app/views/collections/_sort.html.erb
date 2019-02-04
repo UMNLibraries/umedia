@@ -4,7 +4,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
     <% sort_list.map do |sort| %>
-      <li><%= link_to sort[:label],  home_path(sort[:query].link_params.except('nolayout')) %></li>
+      <li><%= link_to sort[:label],  home_path(sort[:query].link_params) %></li>
     <% end %>
   </ul>
 </div>
