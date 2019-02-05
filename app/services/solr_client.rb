@@ -31,6 +31,14 @@ class SolrClient
     solr.add records
   end
 
+  def backup(number_to_keep: 1)
+    solr.get 'replication', params: {
+      command: 'backup',
+      location: ENV['SOLR_BACKUP_LOCATION'],
+      'numberToKeep' => number_to_keep
+    }
+  end
+
   private
 
   def base_url
