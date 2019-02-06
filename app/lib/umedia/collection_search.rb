@@ -9,8 +9,8 @@ module Umedia
       @q    = q
       @page = page
       @rows = rows
-      @sort = sort
       @solr = solr
+      @sort = q.blank? ? sort : ''
     end
 
     def docs
