@@ -26,7 +26,7 @@ module Umedia
         :region,
         :continent,
         :parent_collection_name,
-        :contributing_organization_name
+        :contributing_organization_name_s
       ]
     end
 
