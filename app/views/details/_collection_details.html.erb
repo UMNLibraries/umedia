@@ -1,7 +1,7 @@
 <% if item.field_collection_description.value %>
   <div class="details-collections-fields">
     <div class="field-collection-name">
-      <%= link_to item.field_collection_name.value, searches_path(collection_name_s: item.field_collection_name.value) %>
+      <%= render 'searches/field_value', value: item.field_collection_name.value, facet_field: 'collection_name_s' %>
     </div>
 
       <% if item.field_collection_description.value %>
