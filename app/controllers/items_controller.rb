@@ -12,8 +12,18 @@ class ItemsController < SearchesController
     response.headers['Content-Language'] = I18n.locale.to_s
     @child_page_num = child_page_num
     @items_params = items_params
+    @show_sidebar_slider = show_sidebar_slider
+    @page_count = page_count
     @item ||= ItemPresenter.new(item, view_context)
     @sidebar ||= ViewerSidebarPresenter.new(children, view_context)
+  end
+
+  def show_sidebar_slider
+    page_count > ENV['SIDEBAR_SLIDER_PAGE_COUNT_THRESHOLD'].to_i
+  end
+
+  def page_count
+    @page_count ||= item.field_page_count.value
   end
 
   def item

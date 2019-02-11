@@ -5,7 +5,7 @@ module Umedia
     it 'searches for' do
       response = {'response' => {'numFound' => 99, 'docs' => ['foo', 'bar'] } }
       solr = Minitest::Mock.new
-      solr.expect :paginate, response, [1, 20, "collections", {:params=>{:q=>"stuff", "q.alt"=>"*:*", :fl=>"*", :sort=>"set_spec desc", :fq=>"document_type:collection"}}]
+      solr.expect :paginate, response, [1, 1, "collections", {:params=>{:q=>"stuff", "q.alt"=>"*:*", :fl=>"*", :sort=>"", :fq=>"document_type:collection"}}]
       search = CollectionSearch.new(
         q: 'stuff',
         solr: solr

@@ -4,7 +4,7 @@
                   'data-id': child.field_parent_id.value,
                   'data-child_id': "#{child.collection}:#{child.id}",
                   'data-child_index': child.field_child_index.value,
-                  'data-sidebar_page': sanitize(params.fetch('page', 1)),
+                  'data-sidebar_page': params.fetch('page', 1).to_i,
                   'data-query': sanitize(params[:q]),
                   class: "sidebar-page list-group-item #{active}",
                   id: "sidebar-#{child.collection}:#{child.id}" do %>

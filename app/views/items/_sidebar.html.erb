@@ -17,8 +17,10 @@
 
   <div class="col-md-12 sidebar-pages-and-slider">
 
-    <% if sidebar.display_num? %>
+    <% if sidebar.display_num? && @show_sidebar_slider %>
       <input type="text" id="sidebar-page-num" readonly>
+    <% elsif !@show_sidebar_slider %>
+      <input type="text" id="sidebar-page-num" value="1 - <%= @page_count %>" readonly>
     <% end %>
 
     <div class="col-md-2 sidebar-slider-horizontal">
@@ -26,7 +28,7 @@
     </div>
 
     <div class="col-md-10">
-      <div class="list-group" id="sidebar-pages">
+      <div class="list-group <%= sidebar_scroll_class %>" id="sidebar-pages">
       </div>
     </div>
 

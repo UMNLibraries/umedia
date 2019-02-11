@@ -5,6 +5,7 @@
      data-viewer-child_page="<%= child_page_num.to_i %>"
      data-viewer-child_index="<%= params.fetch('child_index', 0).to_i %>"
      data-viewer-query="<%= sanitize(params['query']) %>"
+     data-viewer-show_slider="<%= @show_sidebar_slider %>"
      data-viewer-url="/viewers"
      id="viewer-data">
     <% if sidebar.show? %>

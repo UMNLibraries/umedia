@@ -37,7 +37,8 @@ export default class extends Controller {
     }, false);
   }
 
-  load(id, child_id, page, query, child_index = false) {
+  load(id, child_id, page, query, child_index = false, show_slider = true) {
+    this.show_slider = show_slider;
     const sidebar = Sidebar({
       id: id,
       child_id: child_id,
@@ -47,6 +48,7 @@ export default class extends Controller {
     })
 
     const sidebarPages = SidebarPagesLoad({
+      showSlider: show_slider,
       fetcher: window,
       sidebar: sidebar,
       elements: {
@@ -64,11 +66,15 @@ export default class extends Controller {
                                                     this.data.get("child_id"),
                                                     this.data.get("sidebar_page"),
                                                     this.data.get("query"),
-                                                    this.data.get("child_index"))
+                                                    this.data.get("child_index"),
+                                                    this.data.get("show_slider") == 'true')
 
     this.viewer.viewerSideLoad(this.data.get("id"),
                                this.data.get("child_id"));
-    this.sidebarPages.sideLoad();
+    this.sidebarPages.sideLoad().then(sidebar => {
+      const offset = parseInt(sidebar.find(`a.active`).offset().top, 10) - 271;
+      sidebar.scrollTop(offset);
+    });
   }
 
   toggleDownload(e) {
@@ -102,7 +108,15 @@ export default class extends Controller {
                               ...{ child_id: event.currentTarget.dataset.child_id }
                             });
 
-    SidebarPagesLoad({...this.sidebarPages, sidebar}).sideLoad();
+
+    if (this.show_slider == true) {
+      SidebarPagesLoad({...this.sidebarPages, sidebar}).sideLoad();
+    } else {
+      $('#sidebar-pages').find('a').each(function() {
+        $(this).removeClass('active')
+      });
+      $(event.target).closest('a').addClass('active');
+    }
 
     this.viewer.viewerSideLoad(sidebar.id, sidebar.child_id);
 

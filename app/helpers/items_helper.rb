@@ -48,4 +48,8 @@ module ItemsHelper
       value
     end
   end
+
+  def sidebar_scroll_class
+    !@show_sidebar_slider ? 'sidebar-scroll' : ''
+  end
 end

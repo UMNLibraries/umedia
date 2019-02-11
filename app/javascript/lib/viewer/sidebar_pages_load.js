@@ -5,13 +5,15 @@ import ViewerUrl from './viewer_url.js';
 // Load content from a given endpoint and inject it into the page
 export default stampit({
   props: {
+    showSlider: true,
     fetcher: null,
     sidebar: null,
     elements: null,
     urlKlass: null,
-    sliderKlass: null
+    sliderKlass: null,
   },
-  init({ fetcher,
+  init({ showSlider,
+         fetcher,
          sidebar,
          elements,
          urlKlass = ViewerUrl,
@@ -21,6 +23,25 @@ export default stampit({
     this.urlKlass = urlKlass;
     this.elements = elements;
     this.sliderKlass = sliderKlass;
+    this.showSlider = showSlider;
+    this.perPage = () => {
+      if (showSlider == false) {
+        return 500000 // Negative one returns all results in solr
+      } else if (sidebar.query !== '') {
+        return 2;
+      } else {
+        return 3;
+      }
+    }
+
+    this.page = () => {
+      if (showSlider) {
+        return sidebar.page
+      } else {
+        return 1;
+      }
+    }
+
 
     this.searchUrl = () => {
       const paths = [
@@ -29,11 +50,9 @@ export default stampit({
         this.perPage(),
         sidebar.query
       ].join('/')
-      return `/child_search/${paths}?page=${sidebar.page}&child_index=${sidebar.child_index}`
+      return `/child_search/${paths}?page=${this.page()}&child_index=${sidebar.child_index}`
     }
-    this.perPage = () => {
-      return (sidebar.query !== '') ? 2 : 3;
-    }
+
   },
   methods: {
     sideLoad() {
@@ -41,6 +60,7 @@ export default stampit({
       const sidebar = this.sidebar;
       const perPage = this.perPage();
       const sliderKlass = this.sliderKlass;
+      const showSlider = this.showSlider;
       const sliderCallback = (page) => {
         sidebar.page = page;
         this.sideLoad();
@@ -58,41 +78,33 @@ export default stampit({
           // the results. If we need more data down the road, we can turn this into
           // a JSON response. For now, it's nice to keep the templates etc on the server
           // and innerHTML, which is quite fast as well.
-          let recordCount = Number(doc.getElementById("child-search-record-count").innerHTML);
-          return recordCount;
+          return Number(doc.getElementById("child-search-record-count").innerHTML);
         })
         .then((recordCount) => {
+          if (showSlider == true) {
+            // Add the slider element - allows users to scroll through pages
+            // Desktop / Laptop Version (shown/hidden via css media queries)
+            sliderKlass({ recordCount: recordCount,
+                          step: perPage,
+                          currentPage: sidebar.page,
+                          orientation: 'vertical',
+                          sliderElem: elements.sliderVerticalElem,
+                          sliderNumElem: elements.sidebarNumElem,
+                          showSlider: recordCount > perPage,
+                          callback: sliderCallback}).init();
 
-          // Add the slider element - allows users to scroll through pages
-
-          // Desktop / Laptop Version (shown/hidden via css media queries)
-          sliderKlass({ recordCount: recordCount,
-                        step: perPage,
-                        currentPage: sidebar.page,
-                        orientation: 'vertical',
-                        sliderElem: elements.sliderVerticalElem,
-                        sliderNumElem: elements.sidebarNumElem,
-                        showSlider: recordCount > perPage,
-                        callback: sliderCallback}).init();
-
-          // Mobile Version (shown/hidden via css media queries)
-          sliderKlass({ recordCount: recordCount,
-                        step: perPage,
-                        currentPage: sidebar.page,
-                        reverse: false,
-                        orientation: 'horizontal',
-                        sliderElem: elements.sliderHorizontalElem,
-                        sliderNumElem: elements.sidebarNumElem,
-                        showSlider: recordCount > perPage,
-                        callback: sliderCallback}).init();
-
-          if (recordCount >= 1000) {
-            elements.sliderVerticalElem.css('height', '800px');
-          } else if (recordCount < 20 ) {
-            elements.sliderVerticalElem.css('height', '100px');
-          } else if (recordCount < 100 ) {
-            elements.sliderVerticalElem.css('height', '300px');
+            // Mobile Version (shown/hidden via css media queries)
+            sliderKlass({ recordCount: recordCount,
+                          step: perPage,
+                          currentPage: sidebar.page,
+                          reverse: false,
+                          orientation: 'horizontal',
+                          sliderElem: elements.sliderHorizontalElem,
+                          sliderNumElem: elements.sidebarNumElem,
+                          showSlider: recordCount > perPage,
+                          callback: sliderCallback}).init();
           }
+          return elements.sidebarPagesElem;
         });
 
 
