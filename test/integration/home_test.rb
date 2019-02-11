@@ -12,9 +12,9 @@ class HomeTest < ActiveSupport::TestCase
       visit '/home'
       sleep 1
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
-      click_link 'Forecast Public Art Collection'
+      click_link 'AIDS Poster Collection'
       sleep 1
-      page.must_have_content('Newfound Street Sound Installation')
+      page.must_have_content('AIDS hat ein Gesicht')
     end
     it 'nex/prev and collections are clickable' do
       Capybara.current_driver = :selenium
@@ -22,10 +22,9 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[3]/a').click
-      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
-      click_link 'National Sustainable Agriculture Oral History Project'
+      click_link 'GLBT Pride Poster Collection'
       sleep 1
-      page.must_have_content('Interview with Sister Mary Tacheny')
+      page.must_have_content('Fruit Float 2000!')
     end
   end
 
@@ -33,16 +32,16 @@ class HomeTest < ActiveSupport::TestCase
     it 'displays an all items search' do
       visit '/home'
       find(:xpath, '//*[@id="home-controller-data"]/div[2]/form/div/span/button').click
-      page.must_have_content('University of Minnesota Grant Program. Monica Sheets, audio file. (Box 9, Folder 33)')
+      page.must_have_content('AIDS Memorial Quilt')
     end
   end
 
   describe 'when a search param is entered and a user clicks go' do
     it 'displays relevant items' do
       visit '/home'
-      fill_in 'q', with: 'art'
+      fill_in 'q', with: 'love'
       find(:xpath, '//*[@id="home-controller-data"]/div[2]/form/div/span/button').click
-      page.must_have_content('Art of the Eye Videos')
+      page.must_have_content('The Gift of Love')
     end
   end
 end
