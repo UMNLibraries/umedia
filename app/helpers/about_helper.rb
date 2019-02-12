@@ -1,6 +1,6 @@
 module AboutHelper
   def collections_count
-    facet_count('collection_name')
+    facet_count('collection_name_s')
   end
 
   def formats_count
