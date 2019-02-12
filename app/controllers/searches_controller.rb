@@ -79,7 +79,7 @@ class SearchesController < ApplicationController
   end
 
   def rows
-    search_params.fetch('rows', ENV['SEARCH_ROWS'].to_i).to_i
+    search_params.fetch('rows', ENV['UMEDIA_SEARCH_ROWS'].to_i).to_i
   end
 
   def query
