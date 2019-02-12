@@ -72,7 +72,8 @@ export default class extends Controller {
     this.viewer.viewerSideLoad(this.data.get("id"),
                                this.data.get("child_id"));
     this.sidebarPages.sideLoad().then(sidebar => {
-      const offset = parseInt(sidebar.find(`a.active`).offset().top, 10) - 271;
+      const parentOffset = $("a.active").offsetParent().offset().top
+      const offset = parseInt(sidebar.find(`a.active`).offset().top, 10) - parentOffset;
       sidebar.scrollTop(offset);
     });
   }
