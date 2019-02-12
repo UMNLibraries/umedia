@@ -80,8 +80,6 @@ module DetailsHelper
   end
 
   def collection_description(item)
-    simple_format(item.field_collection_description.value)
-      .gsub(URI::DEFAULT_PARSER.make_regexp, '<a href="\0">\0</a>')
-      .html_safe
+    auto_link(item.field_collection_description.value)
   end
 end
