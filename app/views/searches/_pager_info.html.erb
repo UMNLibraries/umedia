@@ -12,5 +12,5 @@
   <span class="pager-info-number">
     <%= pager.result_count %>
   </span>
-   results
+   <%= pager.result_count == 1 ? 'result' : 'results' %>
 </span>
