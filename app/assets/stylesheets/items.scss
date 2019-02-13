@@ -47,3 +47,37 @@ ul.image-download {
   background: #ecedf0;
   margin: 125px 0 50px;
 }
+
+.mlt-inline ul > * {
+  vertical-align: top;
+}
+.mlt-inline {
+  .mlt-list {
+    width: 100%;
+    li {
+      display:inline-block;
+      width: 180px;
+      margin: 5px;
+    }
+  }
+}
+
+.mlt-list {
+  vertical-align: top;
+  h3  {
+    margin: 10px;
+    font-size: 1em;
+  }
+  li {
+    border: 1px solid #ccc;
+    width: 170px;
+    min-height: 225px;
+    text-align: center;
+    margin: 10px 0 10px;
+    list-style: none;
+  }
+  img {
+    margin: 10px;
+    max-width: 140px;
+  }
+}

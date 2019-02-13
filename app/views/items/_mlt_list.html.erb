@@ -1,0 +1,8 @@
+<% if !@mlt_items.empty? %>
+  <h2>Related Items</h2>
+  <ul class="mlt-list">
+    <% @mlt_items.each do |mlt_item| %>
+      <%= render 'mlt', item: mlt_item %>
+    <% end %>
+  </ul>
+<% end %>

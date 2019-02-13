@@ -1,0 +1,6 @@
+<li>
+  <%= link_to item_path(item.index_id), alt: item.field_title.value, title: item.field_title.value do %>
+    <%= image_tag Umedia::Thumbnail::Url.new(item: item).to_s, class: "img-thumbnail" %>
+    <h3 class="list-group-item-heading"><%= item.field_title.value %></h3>
+  <% end %>
+</li>

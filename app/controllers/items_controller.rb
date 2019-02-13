@@ -16,6 +16,7 @@ class ItemsController < SearchesController
     @page_count = page_count
     @item ||= ItemPresenter.new(item, view_context)
     @sidebar ||= ViewerSidebarPresenter.new(children, view_context)
+    @mlt_items = mlt_items
   end
 
   def show_sidebar_slider
@@ -24,6 +25,10 @@ class ItemsController < SearchesController
 
   def page_count
     @page_count ||= item.field_page_count.value
+  end
+
+  def mlt_items
+    Umedia::MltSearch.new(id: id).items
   end
 
   def item

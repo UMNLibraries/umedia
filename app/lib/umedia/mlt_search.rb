@@ -19,11 +19,11 @@ module Umedia
     private
 
     def matches
-      response.fetch('match', {}).fetch('docs', [])
+      response.fetch('response', {}).fetch('docs', [])
     end
 
     def response
-      client.new.solr.get 'mlt', params: { q: "id:\"#{id}\"" }
+      client.new.solr.get 'mlt', params: { rows: 5, q: "id:\"#{id}\"" }
     end
   end
 end
