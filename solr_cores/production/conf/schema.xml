@@ -129,14 +129,14 @@
         <field name="super_collection_names" type="text_en" indexed="true" stored="true" multiValued="true"/>
         <field name="super_collection_set_specs" type="string" indexed="true" stored="true" multiValued="true"/>
         <field name="super_collection_descriptions" type="text_en" indexed="true" stored="true" multiValued="true"/>
-        <field name="title" type="text_en" indexed="true" stored="true"  />
+        <field name="title" type="text_en" indexed="true" stored="true" termVectors="true" />
         <field name="title_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false" />
         <field name="title_alternative" type="text_en" indexed="true" stored="true" />
         <field name="description" type="text_en" indexed="true" stored="true" />
         <field name="date_created" type="text_en_splitting_tight" indexed="true" stored="true" multiValued="true" />
         <field name="date_created_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false" />
         <field name="historical_era" type="string" indexed="true" stored="true"  multiValued="true" />
-        <field name="creator" type="text_en" indexed="true" stored="true"  multiValued="true" />
+        <field name="creator" type="text_en" indexed="true" stored="true"  multiValued="true" termVectors="true" />
         <field name="creator_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false" />
         <field name="contributor" type="text_en" indexed="true" stored="true" multiValued="true" />
         <field name="publisher" type="text_en" indexed="true" stored="true" />
@@ -148,8 +148,8 @@
         <field name="format_name" type="string" indexed="true" stored="true"  multiValued="true" />
         <field name="dimensions" type="string" indexed="true" stored="true"  />
         <!-- Topics -->
-        <field name="subject" type="text_en" indexed="true" stored="true"  multiValued="true" />
-        <field name="subject_fast" type="text_en" indexed="true" stored="true"  multiValued="true" />
+        <field name="subject" type="text_en" indexed="true" stored="true"  multiValued="true" termVectors="true" />
+        <field name="subject_fast" type="text_en" indexed="true" stored="true"  multiValued="true" termVectors="true" />
         <field name="language" type="string" indexed="true" stored="true"  multiValued="true" />
         <!-- Geographic Details -->
         <field name="city" type="string" indexed="true" stored="true"  multiValued="true" />

@@ -929,6 +929,21 @@
 
   </requestHandler>
 
+  <requestHandler name="/mlt" class="solr.MoreLikeThisHandler">
+    <lst name="defaults">
+       <str name="qf">
+          title
+          subject
+          subject_fast
+          creator
+       </str>
+       <!--The fields to use for similarity-->
+      <str name="mlt.fl">title,subject,subject_fast,creator</str>
+      <int name="mlt.mintf">1</int>
+      <int name="mlt.mindf">1</int>
+    </lst>
+  </requestHandler>
+
   <!-- SearchHandler
 
        http://wiki.apache.org/solr/SearchHandler
