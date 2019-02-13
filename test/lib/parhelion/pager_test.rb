@@ -25,6 +25,9 @@ module Parhelion
         Pager.new(current_page: 1, rows: 50, result_count: 100).next_page.must_equal(2)
         Pager.new(current_page: 2, rows: 50, result_count: 100).next_page.must_equal(2)
 
+        Pager.new(current_page: 1, rows: 50, result_count: 2).end_page.must_equal(2)
+        Pager.new(current_page: 1, rows: 50, result_count: 100).end_page.must_equal(50)
+
         Pager.new(current_page: 1, rows: 50, result_count: 100).previous?.must_equal(false)
         Pager.new(current_page: 2, rows: 50, result_count: 100).previous?.must_equal(true)
         Pager.new(current_page: 1, rows: 50, result_count: 100).next?.must_equal(true)

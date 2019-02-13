@@ -23,13 +23,16 @@ module Parhelion
       @ranger        = range_klass.new(last: last_page)
     end
 
-
     def start_page
       current_page == 1 ? 1 : current_page + rows
     end
 
     def end_page
-      current_page == 1 ?  rows : rows + rows
+      current_page == 1 ? rows_or_fewer : rows + rows
+    end
+
+    def rows_or_fewer
+      result_count < rows ? result_count : rows
     end
 
     def previous_page
