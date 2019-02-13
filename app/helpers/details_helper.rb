@@ -48,7 +48,7 @@ module DetailsHelper
         label: 'Collection Information',
         fields: [
           { name: 'parent_collection_name', facet: true  },
-          { name: 'contributing_organization_name', facet: true },
+          { name: 'contributing_organization_name_s', facet: true },
           { name: 'contact_information' },
           { name: 'fiscal_sponsor' }
         ]

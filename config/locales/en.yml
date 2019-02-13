@@ -86,7 +86,7 @@ en:
         projection: 'Projection'
         scale: 'Scale'
         parent_collection_name: 'Parent Collection'
-        contributing_organization_name: 'Contributing Organization'
+        contributing_organization_name_s: 'Contributing Organization'
         contact_information: 'Contact Information'
         fiscal_sponsor: 'Fiscal Sponsor'
         local_identifier: 'Local Identifier'
