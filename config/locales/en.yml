@@ -87,7 +87,7 @@ en:
         scale: 'Scale'
         parent_collection_name: 'Parent Collection'
         contributing_organization_name: 'Contributing Organization'
-        contact_information: 'Contact Informat'
+        contact_information: 'Contact Information'
         fiscal_sponsor: 'Fiscal Sponsor'
         local_identifier: 'Local Identifier'
         barcode: 'Barcode Identifier'
