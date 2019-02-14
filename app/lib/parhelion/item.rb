@@ -52,6 +52,15 @@ module Parhelion
       doc_hash == other.doc_hash
     end
 
+    def to_h
+      doc_hash.merge(
+        'type' => type,
+        'collection' => collection,
+        'is_compound' => is_compound?,
+        'parent_id' => parent_id
+      )
+    end
+
     private
 
     def iiif_info

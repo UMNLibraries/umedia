@@ -3,7 +3,21 @@ class SearchesController < ApplicationController
     response.headers["Content-Language"] = I18n.locale.to_s
     @facet_fields_all = facet_fields_all
     @hide_header_search_link = true
-    render locals: {
+
+    respond_to do |format|
+      format.html { render locals: locals }
+      format.json { render locals: {rows: json_response} }
+    end
+  end
+
+  private
+
+  def json_response
+    item_list.map { |item| Umedia::ItemWithThumb.new(item: item).to_h }
+  end
+
+  def locals
+    {
       item_list: item_list,
       facet_list: facet_list,
       search_params: search_params.to_h,
@@ -11,8 +25,6 @@ class SearchesController < ApplicationController
       pager: pager
     }
   end
-
-  private
 
   def search
     @search ||= Umedia::Search.new(
@@ -99,6 +111,6 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.permit(:q, :page, :rows, :sort, facets: facet_fields_all.map { |facet| {facet => []} })
+    params.permit(:json, :q, :page, :rows, :sort, facets: facet_fields_all.map { |facet| {facet => []} })
   end
 end
