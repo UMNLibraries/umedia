@@ -48,36 +48,48 @@ ul.image-download {
   margin: 125px 0 50px;
 }
 
-.mlt-inline ul > * {
-  vertical-align: top;
+.mlt {
+  clear: both;
+  margin-bottom: 15px;
 }
-.mlt-inline {
-  .mlt-list {
-    width: 100%;
-    li {
-      display:inline-block;
-      width: 180px;
-      margin: 5px;
-    }
-  }
+
+.mlt ul > * {
+  vertical-align: top;
 }
 
 .mlt-list {
+  a {
+    border: 1px solid #fff;
+    display: block;
+    background-image: url(asset_path('dust_scratches.png'));
+    height: 200px;
+  }
+  a:hover {
+    border: 1px solid #ddd;
+  }
+
+  width: 100%;
+  ul > * {
+    vertical-align: top;
+  }
   vertical-align: top;
   h3  {
     margin: 10px;
     font-size: 1em;
   }
   li {
-    border: 1px solid #ccc;
-    width: 170px;
-    min-height: 225px;
+    display:inline-block;
+    width: 160px;
+    margin: 5px;
     text-align: center;
-    margin: 10px 0 10px;
     list-style: none;
   }
   img {
     margin: 10px;
     max-width: 140px;
   }
+}
+
+.viewer-data {
+  border-bottom: 1px solid #ccc;
 }

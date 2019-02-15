@@ -3,11 +3,13 @@
 module Umedia
   # Umedia search configuration
   class MltSearch
-    attr_reader :id, :client, :item_klass
+    attr_reader :id, :client, :item_klass, :rows
     def initialize(id: '',
+                   rows: 5,
                    client: SolrClient,
                    item_klass: Parhelion::Item)
       @id     = id
+      @rows   = rows
       @client = client
       @item_klass = item_klass
     end
@@ -23,7 +25,7 @@ module Umedia
     end
 
     def response
-      client.new.solr.get 'mlt', params: { rows: 5, q: "id:\"#{id}\"" }
+      client.new.solr.get 'mlt', params: { rows: rows, q: "id:\"#{id}\"" }
     end
   end
 end

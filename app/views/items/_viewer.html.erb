@@ -11,12 +11,13 @@
     <% if sidebar.show? %>
         <div id="item-content" class="col-md-8">
           <div id="viewer-display"></div>
-          <%= render partial: 'metadata' %>
         </div>
         <div id="viewer-sidebar" class="col-md-4">
           <%= render 'sidebar' %>
-          <%= render 'mlt_list' %>
         </div>
+
+         <%= render partial: 'mlt_list' %>
+          <%= render partial: 'metadata' %>
     <% else %>
       <div id="viewer-display" class="col-md-12"></div>
     <% end %>
@@ -28,5 +29,5 @@
     <%= render 'download', downloads: item.download_config %>
   </div>
 <% end %>
- <div class="mlt-inline"><%= render partial: 'mlt_list' if !sidebar.show? %></div>
+ <%= render partial: 'mlt_list' if !sidebar.show? %>
  <%= render partial: 'metadata' if !sidebar.show?  %>

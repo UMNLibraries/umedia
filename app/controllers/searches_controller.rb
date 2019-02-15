@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       format.html { render locals: locals }
-      format.json { render locals: {rows: json_response} }
+      format.json { render locals: { rows: json_response} }
     end
   end
 

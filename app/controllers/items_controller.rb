@@ -28,7 +28,7 @@ class ItemsController < SearchesController
   end
 
   def mlt_items
-    Umedia::MltSearch.new(id: id).items
+    Umedia::MltSearch.new(id: id, rows: 6).items
   end
 
   def item
