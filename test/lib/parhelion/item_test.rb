@@ -5,7 +5,7 @@ module Parhelion
       # Usually, we don't request height/width of a parent
       it 'produces correct height and width of zero' do
         VCR.use_cassette('item_test_p16022coll142:147') do
-          doc_hash = { 'id' => 'p16022coll142:147', 'page_count' => 50 }
+          doc_hash = { 'id' => 'p16022coll142:147', 'page_count' => 50, 'viewer_type' => 'COMPOUND_PARENT_NO_VIEWER' }
           item = Item.new(doc_hash: doc_hash)
           item.height.must_equal(0)
           item.width.must_equal(0)

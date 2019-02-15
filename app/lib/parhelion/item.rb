@@ -45,7 +45,7 @@ module Parhelion
     end
 
     def is_compound?
-      doc_hash.fetch('page_count', 1) > 1
+      doc_hash['viewer_type'] == 'COMPOUND_PARENT_NO_VIEWER'
     end
 
     def ==(other)
