@@ -79,6 +79,14 @@ $sidebar-height: 1000px;
 #sidebar {
   overflow: hidden;
   overflow-y: hidden;
+  .list-group-item.active {
+    background-color: #4B0918;
+    border-color: #780F22;
+  }
+
+  .input-group {
+    width: 300px;
+  }
 }
 
 .child-searches {

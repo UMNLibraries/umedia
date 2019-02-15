@@ -4,13 +4,13 @@
       <%= f.text_field :q,
           id: :q,
           value: params[:query],
-          class: 'form-control',
+          class: 'form-control child-pages-search-text',
           placeholder: 'Search Pages For...',
           'data-target': 'viewer.searchText',
           'data-action': 'onkeypress->viewer#returnSearch'
           %>
       <span class="input-group-btn">
-        <%= f.button 'Search', class: 'btn btn-info', 'data-action': 'click->viewer#search' %>
+        <%= f.button 'Search', class: 'btn btn-umn-maroon search-btn', 'data-action': 'click->viewer#search' %>
       </span>
     </div>
   <% end %>
