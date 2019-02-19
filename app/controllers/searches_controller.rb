@@ -53,7 +53,7 @@ class SearchesController < ApplicationController
   def facet_config
     Umedia::FacetConfig.new(
       {
-        params: facet_params,
+        params: legal_facet_params,
         fields: facet_fields_all
       }
     ).config
@@ -65,6 +65,10 @@ class SearchesController < ApplicationController
 
   def sort_param
     search_params[:sort]
+  end
+
+  def legal_facet_params
+    facet_params.select { |field, value| facet_fields_all.include? field }
   end
 
   def facet_params
