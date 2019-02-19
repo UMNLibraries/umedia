@@ -7,6 +7,13 @@ namespace :thumbnails do
       Umedia::CacheThumbnailsWorker.perform_async(docs)
     end
   end
+
+  desc "delete thumbnails by search"
+  task :delete, [:search_params_string] => [:environment] do |task, args|
+    ThumbDeleterWorker.perform_async('ul-nailer-umedia-nails',
+                                     args[:search_params_string],
+                                     1)
+  end
 end
 
 def thumbnails(q: '*:*', page: 0, &block)

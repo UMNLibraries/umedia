@@ -17,6 +17,22 @@ class ItemsController < SearchesController
     @item ||= ItemPresenter.new(item, view_context)
     @sidebar ||= ViewerSidebarPresenter.new(children, view_context)
     @mlt_items = mlt_items
+    respond_to do |format|
+      format.html
+      format.json { @json_item = json_item }
+    end
+  end
+
+  def json_item
+    item_with_thumb.merge(children: children_with_thumbs)
+  end
+
+  def item_with_thumb
+    Umedia::ItemWithThumb.new(item: @item).to_h
+  end
+
+  def children_with_thumbs
+    children.items.map { |child| Umedia::ItemWithThumb.new(item: child).to_h }
   end
 
   def show_sidebar_slider
@@ -38,7 +54,7 @@ class ItemsController < SearchesController
   end
 
   def children
-    @children ||= search(search_params.merge(q: items_params.fetch(:query, '')))
+    @children ||= search(search_params.merge(q: items_params.fetch(:query, ''), rows: 5000))
   end
 
   def search(params)
