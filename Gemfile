@@ -77,3 +77,6 @@ gem 'fontello_rails_converter'
 gem 'webpacker', '~> 3.5'
 gem 'lograge'
 gem 'rinku'
+
+# Allows us to delete thumbs
+gem 'aws-sdk'
