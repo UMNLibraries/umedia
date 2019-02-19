@@ -34,9 +34,17 @@ class FacetsController < ApplicationController
         offset: offset,
         limit:  facet_params.fetch(:facet_limit, 20).to_i,
         sort:   facet_params.fetch(:facet_sort, 'count'),
-        fields: [facet_params.fetch(:facet_field, :subject_ss)]
+        fields: [legal_field]
       }
     )
+  end
+
+  def legal_field
+    facet_fields_all.include?(facet_field.to_sym) ? facet_field : :subject_ss
+  end
+
+  def facet_field
+    facet_params.fetch(:facet_field, :subject_ss)
   end
 
   def offset
