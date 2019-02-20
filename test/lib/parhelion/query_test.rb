@@ -50,5 +50,11 @@ module Parhelion
            .fetch('ferb',  '')
            .must_equal('')
     end
+
+    it 'knows how to become a hash' do
+      Query.new(params: {'foo' => 'bar'})
+           .to_h
+           .must_equal({"foo"=>"bar"})
+    end
   end
 end

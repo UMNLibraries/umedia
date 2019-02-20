@@ -28,5 +28,9 @@ module Parhelion
     def active?
       !params.empty?
     end
+
+    def to_h
+      params
+    end
   end
 end
