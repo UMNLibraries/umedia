@@ -31,3 +31,9 @@
 <% end %>
  <%= render partial: 'mlt_list' if !sidebar.show? %>
  <%= render partial: 'metadata' if !sidebar.show?  %>
+
+<%=  link_to '', item_path(id: sanitize(params['id']), :format => :json ),
+      class: 'icon-json',
+      alt: 'JSON Format',
+      :rel => 'nofollow',
+      title: 'See item the JSON format' %>

@@ -59,3 +59,10 @@
     <%= render 'pager', pager: pager, search_params: search_params, prev_next_pos: 'last', data_action: '' %>
   </div>
 </div>
+
+<%= link_to '',
+    searches_path({ format: :json }.merge(query(search_params).to_h)),
+    class: 'icon-json',
+    alt: 'JSON Results',
+    :rel => 'nofollow',
+    title: 'See search results in the JSON format' %>
