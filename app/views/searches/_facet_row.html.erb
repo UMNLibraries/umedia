@@ -6,4 +6,5 @@
 %>
 <%= link_to raw("#{facet_row.to_s} (#{facet_row.count}) #{remove}"),
             searches_path(facet_link.link_params),
+            :rel => 'nofollow',
             class: remove_class %>
