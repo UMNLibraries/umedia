@@ -1,6 +1,18 @@
 <% if facet.display? %>
   <div class="panel panel-default">
-    <div class="panel-heading"><%= heading %></div>
+    <div class="panel-heading">
+      <% if  heading == 'Special Projects' %>
+        <div class="featured-collection"
+             data-toggle="tooltip"
+             alt="Special Project"
+             title="Large multi-collection projects often focusing on a similar theme or topic.">Special Projects
+             <span class="icon-help-circled"></span>
+             </div>
+      <% else %>
+        <%= heading %>
+      <% end %>
+
+    </div>
     <div class="panel-body">
       <ul>
       <% facet.each do |facet_row| %>
