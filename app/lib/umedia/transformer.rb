@@ -109,7 +109,7 @@ module Umedia
 
     class LetterSortFormatter
       def self.format(value)
-        value.gsub(/([^a-z]*)/i, '').downcase
+        value.gsub(/([^a-z|0-9]*)/i, '').downcase
       end
     end
 
