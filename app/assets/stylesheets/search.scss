@@ -41,3 +41,18 @@
 .icon-json {
   font-size: 3em;
 }
+
+.facets-toggle {
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width : 1024px) {
+  #search-facets {
+    .collapse {
+      display: block !important;
+    }
+    .facets-toggle {
+      display: none;
+    }
+  }
+}

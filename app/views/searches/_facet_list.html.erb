@@ -1,5 +1,23 @@
-<% facet_list.map do |facet| %>
-  <% if sidebar_facet_fields.include?(facet.name) %>
-    <%= render 'facet', facet: facet, heading: I18n.t("search.facets.#{facet.name}"), search_params: search_params %>
-  <% end %>
-<% end %>
+<div id="search-facets">
+
+  <div>
+    <button type="button" class="facets-toggle" data-toggle="collapse" data-target="#facet-panel-collapse">
+      <span class="sr-only">Toggle facets</span>
+      <svg aria-hidden="true" class="glyph glyph-menu" role="presentation" viewBox="0 0 32 32">
+      <title>Facets</title>
+      <desc>Toggle facets</desc>
+      <path d="M2 6h28v6h-28zM2 14h28v6h-28zM2 22h28v6h-28z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div id="facet-panel-collapse" class="collapse">
+    <% facet_list.map do |facet| %>
+      <% if sidebar_facet_fields.include?(facet.name) %>
+        <%= render 'facet', facet: facet, heading: I18n.t("search.facets.#{facet.name}"), search_params: search_params %>
+      <% end %>
+    <% end %>
+</div>
+</div>
+
+
