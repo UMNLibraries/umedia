@@ -12,9 +12,9 @@ class HomeTest < ActiveSupport::TestCase
       visit '/home'
       sleep 1
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
-      click_link 'AIDS Poster Collection'
+      click_link 'Cuneiform Collection'
       sleep 1
-      page.must_have_content('AIDS hat ein Gesicht')
+      page.must_have_content('Cuneiform Inscriptions: UM 12')
     end
     it 'nex/prev and collections are clickable' do
       Capybara.current_driver = :selenium
@@ -22,9 +22,9 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[3]/a').click
-      click_link 'GLBT Pride Poster Collection'
+      click_link 'Bisbila University High School Yearbook'
       sleep 1
-      page.must_have_content('Fruit Float 2000!')
+      page.must_have_content('Bisbila, Student Yearbook, 1963')
     end
   end
 
@@ -32,7 +32,7 @@ class HomeTest < ActiveSupport::TestCase
     it 'displays an all items search' do
       visit '/home'
       find(:xpath, '//*[@id="home-controller-data"]/div[2]/form/div/span/button').click
-      page.must_have_content('AIDS Memorial Quilt')
+      page.must_have_content('Hymns for Sunday schools : selected from various authors')
     end
   end
 
@@ -41,7 +41,7 @@ class HomeTest < ActiveSupport::TestCase
       visit '/home'
       fill_in 'q', with: 'love'
       find(:xpath, '//*[@id="home-controller-data"]/div[2]/form/div/span/button').click
-      page.must_have_content('The Gift of Love')
+      page.must_have_content("Deja's Love Boat")
     end
   end
 end
