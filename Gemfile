@@ -35,6 +35,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and
   # get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Allows us to delete thumbs
+  gem 'aws-sdk'
 end
 
 group :development do
@@ -51,6 +53,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
+  gem 'simplecov'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -77,6 +80,3 @@ gem 'fontello_rails_converter'
 gem 'webpacker', '~> 3.5'
 gem 'lograge'
 gem 'rinku'
-
-# Allows us to delete thumbs
-gem 'aws-sdk'
