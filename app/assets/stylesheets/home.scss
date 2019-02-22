@@ -34,6 +34,12 @@
   background-color: rgba(255, 255, 255, 0.85);
 }
 
+@media (max-width: 768px) {
+  .home-search-description {
+    width: 100%;
+  }
+}
+
 .panel-default.is-super-collection-true {
   border: 1px solid #5C0C1C !important;
 

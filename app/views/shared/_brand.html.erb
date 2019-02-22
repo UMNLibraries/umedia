@@ -1,11 +1,13 @@
 <div class="navbar-brand">
-  <span id="logo">
-    <%= image_tag 'blockm.svg',
-                  id: 'blockm',
-                  alt: "University of Minnesota"%>
-  </span>
-  <div id="branding">
-    <h2 id="libraries"><a href="/">Libraries</a></h2>
-    <h1 id="application"><a href="/">UMedia</a></h1>
-  </div>
+  <%= link_to root_path do %>
+    <span id="logo">
+      <%= image_tag 'blockm.svg',
+                    id: 'blockm',
+                    alt: "University of Minnesota"%>
+    </span>
+    <div id="branding">
+      <h2 id="libraries"><a href="/">Libraries</a></h2>
+      <h1 id="application"><a href="/">UMedia</a></h1>
+    </div>
+  <% end %>
 </div>

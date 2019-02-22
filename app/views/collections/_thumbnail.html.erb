@@ -2,15 +2,15 @@
 
 <div class="row">
    <% if thumb_3 %>
-    <div class="col-sm-9 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
-    <div class="col-sm-3 small-thumb-col">
+    <div class="col-xs-9 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
+    <div class="col-xs-3 small-thumb-col">
       <div class="thumb thumb-upper-right" style="background-image: url(<%= thumb_2['cdn'] %>);">&nbsp;</div>
       <div class="thumb thumb-lower-right" style="background-image: url(<%= thumb_3['cdn'] %>);">&nbsp;</div>
     </div>
   <% elsif thumb_2 %>
-    <div class="col-sm-8 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
-    <div class="col-sm-4 thumb" style="background-image: url(<%= thumb_2['cdn'] %>);">&nbsp;</div>
+    <div class="col-xs-8 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
+    <div class="col-xs-4 thumb" style="background-image: url(<%= thumb_2['cdn'] %>);">&nbsp;</div>
   <% else %>
-    <div class="col-sm-12 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
+    <div class="col-xs-12 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
   <% end %>
 </div>
