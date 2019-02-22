@@ -4,6 +4,33 @@
     margin-top: 15px;
   }
 
+  @media (max-width: 400px) {
+    .navbar-brand {
+      width: 175px;
+      float: left;
+      margin: 25px 0 -15px;
+      #blockm {
+        bottom: 40px;
+        height: 60px;
+        width: 60px;
+        margin-right: 10px;
+      }
+
+      #logo {
+        width: 50px;
+      }
+      #libraries {
+        font-size: 10pt;
+        margin-left: 5px
+      }
+
+      #application {
+        font-size: 15pt;
+        margin-left: 5px
+      }
+    }
+  }
+
   .navbar {
     border-radius: 0;
   }
@@ -11,7 +38,7 @@
   #logo {
     display: inline-block;
     float: left;
-    width: auto !important;
+    width: auto;
 
     // FIXME
     margin-top: -25px;
@@ -27,6 +54,25 @@
       }
     }
   }
+
+
+  .pagination > .active > a,
+  .nav.umn-nav-pills > .active > a  {
+    background-color: #7a0019;
+    border-color: #7a0019;
+  }
+  .pagination > .active > a:hover,
+  .nav.umn-nav-pills > li > a:hover,
+  .nav.umn-nav-pills > li.active > a:hover {
+    background-color: #47000f;
+    border-color: #0a0002;
+    color: #ffffff;
+  }
+}
+
+
+.navbar-brand {
+  margin-top: 15px;
 }
 
 body {
@@ -48,26 +94,9 @@ body {
   border-top-left-radius: 0 !important;
 }
 
-.umedia {
-  .pagination > .active > a,
-  .nav.umn-nav-pills > .active > a  {
-    background-color: #7a0019;
-    border-color: #7a0019;
-  }
-  .pagination > .active > a:hover,
-  .nav.umn-nav-pills > li > a:hover,
-  .nav.umn-nav-pills > li.active > a:hover {
-    background-color: #47000f;
-    border-color: #0a0002;
-    color: #ffffff;
-  }
-}
-
 .citation {
   margin-bottom: 300px;
 }
-
-// HEADER
 
 #blockm {
   bottom: 40px;
@@ -75,6 +104,7 @@ body {
   width: 80px;
   margin-right: 10px;
 }
+
 header .navbar-brand img {
     height: 32px;
 }
