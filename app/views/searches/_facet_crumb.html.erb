@@ -6,17 +6,22 @@
     end
   %>
 
-  <span class="btn-group appliedFilter constraint filter filter-type_ssi">
-    <span class="constraint-value btn btn-sm btn-default btn-disabled">
-        <span class="filterName"><%= I18n.t("search.facets.#{name}") %></span>
-        <span class="filterValue" title="<%= facet_row.to_s %>"><%= facet_row.to_s %></span>
-    </span>
+    <%= link_to searches_path(facet_link.link_params),
+      alt: "Remove facet constraint: #{facet_name_intl(name)}",
+      title: "Remove facet constraint: #{facet_name_intl(name)}" do %>
+        <span class="btn-group appliedFilter constraint filter filter-type_ssi">
+        <span class="constraint-value btn btn-sm btn-default btn-disabled">
+            <span class="filterName"><%= facet_name_intl(name) %></span>
+            <span class="filterValue" title="<%= facet_row.to_s %>"><%= facet_row.to_s %></span>
+        </span>
+      <% end %>
 
       <%= link_to searches_path(facet_link.link_params),
-                  class: "btn btn-default btn-sm remove dropdown-toggle remove-crumb" do %>
+          alt: "Remove constraint #{name} #{facet_name_intl(name)}",
+          title: "Remove constraint #{name} #{facet_name_intl(name)}",
+          class: "btn btn-default btn-sm remove dropdown-toggle remove-crumb" do %>
         <span class="glyphicon glyphicon-remove"></span>
-        <span class="sr-only">Remove constraint <%= name %>: <%= I18n.t("search.facets.#{name}")%></span>
-
+        <span class="sr-only">Remove constraint <%= name %>: <%= facet_name_intl(name) %></span>
       <% end %>
   </span>
 <% end %>

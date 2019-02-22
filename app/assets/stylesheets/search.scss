@@ -56,3 +56,46 @@
     }
   }
 }
+
+@media only screen and (max-width : 475px) {
+  .constraint-value {
+    display: block;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+  }
+}
+
+@media only screen and (max-width : 400px) {
+  .constraint-value {
+    display: block;
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width : 350px) {
+  .constraint-value {
+    display: block;
+    max-width: 150px;
+  }
+}
+
+.search-breadcrumbs {
+  .btn  {
+    margin-right: 0;
+    border-radius: 0;
+  }
+
+  .constraint-value {
+    margin-right: -5px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .remove-crumb {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}

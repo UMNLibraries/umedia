@@ -56,4 +56,8 @@ module SearchesHelper
   def truncate_field(value, truncate_it)
     truncate_it ? truncate(value, length: 350) : value
   end
+
+  def facet_name_intl(name)
+    I18n.t("search.facets.#{name}")
+  end
 end
