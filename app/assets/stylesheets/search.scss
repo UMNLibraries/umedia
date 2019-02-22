@@ -46,7 +46,7 @@
   margin-bottom: 5px;
 }
 
-@media only screen and (min-width : 1024px) {
+@media only screen and (min-width : 992px) {
   #search-facets {
     .collapse {
       display: block !important;
@@ -64,7 +64,6 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
   }
 }
 
