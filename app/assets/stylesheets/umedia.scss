@@ -19,7 +19,6 @@
     }
     .navbar-brand {
       margin: 0;
-
       width: 180px;
       float: left;
       #blockm {
@@ -160,6 +159,16 @@ h2#libraries a, h3.from-our-collections {
 #libraries a, #libraries a:hover {
   color: #ffcc33 !important;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  // TODO: figure out a better way of handling the drop-down menu on small screens. E.g. use a mobile toggle menu
+  .navbar-umn-maroon .nav > li.open > a, .navbar-umn-maroon .nav > li > a:hover, .navbar-umn-maroon .nav > li.open > a:hover, .navbar-umn-maroon .nav > li > a:focus, .navbar-umn-maroon .nav > li.open > a:focus, .navbar-umn-maroon .nav > li.open > a:active {
+      background-color: #5b0013;
+  }
+  .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
+    background-color: #5b0013;
+  }
 }
 
 @media (min-width: 768px) {
