@@ -80,7 +80,7 @@ module Parhelion
     end
 
     def infix_length
-      4
+      2
     end
 
     private
