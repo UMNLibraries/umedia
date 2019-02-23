@@ -35,7 +35,7 @@ class SolrClient
     solr.get 'replication', params: {
       command: 'backup',
       location: ENV['SOLR_BACKUP_LOCATION'],
-      'numberToKeep' => number_to_keep
+      numberToKeep: number_to_keep
     }
   end
 
