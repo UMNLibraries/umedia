@@ -1,9 +1,9 @@
 version: '2'
 services:
   solr:
-    image: solr:7.3.0
+    image: umedia_solr:0.1.0
     volumes:
-      - ./solr_cores:/opt/solr/server/solr/cores
+      - ./snapshots:/snapshots
   app:
     build: .
     env_file:
