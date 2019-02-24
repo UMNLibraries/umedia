@@ -6,9 +6,3 @@ RUN touch /opt/solr/server/solr/cores/core/conf/core.properties
 RUN echo 'name=core' > /opt/solr/server/solr/cores/core/core.properties
 RUN curl -Lo conf.tar.gz 'https://github.com/UMNLibraries/umedia_solr_conf/archive/v0.1.0.tar.gz'
 RUN tar -xzvf conf.tar.gz -C ./server/solr/cores/core/conf --strip-components 1
-
-# Until we find a place to publicly host these backups
-# These are too large to keep S3 billing cheap, so maybe
-# we can just throw them on an OIT VM and server them with nginx
-RUN mkdir /opt/solr/server/solr/cores/core/snapshots
-COPY ./snapshots/ /opt/solr/server/solr/cores/core/snapshots
