@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .home-hero {
   height: 500px;
   width: 100%;
@@ -16,6 +15,7 @@
 #collections-home {
   // Prevents layout from wiggling around when data is being populated
   min-height: 1500px;
+  margin-top: 250px;
 }
 
 .home-search{
@@ -57,6 +57,55 @@
   }
 }
 
-#collections-home {
-  margin-top: 320px;
+@media (max-width: 375px) {
+  .collection-controls {
+    .umedia-pager {
+      .marker,
+      .page {
+        display: none;
+      }
+    }
+  }
+
+  .collections-gallery .collection,
+  .filter-form .input-group-md {
+    width: 300px;
+  }
 }
+
+@media (max-width: 425px) {
+  #home-controller-data {
+    .home-hero {
+      height: 150px !important;
+    }
+    .home-search-description {
+      display: none;
+    }
+  }
+  #collections-home {
+    margin-top: 50px;
+  }
+  .home-search {
+    margin-top: 25px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .home-hero {
+    background-position: center bottom;
+  }
+  #home-controller-data {
+    .home-hero {
+      height: 200px;
+    }
+    .home-search-description {
+      display: none;
+    }
+  }
+
+  h2 {
+    margin-left: 10px;
+  }
+}
+
