@@ -51,33 +51,16 @@ class FacetsController < ApplicationController
     facet_params.fetch(:facet_offset, 0).to_i
   end
 
+  def facet_field_config
+    Umedia::FacetFieldConfig.new
+  end
+
   def facet_fields
-    [
-      :types,
-      :format_name,
-      :date_created_ss,
-      :subject_ss,
-      :creator_ss,
-      :publisher_s,
-      :contributor_ss,
-      :collection_name_s,
-      :super_collection_names_ss,
-      :page_count
-    ]
+    facet_field_config.visible
   end
 
   def facet_fields_hidden
-    [
-      :format_name,
-      :subject_fast_ss,
-      :city,
-      :state,
-      :country,
-      :region,
-      :continent,
-      :parent_collection_name,
-      :contributing_organization_name
-    ]
+    facet_field_config.hidden
   end
 
   def browse?
