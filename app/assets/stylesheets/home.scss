@@ -15,7 +15,6 @@
 #collections-home {
   // Prevents layout from wiggling around when data is being populated
   min-height: 1500px;
-  margin-top: 250px;
 }
 
 .home-search{
@@ -83,7 +82,7 @@
     }
   }
   #collections-home {
-    margin-top: 50px;
+    margin-top: 100px;
   }
   .home-search {
     margin-top: 25px;
@@ -91,7 +90,7 @@
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .home-hero {
     background-position: center bottom;
   }
@@ -104,8 +103,21 @@
     }
   }
 
+  #collections-home {
+    margin-top: 50px;
+  }
+
   h2 {
     margin-left: 10px;
   }
 }
 
+@media (min-width: 1025px) {
+  #collections-home {
+    margin-top: 250px;
+  }
+
+  h2 {
+    margin-left: 10px;
+  }
+}
