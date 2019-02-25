@@ -9,14 +9,18 @@
   }
 
   @media (max-width: 425px) {
-    .thumb {
-      width: 100%;
-      text-align: center;
-      display: block;
-      img.thumbnail {
-        display: inline-block;
+    .search-results {
+      .thumb {
+        width: 100%;
+        text-align: center;
+        display: block;
+        img.thumbnail {
+          display: inline-block;
+        }
       }
     }
+
+
     .navbar-brand {
       margin: 0;
       width: 180px;
