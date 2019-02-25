@@ -24,6 +24,11 @@ $sidebar-height: 1000px;
   margin: 6px 0 10px;
 }
 
+.sidebar-pages {
+  // Override bootstrap col-md-10 padding styles, which break the layout on very small screens
+  padding: 0 !important;
+}
+
 .sidebar-pages-and-slider {
   margin-top: 15px;
 }
