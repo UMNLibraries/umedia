@@ -5,9 +5,9 @@
         <%= render 'searches/prev_next', pager: pager, search_params: search_params if prev_next_pos == 'first' %>
         <% pager.pages.map do |page| %>
           <% if page == pager.marker %>
-            <li class="disabled"><a href="#" onclick="return false;"><%= pager.marker %></a></li>
+            <li class="marker disabled"><a href="#" onclick="return false;"><%= pager.marker %></a></li>
           <% else %>
-            <li class="<%= pager.current_page == page ? 'active' : ''%>">
+            <li class="page <%= pager.current_page == page ? 'active' : ''%>">
               <%= link_to page, query(search_params).merge(page: page), 'data-action' => data_action %>
             </li>
           <% end %>
