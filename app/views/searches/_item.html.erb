@@ -6,7 +6,7 @@
       <div class="col-xs-12">
         <%= link_to item.field_title.value,  item_path(item.index_id, search_params), class: "#{title_icon_class}" %>
       </div>
-      <dl class="item-metadata dl-horizontal dl-invert col-xs-8 col-lg-10">
+      <dl class="item-metadata dl-horizontal dl-invert col-xs-12 col-sm-8 col-lg-10">
         <%= render 'index_field', field: item.field_description, truncated: true %>
         <%= render 'index_field', field: item.field_creator, truncated: false %>
         <%= render 'index_field', field: item.field_contributor, truncated: false %>
