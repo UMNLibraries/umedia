@@ -224,3 +224,11 @@ form.child-search {
 #metadata-area .osd {
   margin-top: 15px;
 }
+
+@media (max-width: 768px) {
+  .details-collections-fields {
+    display: block;
+    max-width: 638px;
+    overflow: scroll;
+  }
+}
