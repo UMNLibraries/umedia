@@ -1,9 +1,9 @@
 
   <%= form_tag searches_path, :method => :get do %>
-  <%= label_tag 'q', 'Search:', style: 'display:none' %>
     <%= raw hidden_facet_values %>
     <%= hidden_field_tag "sort", sanitize(params[:sort]) %>
     <div class="input-group input-group-lg col-md-8">
+      <%= label_tag 'q', 'Search:', style: 'display:none' %>
       <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search UMedia...', value: params[:q] %>
       <span class="input-group-btn">
         <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-umn-maroon search-btn' %>
@@ -16,7 +16,7 @@
               Browse
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="Browse by">
+            <ul class="dropdown-menu" aria-labelledby="search-browse">
               <li><%= link_to 'Collection', facets_path(facet_field: 'collection_name_s', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
               <li><%= link_to 'Type', facets_path(facet_field: 'types', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
               <li><%= link_to 'Format', facets_path(facet_field: 'format_name', facet_sort: 'index', facet_limit: '25', browse: true) %></li>

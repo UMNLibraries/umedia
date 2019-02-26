@@ -1,8 +1,9 @@
 <%= form_tag collections_path, :method => :get, class: 'filter-form', 'data-action' => 'home#search' do %>
-<%= label_tag 'q', 'Filter:', style: 'display:none' %>
   <%= hidden_field_tag "sort", params.fetch(:sort, 'set_spec desc') %>
   <%= hidden_field_tag "page", params.fetch(:page, 1) %>
 <div class="input-group input-group-md">
+
+    <%= label_tag :filter_q, 'Filter:', style: 'display:none' %>
     <%= text_field_tag :filter_q, params[:filter_q], class: 'form-control', placeholder: 'Filter Collections...', value: params[:filter_q], 'data-action' => 'home#search' %>
     <span class="input-group-btn">
       <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Filter'), :name => 'collection_filter', class: 'btn btn-umn-maroon search-btn', 'data-action' => 'home#search' %>

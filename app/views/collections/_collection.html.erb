@@ -3,7 +3,7 @@
   <div class="panel-body">
     <% thumbs = (collection['collection_thumbnails']) ? JSON.parse(collection['collection_thumbnails']) : [] %>
     <%=
-      link_to collection_path(collection) do
+      link_to collection_path(collection), 'aria-hidden' => true do
         render 'thumbnail', thumbnails: thumbs, collection: collection
       end
     %>
@@ -22,7 +22,7 @@
              alt="Special Project"
              title="Large multi-collection projects often focusing on a similar theme or topic.">Special Projects
              <span class="icon-help-circled"></span>
-             </div>
+        </div>
       <% end %>
   </div>
 </div>

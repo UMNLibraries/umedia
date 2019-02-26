@@ -1,5 +1,7 @@
 <% thumb_1, thumb_2, thumb_3 = thumbnails%>
-
+<span class="hidden">
+    Featured Collection Image for collection for collection <%= collection['contributing_organization_name'] %>
+</span>
 <div class="row">
    <% if thumb_3 %>
     <div class="col-xs-9 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
