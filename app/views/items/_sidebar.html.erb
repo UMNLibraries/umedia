@@ -1,6 +1,7 @@
 <div id="sidebar">
   <%= form_with url: '/child_search', class: 'child-search', method: :get, local: true do |f| %>
     <div class="input-group">
+      <%= label_tag 'q', 'Search:', class: 'hidden' %>
       <%= f.text_field :q,
           id: :q,
           value: params[:query],
@@ -17,6 +18,8 @@
 
   <div class="col-md-12 sidebar-pages-and-slider">
 
+
+    <%= label_tag 'sidebar-page-num', 'Page:', class: 'hidden' %>
     <% if sidebar.display_num? && @show_sidebar_slider %>
       <input type="text" id="sidebar-page-num" readonly>
     <% elsif !@show_sidebar_slider %>

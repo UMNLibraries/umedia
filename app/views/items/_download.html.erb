@@ -1,6 +1,8 @@
 <ul class="image-download">
   <li class="dropdown">
-    <a class="dropdown-toggle" id="image-download-dropdown" role="button" data-toggle="dropdown" alt="download image" title="download image" href="#"><span class="glyphicon glyphicon-download"></span></b></a>
+    <a class="dropdown-toggle" id="image-download-dropdown" role="button" data-toggle="dropdown" alt="download image" title="download image" href="#"><span class="glyphicon glyphicon-download"></span></b>
+        <span class="hidden">Display Downloads</span>
+    </a>
     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="image-download-dropdown">
       <% downloads.urls.map do |download| %>
         <li role="presentation">
