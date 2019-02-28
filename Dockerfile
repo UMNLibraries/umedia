@@ -1,4 +1,4 @@
-FROM ruby:2.5.1
+FROM ruby:2.6.1
 LABEL maintainer="fenne035@umn.edu"
 
 # Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
@@ -24,9 +24,5 @@ RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 # Add bundle entry point to handle bundle cache
 
-ENV BUNDLE_PATH=/bundle \
-    BUNDLE_BIN=/bundle/bin \
-    GEM_HOME=/bundle
-ENV PATH="${BUNDLE_BIN}:${PATH}"
-# Bundle installs with binstubs to our custom /bundle/bin volume path. Let system use those stubs.
+RUN bundle check || bundle install
 
