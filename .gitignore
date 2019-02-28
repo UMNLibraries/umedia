@@ -39,3 +39,4 @@ yarn-debug.log*
 
 # Docker env
 .env
+/snapshots
