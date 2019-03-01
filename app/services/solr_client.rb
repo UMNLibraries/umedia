@@ -1,17 +1,13 @@
 # Basic solr connection config and solr conveniences
 class SolrClient
-  attr_reader :core_name, :solr_klass
-  def initialize(core_name: ENV['RAILS_ENV'], solr_klass: RSolr)
-    @core_name = core_name
+  attr_reader :url, :solr_klass
+  def initialize(url: ENV['SOLR_URL'], solr_klass: RSolr)
+    @url = url
     @solr_klass = solr_klass
   end
 
   def solr
     @solr ||= solr_klass.connect url: url
-  end
-
-  def url
-    "#{base_url}:8983/solr/#{core_name}"
   end
 
   def delete_index
@@ -37,11 +33,5 @@ class SolrClient
       location: ENV['SOLR_BACKUP_LOCATION'],
       numberToKeep: number_to_keep
     }
-  end
-
-  private
-
-  def base_url
-    'http://solr'
   end
 end
