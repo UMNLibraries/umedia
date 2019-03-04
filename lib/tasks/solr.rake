@@ -19,4 +19,9 @@ namespace :solr do
     keep = args[:number_to_keep].blank? ? 2 : args[:number_to_keep].to_i
     SolrClient.new.backup(number_to_keep: keep)
   end
+
+  desc "Restore latest backup"
+  task restore: [:environment]  do
+    SolrClient.new.restore
+  end
 end
