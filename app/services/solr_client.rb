@@ -34,4 +34,11 @@ class SolrClient
       numberToKeep: number_to_keep
     }
   end
+
+  def restore
+    solr.get 'replication', params: {
+      command: 'restore',
+      location: ENV['SOLR_BACKUP_LOCATION']
+    }
+  end
 end
