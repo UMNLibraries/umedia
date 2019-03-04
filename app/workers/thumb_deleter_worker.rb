@@ -1,7 +1,5 @@
 require 'sidekiq'
 # frozen_string_literal: true
-require 'sidekiq/testing'
-Sidekiq::Testing.inline!
 
 # Delete a batch of thumbnails
 class ThumbDeleterWorker
