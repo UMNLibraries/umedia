@@ -1,10 +1,14 @@
+<%
+  # The path includes facets etc and so needs to be recalculated for each search
+  path =  item_path(item.index_id, search_params)
+%>
 <% cache("search-item-#{item.index_id}", expires_in: 1.hour) do %>
   <a name="<%= item.id %>"></a>
   <div class="card-panel panel panel-default">
       <% title_icon_class = 'icon-docs' if item.field_page_count.value && item.field_page_count.value > 1 %>
       <div class="panel-body">
       <div class="col-xs-12">
-        <%= link_to item.field_title.value,  item_path(item.index_id, search_params), class: "#{title_icon_class}" %>
+        <%= link_to item.field_title.value,  path, class: "#{title_icon_class}" %>
       </div>
       <dl class="item-metadata dl-horizontal dl-invert col-xs-12 col-sm-8 col-lg-10">
         <%= render 'index_field', field: item.field_description, truncated: true %>
@@ -15,7 +19,7 @@
         <%= render 'index_field', truncated: false, field: item.field_page_count if item.field_page_count.value && item.field_page_count.value > 1 %>
       </dl>
       <span class="thumb">
-        <%= link_to item_path(item.index_id, search_params) do %>
+        <%= link_to path do %>
         <img src="<%= thumbnail.to_cdn_s %>"
             class="thumbnail col-md-2"
             alt="<%= item.field_title.value %>"
