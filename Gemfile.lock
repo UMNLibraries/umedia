@@ -769,6 +769,7 @@ GEM
       titleize (~> 1.4)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    chronic (0.10.2)
     concurrent-ruby (1.1.4)
     connection_pool (2.2.2)
     contentdm_api (0.4.1)
@@ -966,6 +967,8 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    whenever (0.10.0)
+      chronic (>= 0.6.3)
     will_paginate (3.1.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -1006,6 +1009,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webmock
   webpacker (~> 3.5)
+  whenever
   will_paginate
 
 RUBY VERSION

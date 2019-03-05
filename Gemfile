@@ -80,3 +80,4 @@ gem 'fontello_rails_converter'
 gem 'webpacker', '~> 3.5'
 gem 'lograge'
 gem 'rinku'
+gem 'whenever', require: false
