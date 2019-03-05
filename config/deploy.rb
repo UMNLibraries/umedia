@@ -46,3 +46,6 @@ task :reset_current_dir do
 end
 
 set :passenger_restart_with_touch, true
+
+append :linked_dirs, "log"
+append :linked_dirs, "tmp/pids"
