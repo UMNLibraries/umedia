@@ -60,17 +60,6 @@
     margin-top: -25px;
     bottom: 16px;
   }
-
-  @media (max-width: 768px) {
-    .nav.navbar-nav {
-      background-color: inherit;
-      margin: 5px;
-      a {
-      color: #ffffff;
-      }
-    }
-  }
-
   .pagination > .active > a,
   .nav.umn-nav-pills > .active > a  {
     background-color: #7a0019;
@@ -195,20 +184,48 @@ h2#libraries a, h3.from-our-collections {
   margin-left: 20px;
 }
 
-
 @media (max-width: 768px) {
   .nav.navbar-nav {
-    background-color: inherit;
-    margin: 5px;
+    .dropdown-menu,
+    .dropdown-toggle {
+      min-width: 100px !important;
+    }
+
+    margin-top: 10px;
     a {
-    color: #ffffff;
+      color: #ffffff;
+    }
+    background-color: inherit !important;
+    .open .dropdown-menu {
+      background-color: #ffffff !important;
+      a {
+        color: inherit;
+      }
     }
   }
 }
 
-
 @media (max-width: 1024px) {
   .nav.navbar-nav {
-    margin-right: 50px;
+    background-color: inherit;
+    .dropdown-menu,
+    .dropdown-toggle {
+      min-width: 100px !important;
+    }
+  }
+}
+
+.navigation.header-links {
+  li.open {
+    width: 100px !important;
+  }
+}
+
+.nav.navbar-nav {
+  min-width: 100px !important;
+  margin: 5px 0 5px 0 !important;
+  .dropdown-menu,
+  .dropdown-toggle {
+    min-width: 100px !important;
   }
 }
