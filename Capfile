@@ -34,5 +34,7 @@ require "capistrano/bundler"
 require "capistrano/rails/assets"
 require "capistrano/passenger"
 
+# Set cron jobs, see config/schedule.rb for details
+require "whenever/capistrano"
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
