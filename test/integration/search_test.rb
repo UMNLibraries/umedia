@@ -13,9 +13,8 @@ class HomeTest < ActiveSupport::TestCase
       Capybara.current_driver = :selenium
       visit '/search'
       sleep 1
-      page.must_have_content('New Silver carols : a collection of new music for public schools')
+      page.must_have_content('$1,000,000 national campaign for work among our soldiers and sailors : Dec. 2-9, 1917 : War Work Committee : the Sal')
     end
-
     it 'sorts z to a' do
       Capybara.current_driver = :selenium
       visit '/search'
@@ -24,7 +23,7 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > ul > li:nth-child(3) > a').click
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal('Vote Gay Pride')
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('Zyklon B')
     end
     it 'sorts creator a to z' do
       Capybara.current_driver = :selenium
@@ -34,7 +33,7 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > ul > li:nth-child(4) > a').click
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal('New Silver carols : a collection of new music for public schools')
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('Nihon saijiki, Volume 1-2')
     end
     it 'sorts creator z to a' do
       Capybara.current_driver = :selenium
@@ -44,7 +43,7 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > ul > li:nth-child(5) > a').click
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal('Bisbila, Student Yearbook, 1948')
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('Dynamics of viscous shock waves. Lecture 1: Stability of viscous shock waves')
     end
     it 'sorts by date, oldest first' do
       Capybara.current_driver = :selenium
@@ -54,7 +53,7 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > ul > li:nth-child(6) > a').click
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal('Plate 002 (Plate II), Yellow-billed Cuckoo')
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('Ostrakon 1')
     end
     it 'sorts by date, newest first' do
       Capybara.current_driver = :selenium
@@ -64,7 +63,7 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > ul > li:nth-child(7) > a').click
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal('Presenting the 2006 Twin Cities GLBT Pride Festival Entertainment…')
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('Probabilistic Analysis of Operational Transit Data to Create Insights for Planners')
     end
     it 'sets 10 per page' do
       Capybara.current_driver = :selenium
@@ -110,9 +109,9 @@ class HomeTest < ActiveSupport::TestCase
       Capybara.current_driver = :selenium
       visit '/search'
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[6]/div[1]/div[2]/ul/li[1]/a').click
+      find(:xpath, '//*[@id="facet-panel-collapse"]/div[2]/div[2]/ul/li[14]/a').click
       sleep 1
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal '2001: A Pride Odyssey'
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal '2 story exterior French doors with interior revealed.'
     end
   end
 
@@ -120,12 +119,17 @@ class HomeTest < ActiveSupport::TestCase
     it 'sorts them correctly' do
       Capybara.current_driver = :selenium
       visit '/search'
-      sleep 1
       fill_in 'q', with: 'plate'
       find(:xpath, '//*[@id="udc-search-control"]/form/div/span/button').click
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/a[1]').text.must_equal('Plate 001 (Plate I), Wild Turkey')
-      find(:xpath, '//*[@id="main"]/div[7]/div[2]/div/a[1]').text.must_equal('Plate 003 (Plate III), Prothonotary Warbler')
-      find(:xpath, '//*[@id="main"]/div[7]/div[3]/div/a[1]').text.must_equal('Plate 004 (Plate IV), Purple Finch')
+      sleep 1
+      find(:xpath, '//*[@id="facet-panel-collapse"]/div[2]/div[2]/ul/li[2]/a').click
+      sleep 1
+      find(:css, '#sort-dropdown > button').click
+      find(:css, '#sort-dropdown > ul > li:nth-child(2) > a').click
+      sleep 1
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('Plate 001 (Plate I), Wild Turkey')
+      find(:xpath, '//*[@id="main"]/div[7]/div[2]/div/div/a').text.must_equal('Plate 002 (Plate II), Yellow-billed Cuckoo')
+      find(:xpath, '//*[@id="main"]/div[7]/div[3]/div/div/a').text.must_equal('Plate 003 (Plate III), Prothonotary Warbler')
       page.body.must_match(/Plate 001.*/)
     end
   end
