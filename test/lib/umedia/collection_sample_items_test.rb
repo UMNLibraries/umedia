@@ -18,7 +18,7 @@ module Umedia
 
     it 'retrieves sample items' do
       sample = CollectionSampleItems.new(set_spec: "p16022coll99")
-      sample.iiifables.map {|item| item.doc_hash['id'] }.must_equal ["p16022coll99:24", "p16022coll99:25", "p16022coll99:26"]
+      sample.iiifables.map {|item| item.doc_hash['id'] }.must_equal ["p16022coll99:9", "p16022coll99:10", "p16022coll99:11"]
       sample.contributing_organization_name.must_equal 'University of Minnesota Libraries, Jean-Nickolaus Tretter Collection in Gay, Lesbian, Bisexual and Transgender Studies.'
     end
   end
