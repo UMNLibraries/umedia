@@ -5,14 +5,14 @@ class HomeTest < ActiveSupport::TestCase
     super
     Capybara.use_default_driver
   end
-  # it 'loads the OSD viewer and a clickable list of sidebar child pages' do
-  #   Capybara.current_driver = :selenium
-  #   visit 'item/p16022coll345:69542'
-  #   sleep 1
-  #   find(:css, ".ui-slider-handle").drag_by(0, 50)
-  #   sleep 1
-  #   has_selector?(:xpath, '//*[@id="sidebar-p16022coll345:69215"]/div').must_equal true
-  # end
+  it 'loads the OSD viewer and a clickable list of sidebar child pages' do
+    Capybara.current_driver = :selenium
+    visit 'item/p16022coll345:69542'
+    sleep 1
+    find(:css, ".ui-slider-handle").drag_by(0, 50)
+    sleep 1
+    has_selector?(:xpath, '//*[@id="sidebar-p16022coll345:69215"]/div').must_equal true
+  end
 
   it 'sidebar pages are searchable' do
     Capybara.current_driver = :selenium
