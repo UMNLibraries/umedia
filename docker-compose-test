@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose exec -e "RAILS_ENV=test" -e "UMEDIA_COLLECTION_PAGE_LIMIT=1" -e "SOLR_URL=http://solr_test:8983/solr/core" "$@"
+docker-compose exec -e "RAILS_ENV=test" -e "UMEDIA_COLLECTION_PAGE_LIMIT=1" -e "SOLR_URL=http://solr_test:8983/solr/core" -e "RAILS_BASE_URL=http://app:3000" "$@"
