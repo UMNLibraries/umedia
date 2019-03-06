@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HomeTest < ActiveSupport::TestCase
+class SingleImageTest < ActiveSupport::TestCase
   def teardown
     super
     Capybara.use_default_driver
