@@ -29,5 +29,12 @@ class HomeTest < ActiveSupport::TestCase
     find(:xpath, '//*[@id="sidebar"]/form/div/span/button').click
     sleep 1
     find(:xpath, '//*[@id="sidebar-p16022coll474:4387"]/div[2]/div[2]').text.must_equal "ROBERT DIXON 0f YOUNG MENS CHRISTIAN ASSOCIATION 22 BUTLER STREET, NORTHEAST ATLANTA, GEORGIA 30335 EXECUTIVE RETREAT 22 Butler Street, NE October 4-5, 1993 Board Room AGENDA m pi RECTORS NRIETTA ANTOININ JHER BENATOR iEBORAH BROWDER ROSA BURNEY DR."
+    # Page 2 doesn't show up for this search result
+    has_selector?(:xpath, '//*[@id="sidebar-p16022coll474:4388"]/div/img').must_equal false
+    # Clear the search
+    find(:xpath, '//*[@id="sidebar-pages"]/div/a').click
+    sleep 1
+    # Page 2 should be back in the list now
+    has_selector?(:xpath, '//*[@id="sidebar-p16022coll474:4388"]/div/img').must_equal true
   end
 end
