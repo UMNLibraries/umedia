@@ -32,7 +32,7 @@ class HomeTest < ActiveSupport::TestCase
     it 'displays an all items search' do
       visit '/home'
       find(:xpath, '//*[@id="home-controller-data"]/div[2]/form/div/span/button').click
-      page.must_have_content('Letter to Frances Low from Tom English')
+      page.must_have_content('$1,000,000 national campaign for work among our soldiers and sailors : Dec. 2-9, 1917 : War Work Committee : the Sal D')
     end
   end
 
