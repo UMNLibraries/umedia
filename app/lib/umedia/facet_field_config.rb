@@ -1,19 +1,7 @@
 module Umedia
   class FacetFieldConfig
     def visible
-      [
-        :super_collection_name_ss,
-        :collection_name_s,
-        :types,
-        :format_name,
-        :date_created_ss,
-        :subject_ss,
-        :creator_ss,
-        :publisher_s,
-        :contributor_ss,
-        :page_count,
-        :language
-      ]
+      ENV['RAILS_ENV'] == 'development' ? prod.concat([:page_count]) : prod
     end
 
     def hidden
@@ -32,6 +20,23 @@ module Umedia
 
     def all
       visible.concat(hidden)
+    end
+
+    private
+
+    def prod
+      [
+        :super_collection_name_ss,
+        :collection_name_s,
+        :types,
+        :format_name,
+        :date_created_ss,
+        :subject_ss,
+        :creator_ss,
+        :publisher_s,
+        :contributor_ss,
+        :language
+      ]
     end
   end
 end
