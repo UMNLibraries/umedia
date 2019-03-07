@@ -2,7 +2,7 @@
   <%= form_tag searches_path, :method => :get do %>
     <%= raw hidden_facet_values %>
     <%= hidden_field_tag "sort", sanitize(params[:sort]) %>
-    <div class="input-group input-group-lg col-md-8">
+    <div class="input-group input-group-lg col-md-8 main-search">
       <%= label_tag 'q', 'Search:', style: 'display:none' %>
       <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search UMedia...', value: params[:q] %>
       <span class="input-group-btn">
@@ -17,12 +17,12 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="search-browse">
-              <li><%= link_to 'Collection', facets_path(facet_field: 'collection_name_s', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
-              <li><%= link_to 'Type', facets_path(facet_field: 'types', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
-              <li><%= link_to 'Format', facets_path(facet_field: 'format_name', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
-              <li><%= link_to 'Date', facets_path(facet_field: 'date_created_ss', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
-              <li><%= link_to 'Subject', facets_path(facet_field: 'subject_ss', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
-              <li><%= link_to 'Contributing Organization', facets_path(facet_field: 'contributing_organization_name_s', facet_sort: 'index', facet_limit: '25', browse: true) %></li>
+              <li><%= link_to 'Collection', facets_path(facet_field: 'collection_name_s', facet_sort: 'index', facet_limit: '25', browse: true), class: 'collection-browse-link' %></li>
+              <li><%= link_to 'Type', facets_path(facet_field: 'types', facet_sort: 'index', facet_limit: '25', browse: true), class: 'type-browse-link' %></li>
+              <li><%= link_to 'Format', facets_path(facet_field: 'format_name', facet_sort: 'index', facet_limit: '25', browse: true), class: 'format-browse-link' %></li>
+              <li><%= link_to 'Date', facets_path(facet_field: 'date_created_ss', facet_sort: 'index', facet_limit: '25', browse: true), class: 'date-browse-link' %></li>
+              <li><%= link_to 'Subject', facets_path(facet_field: 'subject_ss', facet_sort: 'index', facet_limit: '25', browse: true), class: 'subject-browse-link' %></li>
+              <li><%= link_to 'Contributing Organization', facets_path(facet_field: 'contributing_organization_name_s', facet_sort: 'index', facet_limit: '25', browse: true), class: 'contributing-org-browse-link' %></li>
             </ul>
           </div>
         </span>

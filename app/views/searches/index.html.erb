@@ -63,7 +63,8 @@
 <%=  link_to searches_path({ format: :json }.merge(query(search_params).to_h)),
           alt: 'JSON Format',
           rel: 'nofollow',
-          title: 'See item the JSON format' do %>
+          title: 'See item the JSON format',
+          class: 'json-search-link' do %>
   <span class="hidden">JSON Results Page</span>
   <span class="icon-json"></span>
 <% end %>

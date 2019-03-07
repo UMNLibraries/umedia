@@ -6,7 +6,7 @@
     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="image-download-dropdown">
       <% downloads.urls.map do |download| %>
         <li role="presentation">
-          <a target="_blank" role="menuitem" tabindex="-1" href="<%= download[:url] %>"><%= download[:label] %></a>
+          <%= link_to download[:label], download[:url], target: '_blank', role: 'menuitem', tabindex: "-1", class: "large-download" %>
         </li>
       <% end %>
     </ul>
