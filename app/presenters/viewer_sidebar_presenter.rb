@@ -1,6 +1,6 @@
 class ViewerSidebarPresenter < BasePresenter
   def show?
-    num_found != 1 && num_found != 0
+    (num_found != 1 && num_found != 0) || h.params['query']
   end
 
   def display_num?
