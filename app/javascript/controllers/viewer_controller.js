@@ -99,7 +99,7 @@ export default class extends Controller {
     const sidebar = this.sidebar;
     SidebarPagesLoad({...this.sidebarPages, sidebar}).sideLoad();
 
-    ViewerUrl({ q: sidebar.query }).update();
+    ViewerUrl({ id: this.data.get("id"), child_id: this.data.get("child_id"), q: sidebar.query }).update();
     Resize($('#item-content'), $('#viewer-sidebar'), sidebar.query !== '')
   }
 
