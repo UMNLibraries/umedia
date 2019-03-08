@@ -70,7 +70,7 @@ export default stampit({
       return this.fetcher.fetch(this.searchUrl())
         .then(response => response.text())
         .then(html => {
-          elements.sidebarPagesElem.html(html);
+          elements.sidebarPagesElem.html(html); // innerHTML content into #sidebar-pages
           let parser = new DOMParser();
           let doc = parser.parseFromString(html, "text/html");
           // Response from chile_searches controller - sort of ugly, but I'm pulling
