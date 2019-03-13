@@ -26,7 +26,7 @@ class UmediaETL
       field_mappings: field_mappings,
       cdm_endpoint: 'https://server16022.contentdm.oclc.org/dmwebservices/index.php',
       max_compounds: 1,
-      batch_size: 5,
+      batch_size: 50,
       solr_config: solr_config
     }
   end
