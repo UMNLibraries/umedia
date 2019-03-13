@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Umedia
-  # Field transformation mappings and related code for CDMBL
+  # Field transformation mappings and related code for CDMDEXER
   class Transformer
     class RemoveHashFormatter
       def self.format(values)
@@ -20,12 +20,12 @@ module Umedia
     end
 
     class FirstViewerTypeFormatter
-      def self.format(value)
-        pages = value.fetch('page', [])
-        if !pages.empty?
-          ViewerMap.new(record: pages.first).viewer
+      def self.format(record)
+        first_page = record['first_page']
+        if first_page
+          ViewerMap.new(record: first_page).viewer
         else
-          ViewerMap.new(record: value).viewer
+          ViewerMap.new(record: record).viewer
         end
       end
     end
@@ -83,7 +83,7 @@ module Umedia
 
     class ObjectFormatter
       def self.format(value)
-        collection, id = value.split('/')
+        collection, id = value.split(':')
         "https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/#{collection}/id/#{id}"
       end
     end
@@ -140,78 +140,78 @@ module Umedia
 
     def self.field_mappings
       [
-        {dest_path: 'id', origin_path: 'id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
+        {dest_path: 'id', origin_path: 'id', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'object', origin_path: 'id', formatters: [ObjectFormatter]},
-        {dest_path: 'set_spec', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::SetSpecFormatter]},
-        {dest_path: 'collection_name', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, UmediaCollectionNameFormatter]},
-        {dest_path: 'collection_description', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, CDMBL::CollectionDescriptionFormatter, CDMBL::FilterBadCollections]},
-        {dest_path: 'super_collection_names', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, SuperCollectionNamesFormatter]},
-        {dest_path: 'super_collection_set_specs', origin_path: 'projea', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'super_collection_descriptions', origin_path: '/', formatters: [CDMBL::AddSetSpecFormatter, SuperCollectionDescriptionsFormatter]},
+        {dest_path: 'set_spec', origin_path: '/', formatters: [CDMDEXER::AddSetSpecFormatter, CDMDEXER::SetSpecFormatter]},
+        {dest_path: 'collection_name', origin_path: '/', formatters: [CDMDEXER::AddSetSpecFormatter, UmediaCollectionNameFormatter]},
+        {dest_path: 'collection_description', origin_path: '/', formatters: [CDMDEXER::AddSetSpecFormatter, CDMDEXER::CollectionDescriptionFormatter, CDMDEXER::FilterBadCollections]},
+        {dest_path: 'super_collection_names', origin_path: '/', formatters: [CDMDEXER::AddSetSpecFormatter, SuperCollectionNamesFormatter]},
+        {dest_path: 'super_collection_set_specs', origin_path: 'projea', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'super_collection_descriptions', origin_path: '/', formatters: [CDMDEXER::AddSetSpecFormatter, SuperCollectionDescriptionsFormatter]},
       # Full Record View
-        {dest_path: 'title', origin_path: 'title', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'title_sort', origin_path: 'title', formatters: [CDMBL::StripFormatter, LetterSortFormatter]},
-        {dest_path: 'title_alternative', origin_path: 'altern', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'description', origin_path: 'descri', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'date_created', origin_path: 'date', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'date_created_sort', origin_path: 'date', formatters: [CDMBL::StripFormatter, NumberSortFormatter]},
-        {dest_path: 'historical_era', origin_path: 'histor', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'creator', origin_path: 'creato', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'creator_sort', origin_path: 'creato', formatters: [CDMBL::StripFormatter, CDMBL::JoinFormatter, LetterSortFormatter]},
-        {dest_path: 'contributor', origin_path: 'contri', formatters: [CDMBL::SplitFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'publisher', origin_path: 'publis', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'caption', origin_path: 'captio', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'notes', origin_path: 'additi', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'title', origin_path: 'title', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'title_sort', origin_path: 'title', formatters: [CDMDEXER::StripFormatter, LetterSortFormatter]},
+        {dest_path: 'title_alternative', origin_path: 'altern', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'description', origin_path: 'descri', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'date_created', origin_path: 'date', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'date_created_sort', origin_path: 'date', formatters: [CDMDEXER::StripFormatter, NumberSortFormatter]},
+        {dest_path: 'historical_era', origin_path: 'histor', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'creator', origin_path: 'creato', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'creator_sort', origin_path: 'creato', formatters: [CDMDEXER::StripFormatter, CDMDEXER::JoinFormatter, LetterSortFormatter]},
+        {dest_path: 'contributor', origin_path: 'contri', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'publisher', origin_path: 'publis', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'caption', origin_path: 'captio', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'notes', origin_path: 'additi', formatters: [CDMDEXER::StripFormatter]},
       # Physical Description
-        {dest_path: 'types', origin_path: 'type', formatters: [CDMBL::StripFormatter, CDMBL::Titlieze, CDMBL::SplitFormatter, CDMBL::UniqueFormatter]},
-        {dest_path: 'format', origin_path: 'format', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter,CDMBL::StripFormatter]},
-        {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'types', origin_path: 'type', formatters: [CDMDEXER::StripFormatter, CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, CDMDEXER::UniqueFormatter]},
+        {dest_path: 'format', origin_path: 'format', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter,CDMDEXER::StripFormatter]},
+        {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMDEXER::StripFormatter]},
       # Topics
-        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, SubjectFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMBL::Titlieze, CDMBL::SplitFormatter, SubjectFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'language', origin_path: 'langua', formatters: [CDMBL::StripFormatter,CDMBL::SplitFormatter, CDMBL::StripFormatter]},
+        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, SubjectFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, SubjectFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'language', origin_path: 'langua', formatters: [CDMDEXER::StripFormatter,CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
       # Geographic Details
-        {dest_path: 'city', origin_path: 'city', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'state', origin_path: 'state', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'country', origin_path: 'countr', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'region', origin_path: 'region', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'continent', origin_path: 'contin', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'geonames', origin_path: 'geonam', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'projection', origin_path: 'projec', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'scale', origin_path: 'scale', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'city', origin_path: 'city', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'state', origin_path: 'state', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'country', origin_path: 'countr', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'region', origin_path: 'region', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'continent', origin_path: 'contin', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'geonames', origin_path: 'geonam', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'projection', origin_path: 'projec', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'scale', origin_path: 'scale', formatters: [CDMDEXER::StripFormatter]},
       # Collection Information
-        {dest_path: 'parent_collection', origin_path: 'a', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'parent_collection', origin_path: 'a', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'parent_collection_name', origin_path: 'a', formatters: [SemiSplitFirstFormatter]},
-        {dest_path: 'contributing_organization', origin_path: 'contra', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'contributing_organization', origin_path: 'contra', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'contributing_organization_name', origin_path: 'contra', formatters: [SemiSplitFirstFormatter]},
-        {dest_path: 'contact_information', origin_path: 'contac', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'fiscal_sponsor', origin_path: 'fiscal', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'contact_information', origin_path: 'contac', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fiscal_sponsor', origin_path: 'fiscal', formatters: [CDMDEXER::StripFormatter]},
       # Identifiers
-        {dest_path: 'local_identifier', origin_path: 'identi', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'barcode', origin_path: 'barcod', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'system_identifier', origin_path: 'system', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'dls_identifier', origin_path: 'dls', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'persistent_url', origin_path: 'persis', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'local_identifier', origin_path: 'identi', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'barcode', origin_path: 'barcod', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'system_identifier', origin_path: 'system', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'dls_identifier', origin_path: 'dls', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'persistent_url', origin_path: 'persis', formatters: [CDMDEXER::StripFormatter]},
       # Rights
-        {dest_path: 'local_rights', origin_path: 'local', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'standardized_rights', origin_path: 'standa', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'rights_statement_uri', origin_path: 'righta', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'local_rights', origin_path: 'local', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'standardized_rights', origin_path: 'standa', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'rights_statement_uri', origin_path: 'righta', formatters: [CDMDEXER::StripFormatter]},
       # Transcript
-        {dest_path: 'transcription', origin_path: 'transc', formatters: [RemoveHashFormatter, CDMBL::StripFormatter]},
-        {dest_path: 'translation', origin_path: 'transl', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'transcription', origin_path: 'transc', formatters: [RemoveHashFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'translation', origin_path: 'transl', formatters: [CDMDEXER::StripFormatter]},
       # NON-DISPLAY FIELDS (not directly displayed)
-        {dest_path: 'kaltura_audio', origin_path: 'kaltur', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'kaltura_audio_playlist', origin_path: 'kaltua', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'kaltura_video', origin_path: 'kaltub', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'kaltura_video_playlist', origin_path: 'kaltuc', formatters: [CDMBL::StripFormatter]},
-        {dest_path: 'kaltura_combo_playlist', origin_path: 'kaltud', formatters: [CDMBL::StripFormatter]},
+        {dest_path: 'kaltura_audio', origin_path: 'kaltur', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'kaltura_audio_playlist', origin_path: 'kaltua', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'kaltura_video', origin_path: 'kaltub', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'kaltura_video_playlist', origin_path: 'kaltuc', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'kaltura_combo_playlist', origin_path: 'kaltud', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'page_count', origin_path: '/', formatters: [PageCountFormatter]},
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
-        {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMBL::StripFormatter, CDMBL::IDFormatter]},
+        {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMDEXER::StripFormatter, CDMDEXER::IDFormatter]},
         {dest_path: 'first_viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
-        {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]},
-        # child_index is provided by CDMBL; children are assigned the order in
+        {dest_path: 'viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
+        # child_index is provided by CDMDEXER; children are assigned the order in
         # which they were received from the CDM API
         {dest_path: 'child_index', origin_path: 'child_index', formatters: []},
         # Attachments can appear below kaltura items or complex objects that

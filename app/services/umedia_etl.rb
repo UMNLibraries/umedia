@@ -8,8 +8,8 @@ class UmediaETL
   def initialize(oai_endpoint: 'http://cdm16022.contentdm.oclc.org/oai/oai.php',
                  set_spec_pattern: /^ul_([a-zA-Z0-9])*\s-\s/,
                  field_mappings: Umedia::Transformer.field_mappings,
-                 filter_callback: CDMBL::RegexFilterCallback,
-                 set_spec_filter: CDMBL::FilteredSetSpecs,
+                 filter_callback: CDMDEXER::RegexFilterCallback,
+                 set_spec_filter: CDMDEXER::FilteredSetSpecs,
                  solr_connection: SolrClient.new)
     @oai_endpoint     = oai_endpoint
     @set_spec_pattern = set_spec_pattern

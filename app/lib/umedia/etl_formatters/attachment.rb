@@ -42,7 +42,7 @@ module Umedia
       end
 
       def id
-        record['id'].split('/').join(':')
+        record['id']
       end
 
       # All kaltura items have attachments

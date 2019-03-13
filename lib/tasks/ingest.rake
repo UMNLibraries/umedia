@@ -30,19 +30,18 @@ namespace :ingest do
 
   def run_etl!(set_specs = [])
     puts "Indexing Sets: '#{set_specs.join(', ')}'"
-    CDMBL::ETLBySetSpecs.new(set_specs: set_specs, etl_config: etl.config).run!
+    CDMDEXER::ETLBySetSpecs.new(set_specs: set_specs, etl_config: etl.config).run!
   end
 
   desc 'Launch a background job to index a single record.'
   task :record, [:id] => :environment  do |t, args|
     config = UmediaETL.new.config
-    CDMBL::TransformWorker.perform_async(
+    CDMDEXER::TransformWorker.perform_async(
       [args[:id].split(':')],
       { url: config[:solr_config][:url]},
       config[:cdm_endpoint],
       config[:oai_endpoint],
-      config[:field_mappings],
-      true
+      config[:field_mappings]
     )
   end
 
