@@ -208,7 +208,7 @@ module Umedia
         {dest_path: 'kaltura_combo_playlist', origin_path: 'kaltud', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'page_count', origin_path: '/', formatters: [PageCountFormatter]},
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
-        {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMDEXER::StripFormatter, CDMDEXER::IDFormatter]},
+        {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'first_viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
         {dest_path: 'viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
         # child_index is provided by CDMDEXER; children are assigned the order in
