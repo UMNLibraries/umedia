@@ -210,14 +210,14 @@ module Umedia
         {dest_path: 'record_type', origin_path: 'record_type', formatters: []},
         {dest_path: 'parent_id', origin_path: 'parent_id', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'first_viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
-        {dest_path: 'viewer_type', origin_path: '/', formatters: [FirstViewerTypeFormatter]},
+        {dest_path: 'viewer_type', origin_path: '/', formatters: [ViewerTypeFormatter]},
         # child_index is provided by CDMDEXER; children are assigned the order in
         # which they were received from the CDM API
         {dest_path: 'child_index', origin_path: 'child_index', formatters: []},
         # Attachments can appear below kaltura items or complex objects that
         # have an attachment specified in the parent item. Attachments offer
         # complimentary content for the featured item. A video about a paiting
-        # might have a iiif image attachment that shows the paintg, for example
+        # might have a iiif image attachment that shows the painting, for example
         {dest_path: 'attachment', origin_path: 'find', formatters: []},
         # Attachment format is a "viewer" format (iiif, pdf, etc). If this
         # field is missing, the UI code will not display an attachment
