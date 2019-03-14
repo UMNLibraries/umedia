@@ -38,3 +38,8 @@ every 1.day, at: '12:30am' do
   runner "Index Collection Metadata"
   rake 'solr:optimize'
 end
+
+every 1.month, at: '12am' do
+  runner "Backup Solr - Take a Snapshot"
+  rake 'solr:backup'
+end
