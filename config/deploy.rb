@@ -49,3 +49,19 @@ set :passenger_restart_with_touch, true
 
 append :linked_dirs, "log"
 append :linked_dirs, "tmp/pids"
+
+
+# Stop all sidekiq instances so they can pick up the new code
+# systemd is responsible for restarting stopped sidekiq jobs
+namespace :deploy do
+  after :finishing, :notify do
+    invoke "deploy:stop_sidekiq"
+  end
+  task :stop_sidekiq do
+    on roles(:all) do |host|
+      (0..2).map do |pid|
+        execute "cd '#{release_path}'; bundle exec sidekiqctl stop ./tmp/pids/sidekiq-#{pid}.pid RAILS_ENV=production"
+      end
+    end
+  end
+end
