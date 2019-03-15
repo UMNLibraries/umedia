@@ -24,7 +24,7 @@ class CollectionsController < ApplicationController
 
   def sort
     if collection_params[:sort].blank?
-      'set_spec desc'
+      'collection_recency_sort desc'
     else
       collection_params[:sort]
     end
@@ -41,7 +41,7 @@ class CollectionsController < ApplicationController
 
   def sort_mappings
     [
-      {label: 'Most Recently Added Collection', sort: 'set_spec desc' },
+      {label: 'Most Recently Added Collection', sort: 'collection_recency_sort desc' },
       {label: 'Collection Name: A to Z', sort: 'collection_name_s asc' },
       {label: 'Collection Name: Z to A', sort: 'collection_name_s desc' }
     ]

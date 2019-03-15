@@ -2,13 +2,13 @@ version: '3.1'
 
 services:
   solr:
-    image: cfennell/umedia_solr:0.1.0
+    image: cfennell/umedia_solr:0.2.0
     volumes:
       - ./snapshots:/snapshots
     ports: ["8983:8983"]
 
   solr_test:
-    image: cfennell/umedia_solr:0.1.0
+    image: cfennell/umedia_solr:0.2.0
     volumes:
       - ./snapshots:/snapshots
     ports: ["8984:8983"]

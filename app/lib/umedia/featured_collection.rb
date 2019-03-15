@@ -44,7 +44,8 @@ module Umedia
         collection_item_count: item_count,
         contributing_organization_name: contributing_organization_name,
         collection_thumbnails: thumbnail_config,
-        is_super_collection: super_collection?
+        is_super_collection: super_collection?,
+        collection_recency_sort: set_spec.gsub(/[^0-9]/, '').to_i
       }
     end
 

@@ -4,7 +4,7 @@ module Umedia
     def initialize(q: '',
                    page: 1,
                    rows: ENV['UMEDIA_COLLECTION_PAGE_LIMIT'].to_i,
-                   sort: 'set_spec desc',
+                   sort: 'collection_recency_sort desc',
                    solr: SolrClient.new.solr)
       @q    = q
       @page = page
