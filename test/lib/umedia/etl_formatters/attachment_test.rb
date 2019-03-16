@@ -20,7 +20,7 @@ module Umedia
       describe 'when an item is a parent coded with a child attachment' do
         it 'correctly codes its attachments' do
           parent = {'parent' => {'attach' => 'coll123:999' } }
-          record = { 'record_type' => 'secondary', 'id' => 'coll123/999'}.merge(parent)
+          record = { 'record_type' => 'secondary', 'id' => 'coll123:999'}.merge(parent)
           Attachment.new(record: record.merge('find' => 'foo.pdf')).format.must_equal('pdf')
           Attachment.new(record: record.merge('find' => 'foo.jp2')).format.must_equal('iiif')
           Attachment.new(record: record.merge('find' => 'foo.nope')).format.must_be_nil
