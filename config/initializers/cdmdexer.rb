@@ -1,7 +1,11 @@
 module CDMDEXER
   class CompletedCallback
-    def self.call!(solr_client)
-      Rails.logger.info "Completed: #{solr_client.inspect}"
+    def self.call!(config)
+      SolrClient.new.commit
+      Rails.logger.info "Completed Ingest for Collection: #{config['set_spec']}"
+      # Commit Changes
+      # Enrich parent item with children transcripts
+      ::TranscriptsIndexerWorker.perform_async(1, config['set_spec'])
     end
   end
 

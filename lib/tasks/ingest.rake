@@ -9,7 +9,7 @@ namespace :ingest do
   end
 
   desc 'Index a single collection'
-  task :collection, [:set_spec] => :environment  do |t, args|
+  task :collection, [:set_spec] => :environment do |t, args|
     run_etl!([args[:set_spec]])
   end
 
@@ -31,6 +31,16 @@ namespace :ingest do
   def run_etl!(set_specs = [])
     puts "Indexing Sets: '#{set_specs.join(', ')}'"
     CDMDEXER::ETLBySetSpecs.new(set_specs: set_specs, etl_config: etl.config).run!
+  end
+
+  desc 'Index Transcripts from a Single Collection'
+  task :collection_transcript, [:set_spec] => :environment do |t, args|
+    TranscriptsIndexerWorker.perform_async(1, args[:set_spec])
+  end
+
+  desc 'Index Transcripts from all Collections'
+  task all_collection_transcripts: [:environment] do
+    TranscriptsIndexerWorker.perform_async(1, false)
   end
 
   desc 'Launch a background job to index a single record.'
