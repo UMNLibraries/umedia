@@ -1,8 +1,5 @@
 require 'sidekiq'
 
-require 'sidekiq/testing'
-Sidekiq::Testing.inline!
-
 # Delete a batch of thumbnails
 class TranscriptsIndexerWorker
   include Sidekiq::Worker
