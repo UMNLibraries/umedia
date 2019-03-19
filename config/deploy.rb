@@ -51,16 +51,16 @@ append :linked_dirs, "log"
 append :linked_dirs, "tmp/pids"
 
 
-# Stop all sidekiq instances so they can pick up the new code
-# systemd is responsible for restarting stopped sidekiq jobs
+# Restart all sidekiq instances so they can pick up the new code
 namespace :deploy do
   after :finishing, :notify do
-    invoke "deploy:stop_sidekiq"
+    invoke "deploy:restart_sidekiq"
   end
-  task :stop_sidekiq do
+
+  task :restart_sidekiq do
     on roles(:all) do |host|
       (0..2).map do |pid|
-        execute "cd '#{release_path}'; bundle exec sidekiqctl stop ./tmp/pids/sidekiq-#{pid}.pid RAILS_ENV=production"
+        execute "sudo systemctl restart sidekiq-#{pid}"
       end
     end
   end
