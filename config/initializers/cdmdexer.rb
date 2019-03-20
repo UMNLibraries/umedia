@@ -1,11 +1,8 @@
 module CDMDEXER
   class CompletedCallback
     def self.call!(config)
-      SolrClient.new.commit
-      Rails.logger.info "Completed Ingest for Collection: #{config['set_spec']}"
-      # Commit Changes
-      # Enrich parent item with children transcripts
-      ::TranscriptsIndexerWorker.perform_async(1, config['set_spec'])
+      ::SolrClient.new.commit
+      Rails.logger.info "Processing last batch for: #{config['set_spec']}"
     end
   end
 
@@ -17,7 +14,7 @@ module CDMDEXER
 
   class CdmNotification
     def self.call!(collection, id, endpoint)
-      Rails.logger.info "CDMDEXER: Requesting: #{collection}:#{id} from #{endpoint}"
+      Rails.logger.info "CDMDEXER: Requesting: #{collection}:#{id}"
     end
   end
 
