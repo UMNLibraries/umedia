@@ -22,7 +22,6 @@ COPY . .
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
-# Add bundle entry point to handle bundle cache
-
+RUN gem update --system ; gem install bundler
 RUN bundle check || bundle install
 
