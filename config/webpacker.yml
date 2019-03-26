@@ -3,8 +3,7 @@
 default: &default
   source_path: app/javascript
   source_entry_path: packs
-  # https://github.com/rails/webpacker/issues/1249#issuecomment-387635539
-  public_output_path: assets/packs
+  public_output_path: packs
   cache_path: tmp/cache/webpacker
 
   # Additional paths webpack should lookup modules
