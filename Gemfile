@@ -77,7 +77,7 @@ gem 'will_paginate'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'cdmdexer'
 gem 'fontello_rails_converter'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.x'
 gem 'lograge'
 gem 'rinku'
 gem 'whenever', require: false
