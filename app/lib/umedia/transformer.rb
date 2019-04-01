@@ -150,6 +150,7 @@ module Umedia
         {dest_path: 'super_collection_descriptions', origin_path: '/', formatters: [CDMDEXER::AddSetSpecFormatter, SuperCollectionDescriptionsFormatter]},
       # Full Record View
         {dest_path: 'title', origin_path: 'title', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'title_search', origin_path: 'title', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'title_sort', origin_path: 'title', formatters: [CDMDEXER::StripFormatter, LetterSortFormatter]},
         {dest_path: 'title_alternative', origin_path: 'altern', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'description', origin_path: 'descri', formatters: [CDMDEXER::StripFormatter]},
