@@ -40,7 +40,7 @@ namespace :ingest do
 
   desc 'Index Transcripts from all Collections'
   task all_collection_transcripts: [:environment] do
-    TranscriptsIndexerWorker.perform_async(1, false)
+    etl.set_specs.map { |set_spec| TranscriptsIndexerWorker.perform_async(1, set_spec) }
   end
 
   desc 'Launch a background job to index a single record.'
