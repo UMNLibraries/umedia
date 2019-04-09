@@ -31,7 +31,7 @@ end
 
 every :sunday, at: '9pm' do
   runner 'Enrich Primary Records with Child Page Transcripts'
-  rake 'rake ingest:all_collection_transcripts'
+  rake 'ingest:all_collection_transcripts'
 end
 
 every 1.day, at: '12:00am' do
