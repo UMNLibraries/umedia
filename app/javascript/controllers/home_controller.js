@@ -39,7 +39,7 @@ export default class extends Controller {
     e.preventDefault();
     this.resetData();
     this.updateUrl();
-    this.load(1, 'set_spec desc', '');
+    this.load(1, 'collection_recency_sort desc', '');
   }
 
   navigate() {
@@ -54,7 +54,7 @@ export default class extends Controller {
   resetData() {
     this.filter_q = '';
     this.page = 1;
-    this.sort = 'set_spec desc'
+    this.sort = 'collection_recency_sort desc'
   }
 
   load() {

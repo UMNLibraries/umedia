@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "//": "sad, adj added here because: https://github.com/yarnpkg/yarn/issues/3933#issuecomment-315203589",
+    "@rails/webpacker": "^4.0.2",
+    "ajv": "5",
+    "bootstrap-sass": "3.3.7",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-touch-punch": "^0.2.3",
+    "jquery-ujs": "^1.2.2",
+    "openseadragon": "^2.3.1",
+    "query-string": "^6.1.0",
+    "rails-ujs": "^5.2.0",
+    "stampit": "^4.1.2",
+    "stimulus": "^1.0.1",
+    "turbolinks": "^5.1.1"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.0.1",
+    "jest": "^23.1.0",
+    "jquery": "^3.3.1",
+    "regenerator-runtime": "^0.11.1",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "jest": {
+    "roots": [
+      "test/javascript"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "app/javascript/packs"
+    ],
+    "setupFiles": [
+      "./test/javascript/jest-setup.js"
+    ]
+  },
+  "scripts": {
+    "test": "NODE_ENV=development BABEL_ENV=test jest",
+    "test-watch": "NODE_ENV=development BABEL_ENV=test jest --watch"
+  }
+}

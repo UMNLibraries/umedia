@@ -24,7 +24,7 @@ class SingleImageTest < ActiveSupport::TestCase
     sleep 1
     find(:xpath, '//*[@id="main"]/div[4]/ul/li[1]/a/h3').click
     sleep 1
-    find(:xpath, '//*[@id="main"]/h1').text.must_equal('16th Century, Acapulco and Ladrones Islands')
+    find(:xpath, '//*[@id="main"]/h1').text.must_equal('16th Century, Acapulco and Puerto Marques')
   end
   it 'displays a metadata details list' do
     Capybara.current_driver = :selenium
@@ -36,7 +36,7 @@ class SingleImageTest < ActiveSupport::TestCase
     Capybara.current_driver = :selenium
     visit '/item/p16022coll251:4144'
     sleep 1
-    find(:xpath, '//*[@id="metadata-area"]/div/div').text.must_equal 'Historical Maps The James Ford Bell Library makes history come alive through its collection of maps, rare books, & manuscripts that focus on trade & cross-cultural interaction circa 1800. Our premier collection of more than 25,000 rare books, maps, and manuscripts illustrates the ways in which cultural influences expanded worldwide, with a special emphasis on European interactions. The Bell Library, its collection, and its innovative programs support scholarship and education at all levels, and enrich our community by advancing understanding of this global heritage, making the world we live in more meaningful. The items in the collection currently date between 400 C.E. and 1825 C.E.'
+    find(:xpath, '//*[@id="metadata-area"]/div/div/div[2]').text.must_equal 'The James Ford Bell Library makes history come alive through its collection of maps, rare books, & manuscripts that focus on trade & cross-cultural interaction circa 1800. Our premier collection of more than 25,000 rare books, maps, and manuscripts illustrates the ways in which cultural influences expanded worldwide, with a special emphasis on European interactions. The Bell Library, its collection, and its innovative programs support scholarship and education at all levels, and enrich our community by advancing understanding of this global heritage, making the world we live in more meaningful. The items in the collection currently date between 400 C.E. and 1825 C.E.'
   end
   it 'provides a clickable json link' do
     Capybara.current_driver = :selenium

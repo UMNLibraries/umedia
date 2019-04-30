@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def sort
-    home_params.fetch(:sort, 'set_spec desc')
+    home_params.fetch(:sort, 'collection_recency_sort desc')
   end
 
   def num_found
