@@ -985,7 +985,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bootsnap (>= 1.1.0)
-  bootstrap-sass (~> 3.4.1)
+  bootstrap-sass (>= 3.4.1)
   brakeman
   byebug
   capybara (>= 2.15, < 4.0)
