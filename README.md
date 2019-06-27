@@ -10,15 +10,14 @@ Data is ingested from CONTENTdm into a Solr index and served by this Ruby on Rai
 
 ## Build, populate with data, and start the app
 
-* [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-* [Install Docker Compose](https://docs.docker.com/compose/)
-
+- [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- [Install Docker Compose](https://docs.docker.com/compose/)
 
 Initialize and start the local dev environment:
 
 `./local_dev_init.sh.sh`
 
-__Note__: you will be prompted for a password. Use your `sudo` / machine admin password here.
+**Note**: you will be prompted for a password. Use your `sudo` / machine admin password here.
 
 You'll see something like the following eventually appear in your terminal:
 
@@ -42,7 +41,6 @@ app_1          | [1] * Process workers: 3
 
 Once the rails server has booted, open [http://localhost:3000/](http://localhost:3000/) in yourbrowser.
 
-
 ### Optional: Configure credentials in the `.env` file:
 
 ```bash
@@ -61,7 +59,6 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 ## Ingest CONTENTdm Content Into Solr
 
 A few sample records are provided by a sample solr snapshot, but you may ingest more:
-
 
 ```bash
 # Ingest everything (ingest content from all collections)
@@ -131,6 +128,6 @@ docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 
 ## Usefull Tools
 
-* [Docker Dive](https://github.com/wagoodman/dive)
+- [Docker Dive](https://github.com/wagoodman/dive)
 
 This is especially useful for analyzing containers to see why they are the size that they are and finding ways to slim them down.
