@@ -83,10 +83,7 @@ rake ingest:collection_sample
 rake ingest:all_collection_transcripts
 ```
 
-
-`docker-compose exec web rake 'ingester:collection[p16022coll27]'`
-
-Once the ingest sidekiq jobs have completed:
+Once the ingest sidekiq jobs (background worker processes) have completed:
 
 `docker-compose exec web rake solr:commit`
 
@@ -115,7 +112,8 @@ The Reflections `docker-compose.yml` comes equipped with a selenium server runni
 ## Some aliases for your shell
 
 ```bash
-# Note: you might consider adding aliases (shortcuts) in your shell env to make it easier to run these commands. e.g.:
+# Note: you might consider adding aliases (shortcuts) in your shell
+# env to make it easier to run these commands. e.g.:
 # alias dps='docker ps -a'
 
 # Show all docker images
