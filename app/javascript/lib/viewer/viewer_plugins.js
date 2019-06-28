@@ -6,6 +6,9 @@ export default stampit({
   props: {
     plugins: [seadragonPlugin, kalturaPlugin]
   },
+  init({ plugins = this.plugins }) {
+    this.plugins = plugins;
+  },
   methods: {
     // The caller injects it's this context here, so that plugins may gain
     // access to the arguments of the caller's constructor.
