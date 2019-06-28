@@ -39,7 +39,7 @@ app_1          | [1] * Process workers: 3
 ...
 ```
 
-Once the rails server has booted, open [http://localhost:3000/](http://localhost:3000/) in yourbrowser.
+Once the rails server has booted, open [http://localhost:3000/](http://localhost:3000/) in your browser.
 
 ### Optional: Configure credentials in the `.env` file:
 
