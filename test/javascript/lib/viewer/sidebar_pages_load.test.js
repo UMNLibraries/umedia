@@ -41,6 +41,7 @@ it('sideloads pages', async () => {
     sidebar: sidebar,
     elements: elements,
     sliderKlass: sliderKlass,
+    showSlider: true,
   }).sideLoad();
 
 
@@ -82,6 +83,7 @@ describe('when a query is present',  () => {
       sidebar: sidebar,
       elements: elements,
       sliderKlass: sliderKlass,
+      showSlider: true,
     }).sideLoad();
 
     const verticalSlideConfig = sliderKlass.mock.calls[0][0];
@@ -117,6 +119,7 @@ describe('when the record count is not greater than the perPage configuration ',
       sidebar: sidebar,
       elements: elements,
       sliderKlass: sliderKlass,
+      showSlider: true,
     }).sideLoad();
 
     const verticalSlideConfig = sliderKlass.mock.calls[0][0];
