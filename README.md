@@ -104,7 +104,7 @@ To run the test suite: `./docker-compose-test-run app bundle exec rake test`
 
 The Reflections `docker-compose.yml` comes equipped with a selenium server running VNC. To watch Selenium as it drives the test browser, install a [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) and connect it to `http://localhost:5900` with the password "`secret`".
 
-### Working with the Solr Test Index
+### Working With the Solr Test Index
 
 Let's say you found a bug that depends on a certain record being in the index and want to write a test for this error. This is how you would do that:
 
