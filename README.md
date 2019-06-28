@@ -110,33 +110,32 @@ Let's say you found a bug that depends on a certain record being in the index an
 
 1. Index the record
 
-    ```bash
-    docker-compose exec rake ingest:record[p16022coll95:33]
-    ```
+   ```bash
+   docker-compose exec rake ingest:record[p16022coll95:33]
+   ```
 
 2. Commit the record after sidekiq has finished processing (watch sidekiq here: [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq))
 
-
-    ```bash
-    docker-compose exec rake solr:commit
-    ```
+   ```bash
+   docker-compose exec rake solr:commit
+   ```
 
 3. (optional) Index transcript metadata
 
    Compound records may have children with transcripts. In order to make these child transcripts searchable, we have to run a post-indexing process that enriches the parent record with child record transcripts as child records are not searched in the primary index search UI.
 
-    ```bash
-    docker-compose exec rake ingest:all_collection_transcripts;
-    docker-compose exec rake solr:commit
-    ```
+   ```bash
+   docker-compose exec rake ingest:all_collection_transcripts;
+   docker-compose exec rake solr:commit
+   ```
 
 4. Synchronize the Solr dev index to the test index
 
-    After verifying that your new record appears in the dev instance of your site, you may then sync it to the test instance. We don't index directly into the test instance primarily because the syncing from dev to test approach allows us to have only once instance of sidekiq and the app services running.
+   After verifying that your new record appears in the dev instance of your site, you may then sync it to the test instance. We don't index directly into the test instance primarily because the syncing from dev to test approach allows us to have only once instance of sidekiq and the app services running.
 
-    ```bash
-    ./sync_dev_index_to_test_index.sh
-    ```
+   ```bash
+   ./sync_dev_index_to_test_index.sh
+   ```
 
 # Docker Help
 
