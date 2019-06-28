@@ -104,6 +104,40 @@ To run the test suite: `./docker-compose-test-run app bundle exec rake test`
 
 The Reflections `docker-compose.yml` comes equipped with a selenium server running VNC. To watch Selenium as it drives the test browser, install a [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) and connect it to `http://localhost:5900` with the password "`secret`".
 
+### Working with the Solr Test Index
+
+Let's say you found a bug that depends on a certain record being in the index and want to write a test for this error. This is how you would do that:
+
+1. Index the Record
+
+    ```bash
+    docker-compose exec rake ingest:record[p16022coll95:33]
+    ```
+
+2. Commit the record after sidekiq has finished processing (watch sidekiq here: [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq))
+
+
+    ```bash
+    docker-compose exec rake solr:commit
+    ```
+
+3. (optional) Index transcript metadata
+
+   Compound records may have children with transcripts. In order to make these child transcripts searchable, we have to run a post-indexing process that enriches the parent record with child record transcripts as child records are not searched in the primary index search UI.
+
+    ```bash
+    docker-compose exec rake ingest:all_collection_transcripts;
+    docker-compose exec rake solr:commit
+    ```
+
+4. Synchronize the Solr Dev Index to the Test Index
+
+    After verifying that your new record appears in the dev instance of your site, you may then sync it to the test instance. We don't index directly into the test instance primarily because the syncing from dev to test approach allows us to have only once instance of sidekiq and the app services running.
+
+    ```bash
+    ./sync_dev_index_to_test_index.sh
+    ```
+
 # Docker Help
 
 ## Some aliases for your shell
