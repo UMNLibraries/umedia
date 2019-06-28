@@ -108,7 +108,7 @@ The Reflections `docker-compose.yml` comes equipped with a selenium server runni
 
 Let's say you found a bug that depends on a certain record being in the index and want to write a test for this error. This is how you would do that:
 
-1. Index the Record
+1. Index the record
 
     ```bash
     docker-compose exec rake ingest:record[p16022coll95:33]
@@ -130,7 +130,7 @@ Let's say you found a bug that depends on a certain record being in the index an
     docker-compose exec rake solr:commit
     ```
 
-4. Synchronize the Solr Dev Index to the Test Index
+4. Synchronize the Solr dev index to the test index
 
     After verifying that your new record appears in the dev instance of your site, you may then sync it to the test instance. We don't index directly into the test instance primarily because the syncing from dev to test approach allows us to have only once instance of sidekiq and the app services running.
 
