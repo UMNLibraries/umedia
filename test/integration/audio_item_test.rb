@@ -8,7 +8,6 @@ class AudioTest < ActiveSupport::TestCase
   it 'loads a kaltura audio player' do
     Capybara.current_driver = :selenium
     visit '/item/p16022coll171:1706'
-    sleep 1
     has_selector?(:xpath, '//*[@id="kaltura_player_ifp"]').must_equal true
   end
 end
