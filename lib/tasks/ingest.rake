@@ -8,6 +8,11 @@ namespace :ingest do
     end.index!
   end
 
+  desc 'Delete Collection Metadata'
+  task collection_metadata_delete: [:environment] do
+    SolrClient.new.solr.delete_by_query("document_type:collection")
+  end
+
   desc 'Index a single collection'
   task :collection, [:set_spec] => :environment do |t, args|
     run_etl!([args[:set_spec]])
