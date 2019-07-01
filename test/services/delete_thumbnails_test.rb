@@ -32,7 +32,6 @@ require 'test_helper'
                                        page: 1,
                                        bucket: bucket,
                                        s3_resource: s3_resource)
-        raise deleter.delete!.inspect
         # deleter.delete!.must_equal []
         deleter.last_batch?.must_equal true
         s3_resource.verify
