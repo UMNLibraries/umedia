@@ -61,7 +61,8 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > button').click
       find(:css, '#sort-dropdown > ul > li:nth-child(7) > a').click
-      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('10,000 Lakes or More')
+      sleep 1
+      find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('100 Years of Student Drawings: John Cunningham, Jane Hession, and Katherine Solomonson, Dec. 2014')
     end
     it 'sets 10 per page' do
       Capybara.current_driver = :selenium
