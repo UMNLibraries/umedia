@@ -2,15 +2,16 @@ version: '3.1'
 
 services:
   solr:
-    image: cfennell/umedia_solr:0.3.0
+    image: umedia_solr:dev
     volumes:
       - ./snapshots:/snapshots
     ports: ["8983:8983"]
 
   solr_test:
-    image: cfennell/umedia_solr:0.2.0
+    image: umnlib/umedia_solr:test
     volumes:
-      - ./snapshots:/snapshots
+      - ./snapshots_test:/snapshots
+      - ./test_index:/test_index/
     ports: ["8984:8983"]
 
   app:
@@ -18,7 +19,7 @@ services:
     command: >
       bash -c "
         # Run test server detached
-        RAILS_ENV=test SOLR_URL=http://solr_test:8983/solr/core UMEDIA_COLLECTION_PAGE_LIMIT=2 puma -b tcp://0.0.0.0:3001 -d &&
+        RAILS_ENV=test SOLR_URL=http://solr_test:8983/solr/core UMEDIA_COLLECTION_PAGE_LIMIT=1 puma -b tcp://0.0.0.0:3001 -d &&
 
         # Run web server
         UMEDIA_COLLECTION_PAGE_LIMIT=20 puma -C config/puma.rb"
@@ -34,6 +35,7 @@ services:
       - redis_cache
     depends_on:
       - solr
+      - solr_test
 
   sidekiq:
     build: .

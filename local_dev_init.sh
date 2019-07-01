@@ -9,12 +9,14 @@ then
   TEST_SNAPSHOT=snapshot.20190627191328762
 
   docker-compose stop
+  # Before populating the indexes, we need to remove the old ones with possible
+  # references to previous builds of the solr containers;
   docker-compose rm -fv solr;
   docker-compose rm -fv solr_test;
 
   # BUILD the local solr core
   git clone https://github.com/UMNLibraries/umedia_solr_conf.git;
-  (cd umedia_solr_conf; ./rebuild.sh);
+  (cd umedia_solr_conf; ./rebuild-dev.sh);
 
   # BUILD the App
   cp -n .env.example .env # n = "no clobber: don't overwrite if already there"
@@ -23,20 +25,19 @@ then
   echo "sudo chown -R $(whoami):$(whoami) node_modules"
   sudo chown -R $(whoami):$(whoami) node_modules
 
-  # Before populating the indexes, we need to remove the old ones with possible
-  # references to previous builds of the solr containers;
-
 
   # POPULATE the dev index
   mkdir -p snapshots;
   chmod 777 -R snapshots;
   (cd snapshots; curl -O "https://umedia-solr-test-cores.s3.amazonaws.com/$TEST_SNAPSHOT.tar.gz")
   (cd snapshots; tar -xzvf "$TEST_SNAPSHOT.tar.gz")
-  docker-compose run app rake solr:restore
+  docker-compose run app rake solr:restore;
 
   # POPULATE the test index
   mkdir -p snapshots_test;
-  chmod 777 -R snapshots_test
+  chmod 777 -R snapshots_test;
+  mkdir -p test_index;
+  chmod 777 test_index;
   (cd snapshots_test; curl -O "https://umedia-solr-test-cores.s3.amazonaws.com/$TEST_SNAPSHOT.tar.gz")
   (cd snapshots_test; tar -xzvf "$TEST_SNAPSHOT.tar.gz")
   ./docker-compose-test-run app rake solr:restore
