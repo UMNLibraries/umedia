@@ -58,6 +58,7 @@ class HomeTest < ActiveSupport::TestCase
     it 'sorts by date, newest first' do
       Capybara.current_driver = :selenium
       visit '/search'
+      sleep 1
       find(:css, '#sort-dropdown > button').click
       find(:css, '#sort-dropdown > ul > li:nth-child(7) > a').click
       find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text.must_equal('10,000 Lakes or More')
