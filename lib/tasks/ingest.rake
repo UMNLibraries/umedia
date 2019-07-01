@@ -48,16 +48,30 @@ namespace :ingest do
     etl.set_specs.map { |set_spec| TranscriptsIndexerWorker.perform_async(1, set_spec) }
   end
 
+  desc 'Index A controlled set of sample items (used to generage the test index)'
+  task sample_records: [:environment] do
+    JSON.parse(File.read(Rails.root.join('sample-records.json'))).map do |id|
+      index_record(id)
+    end
+  end
+
   desc 'Launch a background job to index a single record.'
   task :record, [:id] => :environment  do |t, args|
-    config = UmediaETL.new.config
-    CDMDEXER::TransformWorker.perform_async(
-      [args[:id].split(':')],
-      { url: config[:solr_config][:url]},
-      config[:cdm_endpoint],
-      config[:oai_endpoint],
-      config[:field_mappings]
-    )
+    index_record(args[:id])
+  end
+
+  def index_record(id)
+    IndexRecord.new(
+      record_id: id,
+      solr_url: config[:solr_config][:url],
+      cdm_endpoint: config[:cdm_endpoint],
+      oai_endpoint: config[:oai_endpoint],
+      field_mappings: config[:field_mappings]
+    ).index!
+  end
+
+  def config
+    etl.config
   end
 
   def etl
