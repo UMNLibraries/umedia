@@ -26,21 +26,13 @@ then
   sudo chown -R $(whoami):$(whoami) node_modules
 
 
-  # POPULATE the dev index
+  # Create the snapshot directories
   mkdir -p snapshots;
   chmod 777 -R snapshots;
-  (cd snapshots; curl -O "https://umedia-solr-test-cores.s3.amazonaws.com/$TEST_SNAPSHOT.tar.gz")
-  (cd snapshots; tar -xzvf "$TEST_SNAPSHOT.tar.gz")
-  docker-compose run app rake solr:restore;
-
-  # POPULATE the test index
   mkdir -p snapshots_test;
   chmod 777 -R snapshots_test;
   mkdir -p test_index;
   chmod 777 test_index;
-  (cd snapshots_test; curl -O "https://umedia-solr-test-cores.s3.amazonaws.com/$TEST_SNAPSHOT.tar.gz")
-  (cd snapshots_test; tar -xzvf "$TEST_SNAPSHOT.tar.gz")
-  ./docker-compose-test-run app rake solr:restore
 
   #START the app
   docker-compose up;
