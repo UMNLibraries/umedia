@@ -102,7 +102,7 @@ To run the test suite: `./docker-compose-test-run app bundle exec rake test`
 
 ### Watching Your Functional Tests (Helpful for Debugging)
 
-The Reflections `docker-compose.yml` comes equipped with a selenium server running VNC. To watch Selenium as it drives the test browser, install a [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) and connect it to `http://localhost:5900` with the password "`secret`".
+The Reflections `docker-compose.yml` comes equipped with a selenium server running VNC. To watch Selenium as it drives the test browser, install a [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) and connect it to `localhost:5900` (note: **no** `http://`) with the password "`secret`".
 
 ### Working With the Solr Test Index
 
