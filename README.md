@@ -106,21 +106,50 @@ The Reflections `docker-compose.yml` comes equipped with a selenium server runni
 
 ### Working With the Solr Test Index
 
-Let's say you found a bug that depends on a certain record being in the index and want to write a test for this error. This is how you would do that:
+Let's say you found a bug that depends on a certain record being in the index and want to write a test for this error.
 
-1. Index the record
+1. Write your (failing test).
+2. Add the record to the `sample-records.json` file in the root directory of this repository.
 
-   ```bash
-   docker-compose exec rake ingest:record[p16022coll95:33]
+    This allows others to deterministically recreate the sample index.
+    **Note**: be sure to `git pull origin master` before modifying this file so that you have the most recent list of example records.
+
+   ```json
+    [
+      "p16022coll262:137",
+      "p16022coll171:1706",
+      "p16022coll416:904",
+      "p16022coll358:6032",
+      "p16022coll402:1349",
+      "p16022coll406:104",
+      "p16022coll251:3420",
+      "p16022coll135:0",
+      "p16022coll272:6",
+      "p16022coll95:33",
+      "p16022coll289:3",
+      "p16022coll345:69542",
+      "p16022coll287:464",
+      "p16022coll287:649",
+      "p16022coll287:561"
+    ]
    ```
+3. Ingest the new record(s)
 
-2. Commit the record after sidekiq has finished processing (watch sidekiq here: [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq))
+    (Assumes your app is up and running via `docker-compose up` in another terminal tab)
+
+    ```bash
+    docker-compose exec rake ingest:sample_records
+    ```
+
+    This...will take a while. Go get a snack.
+
+4. Commit the record after sidekiq has finished processing (watch sidekiq here: [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq))
 
    ```bash
    docker-compose exec rake solr:commit
    ```
 
-3. (optional) Index transcript metadata
+5. Index transcript metadata
 
    Compound records may have children with transcripts. In order to make these child transcripts searchable, we have to run a post-indexing process that enriches the parent record with child record transcripts as child records are not searched in the primary index search UI.
 
@@ -129,13 +158,22 @@ Let's say you found a bug that depends on a certain record being in the index an
    docker-compose exec rake solr:commit
    ```
 
-4. Synchronize the Solr dev index to the test index
+6. Synchronize the Solr dev index to the test index
 
-   After verifying that your new record appears in the dev instance of your site, you may then sync it to the test instance. We don't index directly into the test instance primarily because the syncing from dev to test approach allows us to have only once instance of sidekiq and the app services running.
+   After verifying that your new record appears in the dev instance of your site, you may then sync it to the test instance.
 
    ```bash
    ./sync_dev_index_to_test_index.sh
    ```
+7. Get your tests to pass.
+8. Create a PR with your working code, test, and new `sample-records.json`.
+9. Push the new test instance to DockerHub once your changes have been merged.
+
+    Share your new test index so that your new tests pass for others.
+
+    ```bash
+    ./push_test_index_to_dockerhub.sh
+    ```
 
 # Docker Help
 
