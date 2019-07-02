@@ -23,11 +23,6 @@ namespace :ingest do
     run_etl!(etl.set_specs)
   end
 
-  desc 'Index A Sample UMedia Collection'
-  task collection_sample: [:environment] do
-    run_etl!(etl.set_specs.sample(1))
-  end
-
   desc 'Nuke Sidekiq Queue'
   task clear_sidekiq: [:environment] do
     Sidekiq::Queue.new.clear

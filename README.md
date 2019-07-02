@@ -73,8 +73,8 @@ rake ingest:record[record_id_here]
 # Ingest collection metadata (used to populate the collection search on the home page)
 rake ingest:collection_metadata
 
-# Live dangerously, get a random collection sample
-rake ingest:collection_sample
+# Ingest a fixed set of sample records (this is the "official" list of records used in our solr test index - see "Working With the Solr Test Index")
+rake ingest:sample_records
 
 # Enrich parent items with the transcripts of their children (makes search by transcripts possible)
 rake ingest:all_collection_transcripts
