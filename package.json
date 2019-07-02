@@ -3,7 +3,7 @@
     "//": "sad, adj added here because: https://github.com/yarnpkg/yarn/issues/3933#issuecomment-315203589",
     "@rails/webpacker": "^4.0.2",
     "ajv": "5",
-    "bootstrap-sass": "3.3.7",
+    "bootstrap-sass": "3.4.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-touch-punch": "^0.2.3",
     "jquery-ujs": "^1.2.2",
