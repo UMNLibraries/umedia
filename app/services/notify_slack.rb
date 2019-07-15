@@ -5,7 +5,7 @@ require 'uri'
 class NotifySlack
   attr_reader :slack_url, :message, :http_klass, :http_post_klass
   def initialize(message: :MISSING_MESSAGE,
-                 slack_url: ENV['SLACK_WEBHOOK_URL'],
+                 slack_url: ENV['CDM_ERROR_SLACK_WEBHOOK_URL'],
                  http_klass: Net::HTTP,
                  http_post_klass: Net::HTTP::Post)
     @message = message
