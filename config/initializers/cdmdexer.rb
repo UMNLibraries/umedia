@@ -28,7 +28,7 @@ module CDMDEXER
     def self.call!(error)
       message = "CDMDEXER Error: #{error}"
       Rails.logger.info message
-      NotifySlack.new(message: "CDM Error on Host #{ENV['HOSTNAME']} \n ```#{message}```").post
+      NotifySlack.new(message: "CDM Error on Host #{ENV['HOSTNAME']}/sidekiq \n ```#{message}```").post
     end
   end
 end
