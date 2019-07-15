@@ -28,7 +28,7 @@ module CDMDEXER
     def self.call!(error)
       message = "CDMDEXER Error: #{error}"
       Rails.logger.info message
-      NotifySlack.new(message: message).notify
+      NotifySlack.new(message: message).post
     end
   end
 end
