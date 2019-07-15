@@ -18,10 +18,17 @@ module CDMDEXER
     end
   end
 
-  # An example callback
   class LoaderNotification
     def self.call!(ingestables, deletables)
       Rails.logger.info "CDMDEXER: Loading #{ingestables.length} records and deleting #{deletables.length}"
+    end
+  end
+
+  class CdmError
+    def self.call!(error)
+      message = "CDMDEXER Error: #{error}"
+      Rails.logger.info message
+      NotifySlack.new(message: message).notify
     end
   end
 end
