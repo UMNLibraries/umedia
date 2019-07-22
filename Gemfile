@@ -26,7 +26,6 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -72,7 +71,7 @@ end
 gem 'rsolr'
 gem 'sidekiq'
 gem 'sidekiq-failures'
-gem 'mini_magick'
+gem "mini_magick", ">= 4.9.4"
 gem 'will_paginate'
 gem 'bootstrap-sass', '>=3.4.1'
 gem 'cdmdexer'
