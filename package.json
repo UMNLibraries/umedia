@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "//": "sad, adj added here because: https://github.com/yarnpkg/yarn/issues/3933#issuecomment-315203589",
-    "@rails/webpacker": "^4.0.2",
+      "@rails/webpacker": "^4.0.2",
     "ajv": "5",
     "bootstrap-sass": "3.4.1",
     "jquery-ui": "^1.12.1",
@@ -13,12 +12,16 @@
     "stampit": "^4.1.2",
     "stimulus": "^1.0.1",
     "turbolinks": "^5.1.1",
-    "lodash": "^4.17.13"
+    "lodash": "^4.17.13",
+    "lodash.template": "^4.5.0",
+    "lodash.mergewith": "^4.6.2",
+    "js-yaml": "^3.13.1",
+    "fstream": "^1.0.12"
   },
   "devDependencies": {
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.3.1",
     "regenerator-runtime": "^0.11.1",
     "webpack-dev-server": "^3.2.1"
   },
