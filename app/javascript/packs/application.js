@@ -15,7 +15,6 @@ const context = require.context("../controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
 import "jquery"
-import "jquery-ujs"
 import "bootstrap-sass"
 
 import 'jquery-ui/ui/widgets/slider';
