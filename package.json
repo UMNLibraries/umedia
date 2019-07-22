@@ -12,12 +12,13 @@
     "rails-ujs": "^5.2.0",
     "stampit": "^4.1.2",
     "stimulus": "^1.0.1",
-    "turbolinks": "^5.1.1"
+    "turbolinks": "^5.1.1",
+    "lodash": "^4.17.13"
   },
   "devDependencies": {
-    "babel-jest": "^23.0.1",
+    "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "regenerator-runtime": "^0.11.1",
     "webpack-dev-server": "^3.2.1"
   },
