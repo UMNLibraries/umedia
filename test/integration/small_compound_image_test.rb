@@ -22,6 +22,7 @@ class SmallCompoundTest < ActiveSupport::TestCase
     Capybara.current_driver = :selenium
     visit '/item/p16022coll474:4419'
     fill_in 'q', with: 'butler'
+    sleep 2
     find(:xpath, '//*[@id="sidebar"]/form/div/span/button').click
     find(:xpath, '//*[@id="sidebar-p16022coll474:4387"]/div[2]/div[2]').text.must_equal "ROBERT DIXON 0f YOUNG MENS CHRISTIAN ASSOCIATION 22 BUTLER STREET, NORTHEAST ATLANTA, GEORGIA 30335 EXECUTIVE RETREAT 22 Butler Street, NE October 4-5, 1993 Board Room AGENDA m pi RECTORS NRIETTA ANTOININ JHER BENATOR iEBORAH BROWDER ROSA BURNEY DR."
     # Page 2 doesn't show up for this search result
