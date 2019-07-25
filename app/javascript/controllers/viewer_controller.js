@@ -111,16 +111,7 @@ export default class extends Controller {
                               ...{ child_id: event.currentTarget.dataset.child_id }
                             });
 
-
-    if (this.show_slider == true) {
-      SidebarPagesLoad({...this.sidebarPages, sidebar}).sideLoad();
-    } else {
-      $('#sidebar-pages').find('a').each(function() {
-        $(this).removeClass('active')
-      });
-      $(event.target).closest('a').addClass('active');
-    }
-
+    SidebarPagesLoad({...this.sidebarPages, sidebar}).sideLoad();
     this.viewer.viewerSideLoad(sidebar.id, sidebar.child_id);
 
     ViewerUrl({ q: sidebar.query,
