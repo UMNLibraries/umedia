@@ -14,6 +14,10 @@ const application = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import "isomorphic-fetch"
+
 import "jquery"
 import "bootstrap-sass"
 
