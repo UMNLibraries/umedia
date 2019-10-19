@@ -16,6 +16,8 @@ module Parhelion
 
     def info
       @info ||= JSON.parse(rest_client_klass.get(info_url).body)
+    rescue StandardError => e
+      raise "IIF Error for #{info_url}: #{e}"
     end
 
     def iiif_url
