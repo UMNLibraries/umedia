@@ -30,6 +30,8 @@ module Umedia
     # children. So, we have to get the first child items to get this info.
     def contributing_organization_name
       first_non_child['contributing_organization_name']
+    rescue StandardError => e
+      raise "No Contrib Org Name for: #{first_non_child} \n #{e}"
     end
 
     private
