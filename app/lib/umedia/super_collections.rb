@@ -19,7 +19,9 @@ module Umedia
         { name: "Revealing Bound Maps", item_ids: ['p16022coll251:1227', 'p16022coll251:1245', 'p16022coll251:5895'] },
         { name: "Minnesota's Radio History", item_ids: ['p16022coll171:1222', 'p16022coll171:2119', 'p16022coll171:2224'] },
         { name: "The Green Revolution", item_ids: ['p16022coll345:12027', 'p16022coll342:46679', 'p16022coll347:32763'] },
-        { name: "African American Archival Materials", item_ids: ['p16022coll300:83', 'p16022coll226:107', 'p16022coll317:364'] }
+        { name: "African American Archival Materials", item_ids: ['p16022coll300:83', 'p16022coll226:107', 'p16022coll317:364'] },
+        { name: "Seoul National University", item_ids: ['p16022coll175:20865', 'p16022coll175:20873', 'p16022coll175:20882'] },
+        { name: "Atlantic World", item_ids: ['p16022coll184:2441', 'p16022coll184:1854', 'p16022coll184:1796'] }
       ]
     end
   end
