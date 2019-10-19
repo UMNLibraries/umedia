@@ -80,3 +80,5 @@ gem 'webpacker', '~> 4.x'
 gem 'lograge'
 gem 'rinku'
 gem 'whenever', require: false
+
+gem "rubyzip", ">= 1.3.0"
