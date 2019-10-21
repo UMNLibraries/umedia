@@ -25,12 +25,12 @@ every :saturday, at: '8pm' do
 end
 
 # 'Index Collection Metadata'
-every :sunday, at: '8pm' do
+every :monday, at: '12am' do
   rake 'ingest:collection_metadata'
 end
 
 # 'Enrich Primary Records with Child Page Transcripts'
-every :sunday, at: '9pm' do
+every :monday, at: '1am' do
   rake 'ingest:all_collection_transcripts'
 end
 
