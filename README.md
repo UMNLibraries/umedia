@@ -82,13 +82,13 @@ rake ingest:all_collection_transcripts
 
 Once the ingest sidekiq jobs (background worker processes) have completed:
 
-`docker-compose exec web rake solr:commit`
+`docker-compose exec app rake solr:commit`
 
 ## Interacting with the App on the Command Line
 
 Enter an interactive session with the application (must be running in another tab):
 
-`docker-compose exec web /bin/bash`
+`docker-compose exec app /bin/bash`
 
 Replace `/bin/bash` with `rails console` to skip right to a Rails console session.
 
@@ -138,7 +138,7 @@ Let's say you found a bug that depends on a certain record being in the index an
     (Assumes your app is up and running via `docker-compose up` in another terminal tab)
 
     ```bash
-    docker-compose exec rake ingest:sample_records
+    docker-compose exec app rake ingest:sample_records
     ```
 
     This...will take a while. Go get a snack.
@@ -146,7 +146,7 @@ Let's say you found a bug that depends on a certain record being in the index an
 4. Commit the record after sidekiq has finished processing (watch sidekiq here: [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq))
 
    ```bash
-   docker-compose exec rake solr:commit
+   docker-compose exec app rake solr:commit
    ```
 
 5. Index transcript metadata
@@ -154,8 +154,8 @@ Let's say you found a bug that depends on a certain record being in the index an
    Compound records may have children with transcripts. In order to make these child transcripts searchable, we have to run a post-indexing process that enriches the parent record with child record transcripts as child records are not searched in the primary index search UI.
 
    ```bash
-   docker-compose exec rake ingest:all_collection_transcripts;
-   docker-compose exec rake solr:commit
+   docker-compose exec app rake ingest:all_collection_transcripts;
+   docker-compose exec app rake solr:commit
    ```
 
 6. Synchronize the Solr dev index to the test index
