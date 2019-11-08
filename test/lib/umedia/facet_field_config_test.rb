@@ -6,7 +6,7 @@ module Umedia
       config = FacetFieldConfig.new
       config.visible.must_equal([:super_collection_name_ss, :collection_name_s, :types, :format_name, :date_created_ss, :subject_ss, :creator_ss, :publisher_s, :contributor_ss, :language])
       config.hidden.must_equal([:format_name, :subject_fast_ss, :city, :state, :country, :region, :continent, :parent_collection_name, :contributing_organization_name_s])
-      config.all.must_equal([:super_collection_name_ss, :collection_name_s, :types, :format_name, :date_created_ss, :subject_ss, :creator_ss, :publisher_s, :contributor_ss, :language, :format_name, :subject_fast_ss, :city, :state, :country, :region, :continent, :parent_collection_name, :contributing_organization_name_s])
+      config.all.must_equal([:super_collection_name_ss, :contributing_organization_name_s, :collection_name_s, :types, :format_name, :date_created_ss, :subject_ss, :creator_ss, :publisher_s, :contributor_ss, :language])
     end
   end
 end

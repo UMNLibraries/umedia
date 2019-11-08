@@ -13,8 +13,7 @@ module Umedia
         :country,
         :region,
         :continent,
-        :parent_collection_name,
-        :contributing_organization_name_s
+        :parent_collection_name
       ]
     end
 
@@ -27,6 +26,7 @@ module Umedia
     def prod
       [
         :super_collection_name_ss,
+        :contributing_organization_name_s,
         :collection_name_s,
         :types,
         :format_name,
