@@ -2,7 +2,7 @@ module Parhelion
   module Viewers
     class PDF
       extend Forwardable
-      def_delegators :@item, :[], :id, :parent_id, :collection
+      def_delegators :@item, :[], :id, :collection
 
       attr_reader :item, :uri
       def initialize(item: Parhelion::Item.new,
@@ -20,15 +20,7 @@ module Parhelion
       end
 
       def src
-        if is_primary?
-          "#{uri}/utils/getfile/collection/#{collection}/id/#{id}/filename"
-        else
-          "#{uri}/utils/getfile/collection/#{collection}/id/#{parent_id}/filename/#{id}"
-        end
-      end
-
-      def is_primary?
-        item.field_record_type.value == 'primary'
+        "#{uri}/utils/getfile/collection/#{collection}/id/#{id}"
       end
     end
   end
