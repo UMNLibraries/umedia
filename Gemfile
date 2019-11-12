@@ -82,3 +82,4 @@ gem 'rinku'
 gem 'whenever', require: false
 
 gem "rubyzip", ">= 1.3.0"
+gem "loofah", ">= 2.3.1"
