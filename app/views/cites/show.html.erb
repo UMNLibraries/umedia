@@ -1,4 +1,8 @@
 <div class="citation">
+
+  <h3>URL</h3>
+  <%= link_to item.url, item.url %>
+
   <h3>MLA Format</h3>
   <span clss="citation-mla-format">
     <%= raw Umedia::Citation::Cite.new(mappings: Umedia::Citation::Styles::MLA.mappings, doc: item).to_s %>
