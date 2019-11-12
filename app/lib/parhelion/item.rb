@@ -12,6 +12,10 @@ module Parhelion
       @cdn_iiif_klass = cdn_iiif_klass
     end
 
+    def url
+      "#{ENV['RAILS_BASE_URL']}/item/#{index_id}"
+    end
+
     def height
       iiif_info.fetch('height', 0)
     end

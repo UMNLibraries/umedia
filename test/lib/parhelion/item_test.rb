@@ -1,6 +1,13 @@
 require 'test_helper'
 module Parhelion
   class ItemTest < ActiveSupport::TestCase
+
+    it 'knows its url' do
+      doc_hash = {'id' => 'foobar2:444'}
+      item = Item.new(doc_hash: doc_hash)
+      item.url.must_equal "http://localhost:3001/item/foobar2:444"
+    end
+
     describe 'when it has childern' do
       # Usually, we don't request height/width of a parent
       it 'produces correct height and width of zero' do
