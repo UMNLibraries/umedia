@@ -32,7 +32,7 @@ module DetailsHelper
         ]
       },
       {
-        label: 'Geographic Details',
+        label: 'Geographic Location',
         fields: [
           { name: 'city', facet: true },
           { name: 'state', facet: true },
