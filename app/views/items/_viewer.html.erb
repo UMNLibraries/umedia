@@ -35,7 +35,22 @@
 <%=  link_to item_path(id: sanitize(params['id']), :format => :json),
   alt: 'JSON Format',
   rel: 'nofollow',
+  id: 'json-link',
   title: 'See item the JSON format' do %>
   <span class="hidden">JSON Results Page</span>
   <span class="icon-json"></span>
+<% end %>
+
+<% cache("iiif-manifest-#{item.index_id}", expires_in: 1.hour) do %>
+  <% if manifest.url %>
+    <%=  link_to manifest.url,
+      alt: 'IIIF Manifest',
+      rel: 'nofollow',
+      id: 'iiif-link',
+      title: 'IIIF Manifest' do %>
+      <span class="hidden">IIIF Output</span>
+      <span class="icon-iiif"></span>
+    <% end %>
+    <%= link_to "What is IIIF?",  "https://iiif.io/community/faq/", class: 'iiif-help-link'%>
+  <% end %>
 <% end %>

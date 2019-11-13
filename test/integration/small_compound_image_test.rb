@@ -31,6 +31,5 @@ class SmallCompoundTest < ActiveSupport::TestCase
     find(:xpath, '//*[@id="sidebar-pages"]/div/a').click
     # Page 7 should be back in the list now
     has_selector?(:xpath, '//*[@id="sidebar-p16022coll416:820"]/div/img').must_equal true
-
   end
 end

@@ -52,4 +52,10 @@ module ItemsHelper
   def sidebar_scroll_class
     !@show_sidebar_slider ? 'sidebar-scroll' : ''
   end
+
+  def manifest
+    @manifest ||= Umedia::IiifManifest.new(id: item.id,
+                                           collection: item.collection,
+                                           viewer_type: item.viewer_type)
+  end
 end

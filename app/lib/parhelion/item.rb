@@ -48,8 +48,12 @@ module Parhelion
       doc_ids.first
     end
 
+    def viewer_type
+      doc_hash['viewer_type']
+    end
+
     def is_compound?
-      doc_hash['viewer_type'] == 'COMPOUND_PARENT_NO_VIEWER'
+      viewer_type == 'COMPOUND_PARENT_NO_VIEWER'
     end
 
     def ==(other)

@@ -18,7 +18,7 @@ ul.image-download {
   padding: 0;
   .glyphicon-download {
     font-size: 1.2em;
-    color: #4B0918;
+    color: #4b0918;
   }
 }
 
@@ -31,7 +31,7 @@ ul.image-download {
 }
 
 .item-metadata .nav a:hover {
-  color: #5B557B;
+  color: #5b557b;
 }
 
 .single-item-download {
@@ -41,11 +41,11 @@ ul.image-download {
 }
 
 .details-collections-fields {
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   clear: both;
-  background-image: url(asset_path('dust_scratches.png'));
+  background-image: url(asset_path("dust_scratches.png"));
   margin: 125px 0 50px;
 }
 
@@ -65,7 +65,7 @@ ul.image-download {
   a {
     border: 1px solid #fff;
     display: block;
-    background-image: url(asset_path('dust_scratches.png'));
+    background-image: url(asset_path("dust_scratches.png"));
     height: 200px;
   }
   a:hover {
@@ -77,12 +77,12 @@ ul.image-download {
     vertical-align: top;
   }
   vertical-align: top;
-  h3  {
+  h3 {
     margin: 10px;
     font-size: 1em;
   }
   li {
-    display:inline-block;
+    display: inline-block;
     width: 160px;
     margin: 5px;
     text-align: center;
@@ -96,4 +96,8 @@ ul.image-download {
 
 .viewer-data {
   border-bottom: 1px solid #ccc;
+}
+
+.iiif-help-link {
+  margin-bottom: 10px;
 }

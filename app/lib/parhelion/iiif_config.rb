@@ -24,6 +24,10 @@ module Parhelion
       "#{endpoint}/digital/iiif/#{collection}/#{id}"
     end
 
+    def manifest_url
+      "#{endpoint}/iiif/info/#{collection}/#{id}/manifest.json"
+    end
+
     private
 
     def info_url

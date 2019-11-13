@@ -18,7 +18,7 @@
 }
 
 .filterName:after {
-  font-family: 'Glyphicons Halflings';
+  font-family: "Glyphicons Halflings";
   content: "\e080";
   font-size: 70%;
   padding-left: 4px;
@@ -38,7 +38,8 @@
   margin-top: 20px;
 }
 
-.icon-json {
+.icon-json,
+.icon-iiif {
   font-size: 3em;
 }
 
@@ -46,7 +47,7 @@
   margin-bottom: 5px;
 }
 
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width: 992px) {
   #search-facets {
     .collapse {
       display: block !important;
@@ -57,7 +58,7 @@
   }
 }
 
-@media only screen and (max-width : 475px) {
+@media only screen and (max-width: 475px) {
   .constraint-value {
     display: block;
     max-width: 250px;
@@ -67,14 +68,14 @@
   }
 }
 
-@media only screen and (max-width : 400px) {
+@media only screen and (max-width: 400px) {
   .constraint-value {
     display: block;
     max-width: 200px;
   }
 }
 
-@media only screen and (max-width : 350px) {
+@media only screen and (max-width: 350px) {
   .constraint-value {
     display: block;
     max-width: 150px;
@@ -82,7 +83,7 @@
 }
 
 .search-breadcrumbs {
-  .btn  {
+  .btn {
     margin-right: 0;
     border-radius: 0;
   }
