@@ -53,7 +53,7 @@ en:
       language: "Language"
     index_fields:
       date_created_ss: "Created"
-      date_added: "Added on"
+      date_added: "Added On"
       description: "Description"
       creator: "Creator"
       contributor: "Contributor"
