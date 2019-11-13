@@ -32,74 +32,74 @@
 en:
   search:
     facets:
-      types: 'Type'
-      format_name: 'Format'
-      date_created_ss: 'Created'
-      subject_ss: 'Subject'
-      creator_ss: 'Creator'
-      publisher_s: 'Publisher'
-      contributor_ss: 'Contributor'
-      collection_name_s: 'Collection'
-      super_collection_name_ss: 'Special Projects'
-      page_count: 'Page Count'
-      city: 'City'
-      state: 'State'
-      country: 'Country'
-      region: 'Region'
-      continent: 'Continent'
-      parent_collection_name: 'Parent Collection'
-      contributing_organization_name: 'Contributing Organization'
-      contributing_organization_name_s: 'Contributing Organization'
-      language: 'Language'
+      types: "Type"
+      format_name: "Format"
+      date_created_ss: "Created"
+      subject_ss: "Subject"
+      creator_ss: "Creator"
+      publisher_s: "Publisher"
+      contributor_ss: "Contributor"
+      collection_name_s: "Collection"
+      super_collection_name_ss: "Special Projects"
+      page_count: "Page Count"
+      city: "City"
+      state: "State"
+      country: "Country"
+      region: "Region"
+      continent: "Continent"
+      parent_collection_name: "Parent Collection"
+      contributing_organization_name: "Contributing Organization"
+      contributing_organization_name_s: "Contributing Organization"
+      language: "Language"
     index_fields:
-      date_created_ss: 'Created'
-      description: 'Description'
-      creator: 'Creator'
-      contributor: 'Contributor'
-      contributing_organization: 'Contributed By'
-      page_count: 'Page Count'
+      date_created_ss: "Created"
+      date_added: "Added on"
+      description: "Description"
+      creator: "Creator"
+      contributor: "Contributor"
+      contributing_organization: "Contributed By"
+      page_count: "Page Count"
   item:
-      fields:
-        title: 'Title'
-        title_alternative: 'Alternative Title'
-        description: 'Description'
-        date_created_ss: 'Date Created'
-        historical_era: 'Historical Era'
-        creator_ss: 'Creator'
-        contributor: 'Contributor '
-        publisher: 'Publisher'
-        caption: 'Caption'
-        notes: 'Notes'
-        types: 'Item Type'
-        format: 'Format'
-        format_name: 'Format'
-        dimensions: 'Dimensions'
-        subject_ss: 'Subjects'
-        subject_fast: 'FAST Subject Headings'
-        language: 'Language'
-        city: 'City'
-        state: 'State'
-        country: 'Country'
-        region: 'Region'
-        continent: 'Continent'
-        geonames: 'GeoNames URL'
-        projection: 'Projection'
-        scale: 'Scale'
-        parent_collection_name: 'Parent Collection'
-        contributing_organization_name_s: 'Contributing Organization'
-        contact_information: 'Contact Information'
-        fiscal_sponsor: 'Fiscal Sponsor'
-        local_identifier: 'Local Identifier'
-        barcode: 'Barcode Identifier'
-        system_identifier: 'System Identifier'
-        dls_identifier: 'DLS Identifier'
-        persistent_url: 'Persistent URL'
-        local_rights: 'Local Rights Statement'
-        standardized_rights: 'Standardized Rights Statement'
-        rights_statement_uri: 'Rights Statement URI'
-        transcription: 'Transcription'
-        translation: 'Translation'
+    fields:
+      title: "Title"
+      title_alternative: "Alternative Title"
+      description: "Description"
+      date_created_ss: "Date Created"
+      historical_era: "Historical Era"
+      creator_ss: "Creator"
+      contributor: "Contributor "
+      publisher: "Publisher"
+      caption: "Caption"
+      notes: "Notes"
+      types: "Item Type"
+      format: "Format"
+      format_name: "Format"
+      dimensions: "Dimensions"
+      subject_ss: "Subjects"
+      subject_fast: "FAST Subject Headings"
+      language: "Language"
+      city: "City"
+      state: "State"
+      country: "Country"
+      region: "Region"
+      continent: "Continent"
+      geonames: "GeoNames URL"
+      projection: "Projection"
+      scale: "Scale"
+      parent_collection_name: "Parent Collection"
+      contributing_organization_name_s: "Contributing Organization"
+      contact_information: "Contact Information"
+      fiscal_sponsor: "Fiscal Sponsor"
+      local_identifier: "Local Identifier"
+      barcode: "Barcode Identifier"
+      system_identifier: "System Identifier"
+      dls_identifier: "DLS Identifier"
+      persistent_url: "Persistent URL"
+      local_rights: "Local Rights Statement"
+      standardized_rights: "Standardized Rights Statement"
+      rights_statement_uri: "Rights Statement URI"
+      transcription: "Transcription"
+      translation: "Translation"
 
-        contributing_organization: 'Contributed By'
-        page_count: 'Page Count'
-
+      contributing_organization: "Contributed By"
+      page_count: "Page Count"

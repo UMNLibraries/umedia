@@ -58,4 +58,8 @@ module ItemsHelper
                                            collection: item.collection,
                                            viewer_type: item.viewer_type)
   end
+
+  def format_solr_date(field)
+    Parhelion::Field.new(name: field.name, value: field.value.split('T').first)
+  end
 end

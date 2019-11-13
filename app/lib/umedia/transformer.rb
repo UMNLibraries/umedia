@@ -138,6 +138,12 @@ module Umedia
       end
     end
 
+    class ToSolrDateFormatter
+      def self.format(date)
+        "#{date}T00:00:00Z"
+      end
+    end
+
     def self.field_mappings
       [
         {dest_path: 'id', origin_path: 'id', formatters: [CDMDEXER::StripFormatter]},
@@ -227,7 +233,9 @@ module Umedia
         {dest_path: 'document_type', origin_path: 'id', formatters: [DocumentFormatter]},
         # Used in /collections displays to select which thumbs should display and
         # in which order - 1, 2, or 3. The default value is last: 3.
-        {dest_path: 'featured_collection_order', origin_path: '/', formatters: [FeaturedCollectionOrderFormatter]}
+        {dest_path: 'featured_collection_order', origin_path: '/', formatters: [FeaturedCollectionOrderFormatter]},
+        # Date added to CONTENTdm - useful to sort by recency
+        {dest_path: 'date_added', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]}
       ]
     end
   end
