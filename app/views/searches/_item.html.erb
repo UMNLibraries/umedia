@@ -8,7 +8,7 @@
       <% title_icon_class = 'icon-docs' if item.field_page_count.value && item.field_page_count.value > 1 %>
       <div class="panel-body">
       <div class="col-xs-12">
-        <%= link_to item.field_title.value,  path, class: "#{title_icon_class}" %>
+        <%= link_to item.field_title.value,  path, class: "#{title_icon_class} search-result-item-title" %>
       </div>
       <dl class="item-metadata dl-horizontal dl-invert col-xs-12 col-sm-8 col-lg-10">
         <%= render 'index_field', field: item.field_description, truncated: true %>
