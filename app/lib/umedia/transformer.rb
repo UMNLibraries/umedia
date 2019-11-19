@@ -198,7 +198,7 @@ module Umedia
         {dest_path: 'local_identifier', origin_path: 'identi', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'barcode', origin_path: 'barcod', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'system_identifier', origin_path: 'system', formatters: [CDMDEXER::StripFormatter]},
-        {dest_path: 'dls_identifier', origin_path: 'dls', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'dls_identifier', origin_path: 'dls', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'persistent_url', origin_path: 'persis', formatters: [CDMDEXER::StripFormatter]},
       # Rights
         {dest_path: 'local_rights', origin_path: 'local', formatters: [CDMDEXER::StripFormatter]},
