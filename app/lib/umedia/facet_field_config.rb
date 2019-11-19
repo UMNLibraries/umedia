@@ -13,7 +13,8 @@ module Umedia
         :country,
         :region,
         :continent,
-        :parent_collection_name
+        :parent_collection_name,
+        :date_added
       ]
     end
 
