@@ -235,7 +235,8 @@ module Umedia
         # in which order - 1, 2, or 3. The default value is last: 3.
         {dest_path: 'featured_collection_order', origin_path: '/', formatters: [FeaturedCollectionOrderFormatter]},
         # Date added to CONTENTdm - useful to sort by recency
-        {dest_path: 'date_added', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]}
+        {dest_path: 'date_added', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]},
+        {dest_path: 'date_added_sort', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]}
       ]
     end
   end
