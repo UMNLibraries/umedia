@@ -38,7 +38,7 @@ module Umedia
         {label: 'Creator: Z to A', sort: 'creator_sort desc, title_sort asc' },
         {label: 'Date: Oldest First', sort: 'date_created_sort asc, title_sort asc' },
         {label: 'Date: Newest First', sort: 'date_created_sort desc, title_sort asc' },
-        {label: 'Date: Recently Added', sort: 'date_added_sort desc, title_sort asc' }
+        {label: 'Recently Added', sort: 'date_added_sort desc, title_sort asc' }
       ]
     end
 
