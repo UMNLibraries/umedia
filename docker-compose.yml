@@ -5,14 +5,12 @@ services:
     image: umedia_solr:dev
     volumes:
       - ./snapshots:/snapshots
-    ports: ["8983:8983"]
 
   solr_test:
     image: umnlib/umedia_solr:test
     volumes:
       - ./snapshots_test:/snapshots
       - ./test_index:/test_index/
-    ports: ["8984:8983"]
 
   app:
     build: .
