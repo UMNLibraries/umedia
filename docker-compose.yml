@@ -7,7 +7,7 @@ services:
       - ./snapshots:/snapshots
 
   solr_test:
-    image: umnlib/umedia_solr:test
+    image: umedia_solr:test
     volumes:
       - ./snapshots_test:/snapshots
       - ./test_index:/test_index/

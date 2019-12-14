@@ -41,14 +41,40 @@ app_1          | [1] * Process workers: 3
 
 Once the rails server has booted, open [http://localhost:3000/](http://localhost:3000/) in your browser.
 
+
+### Ingest Sample Records Into Dev
+
+A set of sample records has been selected for local development and testing. To ingest these records, open a new tab in your terminal / console application and issue the following command:
+
+`docker-compose exec app rake ingest:sample_records`
+
+**Note:** this is pretty slow in develpment instances and will take a while.
+
+Once these records have been indexed (monitor sidekiq indexing workers here: [http://localhost:3000/](http://localhost:3000/)), commit them to solr and ingest the homepage collection overview info:
+
+
+Commit items to solr:
+
+`docker-compose exec app rake solr:commit`
+
+Ingest Collection Metadata: 
+
+`docker-compose exec app rake ingest:collection_metadata`
+
+After populating the development index, syncronize the development solr index to the test solr index `./sync_dev_index_to_test_index.sh` to that integration tests may pass.
+
+
 ### Optional: Configure credentials in the `.env` file:
 
 ```bash
 SECRET_KEY_BASE=<<YOUR CONFIG HERE>>
+# Nailer is a lambda app that handles thumbnail processing and storage:
 UMEDIA_NAILER_API_URI=<<YOUR CONFIG HERE>>
 UMEDIA_NAILER_API_KEY=<<YOUR CONFIG HERE>>
 UMEDIA_NAILER_CDN_URI=<<YOUR CONFIG HERE>>
 UMEDIA_NAILER_THUMB_FALLBACK_URL=<<YOUR CONFIG HERE>>
+# This key is used to give the app permission to delete thumbnail
+# from a given S3 bucket:
 AWS_ACCESS_KEY_ID=<<YOUR CONFIG HERE>>
 AWS_SECRET_ACCESS_KEY=<<YOUR CONFIG HERE>>
 AWS_REGION=<<YOUR CONFIG HERE>>
@@ -58,23 +84,26 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 
 ## Ingest CONTENTdm Content Into Solr
 
-A few sample records are provided by a sample solr snapshot, but you may ingest more:
 
 ```bash
+
+# Ingest a fixed set of sample records (this is the "official" list of records used in our 
+# solr test index - see "Working With the Solr Test Index")
+docker-compose exec app rake ingest:sample_records
+
 # Ingest everything (ingest content from all collections)
-rake ingest:collections
+docker-compose exec app rake ingest:collections
 
 # Ingest content for a single collection
-rake ingest:collection[set_spec_here]
+docker-compose exec app rake ingest:collection[set_spec_here]
 
 # Ingest a single record
-rake ingest:record[record_id_here]
+docker-compose exec app rake ingest:record[record_id_here]
 
 # Ingest collection metadata (used to populate the collection search on the home page)
-rake ingest:collection_metadata
+docker-compose exec app rake ingest:collection_metadata
 
-# Ingest a fixed set of sample records (this is the "official" list of records used in our solr test index - see "Working With the Solr Test Index")
-rake ingest:sample_records
+
 
 # Enrich parent items with the transcripts of their children (makes search by transcripts possible)
 rake ingest:all_collection_transcripts
@@ -167,13 +196,9 @@ Let's say you found a bug that depends on a certain record being in the index an
    ```
 7. Get your tests to pass.
 8. Create a PR with your working code, test, and new `sample-records.json`.
-9. Push the new test instance to DockerHub once your changes have been merged.
 
-    Share your new test index so that your new tests pass for others.
+**TODO:** Create a way to export raw json for a given set of identifiers, including their children, and a way to ingest this raw JSON directly. This will allow tests to be stable and not subject to changes in live metadata.
 
-    ```bash
-    ./push_test_index_to_dockerhub.sh
-    ```
 
 # Docker Help
 
