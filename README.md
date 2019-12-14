@@ -187,14 +187,14 @@ Let's say you found a bug that depends on a certain record being in the index an
 # Show all docker images
 docker ps -a
 
-# Force Remove all MDL images
+# Force Remove all umedia images
 docker-compose stop; docker rmi -f $(docker images -q --filter="reference=umedia*")
 
 # Remove all inactive Docker images (ones that have "Exited")
 docker rm $(docker ps -a | grep Exited | awk '\''BEGIN { FS=" " } ; {print $1;}'\'')
 
-# CAREFUL! Scorched earth! remove all Docker images
-docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+# CAREFUL! Scorched earth! remove all Docker images and volumes
+docker system prune -a --volumes
 ```
 
 ## Usefull Tools
