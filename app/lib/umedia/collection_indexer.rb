@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'uri'
 
 module Umedia
   # And...upload a few example thumbnails for each featured collection
@@ -28,7 +29,7 @@ module Umedia
 
     def upload_thumbnails(thumbs)
       thumbs.map do |thumb|
-        thumbnailer_klass.new(thumb_url: thumb['url'],
+        thumbnailer_klass.new(thumb_url: URI::encode(thumb['url']),
                               cdn_url: thumb['cdn']).upload!
       end
     end
