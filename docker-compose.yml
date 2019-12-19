@@ -8,7 +8,7 @@ services:
     # Uncomment to gain direct access to solr. Note: ensure your
     # firewall has been correctly configured and this port is not
     # exposed to the scary internet
-    # ports: ["8983:8983"]
+    # ports: ["127.0.0.1:8983:8983"]
 
   solr_test:
     image: umedia_solr:test
