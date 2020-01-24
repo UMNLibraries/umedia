@@ -83,3 +83,11 @@ gem 'whenever', require: false
 
 gem "rubyzip", ">= 1.3.0"
 gem "loofah", ">= 2.3.1"
+
+
+# Deployment
+group :development do
+  gem "capistrano"
+  gem "capistrano-rails"
+  gem "capistrano-passenger"
+end
