@@ -13,6 +13,6 @@
     <div class="col-xs-8 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
     <div class="col-xs-4 thumb" style="background-image: url(<%= thumb_2['cdn'] %>);">&nbsp;</div>
   <% else %>
-    <div class="col-xs-12 thumb" style="background-image: url(<%= thumb_1['cdn'] %>);">&nbsp;</div>
+    <div class="col-xs-12 thumb" style="background-image: url(<%= fallback_thum_url(thumb_1) %>);">&nbsp;</div>
   <% end %>
 </div>
