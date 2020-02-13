@@ -6,13 +6,7 @@ read -p "Are you sure? [y|n]" -n 1 -r
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  TEST_SNAPSHOT=snapshot.20190627191328762
-
   docker-compose stop
-  # Before populating the indexes, we need to remove the old ones with possible
-  # references to previous builds of the solr containers;
-  docker-compose rm -fv solr;
-  docker-compose rm -fv solr_test;
 
   # BUILD the local solr core
   git clone https://github.com/UMNLibraries/umedia_solr_conf.git;
@@ -28,12 +22,5 @@ then
 
   # Create the snapshot directories
   mkdir -p snapshots;
-  chmod 777 -R snapshots;
-  mkdir -p snapshots_test;
-  chmod 777 -R snapshots_test;
-  mkdir -p test_index;
-  chmod 777 test_index;
-
-  #START the app
-  docker-compose up;
+  cp -R snapshots_test/* snapshots
 fi

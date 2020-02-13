@@ -19,6 +19,10 @@ Initialize and start the local dev environment:
 
 **Note**: you will be prompted for a password. Use your `sudo` / machine admin password here.
 
+`docker-compose up`
+
+**Note** If you see somthing like `ERROR: The image for the service you're trying to recreate has been removed.`, respond with `y` to continue with the new image.
+
 You'll see something like the following eventually appear in your terminal:
 
 ```bash
@@ -39,7 +43,11 @@ app_1          | [1] * Process workers: 3
 ...
 ```
 
-Once the rails server has booted, open [http://localhost:3000/](http://localhost:3000/) in your browser.
+Wait for the app to fully boot, then open a new terminal tab and populate the local test and development solr core instances:
+
+`./local_dev_index_init.sh`
+
+Open [http://localhost:3000/](http://localhost:3000/) in your browser to see your dev instance.
 
 
 ### Ingest Sample Records Into Dev
@@ -57,7 +65,7 @@ Commit items to solr:
 
 `docker-compose exec app rake solr:commit`
 
-Ingest Collection Metadata: 
+Ingest Collection Metadata:
 
 `docker-compose exec app rake ingest:collection_metadata`
 
@@ -87,7 +95,7 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 
 ```bash
 
-# Ingest a fixed set of sample records (this is the "official" list of records used in our 
+# Ingest a fixed set of sample records (this is the "official" list of records used in our
 # solr test index - see "Working With the Solr Test Index")
 docker-compose exec app rake ingest:sample_records
 
@@ -195,10 +203,13 @@ Let's say you found a bug that depends on a certain record being in the index an
    ./sync_dev_index_to_test_index.sh
    ```
 7. Get your tests to pass.
-8. Create a PR with your working code, test, and new `sample-records.json`.
+8. Take a snapshot of the test instance and commit it as the new test instance:
 
-**TODO:** Create a way to export raw json for a given set of identifiers, including their children, and a way to ingest this raw JSON directly. This will allow tests to be stable and not subject to changes in live metadata.
-
+```bash
+./docker-compose-test-exec app bundle exec rake solr:backup
+git add snapshots_test; git commit -m "update solr test instance with latest records"`
+```
+9.  Create a PR with your working code, test, and new `sample-records.json` and `snapshots_test` instance.
 
 # Docker Help
 

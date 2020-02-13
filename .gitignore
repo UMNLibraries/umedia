@@ -40,5 +40,4 @@ yarn-debug.log*
 # Docker env
 .env
 /snapshots
-/snapshots_test
 /umedia_solr_conf
