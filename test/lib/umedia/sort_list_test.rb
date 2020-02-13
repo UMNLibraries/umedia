@@ -11,9 +11,10 @@ module Umedia
       sort_query_klass.expect :new, nil, [{value:"creator_sort desc, title_sort asc", query: query}]
       sort_query_klass.expect :new, nil, [{value:"date_created_sort asc, title_sort asc", query: query}]
       sort_query_klass.expect :new, nil, [{value:"date_created_sort desc, title_sort asc", query: query}]
+      sort_query_klass.expect :new, nil, [{value:"date_added_sort desc, title_sort asc", query: query}]
       labels = SortList.new(sort_query_klass: sort_query_klass,
                             query: query ).map { |sort| sort[:label] }
-      labels.must_equal ["Relevance", "Title: A to Z", "Title: Z to A", "Creator: A to Z", "Creator: Z to A", "Date: Oldest First", "Date: Newest First"]
+      labels.must_equal ["Relevance", "Title: A to Z", "Title: Z to A", "Creator: A to Z", "Creator: Z to A", "Date: Oldest First", "Date: Newest First", "Recently Added"]
       sort_query_klass.verify
     end
   end
