@@ -5,10 +5,7 @@ services:
     image: umedia_solr:dev
     volumes:
       - ./snapshots:/snapshots
-    # Uncomment to gain direct access to solr. Note: ensure your
-    # firewall has been correctly configured and this port is not
-    # exposed to the scary internet
-    # ports: ["127.0.0.1:8983:8983"]
+    ports: ['127.0.0.1:8983:8983']
 
   solr_test:
     image: umedia_solr:test
@@ -21,10 +18,10 @@ services:
     command: >
       bash -c "
         # Run test server detached
-        RAILS_ENV=test SOLR_URL=http://solr_test:8983/solr/core UMEDIA_COLLECTION_PAGE_LIMIT=1 puma -b tcp://0.0.0.0:3001 -d &&
+        RAILS_ENV=test SOLR_URL=http://solr_test:8983/solr/core UMEDIA_COLLECTION_PAGE_LIMIT=1 bundle exec puma -b tcp://0.0.0.0:3001 -d &&
 
         # Run web server
-        UMEDIA_COLLECTION_PAGE_LIMIT=20 puma -C config/puma.rb"
+        UMEDIA_COLLECTION_PAGE_LIMIT=20 bundle exec puma -C config/puma.rb"
     ports: ['127.0.0.1:3000:3000', '127.0.0.1:3001:3001']
     env_file:
       - .env
@@ -63,10 +60,9 @@ services:
     image: redis:4.0.10
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
-        - ./docker/redis-cache.conf:/usr/local/etc/redis/redis.conf
-
+      - ./docker/redis-cache.conf:/usr/local/etc/redis/redis.conf
   selenium:
     image: selenium/standalone-chrome-debug:3.141.59-europium
-    ports: ['4444:4444', '5900:5900']
+    ports: ['127.0.0.1:4444:4444', '127.0.0.1:5900:5900']
     stdin_open: true
     tty: true
