@@ -9,6 +9,7 @@ services:
 
   solr_test:
     image: umedia_solr:test
+    ports: ['127.0.0.1:8984:8983']
     volumes:
       - ./snapshots_test:/snapshots
       - ./test_index:/test_index/
