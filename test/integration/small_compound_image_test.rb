@@ -24,8 +24,9 @@ class SmallCompoundTest < ActiveSupport::TestCase
     Capybara.current_driver = :selenium
     visit '/item/p16022coll416:904'
     fill_in 'q', with: 'national'
-    sleep 4
+    sleep 2
     find(:xpath, '//*[@id="sidebar"]/form/div/span/button').click
+    sleep 2
     find(:xpath, '//*[@id="sidebar-p16022coll416:815"]/h4').text.must_equal 'Page 2'
     # Page 7 doesn't show up for this search result
     has_selector?(:xpath, '//*[@id="sidebar-p16022coll416:820"]/div/img').must_equal false
