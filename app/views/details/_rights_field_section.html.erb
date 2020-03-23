@@ -1,0 +1,12 @@
+
+<h3>Can I Use It?</h3>
+<dl class="item-metadata col-md-12">
+
+<% if rights.rights_uri %>
+    <dd class="field index-field rights-field rights-image"><%= raw rights.config[:images].map { |image| image_tag("rights/#{image}", alt: "rights:#{rights.rights_uri}" ) }.join %></dd>
+    <dd class="field index-field rights-field field-rights-value"><%= rights.config[:text] %></dd>
+    <dd class="field index-field rights-field field-rights-uri-value"><%= link_to rights.rights_uri, url_for(rights.rights_uri) %></dd>
+<% else %>
+    <dd><%= local_rights %> </dd>
+<% end %>
+</dl>
