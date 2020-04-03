@@ -24,6 +24,8 @@ module Umedia
 
     def format_mapping
       case format
+      when 'jpg'
+        'image'
       when 'jp2'
         'image'
       when 'pdf'
