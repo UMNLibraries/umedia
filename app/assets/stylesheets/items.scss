@@ -22,6 +22,23 @@ ul.image-download {
   }
 }
 
+.rights-image-cc_icon_white_x2,
+.rights-image-attribution_icon_white_x2,
+.rights-image-nc_white_x2 {
+  background-color: #337ab7;
+  display: inline-block;
+  width: 55px;
+  border: 3px solid #337ab7;
+}
+
+.rights-image-nc_white_x2 {
+  border-radius: 0 2px 2px 0;
+}
+
+.rights-image-cc_icon_white_x2 {
+  border-radius: 2px 0 0 2px;
+}
+
 .item-details {
   margin-top: 25px;
 }
@@ -45,8 +62,16 @@ ul.image-download {
   border-radius: 5px;
   padding: 10px;
   clear: both;
-  background-image: url(asset_path("dust_scratches.png"));
+  background-image: url(asset_path('dust_scratches.png'));
   margin: 125px 0 50px;
+}
+
+.rights-image {
+  max-width: 200px;
+}
+
+dd.rights-field {
+  margin: 15px 0 15px;
 }
 
 .mlt {
@@ -65,7 +90,7 @@ ul.image-download {
   a {
     border: 1px solid #fff;
     display: block;
-    background-image: url(asset_path("dust_scratches.png"));
+    background-image: url(asset_path('dust_scratches.png'));
     height: 200px;
   }
   a:hover {
