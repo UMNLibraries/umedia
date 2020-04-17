@@ -236,7 +236,8 @@ module Umedia
         {dest_path: 'featured_collection_order', origin_path: '/', formatters: [FeaturedCollectionOrderFormatter]},
         # Date added to CONTENTdm - useful to sort by recency
         {dest_path: 'date_added', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]},
-        {dest_path: 'date_added_sort', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]}
+        {dest_path: 'date_added_sort', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]},
+        {dest_path: 'date_modified', origin_path: 'dmmodified', formatters: [ToSolrDateFormatter]}
       ]
     end
   end
