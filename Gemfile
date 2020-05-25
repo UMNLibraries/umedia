@@ -34,8 +34,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and
   # get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  # Allows us to delete thumbs
-  gem 'aws-sdk'
 end
 
 group :development do
@@ -80,10 +78,11 @@ gem 'sidekiq-failures'
 gem 'webpacker', '~> 4.x'
 gem 'whenever', require: false
 gem 'will_paginate'
-
 gem 'loofah', '>= 2.3.1'
 gem 'rack', '>= 2.0.8'
 gem 'rubyzip', '>= 1.3.0'
+# Allows us to delete thumbs
+gem 'aws-sdk'
 
 # Deployment
 group :development do
