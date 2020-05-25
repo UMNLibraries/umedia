@@ -30,11 +30,8 @@ gem 'redis', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and
-  # get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-end
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -44,6 +41,11 @@ group :development do
   gem 'brakeman'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Deployment
+  gem 'capistrano'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
 end
 
 group :test do
@@ -51,19 +53,15 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   gem 'simplecov'
-end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-################################
-# Gems Added                   #
-################################
-
-group :test do
   gem 'minitest-spec-rails'
   gem 'vcr'
   gem 'webmock'
+end
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and
+  # get a debugger console
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 gem 'bootstrap-sass', '>=3.4.1'
@@ -83,10 +81,3 @@ gem 'rack', '>= 2.0.8'
 gem 'rubyzip', '>= 1.3.0'
 # Allows us to delete thumbs
 gem 'aws-sdk'
-
-# Deployment
-group :development do
-  gem 'capistrano'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails'
-end
