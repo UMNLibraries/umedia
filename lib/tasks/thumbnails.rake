@@ -11,7 +11,7 @@ namespace :thumbnails do
   # Searches should be in the URL form: e.g.: facets[collection_name_s][]=HIV-AIDS+Caregivers+Oral+History+Project
   desc "delete thumbnails by search"
   task :delete, [:search_params_string] => [:environment] do |task, args|
-    ThumbDeleterWorker.perform_async(ENV['umedia-thumbnails-bucket'],
+    ThumbDeleterWorker.perform_async(ENV['UMEDIA_THUMBNAILS_BUCKET'],
                                      args[:search_params_string],
                                      1)
   end
