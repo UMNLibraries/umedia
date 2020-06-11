@@ -73,7 +73,7 @@ gem 'rinku'
 gem 'rsolr'
 gem 'sidekiq'
 gem 'sidekiq-failures'
-gem 'webpacker', '~> 4.x'
+gem 'webpacker', '~> 5.x'
 gem 'whenever', require: false
 gem 'will_paginate'
 gem 'loofah', '>= 2.3.1'
