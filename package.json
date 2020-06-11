@@ -5,6 +5,7 @@
     "bootstrap-sass": "3.4.1",
     "core-js": "^3.2.1",
     "fstream": "^1.0.12",
+    "handlebars": "^4.3.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-touch-punch": "^0.2.3",
@@ -16,16 +17,16 @@
     "openseadragon": "^2.3.1",
     "query-string": "^6.1.0",
     "rails-ujs": "^5.2.0",
+    "regenerator-runtime": "^0.13.3",
+    "serialize-javascript": "^2.1.1",
     "stampit": "^4.1.2",
     "stimulus": "^1.0.1",
-    "regenerator-runtime": "^0.13.3",
-    "turbolinks": "^5.1.1",
-    "handlebars": "^4.3.0",
-    "serialize-javascript": "^2.1.1"
+    "turbolinks": "^5.1.1"
   },
   "devDependencies": {
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
+    "babel-jest": "^26.0.1",
+    "canvas": "^2.6.1",
+    "jest": "^26.0.1",
     "jquery": "^3.5.0",
     "webpack-dev-server": "^3.2.1"
   },
