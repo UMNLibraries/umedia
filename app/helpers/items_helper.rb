@@ -60,6 +60,7 @@ module ItemsHelper
   end
 
   def format_solr_date(field)
-    Parhelion::Field.new(name: field.name, value: field.value.split('T').first)
+    date =  (field.value) ? field.value.split('T').first : field.value
+    Parhelion::Field.new(name: field.name, value: date)
   end
 end
