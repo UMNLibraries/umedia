@@ -15,11 +15,13 @@
         <%= render 'index_field', field: item.field_creator, truncated: false %>
         <%= render 'index_field', field: item.field_contributor, truncated: false %>
         <% if item.field_date_created_ss %>
-        <%= render 'index_field', field: item.field_date_created_ss, truncated: false %>
+          <%= render 'index_field', field: item.field_date_created_ss, truncated: false %>
         <% end %>
         <%= render 'index_field', field: item.field_contributing_organization, truncated: false %>
         <%= render 'index_field', truncated: false, field: item.field_page_count if item.field_page_count.value && item.field_page_count.value > 1 %>
-        <%= render 'index_field', field: format_solr_date(item.field_date_added), truncated: false %>
+        <% if item.field_date_added %>
+          <%= render 'index_field', field: format_solr_date(item.field_date_added), truncated: false %>
+        <% end %>
       </dl>
       <span class="thumb">
         <%= link_to path do %>
