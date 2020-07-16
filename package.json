@@ -11,7 +11,7 @@
     "jquery-ui-touch-punch": "^0.2.3",
     "jquery-ujs": "^1.2.2",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "lodash.mergewith": "^4.6.2",
     "lodash.template": "^4.5.0",
     "openseadragon": "^2.4.2",
