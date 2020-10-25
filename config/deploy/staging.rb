@@ -4,7 +4,7 @@ set :use_sudo, false
 set :rails_env, "production"
 set :bundle_flags, '--deployment'
 set :keep_releases, 2
-set :branch, 'develop'
+set :branch, 'index_by_date'
 
 
 # Don't set cron tasks for staging. Everything (indexing, solr backup, etc)

@@ -18,6 +18,11 @@ namespace :ingest do
     run_etl!([args[:set_spec]])
   end
 
+  desc 'Index all records with updates within the last two weeks'
+  task collections_recent_updates: [:environment] do
+    run_etl!(etl.set_specs, 2.weeks.ago)
+  end
+
   desc 'Index all collections'
   task collections: [:environment] do
     run_etl!(etl.set_specs)
@@ -28,9 +33,10 @@ namespace :ingest do
     Sidekiq::Queue.new.clear
   end
 
-  def run_etl!(set_specs = [])
+  def run_etl!(set_specs = [], after_date = false)
     puts "Indexing Sets: '#{set_specs.join(', ')}'"
-    CDMDEXER::ETLBySetSpecs.new(set_specs: set_specs, etl_config: etl.config).run!
+    config = after_date ? etl.config.merge(after_date: after_date) : etl.config
+    CDMDEXER::ETLBySetSpecs.new(set_specs: set_specs, etl_config: config).run!
   end
 
   desc 'Index Transcripts from a Single Collection'
