@@ -65,7 +65,7 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass', '>=3.4.1'
-gem 'cdmdexer'
+gem 'cdmdexer', git: 'https://github.com/UMNLibraries/cdmdexer.git', branch: 'index_by_date'
 gem 'fontello_rails_converter'
 gem 'lograge'
 gem 'mini_magick', '>= 4.9.4'
