@@ -1,16 +1,3 @@
-GIT
-  remote: https://github.com/UMNLibraries/cdmdexer.git
-  revision: feae4417938a62a7589f4820bf0d0d6360de4e3f
-  branch: index_by_date
-  specs:
-    cdmdexer (0.20.0)
-      contentdm_api (~> 0.5.0)
-      hash_at_path (~> 0.1.6)
-      rails (>= 5.2)
-      rsolr (~> 2.0)
-      sidekiq (>= 3.5)
-      titleize (~> 1.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -793,6 +780,13 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    cdmdexer (0.21.0)
+      contentdm_api (~> 0.5.0)
+      hash_at_path (~> 0.1.6)
+      rails (>= 5.2)
+      rsolr (~> 2.0)
+      sidekiq (>= 3.5)
+      titleize (~> 1.4)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
@@ -1021,7 +1015,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails
   capybara (>= 2.15, < 4.0)
-  cdmdexer!
+  cdmdexer (>= 0.21.0)
   fontello_rails_converter
   listen (>= 3.0.5, < 3.2)
   lograge
