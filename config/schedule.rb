@@ -20,31 +20,31 @@
 # Learn more: http://github.com/javan/whenever
 
 # 'Index All Items (from all collections)'
-every :saturday, at: '8pm' do
-  rake 'ingest:collections'
+every 1.day, at: '12am' do
+  rake 'ingest:collections_with_updates_since_two_days_ago'
 end
 
 # 'Index Collection Metadata'
-every :monday, at: '12am' do
+every 1.day, at: '2am' do
   rake 'ingest:collection_metadata'
 end
 
 # 'Enrich Primary Records with Child Page Transcripts'
-every :monday, at: '1am' do
+every 1.day, at: '3am' do
   rake 'ingest:all_collection_transcripts'
 end
 
 # 'Index Collection Metadata'
-every 1.day, at: '12:00am' do
+every 1.day, at: '4:00am' do
   rake 'solr:commit'
 end
 
 # 'Index Collection Metadata'
-every 1.day, at: '12:30am' do
+every 1.day, at: '4:15am' do
   rake 'solr:optimize'
 end
 
 # 'Backup Solr - Take a Snapshot'
-every 1.month, at: '12am' do
+every 1.month, at: '11pm' do
   rake 'solr:backup'
 end
