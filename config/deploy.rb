@@ -59,7 +59,7 @@ namespace :deploy do
 
   task :restart_sidekiq do
     on roles(:all) do |host|
-      (0..2).map do |pid|
+      (0..1).map do |pid|
         execute "sudo systemctl restart sidekiq-#{pid}"
       end
     end
