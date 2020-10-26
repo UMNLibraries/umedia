@@ -15,4 +15,9 @@ namespace :umedia_cache do
       record_count
     ]
   end
+
+  desc 'clear redis cache'
+  task clear: [:environment] do
+    Rails.cache.clear
+  end
 end
