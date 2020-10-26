@@ -65,7 +65,7 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass', '>=3.4.1'
-gem 'cdmdexer'
+gem 'cdmdexer', '>= 0.21.0'
 gem 'fontello_rails_converter'
 gem 'lograge'
 gem 'mini_magick', '>= 4.9.4'
