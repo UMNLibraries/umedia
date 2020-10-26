@@ -21,22 +21,22 @@ namespace :ingest do
   end
 
   desc 'Index a single collection with updates within the last two weeks'
-  task :collection, [:set_spec] => :environment do |_t, args|
+  task :collection_with_updates_since_two_weeks_ago, [:set_spec] => :environment do |_t, args|
     run_etl!([args[:set_spec]], 2.weeks.ago)
   end
 
   desc 'Index a single collection with updates within the last two days'
-  task :collection, [:set_spec] => :environment do |_t, args|
+  task :collection_with_updates_since_two_days_ago, [:set_spec] => :environment do |_t, args|
     run_etl!([args[:set_spec]], 2.days.ago)
   end
 
   desc 'Index all records with updates within the last two weeks'
-  task collections_recent_updates: [:environment] do
+  task collections_with_updates_since_two_weeks_ago: [:environment] do
     run_etl!(etl.set_specs, 2.weeks.ago)
   end
 
   desc 'Index all records with updates within the last two days'
-  task collections_recent_updates: [:environment] do
+  task collections_with_updates_since_two_days_ago: [:environment] do
     run_etl!(etl.set_specs, 2.days.ago)
   end
 
