@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :ingest do
   desc 'Index Collection (name, desc) metadata'
-  task :collection_metadata, [:set_spec] => :environment  do |t, args|
+  task :collection_metadata, [:set_spec] => :environment do |_t, args|
     if args[:set_spec]
       IndexCollections.new(set_spec: args[:set_spec])
     else
@@ -10,17 +12,32 @@ namespace :ingest do
 
   desc 'Delete Collection Metadata'
   task collection_metadata_delete: [:environment] do
-    SolrClient.new.solr.delete_by_query("document_type:collection")
+    SolrClient.new.solr.delete_by_query('document_type:collection')
   end
 
   desc 'Index a single collection'
-  task :collection, [:set_spec] => :environment do |t, args|
+  task :collection, [:set_spec] => :environment do |_t, args|
     run_etl!([args[:set_spec]])
+  end
+
+  desc 'Index a single collection with updates within the last two weeks'
+  task :collection, [:set_spec] => :environment do |_t, args|
+    run_etl!([args[:set_spec]], 2.weeks.ago)
+  end
+
+  desc 'Index a single collection with updates within the last two days'
+  task :collection, [:set_spec] => :environment do |_t, args|
+    run_etl!([args[:set_spec]], 2.days.ago)
   end
 
   desc 'Index all records with updates within the last two weeks'
   task collections_recent_updates: [:environment] do
     run_etl!(etl.set_specs, 2.weeks.ago)
+  end
+
+  desc 'Index all records with updates within the last two days'
+  task collections_recent_updates: [:environment] do
+    run_etl!(etl.set_specs, 2.days.ago)
   end
 
   desc 'Index all collections'
@@ -33,14 +50,8 @@ namespace :ingest do
     Sidekiq::Queue.new.clear
   end
 
-  def run_etl!(set_specs = [], after_date = false)
-    puts "Indexing Sets: '#{set_specs.join(', ')}'"
-    config = after_date ? etl.config.merge(after_date: after_date) : etl.config
-    CDMDEXER::ETLBySetSpecs.new(set_specs: set_specs, etl_config: config).run!
-  end
-
   desc 'Index Transcripts from a Single Collection'
-  task :collection_transcript, [:set_spec] => :environment do |t, args|
+  task :collection_transcript, [:set_spec] => :environment do |_t, args|
     TranscriptsIndexerWorker.perform_async(1, args[:set_spec])
   end
 
@@ -56,9 +67,17 @@ namespace :ingest do
     end
   end
 
-  desc 'Launch a background job to index a single record.'
-  task :record, [:id] => :environment  do |t, args|
+  desc 'Index a single record.'
+  task :record, [:id] => :environment do |_t, args|
     index_record(args[:id])
+  end
+
+  # HELPERS
+
+  def run_etl!(set_specs = [], after_date = false)
+    puts "Indexing Sets: '#{set_specs.join(', ')}'"
+    config = after_date ? etl.config.merge(after_date: after_date) : etl.config
+    CDMDEXER::ETLBySetSpecs.new(set_specs: set_specs, etl_config: config).run!
   end
 
   def index_record(id)
