@@ -19,9 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# 'Index All Items (from all collections)'
+# 'Index All Items (from all collections) within two days'
 every 1.day, at: '12am' do
   rake 'ingest:collections_with_updates_since_two_days_ago'
+end
+
+# 'Clear cached record count totals'
+every 1.day, at: '2:15am' do
+  rake 'umedia_cache:clear_counts'
 end
 
 # 'Index Collection Metadata'
