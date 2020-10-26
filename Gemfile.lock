@@ -826,7 +826,7 @@ GEM
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
-    json (2.2.0)
+    json (2.3.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.1.5)
