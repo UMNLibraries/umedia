@@ -49,8 +49,6 @@ module Umedia
       end.compact
     end
 
-    private
-
     def with_transcript(doc, transcript)
       sanitize(doc.merge('transcription' => transcript)) if transcript != ''
     end
