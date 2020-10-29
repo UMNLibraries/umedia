@@ -81,6 +81,7 @@ module Umedia
     def date_query
       return '' unless after_date
 
+      Rails.logger.info "Selecting transcripts for records on or after date #{after_date}"
       " AND date_modified:[#{after_date} TO #{Time.now.strftime('%Y-%m-%d')}]"
     end
 
