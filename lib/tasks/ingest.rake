@@ -20,24 +20,14 @@ namespace :ingest do
     run_etl!([args[:set_spec]])
   end
 
-  desc 'Index a single collection with updates within the last two weeks'
-  task :collection_with_updates_since_two_weeks_ago, [:set_spec] => :environment do |_t, args|
-    run_etl!([args[:set_spec]], 2.weeks.ago)
+  desc 'Index a single collection of records with updates within the last day'
+  task :collection_daily, [:set_spec] => :environment do |_t, args|
+    run_etl!([args[:set_spec]], one_day_ago)
   end
 
-  desc 'Index a single collection with updates within the last two days'
-  task :collection_with_updates_since_two_days_ago, [:set_spec] => :environment do |_t, args|
-    run_etl!([args[:set_spec]], 2.days.ago)
-  end
-
-  desc 'Index all records with updates within the last two weeks'
-  task collections_with_updates_since_two_weeks_ago: [:environment] do
-    run_etl!(etl.set_specs, 2.weeks.ago)
-  end
-
-  desc 'Index all records with updates within the last two days'
-  task collections_with_updates_since_two_days_ago: [:environment] do
-    run_etl!(etl.set_specs, 2.days.ago)
+  desc 'Index all records with updates within the last day'
+  task collections_daily: [:environment] do
+    run_etl!(etl.set_specs, one_day_ago)
   end
 
   desc 'Index all collections'
@@ -56,8 +46,13 @@ namespace :ingest do
   end
 
   desc 'Index Transcripts from all Collections'
-  task all_collection_transcripts: [:environment] do
+  task collection_transcripts: [:environment] do
     etl.set_specs.map { |set_spec| TranscriptsIndexerWorker.perform_async(1, set_spec) }
+  end
+
+  desc 'Index Transcripts from all Collections with updates within the last day'
+  task collection_transcripts_daily: [:environment] do
+    etl.set_specs.map { |set_spec| TranscriptsIndexerWorker.perform_async(1, set_spec, one_day_ago) }
   end
 
   desc 'Index A controlled set of sample items (used to generage the test index)'
@@ -73,6 +68,10 @@ namespace :ingest do
   end
 
   # HELPERS
+
+  def one_day_ago
+    1.day.ago.to_date.to_s
+  end
 
   def run_etl!(set_specs = [], after_date = false)
     puts "Indexing Sets: '#{set_specs.join(', ')}'"
