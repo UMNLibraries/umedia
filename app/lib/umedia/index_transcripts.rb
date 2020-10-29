@@ -39,8 +39,6 @@ module Umedia
       docs_with_transcripts.length <= 0
     end
 
-    private
-
     def ids
       docs_with_transcripts.map { |doc| doc['id'] }.join(' ')
     end
@@ -50,6 +48,8 @@ module Umedia
         with_transcript(item.doc_hash, full_transcript.new(item: item).to_s)
       end.compact
     end
+
+    private
 
     def with_transcript(doc, transcript)
       sanitize(doc.merge('transcription' => transcript)) if transcript != ''
