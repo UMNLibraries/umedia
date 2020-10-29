@@ -11,17 +11,19 @@ module Umedia
   # It might make more sense to simply index child pages as proper solr
   # nested children
   class IndexTranscripts
-    attr_reader :set_spec, :page, :rows, :solr_client, :full_transcript
+    attr_reader :set_spec, :page, :rows, :solr_client, :full_transcript, :after_date
     def initialize(set_spec: false,
                    page: 1,
                    rows: 1000,
                    solr_client: SolrClient,
-                   full_transcript: FullTranscript)
+                   full_transcript: FullTranscript,
+                   after_date: false)
       @set_spec = set_spec
       @page = page
       @rows = rows
       @solr_client = solr_client.new
       @full_transcript = full_transcript
+      @after_date = after_date
     end
 
     def index!
@@ -78,9 +80,15 @@ module Umedia
       set_spec ? "set_spec:#{set_spec}" : '*:*'
     end
 
+    def date_query
+      return '' unless after_date
+
+      " AND date_modified:[#{after_date} TO #{Time.now.strftime('%Y-%m-%d')}]"
+    end
+
     def response
       @response ||= solr_client.solr.paginate(page, rows, 'search', params: {
-        q: q,
+        q: q + date_query,
         sort: 'id desc',
         fl: '*',
         fq: ['record_type:primary', '!page_count:0']
