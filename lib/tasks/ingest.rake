@@ -67,6 +67,15 @@ namespace :ingest do
     index_record(args[:id])
   end
 
+  desc 'Restart Sidekiq Workers.'
+  task :restart_sidekiq do
+    on roles(:all) do |host|
+      (0..1).map do |pid|
+        execute "sudo systemctl restart sidekiq-#{pid}"
+      end
+    end
+  end
+
   # HELPERS
 
   def one_day_ago

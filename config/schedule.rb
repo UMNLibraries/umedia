@@ -39,13 +39,10 @@ every 1.day, at: '3am' do
   rake 'ingest:collection_transcripts_daily'
 end
 
-# 'Index Collection Metadata'
+# 'Make sure the index is current; reboot sidekiq to free-up resources'
 every 1.day, at: '4:00am' do
   rake 'solr:commit'
-end
-
-# 'Index Collection Metadata'
-every 1.day, at: '4:15am' do
+  command 'sudo systemctl restart sidekiq-*'
   rake 'solr:optimize'
 end
 
