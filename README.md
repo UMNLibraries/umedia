@@ -247,7 +247,7 @@ invalidate the item in CloudFront.
 
 - Examine the image in the browser to find its URL (e.g.
   `https://dkp5i0hinw9br.cloudfront.net/a457332b5a24d00b615d26308639ebf499c3c053.png`)
-- Log into AWS console https://umn-lib-dls.signin.aws.amazon.com/console
+- Log into AWS console
 - Navigate to CloudFront
 - Locate the CDN distribution identified by the domain name you found with the
   image (e.g. `dkp5i0hinw9br.cloudfront.net`) and note which bucket is its
@@ -261,6 +261,3 @@ invalidate the item in CloudFront.
   `Invalidations` tab
 - Create a new Invalidation using the thumb's hash as an object path to
   invalidate (`a457332b5a24d00b615d26308639ebf499c3c053.png`)
-
-UMedia does have a built in method to refresh thumbnails from the Rails console,
-but appropriate AWS credentials are not installed on the production server
