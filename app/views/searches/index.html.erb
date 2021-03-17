@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<div class="col-md-12">
+<div class="row col-md-12">
   <%= render 'breadcrumbs', facet_list: facet_list, search_params: search_params %>
 </div>
 
@@ -60,11 +60,12 @@
   </div>
 </div>
 
+<div class="col-md-12">
 <%=  link_to searches_path({ format: :json }.merge(query(search_params).to_h)),
-          alt: 'JSON Format',
           rel: 'nofollow',
           title: 'See item the JSON format',
           class: 'json-search-link' do %>
   <span class="hidden">JSON Results Page</span>
-  <span class="icon-json"></span>
+  <span class="icon-json pull-right"></span>
+</div>
 <% end %>

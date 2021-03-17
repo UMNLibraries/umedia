@@ -238,3 +238,26 @@ docker system prune -a --volumes
 - [Docker Dive](https://github.com/wagoodman/dive)
 
 This is especially useful for analyzing containers to see why they are the size that they are and finding ways to slim them down.
+
+## Maintenance Tasks
+### Refreshing thumbnails
+Thumbnails are stored in S3 and served out of CloudFront. To force a thumbnail
+to be refreshed, delete it from the S3 bucket CloudFront is pointing to, then
+invalidate the item in CloudFront.
+
+- Examine the image in the browser to find its URL (e.g.
+  `https://dkp5i0hinw9br.cloudfront.net/a457332b5a24d00b615d26308639ebf499c3c053.png`)
+- Log into AWS console
+- Navigate to CloudFront
+- Locate the CDN distribution identified by the domain name you found with the
+  image (e.g. `dkp5i0hinw9br.cloudfront.net`) and note which bucket is its
+  `Origin`
+- Navigate in the AWS console to S3
+- Open the bucket associated with the CloudFront domain and search for the
+  thumb's hash (e.g. `a457332b5a24d00b615d26308639ebf499c3c053`)
+- Delete the item from S3
+- Navigate in the AWS console to CloudFront
+- To force a cache invalidation, open the Distribution, click the
+  `Invalidations` tab
+- Create a new Invalidation using the thumb's hash as an object path to
+  invalidate (`a457332b5a24d00b615d26308639ebf499c3c053.png`)
