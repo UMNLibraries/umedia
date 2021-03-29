@@ -15,13 +15,6 @@ module CDMDEXER
   class CdmNotification
     def self.call!(collection, id, endpoint)
       Rails.logger.info "CDMDEXER: Requesting: #{collection}:#{id}"
-      clear_item_cache("#{collection}:#{id}")
-    end
-
-    def self.clear_item_cache(id)
-      item_cache = "item/#{id}"
-      Rails.logger.info "CDMDEXER: Clearing Item Cache: #{item_cache}"
-      Rails.cache.delete(item_cache)
     end
   end
 

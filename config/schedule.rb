@@ -21,7 +21,7 @@
 
 # 'Index All Items (from all collections) within two days'
 every 1.day, at: '12am' do
-  rake 'ingest:collections_with_updates_since_two_days_ago'
+  rake 'ingest:collections_daily'
 end
 
 # 'Clear cached record count totals'
@@ -36,16 +36,13 @@ end
 
 # 'Enrich Primary Records with Child Page Transcripts'
 every 1.day, at: '3am' do
-  rake 'ingest:all_collection_transcripts'
+  rake 'ingest:collection_transcripts_daily'
 end
 
-# 'Index Collection Metadata'
+# 'Make sure the index is current; reboot sidekiq to free-up resources'
 every 1.day, at: '4:00am' do
   rake 'solr:commit'
-end
-
-# 'Index Collection Metadata'
-every 1.day, at: '4:15am' do
+  command 'sudo systemctl restart sidekiq-*'
   rake 'solr:optimize'
 end
 
