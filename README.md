@@ -54,11 +54,13 @@ Open [http://localhost:3000/](http://localhost:3000/) in your browser to see you
 
 A set of sample records has been selected for local development and testing. To ingest these records, open a new tab in your terminal / console application and issue the following command:
 
-`docker-compose exec app rake ingest:sample_records`
+`docker-compose exec app bundle exec rake ingest:sample_records`
 
 **Note:** this is pretty slow in develpment instances and will take a while.
 
-Once these records have been indexed (monitor sidekiq indexing workers here: [http://localhost:3000/](http://localhost:3000/)), commit them to solr and ingest the homepage collection overview info:
+Once these records have been indexed (monitor sidekiq indexing workers here:
+[http://localhost:3000/sidekiq](http://localhost:3000/sidekiq)), commit them to
+solr and ingest the homepage collection overview info:
 
 
 Commit items to solr:
@@ -67,7 +69,7 @@ Commit items to solr:
 
 Ingest Collection Metadata:
 
-`docker-compose exec app rake ingest:collection_metadata`
+`docker-compose exec app bundle exec rake ingest:collection_metadata`
 
 After populating the development index, syncronize the development solr index to the test solr index `./sync_dev_index_to_test_index.sh` to that integration tests may pass.
 
@@ -97,19 +99,19 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 
 # Ingest a fixed set of sample records (this is the "official" list of records used in our
 # solr test index - see "Working With the Solr Test Index")
-docker-compose exec app rake ingest:sample_records
+docker-compose exec app bundle exec rake ingest:sample_records
 
 # Ingest everything (ingest content from all collections)
-docker-compose exec app rake ingest:collections
+docker-compose exec app bundle exec rake ingest:collections
 
 # Ingest content for a single collection
-docker-compose exec app rake ingest:collection[set_spec_here]
+docker-compose exec app bundle exec rake ingest:collection[set_spec_here]
 
 # Ingest a single record
-docker-compose exec app rake ingest:record[record_id_here]
+docker-compose exec app bundle exec rake ingest:record[record_id_here]
 
 # Ingest collection metadata (used to populate the collection search on the home page)
-docker-compose exec app rake ingest:collection_metadata
+docker-compose exec app bundle exec rake ingest:collection_metadata
 
 
 
@@ -119,13 +121,13 @@ rake ingest:all_collection_transcripts
 
 Once the ingest sidekiq jobs (background worker processes) have completed:
 
-`docker-compose exec app rake solr:commit`
+`docker-compose exec app bundle exec rake solr:commit`
 
 ## Interacting with the App on the Command Line
 
 Enter an interactive session with the application (must be running in another tab):
 
-`docker-compose exec app /bin/bash`
+`docker-compose exec bundle exec app /bin/bash`
 
 Replace `/bin/bash` with `rails console` to skip right to a Rails console session.
 
@@ -175,7 +177,7 @@ Let's say you found a bug that depends on a certain record being in the index an
     (Assumes your app is up and running via `docker-compose up` in another terminal tab)
 
     ```bash
-    docker-compose exec app rake ingest:sample_records
+    docker-compose exec app bundle exec rake ingest:sample_records
     ```
 
     This...will take a while. Go get a snack.
@@ -183,7 +185,7 @@ Let's say you found a bug that depends on a certain record being in the index an
 4. Commit the record after sidekiq has finished processing (watch sidekiq here: [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq))
 
    ```bash
-   docker-compose exec app rake solr:commit
+   docker-compose exec app bundle exec rake solr:commit
    ```
 
 5. Index transcript metadata
@@ -191,8 +193,8 @@ Let's say you found a bug that depends on a certain record being in the index an
    Compound records may have children with transcripts. In order to make these child transcripts searchable, we have to run a post-indexing process that enriches the parent record with child record transcripts as child records are not searched in the primary index search UI.
 
    ```bash
-   docker-compose exec app rake ingest:all_collection_transcripts;
-   docker-compose exec app rake solr:commit
+   docker-compose exec app bundle exec rake ingest:collection_transcripts;
+   docker-compose exec app bundle exec rake solr:commit
    ```
 
 6. Synchronize the Solr dev index to the test index
