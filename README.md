@@ -99,23 +99,29 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 
 # Ingest a fixed set of sample records (this is the "official" list of records used in our
 # solr test index - see "Working With the Solr Test Index")
+# NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:sample_records
 
 # Ingest everything (ingest content from all collections)
+# NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collections
 
 # Ingest content for a single collection
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collection[set_spec_here]
 
 # Ingest a single record
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:record[record_id_here]
 
 # Ingest collection metadata (used to populate the collection search on the home page)
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collection_metadata
 
 
 
 # Enrich parent items with the transcripts of their children (makes search by
+# MAYBE NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collection_transcripts
 ```
 
