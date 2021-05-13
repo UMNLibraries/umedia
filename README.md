@@ -15,7 +15,7 @@ Data is ingested from CONTENTdm into a Solr index and served by this Ruby on Rai
 
 Initialize and start the local dev environment:
 
-`./local_dev_init.sh.sh`
+`./local_dev_init.sh`
 
 **Note**: you will be prompted for a password. Use your `sudo` / machine admin password here.
 
