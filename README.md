@@ -115,8 +115,8 @@ docker-compose exec app bundle exec rake ingest:collection_metadata
 
 
 
-# Enrich parent items with the transcripts of their children (makes search by transcripts possible)
-rake ingest:all_collection_transcripts
+# Enrich parent items with the transcripts of their children (makes search by
+docker-compose exec app bundle exec rake ingest:collection_transcripts
 ```
 
 Once the ingest sidekiq jobs (background worker processes) have completed:
