@@ -9,7 +9,7 @@ module Parhelion
                                value: 'bar',
                                query: query)
 
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"publisher"=>["bar"]}})
+        _(facet.link_params).must_equal({"q"=>"finance", "facets"=>{"publisher"=>["bar"]}})
       end
     end
     describe 'when a facet is not active' do
@@ -20,7 +20,7 @@ module Parhelion
                                value: 'bar',
                                query: query)
 
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"publisher"=>["bar"]}})
+        _(facet.link_params).must_equal({"q"=>"finance", "facets"=>{"publisher"=>["bar"]}})
       end
     end
     describe 'when a facet param is active' do
@@ -30,7 +30,7 @@ module Parhelion
         facet = FacetQuery.new(field: 'publisher',
                           value: 'bar',
                           query: query)
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"year"=>"1998"}})
+        _(facet.link_params).must_equal({"q"=>"finance", "facets"=>{"year"=>"1998"}})
       end
     end
     describe 'when a facet param is the last active facet' do
@@ -40,7 +40,7 @@ module Parhelion
         facet = FacetQuery.new(field: 'publisher',
                           value: 'bar',
                           query: query)
-        facet.link_params.must_equal({"q"=>"finance"})
+        _(facet.link_params).must_equal({"q"=>"finance"})
       end
     end
 
@@ -51,7 +51,7 @@ module Parhelion
         facet = FacetQuery.new(field: 'subject',
                           value: 'Duluth',
                           query: query)
-        facet.link_params.must_equal({"q"=>"finance", "facets"=>{"subject"=>["Minnesota"], "year"=>"1998"}})
+        _(facet.link_params).must_equal({"q"=>"finance", "facets"=>{"subject"=>["Minnesota"], "year"=>"1998"}})
       end
     end
   end

@@ -14,7 +14,7 @@ module Umedia
           item.expect :field_object, field, []
 
           url = ImageUrl.new(item: item)
-          url.to_s.must_equal 'http://exaample.com/object'
+          _(url.to_s).must_equal 'http://exaample.com/object'
           item.verify
           field.verify
         end
@@ -35,7 +35,7 @@ module Umedia
           item.expect :id, '999', []
 
           url = ImageUrl.new(item: item, iiif_config_klass: iiif_config_klass, iiif_thumb: true)
-          url.to_s.must_equal 'http://blerg/digital/iiif/col123/999/full/350,/0/default.jpg'
+          _(url.to_s).must_equal 'http://blerg/digital/iiif/col123/999/full/350,/0/default.jpg'
           iiif_config_klass.verify
           iiif_config_klass_obj.verify
           item.verify

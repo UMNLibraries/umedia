@@ -5,7 +5,7 @@ module Umedia
     class PdfUrlTest < ActiveSupport::TestCase
       it 'generates an kaltura audio thumb url' do
         url = PdfUrl.new
-        url.to_s.must_equal 'http://d1rxd8nozvj6aj.cloudfront.net/umedia-pdf-icon.png'
+        _(url.to_s).must_equal 'http://d1rxd8nozvj6aj.cloudfront.net/umedia-pdf-icon.png'
       end
     end
   end

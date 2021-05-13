@@ -14,7 +14,7 @@ module Umedia
                           suffix: '++',
                           value: 'stuff',
                           formatters: [FakeFormatter]).to_s
-        field.must_equal '--[stuff]++'
+        _(field).must_equal '--[stuff]++'
       end
     end
   end

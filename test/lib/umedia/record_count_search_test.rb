@@ -8,7 +8,7 @@ module Umedia
         solr = Minitest::Mock.new
         solr.expect :get, response, ["select", {:params=>{:q=>"document_type:item && record_type:\"primary\"", :rows=>0}}]
         search = RecordCountSearch.new(solr: solr)
-        search.count.must_equal 99
+        _(search.count).must_equal 99
         solr.verify
       end
     end
@@ -18,7 +18,7 @@ module Umedia
         solr = Minitest::Mock.new
         solr.expect :get, response, ["select", {:params=>{:q=>"!viewer_type:COMPOUND_PARENT_NO_VIEWER && document_type:item", :rows=>0}}]
         search = RecordCountSearch.new(solr: solr, include_children: true)
-        search.count.must_equal 99
+        _(search.count).must_equal 99
         solr.verify
       end
     end

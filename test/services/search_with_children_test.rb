@@ -7,6 +7,6 @@ class SearchWithChilrenTest < ActiveSupport::TestCase
     ids = SearchWithChildren.new(param_string: 'q=libraries', rows: 1)
                             .docs
                             .map { |item| item['id'] }
-    ids.must_equal ['p16022coll416:904']
+    _(ids).must_equal ['p16022coll416:904']
   end
 end

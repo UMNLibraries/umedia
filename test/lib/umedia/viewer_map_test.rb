@@ -6,13 +6,13 @@ module Umedia
       describe 'and when no format ("find") field data is present' do
         it 'returns the kaltura field' do
           record = { 'kaltud' => 'blah:123', 'find' => 'blah.jp2' }
-          ViewerMap.new(record: record).viewer.must_equal 'kaltura_combo_playlist'
+          _(ViewerMap.new(record: record).viewer).must_equal 'kaltura_combo_playlist'
         end
       end
       describe 'and no format("find") field is present' do
         it 'returns the kaltura field' do
           record = { 'kaltud' => 'blah:123'}
-          ViewerMap.new(record: record).viewer.must_equal 'kaltura_combo_playlist'
+          _(ViewerMap.new(record: record).viewer).must_equal 'kaltura_combo_playlist'
         end
       end
     end
@@ -20,28 +20,28 @@ module Umedia
       describe 'and a known format/find field is present' do
         it 'delivers the correct viewer' do
           record = { 'find' => 'foobar.pdf'}
-          ViewerMap.new(record: record).viewer.must_equal 'pdf'
+          _(ViewerMap.new(record: record).viewer).must_equal 'pdf'
         end
       end
       describe 'and an unknown format/find field is present' do
         it 'raises an error' do
           record = { 'find' => 'foobar.zardoz'}
-          err = ->{ ViewerMap.new(record: record).viewer }.must_raise RuntimeError
-          err.message.must_equal 'Unknown viewer format: zardoz'
+          _(err = ->{ ViewerMap.new(record: record).viewer }).must_raise RuntimeError
+          _(err.message).must_equal 'Unknown viewer format: zardoz'
         end
       end
     end
     describe 'when a kaltura field is present but empty' do
       it 'uses the find field' do
         record = { 'find' => 'foobar.pdf', 'kalturd' => {}}
-        ViewerMap.new(record: record).viewer.must_equal 'pdf'
+        _(ViewerMap.new(record: record).viewer).must_equal 'pdf'
       end
     end
 
     describe 'when both a kaltura audio field and a kaltura audio playlist field are populated' do
       it 'uses the kaltura playlist field' do
         record = { 'find' => 'foobar.pdf', 'kaltur' => '1_foo', 'kaltua' => '1_bar' }
-        ViewerMap.new(record: record).viewer.must_equal 'kaltura_audio_playlist'
+        _(ViewerMap.new(record: record).viewer).must_equal 'kaltura_audio_playlist'
       end
     end
   end

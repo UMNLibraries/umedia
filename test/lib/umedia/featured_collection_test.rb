@@ -38,7 +38,7 @@ module Umedia
           thumbnail_url_klass: thumbnail_url_klass
         )
 
-        featured.to_h.must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"pretty name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"123:44\"}]", :is_super_collection=>false, :collection_recency_sort=>123})
+        _(featured.to_h).must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"pretty name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"123:44\"}]", :is_super_collection=>false, :collection_recency_sort=>123})
         sample_klass.verify
         sample_klass_obj.verify
         collection.verify
@@ -56,7 +56,7 @@ module Umedia
         featured = FeaturedCollection.new(
           collection: collection
         )
-        featured.to_h.must_equal({})
+        _(featured.to_h).must_equal({})
         collection.verify
       end
     end
@@ -97,7 +97,7 @@ module Umedia
           thumbnail_url_klass: thumbnail_url_klass
         )
 
-        featured.to_h.must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"display name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"123:44\"}]", :is_super_collection=>true, :collection_recency_sort=>123})
+        _(featured.to_h).must_equal({:id=>"collection-gergle:123", :document_type=>"collection", :set_spec=>"gergle:123", :collection_name=>"display name here", :collection_description=>"herper derp", :collection_item_count=>99, :contributing_organization_name=>"Gopher Society", :collection_thumbnails=>"[{\"thumbnails\":[\"blah\"],\"id\":\"123:44\"}]", :is_super_collection=>true, :collection_recency_sort=>123})
         super_sample_klass.verify
         super_sample_klass_obj.verify
         super_collection.verify

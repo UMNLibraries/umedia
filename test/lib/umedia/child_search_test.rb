@@ -24,11 +24,11 @@ module Umedia
       search_config.expect :fq, [], []
 
       search = ChildSearch.new(parent_id: parent_id, search_config: search_config, client: client, item_list_klass: item_list_klass)
-      search.items.must_equal [{:foo=>"bar"}]
-      search.empty?.must_equal false
-      search.num_found.must_equal 1
+      _(search.items).must_equal [{:foo=>"bar"}]
+      _(search.empty?).must_equal false
+      _(search.num_found).must_equal 1
 
-      search.highlighting.must_equal 'highlighting here'
+      _(search.highlighting).must_equal 'highlighting here'
       item_list_klass.verify
       client.verify
       response.verify
@@ -38,7 +38,7 @@ module Umedia
 
     describe 'when initialized without a parent id' do
       it 'raises an argument error' do
-        ->{ ChildSearch.new() }.must_raise ArgumentError
+        _(->{ ChildSearch.new() }).must_raise ArgumentError
       end
     end
   end
