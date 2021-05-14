@@ -65,7 +65,7 @@ solr and ingest the homepage collection overview info:
 
 Commit items to solr:
 
-`docker-compose exec app rake solr:commit`
+`docker-compose exec app bundle exec rake solr:commit`
 
 Ingest Collection Metadata:
 
