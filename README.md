@@ -221,6 +221,31 @@ git add snapshots_test; git commit -m "update solr test instance with latest rec
 
 # Docker Help
 
+## Troubleshooting docker-compose
+Any updates to the `Gemfile/Gemfile.lock` require rebuilding the app's Docker
+image. Local gem installs via `bundle install|update` will not affect the
+existing images and may result in confusing errors from docker-compose when you
+believe gems should be present.
+
+```
+app_1          | Could not find rake-13.0.2 in any of the sources
+app_1          | Run `bundle install` to install missing gems.
+```
+
+Running `bundle install` as suggested by the error means doing so with
+`docker-compose exec`. As a temporary fix you can:
+
+```
+$ docker-compose exec bundle install
+```
+
+To permanently resolve it, rebuild the image and restart the containers
+
+```
+$ docker-compose build
+$ docker-compose up
+```
+
 ## Some aliases for your shell
 
 ```bash
