@@ -294,3 +294,17 @@ invalidate the item in CloudFront.
   `Invalidations` tab
 - Create a new Invalidation using the thumb's hash as an object path to
   invalidate (`a457332b5a24d00b615d26308639ebf499c3c053.png`)
+
+### Clearing Rails Cache (if expected display changes do not appear)
+The application cache (in Redis) may need to be cleared if collection metadata
+changes do not show up after the nightly `rake ingest:collection_metadata` job.
+
+```
+$ RAILS_ENV=production bundle exec rails runner 'Rails.cache.clear'
+```
+
+## OAI-PMH Troubleshooting Examples
+- List all collection metadata (`ListSets`): https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListSets
+- List all items in a collection (`ListIdentifiers` for set `p16022coll345`): https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListRecords&metadataPrefix=oai_dc&set=p16022coll345
+- Resume listing (next page) of that same set with its `resumptionToken` found at the end of the XML (note some params replaced by `resumptionToken`) https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListRecords&resumptionToken=p16022coll345:25539:p16022coll345:0000-00-00:9999-99-99:oai_dc
+- Get a single full record (`GetRecord`, identifier `oai:cdm16022.contentdm.oclc.org:p16022coll264/133`) https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:cdm16022.contentdm.oclc.org:p16022coll264/133
