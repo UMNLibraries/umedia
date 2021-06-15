@@ -279,6 +279,11 @@ Thumbnails are stored in S3 (by way of [AWS Lambda and Nailer](https://github.um
 - **Document**: https://umedia.lib.umn.edu/item/p16022coll175:2532
 - **Has CONTENTdm source thumbnail**: https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll175/id/2532
 - **Stored in S3/CloudFront as**: https://dkp5i0hinw9br.cloudfront.net/**6c738be3eac3276240b4776d2d175975d594e652**.png
+- **Source thumbnail image sha1**:
+```shell
+$ echo -n https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll175/id/2532 | sha1sum
+6c738be3eac3276240b4776d2d175975d594e652  -
+```
 
 To force a thumbnail
 to be refreshed, delete it from the S3 bucket CloudFront is pointing to, then
