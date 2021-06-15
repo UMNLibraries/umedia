@@ -276,14 +276,9 @@ This is especially useful for analyzing containers to see why they are the size 
 ### Refreshing thumbnails
 Thumbnails are stored in S3 (by way of [AWS Lambda and Nailer](https://github.umn.edu/Libraries/nailer)) and served out of CloudFront. The S3 object name is a SHA1 hash of the provider's thumbnail URL as harvested by [ETLHub](https://github.umn.edu/Libraries/etlhub). For example:
 
-- **Document**: https://umbrasearch.org/catalog/f220a9e13fa47febee6eb86fe34a4711cf6f79bc
-- **Has source thumbnail**: https://digitalgallery.bgsu.edu/files/thumbnails/9d24a739eebefe857a6c800694b8a1ae.jpg
-- **Stored in S3/CloudFront as**: https://d2l9jrtx1kk04i.cloudfront.net/**97ce0e1120fe7962082171af6c12b28881d0274b**.png
-
-```shell
-$ echo -n https://digitalgallery.bgsu.edu/files/thumbnails/9d24a739eebefe857a6c800694b8a1ae.jpg | sha1sum
-97ce0e1120fe7962082171af6c12b28881d0274b -
-```
+- **Document**: https://umedia.lib.umn.edu/item/p16022coll175:2532
+- **Has CONTENTdm source thumbnail**: https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll175/id/2532
+- **Stored in S3/CloudFront as**: https://dkp5i0hinw9br.cloudfront.net/**6c738be3eac3276240b4776d2d175975d594e652**.png
 
 To force a thumbnail
 to be refreshed, delete it from the S3 bucket CloudFront is pointing to, then
