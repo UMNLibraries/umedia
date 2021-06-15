@@ -99,24 +99,30 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 
 # Ingest a fixed set of sample records (this is the "official" list of records used in our
 # solr test index - see "Working With the Solr Test Index")
+# NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:sample_records
 
 # Ingest everything (ingest content from all collections)
+# NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collections
 
 # Ingest content for a single collection
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collection[set_spec_here]
 
 # Ingest a single record
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:record[record_id_here]
 
 # Ingest collection metadata (used to populate the collection search on the home page)
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collection_metadata
 
 
 
-# Enrich parent items with the transcripts of their children (makes search by transcripts possible)
-rake ingest:all_collection_transcripts
+# Enrich parent items with the transcripts of their children (makes search by
+# MAYBE NEEDED FOR BASIC DEVELOPMENT
+docker-compose exec app bundle exec rake ingest:collection_transcripts
 ```
 
 Once the ingest sidekiq jobs (background worker processes) have completed:
@@ -215,6 +221,31 @@ git add snapshots_test; git commit -m "update solr test instance with latest rec
 
 # Docker Help
 
+## Troubleshooting docker-compose
+Any updates to the `Gemfile/Gemfile.lock` require rebuilding the app's Docker
+image. Local gem installs via `bundle install|update` will not affect the
+existing images and may result in confusing errors from docker-compose when you
+believe gems should be present.
+
+```
+app_1          | Could not find rake-13.0.2 in any of the sources
+app_1          | Run `bundle install` to install missing gems.
+```
+
+Running `bundle install` as suggested by the error means doing so with
+`docker-compose exec`. As a temporary fix you can:
+
+```
+$ docker-compose exec bundle install
+```
+
+To permanently resolve it, rebuild the image and restart the containers
+
+```
+$ docker-compose build
+$ docker-compose up
+```
+
 ## Some aliases for your shell
 
 ```bash
@@ -243,7 +274,18 @@ This is especially useful for analyzing containers to see why they are the size 
 
 ## Maintenance Tasks
 ### Refreshing thumbnails
-Thumbnails are stored in S3 and served out of CloudFront. To force a thumbnail
+Thumbnails are stored in S3 (by way of [AWS Lambda and Nailer](https://github.umn.edu/Libraries/nailer)) and served out of CloudFront. The S3 object name is a SHA1 hash of the provider's thumbnail URL as harvested by [ETLHub](https://github.umn.edu/Libraries/etlhub). For example:
+
+- **Document**: https://umedia.lib.umn.edu/item/p16022coll175:2532
+- **Has CONTENTdm source thumbnail**: https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll175/id/2532
+- **Stored in S3/CloudFront as**: https://dkp5i0hinw9br.cloudfront.net/**6c738be3eac3276240b4776d2d175975d594e652**.png
+- **Source thumbnail image sha1**:
+```shell
+$ echo -n https://cdm16022.contentdm.oclc.org/utils/getthumbnail/collection/p16022coll175/id/2532 | sha1sum
+6c738be3eac3276240b4776d2d175975d594e652  -
+```
+
+To force a thumbnail
 to be refreshed, delete it from the S3 bucket CloudFront is pointing to, then
 invalidate the item in CloudFront.
 
@@ -263,3 +305,17 @@ invalidate the item in CloudFront.
   `Invalidations` tab
 - Create a new Invalidation using the thumb's hash as an object path to
   invalidate (`a457332b5a24d00b615d26308639ebf499c3c053.png`)
+
+### Clearing Rails Cache (if expected display changes do not appear)
+The application cache (in Redis) may need to be cleared if collection metadata
+changes do not show up after the nightly `rake ingest:collection_metadata` job.
+
+```
+$ RAILS_ENV=production bundle exec rails runner 'Rails.cache.clear'
+```
+
+## OAI-PMH Troubleshooting Examples
+- List all collection metadata (`ListSets`): `https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListSets`
+- List all items in a collection (`ListIdentifiers` for set `p16022coll345`): `https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListRecords&metadataPrefix=oai_dc&set=p16022coll345`
+- Resume listing (next page) of that same set with its `resumptionToken` found at the end of the XML (note some params replaced by `resumptionToken`) `https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListRecords&resumptionToken=p16022coll345:25539:p16022coll345:0000-00-00:9999-99-99:oai_dc`
+- Get a single full record (`GetRecord`, identifier `oai:cdm16022.contentdm.oclc.org:p16022coll264/133`) `https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:cdm16022.contentdm.oclc.org:p16022coll264/133`
