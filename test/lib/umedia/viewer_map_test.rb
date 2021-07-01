@@ -26,7 +26,7 @@ module Umedia
       describe 'and an unknown format/find field is present' do
         it 'raises an error' do
           record = { 'find' => 'foobar.zardoz'}
-          _(err = ->{ ViewerMap.new(record: record).viewer }).must_raise RuntimeError
+          err = _(->{ ViewerMap.new(record: record).viewer }).must_raise RuntimeError
           _(err.message).must_equal 'Unknown viewer format: zardoz'
         end
       end
