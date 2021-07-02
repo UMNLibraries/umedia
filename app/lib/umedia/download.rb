@@ -10,7 +10,7 @@ module Umedia
                 :cdn_endpoint
 
     def initialize(item: :MISSING_ID,
-                   cdn_endpoint: 'http://cdm16022.contentdm.oclc.org')
+                   cdn_endpoint: 'https://cdm16022.contentdm.oclc.org')
       @item = item
       @cdn_endpoint = cdn_endpoint
     end
