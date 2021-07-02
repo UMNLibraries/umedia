@@ -42,14 +42,16 @@ module Umedia
 
     def image_downloads
       desired_sizes.map do |size|
-        if height >= size && width >= size
+	if size.eql? 'full'
+          image_download(size, "Full-size")
+        elsif height >= size && width >= size
           image_download("#{size},#{size}", "#{size} x #{size}")
         end
       end.compact
     end
 
     def desired_sizes
-      [150, 800, 1920]
+      [150, 800, 1920, 'full']
     end
 
     def image_download(size, label)
