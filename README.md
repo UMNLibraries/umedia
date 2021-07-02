@@ -71,7 +71,7 @@ Ingest Collection Metadata:
 
 `docker-compose exec app bundle exec rake ingest:collection_metadata`
 
-After populating the development index, syncronize the development solr index to the test solr index `./sync_dev_index_to_test_index.sh` to that integration tests may pass.
+After populating the development index, syncronize the development solr index to the test solr index `./sync_dev_index_to_test_index.sh` so that integration tests may pass.
 
 
 ### Optional: Configure credentials in the `.env` file:
