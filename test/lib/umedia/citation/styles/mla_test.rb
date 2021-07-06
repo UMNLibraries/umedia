@@ -12,7 +12,7 @@ module Umedia
                       formatters: cite[:formatters],
                       value: cite[:name]).to_s
           end.join
-          citation.must_equal "creator. <i>title</i>. date_created. contributing_organization, umedia.lib.umn.edu/item/id Accessed #{Time.now.strftime('%d %b %Y')}."
+          _(citation).must_equal "creator. <i>title</i>. date_created. contributing_organization, umedia.lib.umn.edu/item/id Accessed #{Time.now.strftime('%d %b %Y')}."
         end
       end
     end

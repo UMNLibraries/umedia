@@ -5,7 +5,7 @@ module Umedia
     class KalturaAudioUrlTest < ActiveSupport::TestCase
       it 'generates an kaltura audio thumb url' do
         url = KalturaAudioUrl.new
-        url.to_s.must_equal 'https://d1rxd8nozvj6aj.cloudfront.net/umedia-audio-icon.png'
+        _(url.to_s).must_equal 'https://d1rxd8nozvj6aj.cloudfront.net/umedia-audio-icon.png'
       end
     end
   end

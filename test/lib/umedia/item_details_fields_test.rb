@@ -14,11 +14,11 @@ module Umedia
                                               item: item).displayables
         title_field = displayables[0]
         creator_field = displayables[1]
-        displayables.length.must_equal 2
-        title_field.value.must_equal 'This is a title'
-        title_field.facet.must_equal false
-        creator_field.value.must_equal 'Bill and Ted'
-        creator_field.facet.must_equal 'creator'
+        _(displayables.length).must_equal 2
+        _(title_field.value).must_equal 'This is a title'
+        _(title_field.facet).must_equal false
+        _(creator_field.value).must_equal 'Bill and Ted'
+        _(creator_field.facet).must_equal 'creator'
       end
     end
 

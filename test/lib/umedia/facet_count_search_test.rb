@@ -7,7 +7,7 @@ module Umedia
       solr = Minitest::Mock.new
       solr.expect :get, response, ["select", {:params=>{:q=>"*:*", :rows=>0, :facet=>true, :"facet.field"=>"made_up_field", :"facet.limit"=>-1, :fl=>""}}]
       search = FacetCountSearch.new(solr: solr, facet: 'made_up_field')
-      search.count.must_equal 2
+      _(search.count).must_equal 2
       solr.verify
     end
   end

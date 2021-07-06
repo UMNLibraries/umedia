@@ -54,6 +54,9 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'minitest-spec-rails'
+  # To eliminate warnings of the form '...forwarding to private method Minitest::Mock#{method_name}'
+  # See: https://github.com/freerange/mocha/issues/321
+  gem 'mocha'
   gem 'vcr'
   gem 'webmock'
 end

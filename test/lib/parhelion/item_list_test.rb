@@ -15,7 +15,7 @@ module Parhelion
       results = [doc_hash]
       resp = ItemList.new(results: results)
       resp.map do |doc|
-        doc.must_equal Item.new(doc_hash: doc_hash)
+        _(doc).must_equal Item.new(doc_hash: doc_hash)
       end
     end
   end

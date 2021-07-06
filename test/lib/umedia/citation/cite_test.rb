@@ -20,7 +20,7 @@ module Umedia
         doc.expect :field_creator, field, []
         field.expect :value, 'Ted', []
         cite = Cite.new(doc: doc, mappings: mappings)
-        cite.to_s.must_equal 'WOWO(Ted).'
+        _(cite.to_s).must_equal 'WOWO(Ted).'
         doc.verify
         field.verify
       end
@@ -36,7 +36,7 @@ module Umedia
           }]
           doc = {}
           cite = Cite.new(doc: doc, mappings: mappings)
-          cite.to_s.must_equal 'UMN'
+          _(cite.to_s).must_equal 'UMN'
         end
       end
     end

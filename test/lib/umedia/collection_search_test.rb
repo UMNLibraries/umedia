@@ -10,8 +10,8 @@ module Umedia
         q: 'stuff',
         solr: solr
       )
-      search.num_found.must_equal 99
-      search.docs.must_equal ["foo", "bar"]
+      _(search.num_found).must_equal 99
+      _(search.docs).must_equal ["foo", "bar"]
       solr.verify
     end
   end

@@ -855,6 +855,7 @@ GEM
     minitest-spec-rails (5.5.0)
       minitest (~> 5.0)
       rails (>= 4.1)
+    mocha (1.13.0)
     msgpack (1.2.9)
     multipart-post (2.0.0)
     net-scp (2.0.0)
@@ -1022,6 +1023,7 @@ DEPENDENCIES
   loofah (>= 2.3.1)
   mini_magick (>= 4.9.4)
   minitest-spec-rails
+  mocha
   puma (>= 4.3.5)
   rack (>= 2.0.8)
   rails (~> 5.2.5)
@@ -1050,4 +1052,4 @@ RUBY VERSION
    ruby 2.6.1p33
 
 BUNDLED WITH
-   2.2.15
+   2.2.21

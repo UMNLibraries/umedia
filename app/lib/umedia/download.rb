@@ -10,7 +10,7 @@ module Umedia
                 :cdn_endpoint
 
     def initialize(item: :MISSING_ID,
-                   cdn_endpoint: 'http://cdm16022.contentdm.oclc.org')
+                   cdn_endpoint: 'https://cdm16022.contentdm.oclc.org')
       @item = item
       @cdn_endpoint = cdn_endpoint
     end
@@ -42,14 +42,16 @@ module Umedia
 
     def image_downloads
       desired_sizes.map do |size|
-        if height >= size && width >= size
+	if size.eql? 'full'
+          image_download(size, "Full-size")
+        elsif height >= size && width >= size
           image_download("#{size},#{size}", "#{size} x #{size}")
         end
       end.compact
     end
 
     def desired_sizes
-      [150, 800, 1920]
+      [150, 800, 1920, 'full']
     end
 
     def image_download(size, label)

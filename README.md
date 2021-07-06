@@ -15,7 +15,7 @@ Data is ingested from CONTENTdm into a Solr index and served by this Ruby on Rai
 
 Initialize and start the local dev environment:
 
-`./local_dev_init.sh.sh`
+`./local_dev_init.sh`
 
 **Note**: you will be prompted for a password. Use your `sudo` / machine admin password here.
 
@@ -65,13 +65,13 @@ solr and ingest the homepage collection overview info:
 
 Commit items to solr:
 
-`docker-compose exec app rake solr:commit`
+`docker-compose exec app bundle exec rake solr:commit`
 
 Ingest Collection Metadata:
 
 `docker-compose exec app bundle exec rake ingest:collection_metadata`
 
-After populating the development index, syncronize the development solr index to the test solr index `./sync_dev_index_to_test_index.sh` to that integration tests may pass.
+After populating the development index, syncronize the development solr index to the test solr index `./sync_dev_index_to_test_index.sh` so that integration tests may pass.
 
 
 ### Optional: Configure credentials in the `.env` file:

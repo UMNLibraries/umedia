@@ -25,11 +25,11 @@ module Umedia
         },
         []
         fs = FacetSearch.new(search_klass: search_klass)
-        fs.results.must_equal({"subject_ss"=>["foo", "bar"]})
-        fs.next_page.must_equal 0
-        fs.prev_page.must_equal 0
-        fs.next_class.must_equal 'disabled'
-        fs.prev_class.must_equal 'disabled'
+        _(fs.results).must_equal({"subject_ss"=>["foo", "bar"]})
+        _(fs.next_page).must_equal 0
+        _(fs.prev_page).must_equal 0
+        _(fs.next_class).must_equal 'disabled'
+        _(fs.prev_class).must_equal 'disabled'
         search_klass.verify
       end
     end
@@ -57,11 +57,11 @@ module Umedia
         },
         []
         fs = FacetSearch.new(search_klass: search_klass)
-        fs.results.must_equal({"subject_ss"=>["foo", "bar"]})
-        fs.next_page.must_equal 1
-        fs.prev_page.must_equal 0
-        fs.next_class.must_equal ''
-        fs.prev_class.must_equal 'disabled'
+        _(fs.results).must_equal({"subject_ss"=>["foo", "bar"]})
+        _(fs.next_page).must_equal 1
+        _(fs.prev_page).must_equal 0
+        _(fs.next_class).must_equal ''
+        _(fs.prev_class).must_equal 'disabled'
         search_klass.verify
       end
     end

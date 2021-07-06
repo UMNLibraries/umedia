@@ -13,7 +13,7 @@ module Umedia
         item.expect :field_fake_type_here, type_field, []
 
         url = KalturaVideoUrl.new(item: item)
-        url.to_s.must_equal 'https://cdnapisec.kaltura.com/p/1369852/thumbnail/entry_id/fake_entry_id_123'
+        _(url.to_s).must_equal 'https://cdnapisec.kaltura.com/p/1369852/thumbnail/entry_id/fake_entry_id_123'
       end
     end
   end

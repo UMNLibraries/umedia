@@ -6,7 +6,7 @@ module Parhelion
         'publisher' => ['UMN', 222, 'Somebody', 295]
       }
       facet_list = FacetList.new(facet_hash: facet_hash)
-      facet_list.map { |fl| fl.must_equal(
+      facet_list.map { |fl| _(fl).must_equal(
         Facet.new(rows: facet_hash['publisher'], name: 'publisher')
       )
       }

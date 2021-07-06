@@ -20,7 +20,7 @@ module Umedia
                              field: 'translation',
                              item_klass: item_klass,
                              children_klass: children_klass).items
-        data.must_equal([child_klass])
+        _(data).must_equal([child_klass])
         item_klass.verify
         child_klass.verify
         children_klass.verify
@@ -42,7 +42,7 @@ module Umedia
     #                           field: 'translation',
     #                           item_klass: item_klass).items
 
-    #       items.must_equal([item_klass_obj])
+    #       _(items).must_equal([item_klass_obj])
     #       item_klass_obj.verify
     #       item_klass_field_obj.verify
     #       item_klass.verify
@@ -62,7 +62,7 @@ module Umedia
     #                           field: 'translation',
     #                           item_klass: item_klass).items
 
-    #       items.must_equal([])
+    #       _(items).must_equal([])
     #       item_klass.verify
     #     end
     #   end

@@ -17,8 +17,8 @@ require 'test_helper'
                                      page: 1,
                                      bucket: bucket,
                                      s3_resource: s3_resource)
-      deleter.delete!.must_equal thumbs
-      deleter.last_batch?.must_equal false
+      _(deleter.delete!).must_equal thumbs
+      _(deleter.last_batch?).must_equal false
       s3_resource.verify
     end
 
@@ -32,8 +32,8 @@ require 'test_helper'
                                        page: 1,
                                        bucket: bucket,
                                        s3_resource: s3_resource)
-        # deleter.delete!.must_equal []
-        deleter.last_batch?.must_equal true
+        # _(deleter.delete!).must_equal []
+        _(deleter.last_batch?).must_equal true
         s3_resource.verify
       end
     end

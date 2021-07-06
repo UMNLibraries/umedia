@@ -6,8 +6,8 @@ module Parhelion
         params = {'q' => 'finance'}
         query =  Query.new(params: params)
         sort_query = SortQuery.new(query: query)
-        sort_query.active?.must_equal false
-        sort_query.link_params.must_equal({'q'=>'finance', 'sort'=>'score desc, title desc'})
+        _(sort_query.active?).must_equal false
+        _(sort_query.link_params).must_equal({'q'=>'finance', 'sort'=>'score desc, title desc'})
       end
     end
 
@@ -16,7 +16,7 @@ module Parhelion
         params = {'q' => 'finance', 'sort' => 'title asc'}
         query =  Query.new(params: params)
         sort_query = SortQuery.new(value: 'title asc', query: query)
-        sort_query.active?.must_equal true
+        _(sort_query.active?).must_equal true
       end
     end
   end

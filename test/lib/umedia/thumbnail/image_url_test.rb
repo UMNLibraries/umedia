@@ -5,40 +5,35 @@ module Umedia
     class ImageUrlTest < ActiveSupport::TestCase
       describe 'when an client does not request a IIIF thumbnal' do
         it 'generates an default image url' do
-          item = Minitest::Mock.new
-          item.expect :collection, 'col123', []
-          item.expect :id, '999', []
+          item = mock()
+          item.expects(:collection).returns('col123')
+          item.expects(:id).returns('999')
 
-          field = Minitest::Mock.new
-          field.expect :value, 'http://exaample.com/object', []
-          item.expect :field_object, field, []
+          field = mock()
+          field.expects(:value).returns('http://exaample.com/object')
+          item.expects(:field_object).returns(field)
 
           url = ImageUrl.new(item: item)
-          url.to_s.must_equal 'http://exaample.com/object'
-          item.verify
-          field.verify
+          _(url.to_s).must_equal 'http://exaample.com/object'
         end
       end
 
       describe 'when an client requests a IIIF thumbnal' do
         it 'generates an IIIF image url' do
-          iiif_config_klass = Minitest::Mock.new
-          iiif_config_klass_obj = Minitest::Mock.new
-          iiif_config_klass.expect :new, iiif_config_klass_obj, [{ collection: 'col123', id: '999'}]
-          iiif_config_klass_obj.expect :info, { 'sizes' => [{'width' => 350 }] }, []
-          iiif_config_klass_obj.expect :endpoint, 'http://blerg', []
+          iiif_config_klass = mock()
+          iiif_config_klass_obj = mock()
+	  iiif_config_klass.expects(:new).with({ collection: 'col123', id: '999'}).returns(iiif_config_klass_obj)
+          iiif_config_klass_obj.expects(:info).returns({'sizes' => [{'width' => 350}]})
+          iiif_config_klass_obj.expects(:endpoint).returns('http://blerg')
 
-          item = Minitest::Mock.new
-          item.expect :collection, 'col123', []
-          item.expect :id, '999', []
-          item.expect :collection, 'col123', []
-          item.expect :id, '999', []
+          item = mock()
+          item.expects(:collection).returns('col123')
+          item.expects(:id).returns('999')
+          item.expects(:collection).returns('col123')
+          item.expects(:id).returns('999')
 
           url = ImageUrl.new(item: item, iiif_config_klass: iiif_config_klass, iiif_thumb: true)
-          url.to_s.must_equal 'http://blerg/digital/iiif/col123/999/full/350,/0/default.jpg'
-          iiif_config_klass.verify
-          iiif_config_klass_obj.verify
-          item.verify
+          _(url.to_s).must_equal 'http://blerg/digital/iiif/col123/999/full/350,/0/default.jpg'
         end
       end
     end
