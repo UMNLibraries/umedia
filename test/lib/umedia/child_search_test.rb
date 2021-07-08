@@ -15,8 +15,8 @@ module Umedia
       response.expects(:solr).returns(solr)
       search_params = {:q=>"", :sort=>"child_index asc", :hl=>"on", :fl=>"title, id, object, parent_id, first_viewer_type, viewer_type, child_index", :"hl.method"=>"unified", :fq=>["parent_id:\"9942\""]}
       solr.expects(:paginate)
-	.with(1, 3, "child_search", {:params=>search_params})
-	.returns({'highlighting' => 'highlighting here', 'response' => { 'numFound' => 1, 'docs' =>[{id: 'sdfsdf:sdf'}]}})
+        .with(1, 3, "child_search", {:params=>search_params})
+        .returns({'highlighting' => 'highlighting here', 'response' => { 'numFound' => 1, 'docs' =>[{id: 'sdfsdf:sdf'}]}})
 
       search_config = mock()
       search_config.expects(:to_h).returns(search_params)

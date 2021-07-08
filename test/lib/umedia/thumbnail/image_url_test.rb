@@ -22,7 +22,7 @@ module Umedia
         it 'generates an IIIF image url' do
           iiif_config_klass = mock()
           iiif_config_klass_obj = mock()
-	  iiif_config_klass.expects(:new).with({ collection: 'col123', id: '999'}).returns(iiif_config_klass_obj)
+          iiif_config_klass.expects(:new).with({ collection: 'col123', id: '999'}).returns(iiif_config_klass_obj)
           iiif_config_klass_obj.expects(:info).returns({'sizes' => [{'width' => 350}]})
           iiif_config_klass_obj.expects(:endpoint).returns('http://blerg')
 

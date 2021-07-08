@@ -21,7 +21,7 @@ module Umedia
       sample = CollectionSampleItems.new(set_spec: collection_id)
       _(sample.iiifables).wont_be_empty
       for item in sample.iiifables do
-	_(item.doc_hash['id']).must_match /#{collection_id}:\d+/
+        _(item.doc_hash['id']).must_match /#{collection_id}:\d+/
       end
       _(sample.contributing_organization_name).must_equal 'University of Minnesota Libraries, Kautz Family YMCA Archives.'
     end
