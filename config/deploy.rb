@@ -4,6 +4,18 @@ lock "~> 3.11.0"
 set :application, "umedia"
 set :repo_url, "https://github.com/UMNLibraries/umedia.git"
 
+# Retrieve a list of tags to prompt the user for a tag to deploy,
+# sorted by version and defaulting to the latest
+#
+# Skip the prompt by supplying a tag in env $UMEDIA_RELEASE
+# Any branch name or commit hash can also be used instead of a tag
+# e.g. UMEDIA_RELEASE=develop bundle exec cap staging deploy
+# e.g. UMEDIA_RELEASE=v0.10.1 bundle exec cap production deploy
+unless ARGV.include?('deploy:rollback')
+  avail_tags = `git ls-remote --sort=version:refname --refs --tags #{repo_url} | cut -d/ -f3-`
+  set :branch, (ENV['UMEDIA_RELEASE'] || ask("release tag or branch:\n #{avail_tags}", avail_tags.chomp.split("\n").last))
+end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
