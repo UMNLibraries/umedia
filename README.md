@@ -311,7 +311,7 @@ The application cache (in Redis) may need to be cleared if collection metadata
 changes do not show up after the nightly `rake ingest:collection_metadata` job.
 
 ```
-$ RAILS_ENV=production bundle exec rails runner 'Rails.cache.clear'
+$ RAILS_ENV=production bundle exec rake umedia_cache:clear
 ```
 
 ## OAI-PMH Troubleshooting Examples
