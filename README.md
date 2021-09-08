@@ -103,7 +103,8 @@ Then, reboot the app: `docker-compose stop; docker-compose up`
 docker-compose exec app bundle exec rake ingest:sample_records
 
 # Ingest everything (ingest content from all collections)
-# NEEDED FOR BASIC DEVELOPMENT
+# Might take up to 36 hours
+# NOT ALWAYS NEEDED FOR BASIC DEVELOPMENT
 docker-compose exec app bundle exec rake ingest:collections
 
 # Ingest content for a single collection
@@ -270,7 +271,8 @@ docker system prune -a --volumes
 
 - [Docker Dive](https://github.com/wagoodman/dive)
 
-This is especially useful for analyzing containers to see why they are the size that they are and finding ways to slim them down.
+This is especially useful for analyzing containers to see why they are the size
+that they are and finding ways to slim them down.
 
 ## Maintenance Tasks
 ### Refreshing thumbnails
@@ -312,6 +314,43 @@ changes do not show up after the nightly `rake ingest:collection_metadata` job.
 
 ```
 $ RAILS_ENV=production bundle exec rake umedia_cache:clear
+```
+
+### Full reindexing (wipe & reindex)
+Perform full reindexing **on the staging server**, backup the new index then
+restore it to production via shared NFS.
+
+Note: Make sure sidekiq is running on the staging server with `sudo systemctl
+status sidekiq-*`
+
+```shell
+# On STAGING SERVER!!
+# -----------------------------------------------------------------
+# Wipe the index - takes a few seconds
+$ RAILS_ENV=production bundle exec rake solr:delete_index
+
+# Ingest collection metadata - takes a minute or so
+$ RAILS_ENV=production bundle exec rake ingest:collection_metadata
+
+# Ingest all collection data - takes 30+ hours
+$ RAILS_ENV=production bundle exec rake ingest:collections
+
+# Load transcript data
+$ RAILS_ENV=production bundle exec rake ingest:collection_transcripts
+
+# Once Sidekiq has finished everything, backup the new index to NFS
+# Commit Solr for good measure (probably not necessary but only takes a moment)
+$ RAILS_ENV=production bundle exec rake solr:commit
+$ RAILS_ENV=production bundle exec rake solr:backup
+
+# On PRODUCTION SERVER
+# -----------------------------------------------------------------
+# Restore the index from the shared NFS space (automatically uses the most recent)
+$ RAILS_ENV=production bundle exec rake solr:restore
+
+# Clear cache
+$ RAILS_ENV=production bundle exec rails runner 'Rails.cache.clear'
+$ RAILS_ENV=production bundle exec rake umedia_cache:clear_counts
 ```
 
 ## OAI-PMH Troubleshooting Examples
