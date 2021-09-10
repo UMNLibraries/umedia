@@ -338,6 +338,10 @@ $ RAILS_ENV=production bundle exec rake ingest:collections
 # Load transcript data
 $ RAILS_ENV=production bundle exec rake ingest:collection_transcripts
 
+# Run the daily changes job if the staging server does not keep crons
+# up to date and the restore target gets a day ahead of this index
+$ RAILS_ENV=production bundle exec rake ingest:collections_daily
+
 # Once Sidekiq has finished everything, backup the new index to NFS
 # Commit Solr for good measure (probably not necessary but only takes a moment)
 $ RAILS_ENV=production bundle exec rake solr:commit
