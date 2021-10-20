@@ -43,7 +43,7 @@ class SingleImageTest < ActiveSupport::TestCase
     Capybara.current_driver = :selenium
     visit '/item/p16022coll251:4144'
     find(:xpath, '//*[@id="iiif-link"]').click
-    _(JSON.parse(page.text)['@id']).must_equal 'https://cdm16022.contentdm.oclc.org/iiif/info/p16022coll251/4144/manifest.json'
+    _(JSON.parse(page.text)['@id']).must_equal 'https://cdm16022.contentdm.oclc.org/iiif/p16022coll251:4144/manifest.json'
   end
   it 'displays a clickable citation style list' do
     Capybara.current_driver = :selenium
