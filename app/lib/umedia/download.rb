@@ -45,6 +45,9 @@ module Umedia
         if size.eql? 'full'
           image_download(size, label)
         elsif height >= size && width >= size
+          # We specify only the width here, because specifying width x height,
+          # as we did previsouly with identical values, will force all images
+          # to have square aspect ratios, which distorts most of them.
           image_download("#{size},", label)
         end
       end.compact
