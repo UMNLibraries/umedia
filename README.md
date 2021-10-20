@@ -266,7 +266,7 @@ docker rm $(docker ps -a | grep Exited | awk '\''BEGIN { FS=" " } ; {print $1;}'
 docker system prune -a --volumes
 ```
 
-## Usefull Tools
+## Useful Tools
 
 - [Docker Dive](https://github.com/wagoodman/dive)
 
