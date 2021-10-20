@@ -41,21 +41,21 @@ module Umedia
     private
 
     def image_downloads
-      desired_sizes.map do |size|
+      desired_sizes.map do |label, size|
         if size.eql? 'full'
-          image_download(size, "Full-size")
+          image_download(size, label)
         elsif height >= size && width >= size
-          image_download("#{size},#{size}", "#{size} x #{size}")
+          image_download("#{size},", label)
         end
       end.compact
     end
 
     def desired_sizes
-      [150, 800, 1920, 'full']
+      {'Small': 150, 'Medium': 800, 'Large': 1920, 'Full-size': 'full'}
     end
 
     def image_download(size, label)
-      { url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/#{size}/0/default.jpg", label: "(#{label} Download)" }
+      {url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/#{size}/0/default.jpg", label: "#{label} image"}
     end
   end
 end
