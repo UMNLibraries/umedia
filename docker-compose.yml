@@ -39,7 +39,11 @@ services:
 
   sidekiq:
     build: .
-    command: bundle exec sidekiq -q critical,2 -q default -c 1 -r /app
+    # 2 queues default & critical, concurrency of 5 (used to be 1 but way too slow)
+    # application root at /app
+    # Reduce -c concurrency if your dev machine CPU can't keep up with this
+    # but when it is at -c 1 this sample record load may take an hour
+    command: bundle exec sidekiq -q critical,2 -q default -c 5 -r /app
     volumes:
       - .:/app
     links:
