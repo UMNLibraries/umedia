@@ -14,8 +14,7 @@ module Umedia
         :region,
         :continent,
         :parent_collection_name,
-        :date_added,
-        :coordinates
+        :date_added
       ]
     end
 
