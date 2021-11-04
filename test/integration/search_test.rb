@@ -33,7 +33,7 @@ class HomeTest < ActiveSupport::TestCase
       sleep 1
       find(:css, '#sort-dropdown > ul > li:nth-child(4) > a').click
       sleep 1
-      _(find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text).must_equal('125th Anniversary Celebration, 1978. (Box 1, Folder 20)')
+      _(find(:xpath, '//*[@id="main"]/div[7]/div[1]/div/div/a').text).must_equal("Bancroft's official guide map of City and County of San Francisco : compiled from official maps in Surveyor's Office.")
     end
     it 'sorts creator z to a' do
       Capybara.current_driver = :selenium
