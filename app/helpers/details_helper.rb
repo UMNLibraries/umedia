@@ -43,7 +43,8 @@ module DetailsHelper
           { name: 'continent', facet: true },
           { name: 'geonames' },
           { name: 'projection' },
-          { name: 'scale' }
+          { name: 'scale' },
+          { name: 'coordinates' },
         ]
       },
       {
