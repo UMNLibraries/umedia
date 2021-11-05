@@ -1,6 +1,6 @@
 <% if item.field_translation.value %>
   <div class="translation">
     <h3 class="title"><%= item.field_title.value %></h3>
-    <div><%= sanitize(item.field_translation.value) %></div>
+    <div><%= item.field_translation.value %></div>
   </div>
 <% end %>
