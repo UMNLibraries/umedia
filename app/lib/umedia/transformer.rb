@@ -205,6 +205,8 @@ module Umedia
         {dest_path: 'local_rights', origin_path: 'local', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'standardized_rights', origin_path: 'standa', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'rights_statement_uri', origin_path: 'righta', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'expected_public_domain_year', origin_path: 'expect', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'additional_rights_information', origin_path: 'addita', formatters: [CDMDEXER::StripFormatter]},
       # Transcript
         {dest_path: 'transcription', origin_path: 'transc', formatters: [RemoveHashFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'translation', origin_path: 'transl', formatters: [CDMDEXER::StripFormatter]},

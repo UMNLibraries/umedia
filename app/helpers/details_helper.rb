@@ -71,7 +71,9 @@ module DetailsHelper
         fields: [
           { name: 'local_rights' },
           { name: 'standardized_rights' },
-          { name: 'rights_statement_uri' }
+          { name: 'rights_statement_uri' },
+          { name: 'expected_public_domain_year' },
+          { name: 'additional_rights_information' }
         ]
       },
       {
