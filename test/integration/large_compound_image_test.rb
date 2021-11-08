@@ -17,7 +17,7 @@ class HomeTest < ActiveSupport::TestCase
     visit 'item/p16022coll345:69542'
     fill_in 'q', with: 'Genetics'
     find(:xpath, '//*[@id="sidebar"]/form/div/span/button').click
-    _(find(:xpath, '//*[@id="sidebar-p16022coll345:69197"]/div[2]/div[2]').text).must_equal "Committee on Genetics and Society Forum on the Green Revolution XIII International Congress of Genetics, August 21, 1973 World hunger has three causes: agricultural underproduction, the predominance of corporate models of development and distribution, and the economic dependence of the developing nations."
+    _(find(:xpath, '//*[@id="sidebar-p16022coll345:69197"]/div[2]/div[2]').text).must_equal "Committee on Genetics and Society Forum on the Green Revolution XIII International Congress"
     # Page 2 doesn't show up for this search result
     _(has_selector?(:xpath, '//*[@id="sidebar-p16022coll345:69195"]/div')).must_equal false
 

@@ -31,7 +31,7 @@ module ChildSearchesHelper
   end
 
   def highlighter(field, label)
-    return unless field.length > 0
+    return unless field && field.length > 0
     '<div class="highlight">' +
     "<div class=\"highlight-label\">#{label}:</div>" +
     "<div class=\"highlight-data\">#{field.join('...')}</div>" +
