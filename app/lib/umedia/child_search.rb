@@ -62,7 +62,7 @@ module Umedia
       search_config.to_h.merge(
         hl: 'on',
         sort: 'child_index asc',
-        'hl.method': 'unified',
+        'hl.method': 'original',
         fq: search_config.fq + default_fq
       )
     end
