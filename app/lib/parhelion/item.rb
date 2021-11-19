@@ -3,13 +3,15 @@
 module Parhelion
   # Converts a result hash into an Item object with Field Object children
   class Item
-    attr_reader :doc_hash, :field_klass, :cdn_iiif_klass
+    attr_reader :doc_hash, :field_klass, :cdn_iiif_klass, :cdn_webservices_klass
     def initialize(doc_hash: {},
                    field_klass: Field,
-                   cdn_iiif_klass: IiifConfig)
+                   cdn_iiif_klass: IiifConfig,
+                   cdn_webservices_klass: CdmApiImageInfo)
       @doc_hash     = doc_hash
       @field_klass  = field_klass
       @cdn_iiif_klass = cdn_iiif_klass
+      @cdn_webservices_klass = cdn_webservices_klass
     end
 
     def url
@@ -22,6 +24,16 @@ module Parhelion
 
     def width
       iiif_info.fetch('width', 0)
+    end
+
+    # Retrieve original uploaded image dimensions from CONTENTdm
+    # Unconstrained by IIIF max image size
+    def original_height
+      webservices_image_info.fetch('height', 0)
+    end
+
+    def original_width
+      webservices_image_info.fetch('width', 0)
     end
 
     def type
@@ -71,9 +83,19 @@ module Parhelion
 
     private
 
+    # Retrieve info from IIIF
     def iiif_info
       if !is_compound?
         @iiif_info ||= cdn_iiif_klass.new(id: id, collection: collection).info
+      else
+        {}
+      end
+    end
+
+    # Retrieve image info from CONTENTdm API
+    def webservices_image_info
+      if !is_compound?
+        @webservices_image_info ||= cdn_webservices_klass.new(id: id, collection: collection).info
       else
         {}
       end
