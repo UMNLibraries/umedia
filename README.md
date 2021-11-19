@@ -88,6 +88,12 @@ UMEDIA_NAILER_THUMB_FALLBACK_URL=<<YOUR CONFIG HERE>>
 AWS_ACCESS_KEY_ID=<<YOUR CONFIG HERE>>
 AWS_SECRET_ACCESS_KEY=<<YOUR CONFIG HERE>>
 AWS_REGION=<<YOUR CONFIG HERE>>
+
+# number of search results per page from Solr
+UMEDIA_SEARCH_ROWS=20
+# number of collections per page on homepage
+# Always set to 1 by the test suite to enforce reliable paging on /home
+UMEDIA_COLLECTION_PAGE_LIMIT=20
 ```
 
 Then, reboot the app: `docker-compose stop; docker-compose up`
