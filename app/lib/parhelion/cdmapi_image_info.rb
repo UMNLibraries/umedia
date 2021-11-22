@@ -2,7 +2,7 @@
 
 module Parhelion
   # One place to store the cdm connection info
-  class CdmApiImageInfo
+  class CdmapiImageInfo
     attr_reader :id, :collection, :endpoint, :rest_client_klass
     def initialize(id: :MISSING_ID,
                    collection: :MISSING_COLLECTION,

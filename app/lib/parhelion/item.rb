@@ -7,7 +7,8 @@ module Parhelion
     def initialize(doc_hash: {},
                    field_klass: Field,
                    cdn_iiif_klass: IiifConfig,
-                   cdn_webservices_klass: CdmApiImageInfo)
+                   cdn_webservices_klass: CdmapiImageInfo)
+      # doc_hash is a document returned from a Solr search as a hash
       @doc_hash     = doc_hash
       @field_klass  = field_klass
       @cdn_iiif_klass = cdn_iiif_klass
