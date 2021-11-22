@@ -20,8 +20,6 @@ module Parhelion
       raise "Webservices Error for #{info_url}: #{e}"
     end
 
-    private
-
     def info_url
       "#{endpoint}?q=dmGetImageInfo/#{collection}/#{id}/json"
     end

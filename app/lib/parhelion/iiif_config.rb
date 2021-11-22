@@ -28,8 +28,6 @@ module Parhelion
       "#{endpoint}/iiif/info/#{collection}/#{id}/manifest.json"
     end
 
-    private
-
     def info_url
       "#{iiif_url}/info.json"
     end

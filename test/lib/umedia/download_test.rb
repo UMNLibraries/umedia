@@ -8,7 +8,7 @@ module Umedia
         download = Download.new(item: item)
         _(download.urls).must_equal([
           {:url=>"https://cdm16022.contentdm.oclc.org/digital/iiif/p16022coll142/147/full/150,/0/default.jpg", :label=>"Small image"},
-          {:url=>"https://cdm16022.contentdm.oclc.org/digital/iiif/p16022coll142/147/full/full/0/default.jpg", :label=>"Full-size image"}
+          {:url=>"https://cdm16022.contentdm.oclc.org/utils/ajaxhelper?CISOROOT=p16022coll142&CISOPTR=147&action=2&DMSCALE=100&DMWIDTH=1187&DMHEIGHT=777", :label=>"Full-size image"}
         ])
       end
     end

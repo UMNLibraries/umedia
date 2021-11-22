@@ -39,6 +39,16 @@ module Parhelion
       end
     end
 
+    describe 'when requesting CDM API item info' do
+      it 'returns original image height and width' do
+        VCR.use_cassette('item_api_test_p16022coll230:315') do
+          item = Item.new(doc_hash: {'id' => 'p16022coll230:315'})
+          _(item.original_width).must_equal(9870)
+          _(item.original_height).must_equal(11726)
+        end
+      end
+    end
+
     describe 'when given a hash of field data' do
       it 'knows its IDs' do
         doc_hash = { 'id' => 'fooCollection:123', 'title' => 'foo', 'creator' => %w[blah blergh] }

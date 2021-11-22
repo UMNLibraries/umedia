@@ -4,7 +4,7 @@ module Umedia
   # Provide access to item download urls
   class Download
     extend Forwardable
-    def_delegators :@item, :[], :id, :parent_id, :collection, :height, :width
+    def_delegators :@item, :[], :id, :parent_id, :collection, :height, :width, :original_height, :original_width
 
     attr_reader :item,
                 :cdn_endpoint
@@ -38,6 +38,10 @@ module Umedia
       "#{cdn_endpoint}/utils/getfile/collection/#{collection}/id/#{parent_id}/filename/print/page/download/fparams/forcedownload"
     end
 
+    def download_full_image_url
+      "#{cdn_endpoint}/utils/ajaxhelper?CISOROOT=#{collection}&CISOPTR=#{id}&action=2&DMSCALE=100&DMWIDTH=#{item.original_width}&DMHEIGHT=#{item.original_height}"
+    end
+
     private
 
     def image_downloads
@@ -58,7 +62,13 @@ module Umedia
     end
 
     def image_download(size, label)
-      {url: "#{cdn_endpoint}/digital/iiif/#{collection}/#{id}/full/#{size}/0/default.jpg", label: "#{label} image"}
+      url = case size
+        when 'full'
+          download_full_image_url
+        else
+          "#{item.iiif_url}/full/#{size}/0/default.jpg"
+        end
+        {url: url, label: "#{label} image"}
     end
   end
 end
