@@ -4,7 +4,7 @@
 <div class="input-group input-group-md">
 
     <%= label_tag :filter_q, 'Filter:', style: 'display:none' %>
-    <%= text_field_tag :filter_q, params[:filter_q], class: 'form-control', placeholder: 'Filter Collections...', value: params[:filter_q], 'data-action' => 'home#search' %>
+    <%= text_field_tag :filter_q, params[:filter_q], class: 'form-control', placeholder: 'Search for collections...', value: params[:filter_q], 'data-action' => 'home#search' %>
     <span class="input-group-btn">
       <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Filter'), :name => 'collection_filter', class: 'btn btn-umn-maroon search-btn collection_filter', 'data-action' => 'home#search' %>
     </span>
