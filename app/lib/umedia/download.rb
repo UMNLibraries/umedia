@@ -48,11 +48,13 @@ module Umedia
       desired_sizes.map do |label, size|
         if size.eql? 'full'
           image_download(size, label)
-        elsif height >= size && width >= size
-          # We specify only the width here, because specifying width x height,
-          # as we did previsouly with identical values, will force all images
-          # to have square aspect ratios, which distorts most of them.
-          image_download("#{size},", label)
+        elsif height >= size || width >= size
+          # We supply only the larger of width or height to the IIIF URL,
+          # with a trailing or leading comma for the missing dimension
+          # e.g. 1200, or ,1200 if width or height is larger respectively
+          # If they're equal we specify the width
+          url_dimens = height > width ? ",#{size}" : "#{size},"
+          image_download(url_dimens, label)
         end
       end.compact
     end
