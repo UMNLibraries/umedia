@@ -187,7 +187,7 @@ module Umedia
         {dest_path: 'geonames', origin_path: 'geonam', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'projection', origin_path: 'projec', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'scale', origin_path: 'scale', formatters: [CDMDEXER::StripFormatter]},
-        {dest_path: 'coordinates', origin_path: 'coordi', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'coordinates', origin_path: 'coordi', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
       # Collection Information
         {dest_path: 'parent_collection', origin_path: 'a', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'parent_collection_name', origin_path: 'a', formatters: [SemiSplitFirstFormatter]},
