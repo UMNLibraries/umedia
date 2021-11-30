@@ -5,7 +5,7 @@ class UmediaETL
               :filter_callback,
               :set_spec_filter,
               :solr_connection
-  def initialize(oai_endpoint: 'http://cdm16022.contentdm.oclc.org/oai/oai.php',
+  def initialize(oai_endpoint: "#{ENV['PARHELION_CDM_ENDPOINT']}/oai/oai.php",
                  set_spec_pattern: /^ul_([a-zA-Z0-9])*\s-\s/,
                  field_mappings: Umedia::Transformer.field_mappings,
                  filter_callback: CDMDEXER::RegexFilterCallback,
@@ -24,7 +24,7 @@ class UmediaETL
       oai_endpoint: oai_endpoint,
       extract_compounds: true,
       field_mappings: field_mappings,
-      cdm_endpoint: 'https://server16022.contentdm.oclc.org/dmwebservices/index.php',
+      cdm_endpoint: ENV['PARHELION_CDM_WEBSERVICES_ENDPOINT'],
       max_compounds: 1,
       batch_size: 50,
       solr_config: solr_config

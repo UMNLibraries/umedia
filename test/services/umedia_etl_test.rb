@@ -6,7 +6,7 @@ require 'test_helper'
         umedia_etl = UmediaETL.new(field_mappings: {})
         _(umedia_etl.set_specs.length.positive?).must_equal true
         _(umedia_etl.config).must_equal(
-          :oai_endpoint=>"http://cdm16022.contentdm.oclc.org/oai/oai.php",
+          :oai_endpoint=>"https://cdm16022.contentdm.oclc.org/oai/oai.php",
           :extract_compounds=>true,
           :field_mappings=>{},
           :cdm_endpoint=>"https://server16022.contentdm.oclc.org/dmwebservices/index.php",

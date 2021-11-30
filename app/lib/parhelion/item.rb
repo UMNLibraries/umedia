@@ -3,17 +3,24 @@
 module Parhelion
   # Converts a result hash into an Item object with Field Object children
   class Item
-    attr_reader :doc_hash, :field_klass, :cdn_iiif_klass
+    attr_reader :doc_hash, :field_klass, :cdn_iiif_klass, :cdn_webservices_klass
     def initialize(doc_hash: {},
                    field_klass: Field,
-                   cdn_iiif_klass: IiifConfig)
+                   cdn_iiif_klass: IiifConfig,
+                   cdn_webservices_klass: CdmapiImageInfo)
+      # doc_hash is a document returned from a Solr search as a hash
       @doc_hash     = doc_hash
       @field_klass  = field_klass
       @cdn_iiif_klass = cdn_iiif_klass
+      @cdn_webservices_klass = cdn_webservices_klass
     end
 
     def url
       "#{ENV['RAILS_BASE_URL']}/item/#{index_id}"
+    end
+
+    def iiif_url
+      @iiif_source.iiif_url
     end
 
     def height
@@ -22,6 +29,20 @@ module Parhelion
 
     def width
       iiif_info.fetch('width', 0)
+    end
+
+    # Retrieve original uploaded image dimensions from CONTENTdm
+    # Unconstrained by IIIF max image size
+    def cdn_webservices_url
+      webservices_source.info_url
+    end
+
+    def original_height
+      webservices_image_info.fetch('height', 0)
+    end
+
+    def original_width
+      webservices_image_info.fetch('width', 0)
     end
 
     def type
@@ -71,9 +92,25 @@ module Parhelion
 
     private
 
+    # Retrieve info from IIIF
+    def iiif_source
+      @iiif_source ||= cdn_iiif_klass.new(id: id, collection: collection)
+    end
     def iiif_info
       if !is_compound?
-        @iiif_info ||= cdn_iiif_klass.new(id: id, collection: collection).info
+        @iiif_info ||= iiif_source.info
+      else
+        {}
+      end
+    end
+
+    # Retrieve image info from CONTENTdm API
+    def webservices_source
+      @webservices_source ||= cdn_webservices_klass.new(id: id, collection: collection)
+    end
+    def webservices_image_info
+      if !is_compound?
+        @webservices_image_info ||= webservices_source.info
       else
         {}
       end
