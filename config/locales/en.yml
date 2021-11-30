@@ -86,6 +86,7 @@ en:
       geonames: "GeoNames URL"
       projection: "Projection"
       scale: "Scale"
+      coordinates: "Coordinates"
       parent_collection_name: "Parent Collection"
       contributing_organization_name_s: "Contributing Organization"
       contact_information: "Contact Information"
@@ -98,6 +99,8 @@ en:
       local_rights: "Local Rights Statement"
       standardized_rights: "Standardized Rights Statement"
       rights_statement_uri: "Rights Statement URI"
+      expected_public_domain_year: "Expected Public Domain Year of Entry"
+      additional_rights_information: "Additional Rights Information"
       transcription: "Transcription"
       translation: "Translation"
 

@@ -12,15 +12,23 @@ class HomeTest < ActiveSupport::TestCase
     it 'pages and collections are clickable' do
       Capybara.current_driver = :selenium
       visit '/home'
+      # Click the second page of the pager (link 4 after prev,next,1)
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
-      click_link 'African American Archival Materials'
-      _(page).must_have_content('Higher Education. Desegregating the Washington Branch of the American Association of University Women')
+      click_link 'The De Mey van Streefkerk Papers'
+      _(page).must_have_content('Letter, to a fellow heir')
     end
     it 'nex/prev and collections are clickable' do
       Capybara.current_driver = :selenium
       visit '/home'
-      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
+      # Click the 2nd page of the pager (link 3 after prev,next)
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[3]/a').click
+      # Click "next" 3x to advance 3 pages
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click
+      # Click "previous" once to land on a known record
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[1]/a').click
+      # We should land here:
       click_link 'Minnesota\'s Radio History'
       _(page).must_have_content('10,000 Lakes or More')
     end

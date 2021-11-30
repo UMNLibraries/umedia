@@ -28,6 +28,11 @@ class SingleImageTest < ActiveSupport::TestCase
     visit '/item/p16022coll251:4144'
     _(find(:xpath, '//*[@id="metadata-area"]/div/dl[6]/dd[1]').text).must_equal 'Bell Call # 1590 fBr v. 4 pt. 11-2 (Plate XIII); Map ID 1590_fBr_v4_pt11-2_m012'
   end
+  it 'displays coordinates' do
+    Capybara.current_driver = :selenium
+    visit '/item/p16022coll205:267'
+    _(find(:xpath, '//dd[contains(@class,"field index-field field-coordinates-value")]').text).must_equal "W1223200 W1222104 N0374905 N0374223; (W 122°32'00\"--W 122°21'04\"/N 37°49'05\"--N 37°42'23\")"
+  end
   it 'displays collection description area' do
     Capybara.current_driver = :selenium
     visit '/item/p16022coll251:4144'

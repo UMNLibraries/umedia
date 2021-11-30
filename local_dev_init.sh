@@ -10,7 +10,7 @@ then
 
   # BUILD the local solr core
   git clone https://github.com/UMNLibraries/umedia_solr_conf.git;
-  (cd umedia_solr_conf; ./rebuild-dev.sh; ./rebuild-test.sh);
+  (cd umedia_solr_conf; ./rebuild.sh dev; ./rebuild.sh test);
 
   # BUILD the App
   cp -n .env.example .env # n = "no clobber: don't overwrite if already there"

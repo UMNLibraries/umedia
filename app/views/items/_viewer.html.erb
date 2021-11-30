@@ -1,10 +1,10 @@
 <div data-controller="viewer"
      data-viewer-sidebar_page="<%= params.fetch('sidebar_page', 1) %>"
-     data-viewer-id="<%= sanitize(params['id']) %>"
-     data-viewer-child_id="<%= sanitize(params.fetch('child_id', sidebar.first_page)) %>"
+     data-viewer-id="<%= params['id'] %>"
+     data-viewer-child_id="<%= params.fetch('child_id', sidebar.first_page) %>"
      data-viewer-child_page="<%= child_page_num.to_i %>"
      data-viewer-child_index="<%= params.fetch('child_index', 0).to_i %>"
-     data-viewer-query="<%= sanitize(params['query']) %>"
+     data-viewer-query="<%= params['query'] %>"
      data-viewer-show_slider="<%= @show_sidebar_slider %>"
      data-viewer-url="/viewers"
      id="viewer-data">
@@ -32,7 +32,7 @@
  <%= render partial: 'mlt_list' if !sidebar.show? %>
  <%= render partial: 'metadata' if !sidebar.show?  %>
 
-<%=  link_to item_path(id: sanitize(params['id']), :format => :json),
+<%=  link_to item_path(id: params['id'], :format => :json),
   alt: 'JSON Format',
   rel: 'nofollow',
   id: 'json-link',
