@@ -62,7 +62,7 @@ set :passenger_restart_with_touch, true
 append :linked_dirs, "log"
 append :linked_dirs, "tmp/pids"
 
-
+after 'deploy:finishing', 'deploy:clear_rails_cache'
 # Restart all sidekiq instances so they can pick up the new code
 namespace :deploy do
   after :finishing, :notify do
@@ -73,6 +73,14 @@ namespace :deploy do
     on roles(:all) do |host|
       (0..1).map do |pid|
         execute "sudo systemctl restart sidekiq-#{pid}"
+      end
+    end
+  end
+
+  task :clear_rails_cache do
+    on roles(:app) do |host|
+      within current_path do
+        execute :bundle, 'exec rails runner "Rails.cache.clear"'
       end
     end
   end
