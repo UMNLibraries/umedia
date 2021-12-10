@@ -96,10 +96,10 @@ UMEDIA_SEARCH_ROWS=20
 UMEDIA_COLLECTION_PAGE_LIMIT=20
 ```
 
-Then, reboot the app: `docker-compose stop; docker-compose up`
+Then, reboot the app: `docker-compose stop; docker-compose up`. You should now be ready to develop via http://localhost:3000.
 
-## Ingest CONTENTdm Content Into Solr
-
+# Ingest CONTENTdm Content Into Solr
+Interact with the Solr index and Sidekiq processor with the following methods:
 
 ```bash
 
