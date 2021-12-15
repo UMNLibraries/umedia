@@ -4,3 +4,5 @@ Disallow: /search?facets
 Disallow: /search.json
 Crawl-delay: 10
 
+User-agent: PetalBot
+Disallow: /
