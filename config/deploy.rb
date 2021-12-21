@@ -71,7 +71,8 @@ namespace :deploy do
 
   task :restart_sidekiq do
     on roles(:all) do |host|
-      execute "sudo systemctl restart sidekiq-*"
+      execute "sudo systemctl restart sidekiq-0"
+      execute "sudo systemctl restart sidekiq-1"
     end
   end
 
