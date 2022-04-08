@@ -1,6 +1,7 @@
-<% path = item_path(id: child.field_parent_id.value, child_id: child.id) %>
+<% path = item_path(id: child.field_parent_id.value, "#{child.collection}:#{child.id}") %>
 <% active = (current_page?(path)) ? 'active' : ''%>
-<%= link_to item_path(id: child.field_parent_id.value, child_id: child.id),
+<%= link_to item_path(id: child.field_parent_id.value, "#{child.collection}:#{child.id}"),
+                  'rel': 'nofollow',
                   'data-action': 'viewer#select',
                   'data-id': child.field_parent_id.value,
                   'data-child_id': "#{child.collection}:#{child.id}",

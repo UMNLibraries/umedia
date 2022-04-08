@@ -2,6 +2,7 @@
 User-agent: *
 Disallow: /search?facets
 Disallow: /search.json
+Disallow: /item/p16022coll*/*
 Crawl-delay: 10
 
 User-agent: PetalBot
