@@ -69,6 +69,9 @@ services:
     volumes:
       - ./docker/redis-cache.conf:/usr/local/etc/redis/redis.conf
   selenium:
+    # NOTE: If selenium crashes after start (as on Fedora Linux), the Docker systemd service may need greater
+    # open file limits
+    # https://stackoverflow.com/a/69864234/541091
     image: selenium/standalone-chrome-debug:3.141.59-europium
     ports: ['127.0.0.1:4444:4444', '127.0.0.1:5900:5900']
     stdin_open: true
