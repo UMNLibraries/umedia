@@ -1,13 +1,12 @@
 FROM ruby:2.6.1
-LABEL maintainer="fenne035@umn.edu"
+LABEL maintainer="libwebdev@umn.edu"
 
 # Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
 
-# Ugh, Yarn needs a newer version of Node
-# See: https://github.com/yarnpkg/yarn/issues/6914#issuecomment-454165516
+# install Node v. 10, yarn (v1), and some python and cairo dependencies
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash \
   && apt-get update && apt-get install -qq -y --no-install-recommends \
-  build-essential nodejs \
+  build-essential nodejs python python3 libpangocairo1.0-0 \
   # Rails 5.1 expects Yarn to be a thing \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Test server only shows 1 collection per page, to force the collections pager to render on the home page
+# and therefore ensure selenium tests can click on the pager prev/next and indexed pages
+podman-compose run -e "RAILS_ENV=test" -e "UMEDIA_COLLECTION_PAGE_LIMIT=1" -e "SOLR_URL=http://solr_test:8983/solr/core" -e "RAILS_BASE_URL=http://app:3001" "$@"
