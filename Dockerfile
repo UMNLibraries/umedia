@@ -1,5 +1,5 @@
-FROM ruby:2.6.1
-LABEL maintainer="fenne035@umn.edu"
+FROM ruby:2.6.5
+LABEL maintainer="libwebdev@umn.edu"
 
 # Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
 
