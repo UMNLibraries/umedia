@@ -79,6 +79,7 @@ After populating the development index, syncronize the development solr index to
 ```bash
 SECRET_KEY_BASE=<<YOUR CONFIG HERE>>
 # Nailer is a lambda app that handles thumbnail processing and storage:
+# URI should look real when testing e.g. https://example.com/apipath is good
 UMEDIA_NAILER_API_URI=<<YOUR CONFIG HERE>>
 UMEDIA_NAILER_API_KEY=<<YOUR CONFIG HERE>>
 UMEDIA_NAILER_CDN_URI=<<YOUR CONFIG HERE>>
