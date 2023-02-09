@@ -165,7 +165,8 @@ Let's say you found a bug that depends on a certain record being in the index an
 2. Add the record to the `sample-records.json` file in the root directory of this repository.
 
     This allows others to deterministically recreate the sample index.
-    **Note**: be sure to `git pull origin master` before modifying this file so that you have the most recent list of example records.
+    **Note**: be sure to `git pull origin main` before modifying this file so 
+    that you have the most recent list of example records.
 
    ```json
     [
