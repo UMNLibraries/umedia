@@ -10,6 +10,8 @@ module Parhelion
 
       def uiconf_id
         42156071
+       # 50307192 #new
+
       end
     end
   end

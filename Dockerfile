@@ -1,11 +1,11 @@
-FROM ruby:2.6.1
-LABEL maintainer="fenne035@umn.edu"
+FROM ruby:2.6.7
+LABEL maintainer="libwebdev@umn.edu"
 
 # Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
 
 # Ugh, Yarn needs a newer version of Node
 # See: https://github.com/yarnpkg/yarn/issues/6914#issuecomment-454165516
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash \
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
   && apt-get update && apt-get install -qq -y --no-install-recommends \
   build-essential nodejs \
   # Rails 5.1 expects Yarn to be a thing \

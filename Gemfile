@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.6.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.5'
+gem 'rails', '~> 5.2.8.1'
 # Use Puma as the app server
 gem 'puma', '>= 4.3.5'
 # Use SCSS for stylesheets
@@ -28,7 +28,8 @@ gem 'redis', '~> 4.0'
 # Use ActiveStorage variant
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+# Disabled bootsnap, problematic on rails 5.2.6
+#gem 'bootsnap', '>= 1.16.0', require: false
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -53,6 +54,8 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   gem 'simplecov'
+  # Something weird happened to mocking in 5.17
+  gem 'minitest', '>= 5.1', '< 5.16.0'
   gem 'minitest-spec-rails'
   # To eliminate warnings of the form '...forwarding to private method Minitest::Mock#{method_name}'
   # See: https://github.com/freerange/mocha/issues/321
