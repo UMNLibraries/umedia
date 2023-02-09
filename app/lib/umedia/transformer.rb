@@ -240,7 +240,19 @@ module Umedia
         # Date added to CONTENTdm - useful to sort by recency
         {dest_path: 'date_added', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]},
         {dest_path: 'date_added_sort', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]},
-        {dest_path: 'date_modified', origin_path: 'dmmodified', formatters: [ToSolrDateFormatter]}
+        {dest_path: 'date_modified', origin_path: 'dmmodified', formatters: [ToSolrDateFormatter]},
+
+        # Spanish language fields
+        {dest_path: 'es_description', origin_path: 'spdesc', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_notes', origin_path: 'spaddo', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_physical_format', origin_path: 'spitem', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_subject', origin_path: 'sploca', formatters: [CDMDEXER::StripFormatter, CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'es_country', origin_path: 'spcoun', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'es_continent', origin_path: 'spcont', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'es_language', origin_path: 'splang', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_local_rights', origin_path: 'splocb', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_rights_statement_uri', origin_path: 'sprigh', formatters: [CDMDEXER::StripFormatter]}
+
       ]
     end
   end
