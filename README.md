@@ -18,6 +18,12 @@ Initialize and start the local dev environment:
 `./local_dev_init.sh`
 
 **Note**: you will be prompted for a password. Use your `sudo` / machine admin password here.
+If you need to test a different branch or commit of the `umedia_solr_conf` Solr 
+core repository, set the variable `$UMEDIA_SOLR_CONF_VERSION`
+
+`UMEDIA_SOLR_CONF_VERSION=develop ./local_dev_init.sh`
+
+Bring up services:
 
 `docker-compose up`
 
