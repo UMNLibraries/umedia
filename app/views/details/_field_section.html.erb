@@ -2,7 +2,17 @@
   <%= raw "<h3>#{label}</h3>" if label %>
   <dl class="item-metadata col-md-12">
   <% values.map do |field| %>
-    <%= render 'field', facet_field: field.facet, value: field.value, name: field.name %>
+    <%# Fields prefixed with a 2 letter code can be locale-specific, grab and strip the locale %>
+    <% field_locale = I18n.default_locale %>
+    <% name = field.name %>
+    <% locmatch = field.name.match(/^([a-z][a-z])_(.*)/) %>
+    <% if locmatch && locmatch.length > 1 && I18n.available_locales.include?(locmatch[1].to_sym) %>
+      <%# locale prefix (before the first _) %>
+      <% field_locale = locmatch[1].to_sym rescue I18n.default_locale %>
+      <%# If prefixed, take everything after it so the name can be used for i18n %>
+      <% name = locmatch[2].strip %>
+    <% end %>
+    <%= render 'field', facet_field: field.facet, value: field.value, name: name, field_locale: field_locale %>
   <% end %>
   </dl>
 <% end %>

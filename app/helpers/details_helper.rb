@@ -8,6 +8,7 @@ module DetailsHelper
           { name: 'title' },
           { name: 'title_alternative' },
           { name: 'description' },
+          { name: 'es_description' },
           { name: 'date_created_ss', facet: true },
           { name: 'historical_era' },
           { name: 'creator_ss', facet: true },
@@ -30,7 +31,8 @@ module DetailsHelper
         fields: [
           { name: 'subject_ss', facet: true },
           { name: 'subject_fast_ss', facet: true },
-          { name: 'language', facet: true }
+          { name: 'language', facet: true },
+          { name: 'es_language', facet: true }
         ]
       },
       {
@@ -39,12 +41,22 @@ module DetailsHelper
           { name: 'city', facet: true },
           { name: 'state', facet: true },
           { name: 'country', facet: true },
+          { name: 'es_country', facet: true },
           { name: 'region', facet: true },
           { name: 'continent', facet: true },
+          { name: 'es_continent', facet: true },
           { name: 'geonames' },
           { name: 'projection' },
           { name: 'scale' },
           { name: 'coordinates' },
+        ]
+      },
+      {
+        label: '???Ubicación Geográfica???',
+        fields: [
+          { name: 'es_country', facet: true },
+          { name: 'es_region', facet: true },
+          { name: 'es_continent', facet: true }
         ]
       },
       {
@@ -73,7 +85,14 @@ module DetailsHelper
           { name: 'standardized_rights' },
           { name: 'rights_statement_uri' },
           { name: 'expected_public_domain_year' },
-          { name: 'additional_rights_information' }
+          { name: 'additional_rights_information' },
+        ]
+      },
+      {
+        label: 'Can I use It? spanish ?????',
+        fields: [
+          { name: 'es_local_rights' },
+          { name: 'es_rights_statement_uri' },
         ]
       },
       {
@@ -88,15 +107,21 @@ module DetailsHelper
     RightsStatements.new(rights_uri: rights_uri)
   end
 
-  def render_rights_section(item)
-    rights_uri = item.field_rights_statement_uri.value
-    render 'rights_field_section', rights: rights(rights_uri), local_rights: item.field_local_rights.value
+  def render_rights_section(item, label, locale = :en)
+    locale_prefix= locale == :en ? '' : "#{locale.to_s}_"
+    #rights_uri = item.field_rights_statement_uri.value
+    rights_uri = item.send("field_#{locale_prefix}rights_statement_uri".to_sym).value
+    local_rights_locale = item.send("field_#{locale_prefix}local_rights".to_sym).value
+    puts "---#{item.field_es_local_rights.value}-----"
+    render 'rights_field_section', rights: rights(rights_uri), local_rights: local_rights_locale, label: label
   end
 
   def field_section(section, item)
     case section[:label]
     when 'Can I use It?'
-      render_rights_section(item)
+      render_rights_section(item, section[:label], :en)
+    when 'Can I use It? spanish ?????'
+      render_rights_section(item, section[:label], :es)
     else
       render 'field_section', label: section[:label],
                               values: section_values(item, section)

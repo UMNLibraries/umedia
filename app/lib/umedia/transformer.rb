@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './etl_formatters/attachment'
+
 module Umedia
   # Field transformation mappings and related code for CDMDEXER
   class Transformer
