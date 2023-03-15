@@ -1,0 +1,27 @@
+es:
+  ui:
+    change_lang_to: "Cambiar a Español"
+  item:
+    fields:
+      description: "Descripción"
+      notes: "Notas"
+      language: "Idioma"
+      subject: "Subject spanish Tema???"
+      continent: "Continente"
+      country: "País"
+      region: "Región"
+      city: "Ciudad"
+      physical_format: "Physical format spanish Formato???"
+      local_rights: "???Rights spanish???"
+      rights_statement_uri: "???Rights statement URI spanish???"
+
+    field_sections:
+      physical_description: "Physical Descripción???"
+      topics: "Topics???"
+      geographic_location: 'Ubicación Geográfica???'
+      collection_info: "Collection Information???"
+      identifiers: "Identifiers???"
+      rights: "Can I use It????"
+
+  rights:
+    "//rightsstatements.org/page/InC/1.0": "SOME SPANISH STUFF Este material se encuentra protegido por derecho de autor y/o otros derechos conexos. Usted es libre de utilizar este material de cualquier forma que esté permitida por la legislación sobre derecho de autor y derechos conexos que aplique para su uso. Para otros usos, usted necesita obtener permiso del titular o titulares de derechos."

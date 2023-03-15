@@ -1,4 +1,12 @@
 <div class="item-details col-md-12">
-  <%= raw field_sections.map { |section| field_section(section, item) }.join %>
+  <%# Spanish language switching support via a nav link %>
+  <%# Present a link to change to the alternate of whichever lang is currently selected %>
+  <% if has_locale?(item, :es) %>
+  <% switch_locale = locale == I18n.default_locale ? :es : I18n.default_locale %>
+    <nav aria-label="Language">
+      <a href="?language=<%= switch_locale.to_s %>"><%= t('ui.change_lang_to', locale: switch_locale) %></a>
+    </nav>
+  <% end %>
+  <%= raw field_sections.map { |section| field_section(section, item, locale) }.join %>
 <%= render 'collection_details', item: item %>
 </div>

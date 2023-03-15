@@ -1,2 +1,6 @@
-<dt class="field index-field field-<%= name %>-label"><%= I18n.t("item.fields.#{name}", locale: field_locale) %>:</dt>
-<dd class="field index-field field-<%= name %>-value"><%= render 'searches/field_value', value: value, facet_field: facet_field %></dd>
+<dt class="field index-field field-<%= name %>-label" lang="<%= locale.to_s %>">
+  <%= I18n.t("item.fields.#{name}", locale: field_locale) %>:
+</dt>
+<dd class="field index-field field-<%= name %>-value" lang="<%= locale.to_s %>">
+  <%= render 'searches/field_value', value: value, facet_field: facet_field %>
+</dd>

@@ -91,6 +91,6 @@ class ItemsController < SearchesController
   end
 
   def items_params
-    params.permit(:query, :child_page, :q, :page, :rows, :sort, facets: facet_fields_all.map { |facet| {facet => []} })
+    params.permit(:query, :language, :child_page, :q, :page, :rows, :sort, facets: facet_fields_all.map { |facet| {facet => []} })
   end
 end

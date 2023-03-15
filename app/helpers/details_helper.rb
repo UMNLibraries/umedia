@@ -8,18 +8,17 @@ module DetailsHelper
           { name: 'title' },
           { name: 'title_alternative' },
           { name: 'description' },
-          { name: 'es_description' },
           { name: 'date_created_ss', facet: true },
           { name: 'historical_era' },
           { name: 'creator_ss', facet: true },
           { name: 'contributor', facet: true },
           { name: 'publisher' },
           { name: 'caption' },
-          { name: 'notes' }
+          { name: 'notes' },
         ]
       },
       {
-        label: 'Physical Description',
+        label: 'physical_description',
         fields: [
           { name: 'types', facet: 'types' },
           { name: 'format_name', facet: true },
@@ -27,24 +26,21 @@ module DetailsHelper
         ]
       },
       {
-        label: 'Topics',
+        label: 'topics',
         fields: [
           { name: 'subject_ss', facet: true },
           { name: 'subject_fast_ss', facet: true },
           { name: 'language', facet: true },
-          { name: 'es_language', facet: true }
         ]
       },
       {
-        label: 'Geographic Location',
+        label: 'geographic_location',
         fields: [
           { name: 'city', facet: true },
           { name: 'state', facet: true },
           { name: 'country', facet: true },
-          { name: 'es_country', facet: true },
           { name: 'region', facet: true },
           { name: 'continent', facet: true },
-          { name: 'es_continent', facet: true },
           { name: 'geonames' },
           { name: 'projection' },
           { name: 'scale' },
@@ -52,15 +48,7 @@ module DetailsHelper
         ]
       },
       {
-        label: '???Ubicación Geográfica???',
-        fields: [
-          { name: 'es_country', facet: true },
-          { name: 'es_region', facet: true },
-          { name: 'es_continent', facet: true }
-        ]
-      },
-      {
-        label: 'Collection Information',
+        label: 'collection_info',
         fields: [
           { name: 'parent_collection_name', facet: true },
           { name: 'contributing_organization_name_s', facet: true },
@@ -69,7 +57,7 @@ module DetailsHelper
         ]
       },
       {
-        label: 'Identifiers',
+        label: 'identifiers',
         fields: [
           { name: 'local_identifier' },
           { name: 'barcode' },
@@ -79,20 +67,13 @@ module DetailsHelper
         ]
       },
       {
-        label: 'Can I use It?',
+        label: 'rights',
         fields: [
           { name: 'local_rights' },
           { name: 'standardized_rights' },
           { name: 'rights_statement_uri' },
           { name: 'expected_public_domain_year' },
           { name: 'additional_rights_information' },
-        ]
-      },
-      {
-        label: 'Can I use It? spanish ?????',
-        fields: [
-          { name: 'es_local_rights' },
-          { name: 'es_rights_statement_uri' },
         ]
       },
       {
@@ -109,14 +90,12 @@ module DetailsHelper
 
   def render_rights_section(item, label, locale = :en)
     locale_prefix= locale == :en ? '' : "#{locale.to_s}_"
-    #rights_uri = item.field_rights_statement_uri.value
     rights_uri = item.send("field_#{locale_prefix}rights_statement_uri".to_sym).value
     local_rights_locale = item.send("field_#{locale_prefix}local_rights".to_sym).value
-    puts "---#{item.field_es_local_rights.value}-----"
     render 'rights_field_section', rights: rights(rights_uri), local_rights: local_rights_locale, label: label
   end
 
-  def field_section(section, item)
+  def field_section(section, item, locale)
     case section[:label]
     when 'Can I use It?'
       render_rights_section(item, section[:label], :en)
@@ -124,14 +103,26 @@ module DetailsHelper
       render_rights_section(item, section[:label], :es)
     else
       render 'field_section', label: section[:label],
-                              values: section_values(item, section)
+                              values: section_values(item, section, locale)
     end
   end
 
-  def section_values(item, section)
+  def section_values(item, section, locale)
     Umedia::ItemDetailsFields.new(field_configs: section[:fields],
-                                  item: item).displayables
+                                  item: item,
+                                  locale: locale).displayables
   end
+
+  def has_locale?(item, locale)
+    return true if locale == I18n.default_locale
+    hasloc = false
+    # If any of these lang-prefixed fields is nonempty, the locale is active
+    ['description', 'notes', 'local_rights', 'rights_statement_uri'].each do |field|
+      hasloc = true if item.public_send("field_#{locale.to_s}_#{field}".to_sym).value
+    end
+    hasloc
+  end
+
 
   def collection_description(item)
     auto_link(item.field_collection_description.value)

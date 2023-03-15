@@ -13,4 +13,14 @@ module Parhelion
       _(Field.new(value: {}).exists?).must_equal true
     end
   end
+
+  describe 'when a field is queried for locale prefix' do
+    it 'sets the correct locale'
+      _(Field.new(name: 'es_thing', value: 'value').locale).must_equal :es
+    end
+
+    it 'defaults to the I18n default locale'
+      _(Field.new(name: 'thing', value: 'value').locale).must_equal :en
+    end
+  end
 end

@@ -246,7 +246,7 @@ module Umedia
 
         # Spanish language fields
         {dest_path: 'es_description', origin_path: 'spdesc', formatters: [CDMDEXER::StripFormatter]},
-        {dest_path: 'es_notes', origin_path: 'spaddo', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_notes', origin_path: 'spaddi', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_physical_format', origin_path: 'spitem', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_subject', origin_path: 'sploca', formatters: [CDMDEXER::StripFormatter, CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'es_country', origin_path: 'spcoun', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},

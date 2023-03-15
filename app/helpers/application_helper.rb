@@ -6,4 +6,10 @@ module ApplicationHelper
     html_options[:class] = "#{html_options[:class]} #{active_class}" if current_page?(options)
     link_to(name, options, html_options, &block)
   end
+
+  # Allow language= param to be passed and check against defined I18n locales
+  def locale
+    lang = params.fetch(:language, I18n.default_locale).to_sym
+    I18n.available_locales.include?(lang) ? lang : I18n.default_locale
+  end
 end

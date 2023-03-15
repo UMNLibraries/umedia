@@ -30,6 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  ui:
+    change_lang_to: "Change to English"
   search:
     facets:
       types: "Type"
@@ -106,6 +108,14 @@ en:
 
       contributing_organization: "Contributed By"
       page_count: "Page Count"
+
+    field_sections:
+      physical_description: "Physical Description"
+      topics: "Topics"
+      geographic_location: "Geographic Location"
+      collection_info: "Collection Information"
+      identifiers: "Identifiers"
+      rights: "Can I use It?"
 
   rights:
     "//rightsstatements.org/vocab/CNE/1.0": 'The copyright and related rights status of this Item has not been evaluated. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.'
