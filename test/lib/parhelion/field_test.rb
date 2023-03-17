@@ -15,11 +15,11 @@ module Parhelion
   end
 
   describe 'when a field is queried for locale prefix' do
-    it 'sets the correct locale'
+    it 'sets the correct locale' do
       _(Field.new(name: 'es_thing', value: 'value').locale).must_equal :es
     end
 
-    it 'defaults to the I18n default locale'
+    it 'defaults to the I18n default locale' do
       _(Field.new(name: 'thing', value: 'value').locale).must_equal :en
     end
   end
