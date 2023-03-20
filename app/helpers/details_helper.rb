@@ -99,7 +99,7 @@ module DetailsHelper
     case section[:label]
     when 'Can I use It?'
       render_rights_section(item, section[:label], :en)
-    when 'Can I use It? spanish ?????'
+    when '¿Puedo usarlo?'
       render_rights_section(item, section[:label], :es)
     else
       render 'field_section', label: section[:label],
