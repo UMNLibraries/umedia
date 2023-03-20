@@ -97,10 +97,8 @@ module DetailsHelper
 
   def field_section(section, item, locale)
     case section[:label]
-    when 'Can I use It?'
-      render_rights_section(item, section[:label], :en)
-    when '¿Puedo usarlo?'
-      render_rights_section(item, section[:label], :es)
+    when 'rights'
+      render_rights_section(item, section[:label], locale)
     else
       render 'field_section', label: section[:label],
                               values: section_values(item, section, locale)
