@@ -31,4 +31,22 @@ class LanguageSupportTest < ActiveSupport::TestCase
     _(page).wont_have_content('Cambiar a Español')
     _(page).wont_have_content('Descripción:')
   end
+
+  it 'allows language= prarm in the URL' do
+    visit '/details/p16022coll613:15?language=es'
+
+    _(page).must_have_content('Descripción:')
+    _(page).must_have_link('Change to English')
+    _(page).wont_have_link('Cambiar a Español')
+  end
+
+  it 'sets a data-locale= attribute with a param-specific language' do
+    visit '/item/p16022coll613:15?language=es'
+    _(page).must_have_xpath('//div[@id="main" and @data-locale="es"]')
+  end
+
+  it 'sets a data-locale= attribute with a default language' do
+    visit '/item/p16022coll613:15'
+    _(page).must_have_xpath('//div[@id="main" and @data-locale="en"]')
+  end
 end
