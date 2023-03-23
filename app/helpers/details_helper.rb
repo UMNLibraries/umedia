@@ -89,7 +89,7 @@ module DetailsHelper
   end
 
   def render_rights_section(item, label, locale = :en)
-    locale_prefix= locale == :en ? '' : "#{locale.to_s}_"
+    locale_prefix = locale == :en ? '' : "#{locale.to_s}_"
     rights_uri = item.send("field_#{locale_prefix}rights_statement_uri".to_sym).value
     local_rights_locale = item.send("field_#{locale_prefix}local_rights".to_sym).value
     render 'rights_field_section', rights: rights(rights_uri), local_rights: local_rights_locale, label: label

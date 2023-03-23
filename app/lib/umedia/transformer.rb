@@ -244,6 +244,9 @@ module Umedia
         {dest_path: 'date_added_sort', origin_path: 'dmcreated', formatters: [ToSolrDateFormatter]},
         {dest_path: 'date_modified', origin_path: 'dmmodified', formatters: [ToSolrDateFormatter]},
 
+        # Alternate laguage support for this record
+        {dest_path: 'alternate_languages', origin_path: 'altera', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+
         # Spanish language fields
         {dest_path: 'es_description', origin_path: 'spdesc', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_notes', origin_path: 'spaddi', formatters: [CDMDEXER::StripFormatter]},
