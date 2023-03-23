@@ -112,15 +112,12 @@ module DetailsHelper
   end
 
   def has_locale?(item, locale)
-    return true if locale == I18n.default_locale
-    hasloc = false
-    # If any of these lang-prefixed fields is nonempty, the locale is active
-    ['description', 'notes', 'local_rights', 'rights_statement_uri'].each do |field|
-      hasloc = true if item.public_send("field_#{locale.to_s}_#{field}".to_sym).value
-    end
-    hasloc
+    available_locales(item).include? locale
   end
 
+  def available_locales(item)
+    [I18n.default_locale] + ([item.public_send(:field_alternate_languages).value].flatten - [nil,false]).map(&:to_sym).uniq
+  end
 
   def collection_description(item)
     auto_link(item.field_collection_description.value)
