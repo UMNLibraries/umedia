@@ -248,9 +248,12 @@ module Umedia
         {dest_path: 'alternate_languages', origin_path: 'altera', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
 
         # Spanish language fields
+        {dest_path: 'es_title', origin_path: 'sptitl', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_description', origin_path: 'spdesc', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_notes', origin_path: 'spaddi', formatters: [CDMDEXER::StripFormatter]},
-        {dest_path: 'es_physical_format', origin_path: 'spitem', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_types', origin_path: 'spitea', formatters: [CDMDEXER::StripFormatter, CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, CDMDEXER::UniqueFormatter]},
+        {dest_path: 'es_format_name', origin_path: 'spitem', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'es_dimensions', origin_path: 'spdime', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_subject', origin_path: 'sploca', formatters: [CDMDEXER::StripFormatter, CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'es_country', origin_path: 'spcoun', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'es_continent', origin_path: 'spcont', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},

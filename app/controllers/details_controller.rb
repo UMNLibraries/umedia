@@ -7,4 +7,3 @@ class DetailsController < ApplicationController
            }
   end
 end
-

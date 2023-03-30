@@ -101,7 +101,7 @@ module DetailsHelper
       render_rights_section(item, section[:label], locale)
     else
       render 'field_section', label: section[:label],
-                              values: section_values(item, section, locale)
+                              values: section_values(item, section, locale), locale: locale
     end
   end
 
