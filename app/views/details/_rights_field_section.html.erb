@@ -5,7 +5,7 @@
 <% if rights.rights_uri %>
     <dd class="field index-field rights-field rights-image"><%= raw rights.config[:images]&.map { |image| image_tag("rights/#{image}", class: "rights-image-#{image.split('.').first }", alt: "rights:#{rights.rights_uri}" ) }.to_a.flatten.join %></dd>
     <dd class="field index-field rights-field field-rights-uri-value"><%= link_to rights.rights_uri, url_for(rights.rights_uri) %></dd>
-    <dd class="field index-field rights-field field-rights-value"><%= local_rights || rights.config[:text] %></dd>
+    <dd class="field index-field rights-field field-rights-value"><%= rights.config[:text] %></dd>
 <% else %>
     <dd><%= local_rights %> </dd>
 <% end %>
