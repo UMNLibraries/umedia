@@ -1,6 +1,9 @@
 class ItemPresenter < BasePresenter
-  def page_title
-    field_title.value
+  def page_title(locale: I18n.default_locale)
+    # If a non-default locale was provided, insert it into the field_() method call
+    # e.g. locale: :es calls field_es_title()
+    field_locale = locale != I18n.default_locale ? "#{locale.to_s}_" : ""
+    send("field_#{field_locale}title").value
   end
 
   def image?
