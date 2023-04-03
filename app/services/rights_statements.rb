@@ -9,7 +9,7 @@ class RightsStatements
   def initialize(rights_uri: :MISSING_RIGHTS_URI)
     # Remove query from rights URI (which may hold locale)
     @rights_uri = rights_uri
-    @rights_uri = @rights.chomp('/') if @rights_uri
+    @rights_uri = @rights_uri.chomp('/') if @rights_uri
     # Set locale based on input rights URI language
     @locale = CGI.parse(URI.parse(rights_uri).query)['language'].first.to_sym rescue :en
   end
