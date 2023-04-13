@@ -14,7 +14,9 @@ class HomeTest < ActiveSupport::TestCase
       visit '/home'
       # Click the second page of the pager (link 4 after prev,next,1)
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[4]/a').click
-      click_link 'The De Mey van Streefkerk Papers'
+      #click_link 'The De Mey van Streefkerk Papers'
+      click_link 'Atlantic World'
+      #_(page).must_have_content('Letter, to a fellow heir')
       _(page).must_have_content('Letter, to a fellow heir')
     end
     it 'nex/prev and collections are clickable' do
@@ -22,7 +24,8 @@ class HomeTest < ActiveSupport::TestCase
       visit '/home'
       # Click the 2nd page of the pager (link 3 after prev,next)
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[3]/a').click
-      # Click "next" 3x to advance 3 pages
+      # Click "next" 3x to advance 4 pages
+      find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click
       find(:xpath, '//*[@id="collections-home"]/div/div[3]/div[2]/nav/ul/li[2]/a').click

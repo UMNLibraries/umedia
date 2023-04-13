@@ -27,18 +27,20 @@ class SolrClient
     solr.add records
   end
 
-  def backup(number_to_keep: 1)
+  def backup(number_to_keep: 1, backup_name: nil)
     solr.get 'replication', params: {
       command: 'backup',
       location: ENV['SOLR_BACKUP_LOCATION'],
+      name: backup_name,
       numberToKeep: number_to_keep
     }
   end
 
-  def restore
+  def restore(backup_name: nil)
     solr.get 'replication', params: {
       command: 'restore',
-      location: ENV['SOLR_BACKUP_LOCATION']
+      location: ENV['SOLR_BACKUP_LOCATION'],
+      name: backup_name
     }
   end
 end

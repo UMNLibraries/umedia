@@ -1,4 +1,13 @@
 <div class="item-details col-md-12">
-  <%= raw field_sections.map { |section| field_section(section, item) }.join %>
+  <%# Spanish language switching support via a nav link %>
+  <%# Present a link to change to the alternate of whichever lang is currently selected %>
+  <% available_locales(item).each do |available_locale| %>
+    <% next if available_locale == locale %>
+    <nav aria-label="Language">
+      <a href="?language=<%= available_locale.to_s %>#metadata-metadata"><%= t('ui.change_lang_to', locale: available_locale) %></a>
+    </nav>
+  <% end %>
+  <% details_locale = has_locale?(item, locale) ? locale : I18n.default_locale %>
+  <%= raw field_sections.map { |section| field_section(section, item, details_locale) }.join %>
 <%= render 'collection_details', item: item %>
 </div>
