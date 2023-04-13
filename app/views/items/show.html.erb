@@ -1,7 +1,7 @@
 <div class="back-to-search">
   <%= link_to raw('<span class="glyphicon glyphicon-chevron-left"></span> back to search'), item.link_params(@items_params), class: 'back-to-search-link' %>
 </div>
-
-<h1><%= item.page_title %></h1>
+<%# Try a localized item title, fall back to default %>
+<h1><%= item.page_title(locale: locale) || item.page_title %></h1>
 
 <%= render 'viewer' %>

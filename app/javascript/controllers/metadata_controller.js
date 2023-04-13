@@ -8,6 +8,7 @@ export default class extends Controller {
     this.osdConfig = this.data.get('osd-config')
     this.attachmentFormat = this.data.get('attachment-format');
     this.viewerConfig = JSON.parse(this.data.get('viewer-config'));
+    this.locale = document.getElementById('main').getAttribute('data-locale');
     this.load('details');
   }
   showSection(e) {
@@ -25,7 +26,7 @@ export default class extends Controller {
     this.clearActive()
     $(`#metadata-${section}`).attr('class', 'metadata-pill active');
     let config = this.viewerConfig;
-    InnerHtml(`/${section}/${this.id}`, document.getElementById("metadata-area"))
+    InnerHtml(`/${section}/${this.id}?language=${this.locale}`, document.getElementById("metadata-area"))
       .then(elem => {
         config = elem.getElementsByClassName("osd-config")[0]
         let configElem = elem.getElementsByClassName("osd-config")[0]

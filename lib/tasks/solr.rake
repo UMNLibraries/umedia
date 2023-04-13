@@ -15,12 +15,12 @@ namespace :solr do
   end
 
   desc "backup solr data locally"
-  task backup: [:environment] do
-    SolrClient.new.backup(number_to_keep: 5)
+  task :backup, [:backup_name] => :environment do |_t, args|
+    SolrClient.new.backup(number_to_keep: 5, backup_name: args[:backup_name])
   end
 
   desc "Restore latest backup"
-  task restore: [:environment] do
-    SolrClient.new.restore
+  task :restore, [:backup_name] => :environment do |_t, args|
+    SolrClient.new.restore(backup_name: args[:backup_name])
   end
 end

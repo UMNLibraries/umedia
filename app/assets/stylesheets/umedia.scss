@@ -72,6 +72,21 @@
     border-color: #0a0002;
     color: #ffffff;
   }
+  .nav.umn-nav-pills > li > a {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  #metadata-area {
+    padding: 0 1rem;
+    border: 1px solid #666;
+  }
+  .item-details.col-md-12,
+  .item-metadata.col-md-12 {
+    float: none;
+  }
+  nav[aria-label="Language"] {
+   margin-bottom: 1rem;
+  }
 }
 
 .navbar-brand {
