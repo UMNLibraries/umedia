@@ -11,7 +11,7 @@ module DetailsHelper
           { name: 'date_created_ss', facet: true },
           { name: 'historical_era' },
           { name: 'creator_ss', facet: true },
-          { name: 'contributor', facet: true },
+          { name: 'contributor_ss', facet: true },
           { name: 'publisher' },
           { name: 'caption' },
           { name: 'notes' },
