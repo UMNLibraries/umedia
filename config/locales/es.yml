@@ -7,6 +7,7 @@ es:
       title_alternative: "Título Alternativo"
       creator_ss: "Creador"
       contributor: "Contribuidor"
+      contributor_ss: "Contribuidor"
       publisher: "Editor"
       caption: "Subtítulos"
       description: "Descripción"
