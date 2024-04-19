@@ -18,3 +18,5 @@ User-agent: SemrushBot
 Disallow: /
 User-agent: claudebot
 Disallow: /
+User-agent: ClaudeBot
+Disallow: /
