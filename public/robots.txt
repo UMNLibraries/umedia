@@ -4,6 +4,8 @@ Disallow: /search?facets
 Disallow: /search.json
 Disallow: /item/p16022coll*/p16022coll*
 Disallow: /viewers/p16022coll*/p16022coll*
+# /thumbnails path does not render an image, just a plain http Ok
+Disallow: /thumbnails/*
 Crawl-delay: 10
 
 User-agent: PetalBot
@@ -19,4 +21,6 @@ Disallow: /
 User-agent: claudebot
 Disallow: /
 User-agent: ClaudeBot
+Disallow: /
+User-agent: DataForSeoBot
 Disallow: /
