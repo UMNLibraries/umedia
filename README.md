@@ -346,7 +346,7 @@ $ RAILS_ENV=production bundle exec rake solr:delete_index
 # Ingest collection metadata - takes a minute or so
 $ RAILS_ENV=production bundle exec rake ingest:collection_metadata
 
-# Ingest all collection data - takes 30+ hours
+# Ingest all collection data - takes 60+ hours
 $ RAILS_ENV=production bundle exec rake ingest:collections
 
 # Load transcript data
@@ -364,6 +364,8 @@ $ RAILS_ENV=production bundle exec rake solr:backup
 # On PRODUCTION SERVER
 # -----------------------------------------------------------------
 # Restore the index from the shared NFS space (automatically uses the most recent)
+# WAIT until the snapshot has completed: `ls -lt /solr_snapshots` to locate the one you kicked off
+# It won't be there until it is ready. Then you can proceed.
 $ RAILS_ENV=production bundle exec rake solr:restore
 
 # Clear cache
