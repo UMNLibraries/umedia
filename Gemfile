@@ -70,6 +70,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
+gem 'dotenv-rails'
 gem 'bootstrap-sass', '>=3.4.1'
 gem 'cdmdexer', '>= 0.21.0'
 gem 'fontello_rails_converter'
