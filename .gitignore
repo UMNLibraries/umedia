@@ -40,6 +40,6 @@ yarn-debug.log*
 .yarn-integrity
 
 # Docker env
-.env
+.env*
 /snapshots
 /umedia_solr_conf

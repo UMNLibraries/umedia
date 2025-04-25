@@ -948,6 +948,7 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
+    sd_notify (0.1.1)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -1048,6 +1049,7 @@ DEPENDENCIES
   rsolr
   rubyzip (>= 1.3.0)
   sass-rails (~> 5.0)
+  sd_notify (>= 0.1.0)
   selenium-webdriver
   sidekiq
   sidekiq-failures

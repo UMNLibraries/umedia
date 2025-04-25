@@ -9,6 +9,9 @@ ruby '2.6.7'
 gem 'rails', '~> 5.2.8.1'
 # Use Puma as the app server
 gem 'puma', '>= 4.3.5'
+# Run puma with systemd integration
+gem 'sd_notify', '>= 0.1.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
