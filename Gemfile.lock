@@ -876,12 +876,12 @@ GEM
       net-protocol
     net-ssh (5.2.0)
     netrc (0.11.0)
-    nio4r (2.5.8)
+    nio4r (2.7.4)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     public_suffix (4.0.6)
-    puma (4.3.12)
+    puma (5.6.9)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
@@ -1041,7 +1041,7 @@ DEPENDENCIES
   minitest (>= 5.1, < 5.16.0)
   minitest-spec-rails
   mocha
-  puma (>= 4.3.5)
+  puma (~> 5.6.9)
   rack (>= 2.0.8)
   rails (~> 5.2.8.1)
   redis (~> 4.0)
