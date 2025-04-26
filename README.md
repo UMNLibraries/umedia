@@ -361,6 +361,12 @@ $ RAILS_ENV=production bundle exec rake ingest:collections_daily
 $ RAILS_ENV=production bundle exec rake solr:commit
 $ RAILS_ENV=production bundle exec rake solr:backup
 
+# To Monitor a Long-Running Ingest
+# When running the full ingest:collections job over 24 hours
+# in a terminal multiplexer, this will report the total number of records every
+# minute by forcing a commit then querying for the record count
+$ while true; do RAILS_ENV=production bundle exec rake solr:commit && curl --silent -q 'http://localhost:8983/solr/core/select?q=*:*'| jq '.response.numFound' ; date; sleep 60; done;
+
 # On PRODUCTION SERVER
 # -----------------------------------------------------------------
 # Restore the index from the shared NFS space (automatically uses the most recent)
