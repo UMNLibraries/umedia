@@ -2,7 +2,7 @@
   # The path includes facets etc and so needs to be recalculated for each search
   path =  item_path(item.index_id, search_params)
 %>
-<% cache("search-item-#{item.index_id}", expires_in: 1.hour) do %>
+<%# cache("search-item-#{item.index_id}", expires_in: 1.hour) do %>
   <a name="<%= item.id %>"></a>
   <div class="card-panel panel panel-default">
       <% title_icon_class = 'icon-docs' if item.field_page_count.value && item.field_page_count.value > 1 %>
@@ -34,4 +34,4 @@
       </span>
     </div>
   </div>
-<% end %>
+<%# end %>
