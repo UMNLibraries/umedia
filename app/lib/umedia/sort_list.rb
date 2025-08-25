@@ -31,7 +31,7 @@ module Umedia
 
     def default_mappings
       [
-        {label: 'Relevance', sort: 'score desc, title_sort desc' },
+        {label: 'Relevance', sort: 'score desc, title_sort asc' },
         {label: 'Title: A to Z', sort: 'title_sort asc, date_created_sort desc' },
         {label: 'Title: Z to A', sort: 'title_sort desc, date_created_sort desc' },
         {label: 'Creator: A to Z', sort: 'creator_sort asc, title_sort asc' },

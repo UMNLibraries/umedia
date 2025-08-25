@@ -44,7 +44,7 @@ class SearchesController < ApplicationController
     if q.blank? && sort_param.blank?
       'title_sort ASC'
     elsif sort_param.blank?
-      'score DESC'
+      'score DESC,title_sort ASC'
     else
       sort_param
     end
