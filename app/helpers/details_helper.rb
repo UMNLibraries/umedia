@@ -29,7 +29,7 @@ module DetailsHelper
         label: 'topics',
         fields: [
           { name: 'subject_ss', facet: true },
-          { name: 'subject_fast_ss', facet: true },
+          #{ name: 'subject_fast_ss', facet: true },
           { name: 'language', facet: true },
         ]
       },
