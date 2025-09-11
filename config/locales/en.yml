@@ -80,6 +80,7 @@ en:
       dimensions: "Dimensions"
       subject_ss: "Subjects"
       subject_fast: "FAST Subject Headings"
+      subject_fast_ss: "FAST Subject Headings"
       language: "Language"
       city: "City"
       state: "State"
