@@ -24,3 +24,7 @@ User-agent: ClaudeBot
 Disallow: /
 User-agent: DataForSeoBot
 Disallow: /
+User-agent: Sogou
+Disallow: /
+User-agent: AliyunSecBot/Aliyun
+Disallow: /
