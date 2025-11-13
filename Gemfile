@@ -85,6 +85,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'webpacker', '~> 5.x'
 gem 'whenever', require: false
+gem 'sitemap_generator', '~> 6.0.2'
 gem 'will_paginate'
 gem 'loofah', '>= 2.3.1'
 gem 'rack', '>= 2.0.8'
