@@ -1,7 +1,7 @@
 solrinst = RSolr.connect url: ENV['SORL_URL']
 
 # Select all the "published" docs from Solr
-response = solrinst.get('solr/core/select', params: {q: 'record_type:primary', fl: 'id', rows: 99999999})
+response = solrinst.get('core/select', params: {q: 'record_type:primary', fl: 'id', rows: 99999999})
 
 # Build a flat sorted array of all document slugs
 slugs = response['response']['docs'].map { |doc| doc['id'] }.sort
