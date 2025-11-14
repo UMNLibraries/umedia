@@ -48,7 +48,7 @@ end
 
 # 'Regenerate sitemap.xml.gz every morning
 every 1.day, at: '5:00am' do
-  rake 'sitemap:refresh'
+  rake 'sitemap:refresh:no_ping'
 end
 
 # 'Backup Solr - Take a Snapshot'
