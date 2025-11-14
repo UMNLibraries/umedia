@@ -22,5 +22,7 @@ SitemapGenerator::Sitemap.create do
   #
 
   slugs.each { |slug| add("/item/#{slug}", changefreq: "monthly") }
+  add "/about", changefreq: "monthly"
+  add "/contact", changefreq: "monthly"
 end
 
