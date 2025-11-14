@@ -46,6 +46,11 @@ every 1.day, at: '4:00am' do
   rake 'solr:optimize'
 end
 
+# 'Regenerate sitemap.xml.gz every morning
+every 1.day, at: '5:00am' do
+  rake 'sitemap:refresh'
+end
+
 # 'Backup Solr - Take a Snapshot'
 every 1.month, at: '11pm' do
   rake 'solr:backup'
