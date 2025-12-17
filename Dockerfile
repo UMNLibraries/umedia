@@ -41,10 +41,10 @@ apt-get update
 apt-get install -qq -y --no-install-recommends build-essential nodejs
 corepack enable yarn
 COREPACK_ENABLE_DOWNLOAD_PROMPT=0 yarn install --production
-EOF
 
-# NOTE:
-#RUN "rake assets:precompile --trace"
+# FIXME
+rake assets:precompile
+EOF
 
 # set up image entrypoint
 COPY ./docker-entrypoint.sh /

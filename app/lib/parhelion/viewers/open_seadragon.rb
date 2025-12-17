@@ -26,7 +26,6 @@ module Parhelion
           id: 'osd-viewer',
           visibilityRatio: 1.0,
           constrainDuringPan: false,
-          defaultZoomLevel: 0,
           minZoomLevel: 0,
           maxZoomLevel: 10,
           zoomInButton: 'zoom-in',
