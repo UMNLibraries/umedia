@@ -1,27 +1,45 @@
-FROM ruby:2.6.7
-LABEL maintainer="libwebdev@umn.edu"
-
 # Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
 
-# Ugh, Yarn needs a newer version of Node
-# See: https://github.com/yarnpkg/yarn/issues/6914#issuecomment-454165516
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
-  && apt-get update && apt-get install -qq -y --no-install-recommends \
-  build-essential nodejs \
-  # Rails 5.1 expects Yarn to be a thing \
-  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-  && apt-get install apt-transport-https -y \
-  && apt-get update && apt-get install -y yarn
+FROM ruby:2.6 AS development
+LABEL maintainer="libwebdev@umn.edu"
 
-RUN mkdir -p /app
-WORKDIR /app
-COPY . .
-# Add app files into docker image
+#ARG ENVIRONMENT=production
+ARG ENVIRONMENT=development
+ENV RAILS_ENV=$ENVIRONMENT
+ENV NODE_ENV=$ENVIRONMENT
 
+# create the deploy and runtime users
+RUN <<EOF
+useradd uldeploy --uid 30000 --user-group --no-create-home
+mkdir -p /srv/umedia
+useradd ulapps --uid 40000 --user-group --home-dir /srv/umedia
+EOF
+
+# Install application files
+WORKDIR /srv/umedia
+COPY --chown=uldeploy:uldeploy . .
+
+# install Ruby dependencies
+RUN <<EOF
+gem update --system 3.2.3
+gem install bundler -v 2.4.22
+bundle check || bundle install
+EOF
+
+# install nodejs (v22.x) dependencies
+RUN <<EOF
+curl -sL https://deb.nodesource.com/setup_22.x | bash
+apt-get update
+apt-get install -qq -y --no-install-recommends build-essential nodejs
+corepack enable yarn
+COREPACK_ENABLE_DOWNLOAD_PROMPT=0 yarn install --production
+EOF
+
+#RUN "rake assets:precompile --trace"
+
+# set up image entrypoint
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
-RUN gem update --system ; gem install bundler
-RUN bundle check || bundle install
 
+# USER ulapps:ulapps
