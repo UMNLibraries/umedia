@@ -1,21 +1,23 @@
 # Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
 
-FROM ruby:2.6 AS development
+FROM ruby:2.6 AS production
 LABEL maintainer="libwebdev@umn.edu"
 
-ARG ENVIRONMENT=production
-#ARG ENVIRONMENT=development
-ENV RAILS_ENV=$ENVIRONMENT
-ENV NODE_ENV=$ENVIRONMENT
+SHELL ["/bin/bash", "-c"]
+ENV RAILS_ENV=production
+ENV NODE_ENV=production
+ENV RAILS_LOG_TO_STDOUT=true
 
-# install system dependencies
+# this value is good enough for build time, but needs to be fixed at runtime
+ENV UMEDIA_NAILER_CDN_URI=https://example.cloudfront.net
+
+# set up system
 RUN <<EOF
+# install package dependencies
 apt update --quiet
 apt install -y less neovim
-EOF
 
 # create the deploy and runtime users
-RUN <<EOF
 useradd uldeploy --uid 30000 --user-group --no-create-home
 mkdir -p /srv/umedia
 useradd ulapps --uid 40000 --user-group --home-dir /srv/umedia
@@ -41,7 +43,8 @@ corepack enable yarn
 COREPACK_ENABLE_DOWNLOAD_PROMPT=0 yarn install --production
 EOF
 
-# RUN "rake assets:precompile --trace"
+# NOTE:
+#RUN "rake assets:precompile --trace"
 
 # set up image entrypoint
 COPY ./docker-entrypoint.sh /
