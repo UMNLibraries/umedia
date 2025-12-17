@@ -3,10 +3,16 @@
 FROM ruby:2.6 AS development
 LABEL maintainer="libwebdev@umn.edu"
 
-#ARG ENVIRONMENT=production
-ARG ENVIRONMENT=development
+ARG ENVIRONMENT=production
+#ARG ENVIRONMENT=development
 ENV RAILS_ENV=$ENVIRONMENT
 ENV NODE_ENV=$ENVIRONMENT
+
+# install system dependencies
+RUN <<EOF
+apt update --quiet
+apt install -y less neovim
+EOF
 
 # create the deploy and runtime users
 RUN <<EOF
@@ -35,7 +41,7 @@ corepack enable yarn
 COREPACK_ENABLE_DOWNLOAD_PROMPT=0 yarn install --production
 EOF
 
-#RUN "rake assets:precompile --trace"
+# RUN "rake assets:precompile --trace"
 
 # set up image entrypoint
 COPY ./docker-entrypoint.sh /
@@ -43,3 +49,4 @@ RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # USER ulapps:ulapps
+
