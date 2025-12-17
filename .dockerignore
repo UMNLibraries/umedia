@@ -1,19 +1,30 @@
 .env
 .git
+.gitignore
 .dockerignore
+.editorconfig
 .byebug_history
 .overcommit.yml
 .rubocop.yml
+.ruby-version
 .docker-compose-prod.yml
 .docker-compose.yml
 .start.sh
 yarn-error.log
-/log
-/tmp
+Dockerfile
 
-/docker
-/coverage
+# dev files that are not needed in the final docker image
+docker-compose-test-exec
+docker-compose-test-run
+local_dev_init.sh
+local_dev_index_init.sh
+sample-records.json
+sync_dev_index_to_test_index.sh
 
-/snapshots
-/solr_cores
-*.gz
+# subdirectories
+log/
+tmp/
+docker/
+coverage/
+snapshots/
+solr_cores/
