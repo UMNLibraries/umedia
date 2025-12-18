@@ -30,6 +30,7 @@ module.exports = function(api) {
         {
           forceAllTransforms: true,
           useBuiltIns: 'entry',
+          corejs: '3.2.1',
           modules: false,
           exclude: ['transform-typeof-symbol']
         }
@@ -43,7 +44,7 @@ module.exports = function(api) {
       [
         require('@babel/plugin-proposal-class-properties').default,
         {
-          loose: true
+          loose: false
         }
       ],
       [

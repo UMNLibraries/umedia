@@ -1,4 +1,4 @@
-.env
+.envrc
 .git
 .gitignore
 .dockerignore
@@ -10,12 +10,16 @@
 .docker-compose-prod.yml
 .docker-compose.yml
 .start.sh
+.tool-versions
 yarn-error.log
 Dockerfile
+Makefile
 
 # dev files that are not needed in the final docker image
+docker-compose.yml
 docker-compose-test-exec
 docker-compose-test-run
+#docker-entrypoint.sh
 local_dev_init.sh
 local_dev_index_init.sh
 sample-records.json
@@ -27,4 +31,5 @@ tmp/
 docker/
 coverage/
 snapshots/
+snapshots_test/
 solr_cores/

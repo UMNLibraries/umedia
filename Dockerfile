@@ -11,6 +11,12 @@ ENV RAILS_LOG_TO_STDOUT=true
 # this value is good enough for build time, but needs to be fixed at runtime
 ENV UMEDIA_NAILER_CDN_URI=https://example.cloudfront.net
 
+# we need this for newer versions of NodeJS to work with our older library choices
+ENV NODE_OPTIONS="--openssl-legacy-provider"
+
+# make Yarn a little less chatty
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+
 # set up system
 RUN <<EOF
 # install package dependencies
@@ -27,22 +33,23 @@ EOF
 WORKDIR /srv/umedia
 COPY --chown=uldeploy:uldeploy . .
 
-# install Ruby dependencies
+# install dependencies
 RUN <<EOF
+
+# ruby
 gem update --system 3.2.3
 gem install bundler -v 2.4.22
 bundle check || bundle install
-EOF
+bundle binstubs --all
 
-# install nodejs (v22.x) dependencies
-RUN <<EOF
+# nodejs (v22.x)
 curl -sL https://deb.nodesource.com/setup_22.x | bash
 apt-get update
 apt-get install -qq -y --no-install-recommends build-essential nodejs
 corepack enable yarn
-COREPACK_ENABLE_DOWNLOAD_PROMPT=0 yarn install --production
+yarn install --production
 
-# FIXME
+# rails assets
 rake assets:precompile
 EOF
 

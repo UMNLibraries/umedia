@@ -1,10 +1,15 @@
 # UMedia
 
-> UMedia provides access to digitized collections from across the University of Minnesota. These materials include photographs, archives, audio, video, maps, and more, with new items added on a regular basis. These open and freely available resources support the teaching and research needs of scholars, educators, students, and the public.
+> UMedia provides access to digitized collections from across the
+> University of Minnesota. These materials include photographs, archives,
+> audio, video, maps, and more, with new items added on a regular basis.
+> These open and freely available resources support the teaching and
+> research needs of scholars, educators, students, and the public.
 
 Site: [https://umedia.lib.umn.edu](https://umedia.lib.umn.edu)
 
-Data is ingested from CONTENTdm into a Solr index and served by this Ruby on Rails application.
+Data is ingested from CONTENTdm into a Solr index and served by this Ruby
+on Rails application.
 
 # Developer Quickstart
 
@@ -17,9 +22,10 @@ Initialize and start the local dev environment:
 
 `./local_dev_init.sh`
 
-**Note**: you will be prompted for a password. Use your `sudo` / machine admin password here.
-If you need to test a different branch or commit of the `umedia_solr_conf` Solr 
-core repository, set the variable `$UMEDIA_SOLR_CONF_VERSION`
+**Note**: you will be prompted for a password. Use your `sudo` / machine
+admin password here.  If you need to test a different branch or commit of
+the `umedia_solr_conf` Solr core repository, set the variable
+`$UMEDIA_SOLR_CONF_VERSION`
 
 `UMEDIA_SOLR_CONF_VERSION=develop ./local_dev_init.sh`
 
@@ -27,7 +33,9 @@ Bring up services:
 
 `docker-compose up`
 
-**Note** If you see somthing like `ERROR: The image for the service you're trying to recreate has been removed.`, respond with `y` to continue with the new image.
+**Note** If you see somthing like `ERROR: The image for the service you're
+trying to recreate has been removed.`, respond with `y` to continue with
+the new image.
 
 You'll see something like the following eventually appear in your terminal:
 
@@ -49,16 +57,20 @@ app_1          | [1] * Process workers: 3
 ...
 ```
 
-Wait for the app to fully boot, then open a new terminal tab and populate the local test and development solr core instances:
+Wait for the app to fully boot, then open a new terminal tab and populate
+the local test and development solr core instances:
 
 `./local_dev_index_init.sh`
 
-Open [http://localhost:3000/](http://localhost:3000/) in your browser to see your dev instance.
+Open [http://localhost:3000/](http://localhost:3000/) in your browser to
+see your dev instance.
 
 
 ### Ingest Sample Records Into Dev
 
-A set of sample records has been selected for local development and testing. To ingest these records, open a new tab in your terminal / console application and issue the following command:
+A set of sample records has been selected for local development and
+testing. To ingest these records, open a new tab in your terminal / console
+application and issue the following command:
 
 `docker-compose exec app bundle exec rake ingest:sample_records`
 
