@@ -1,7 +1,7 @@
-# Stolen from https://github.com/jfroom/docker-compose-rails-selenium-example
-
 FROM ruby:2.6 AS production
+
 LABEL maintainer="libwebdev@umn.edu"
+LABEL org.opencontainers.image.source=https://github.com/UMNLibraries/umedia
 
 SHELL ["/bin/bash", "-c"]
 ENV RAILS_ENV=production
