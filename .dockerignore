@@ -19,10 +19,8 @@ Makefile
 docker-compose.yml
 docker-compose-test-exec
 docker-compose-test-run
-#docker-entrypoint.sh
 local_dev_init.sh
 local_dev_index_init.sh
-sample-records.json
 sync_dev_index_to_test_index.sh
 
 # subdirectories
