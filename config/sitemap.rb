@@ -1,4 +1,4 @@
-solrinst = RSolr.connect url: ENV['SORL_URL']
+solrinst = RSolr.connect url: ENV['SOLR_URL']
 
 # Select all the "published" docs from Solr
 response = solrinst.get('core/select', params: {q: 'record_type:primary', fl: 'id', rows: 99999999})
