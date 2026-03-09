@@ -19,11 +19,10 @@
   <div class="col-md-12 sidebar-pages-and-slider">
 
 
-    <%= label_tag 'sidebar-page-num', 'Page:', class: 'hidden' %>
     <% if sidebar.display_num? && @show_sidebar_slider %>
-      <input type="text" id="sidebar-page-num" readonly>
+      <input type="text" id="sidebar-page-num" aria-label="Page num" readonly>
     <% elsif !@show_sidebar_slider %>
-      <input type="text" id="sidebar-page-num" value="1 - <%= @page_count %>" readonly>
+      <input type="text" id="sidebar-page-num" value="1 - <%= @page_count %>" aria-label="Page num" readonly>
     <% end %>
 
     <div class="col-md-2 sidebar-slider-horizontal">
