@@ -39,14 +39,18 @@
   }
 }
 
+.panel-footer {
+  border-top: 1px solid #5C0C1C !important;
+  a:link {
+    color: #2b6393;
+  }
+}
+
 .panel-default.is-super-collection-true {
   border: 1px solid #5C0C1C !important;
 
   .panel-footer {
     border-top: 1px solid #5C0C1C !important;
-    a {
-      color: #2b6393;
-    }
   }
 
   .featured-collection {
