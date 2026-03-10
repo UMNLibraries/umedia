@@ -244,3 +244,7 @@ h2#libraries a, h3.from-our-collections {
     min-width: 100px !important;
   }
 }
+
+.pagination > .disabled > a {
+  color: #555 !important;
+}
