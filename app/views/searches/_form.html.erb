@@ -4,7 +4,7 @@
     <%= hidden_field_tag "sort", sanitize(params[:sort]) %>
     <div class="input-group input-group-lg col-md-8 main-search">
       <%= label_tag 'q', 'Search:', style: 'display:none' %>
-      <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search UMedia...', value: params[:q] %>
+      <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search UMedia...', value: params[:q], "aria-label": "Search UMedia" %>
       <span class="input-group-btn">
         <%= button_tag raw('<span class="glyphicon glyphicon-search"></span> Go'), :name => nil, class: 'btn btn-umn-maroon search-btn' %>
       </span>
