@@ -9,6 +9,7 @@
           placeholder: 'Search Pages For...',
           'data-target': 'viewer.searchText',
           'data-action': 'onkeypress->viewer#returnSearch'
+          'aria-label': 'search child pages'
           %>
       <span class="input-group-btn">
         <%= f.button 'Search', class: 'btn btn-umn-maroon search-btn', 'data-action': 'click->viewer#search' %>
