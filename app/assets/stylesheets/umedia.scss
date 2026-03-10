@@ -72,9 +72,6 @@
     border-color: #0a0002;
     color: #ffffff;
   }
-  .pagination > .disabled {
-    color: #555;
-  }
   .nav.umn-nav-pills > li > a {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -246,4 +243,8 @@ h2#libraries a, h3.from-our-collections {
   .dropdown-toggle {
     min-width: 100px !important;
   }
+}
+
+.pagination li.disabled {
+  color: #555 !important;
 }
