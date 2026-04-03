@@ -261,7 +261,22 @@ module Umedia
         {dest_path: 'es_continent', origin_path: 'spcont', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'es_language', origin_path: 'splang', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'es_local_rights', origin_path: 'splocb', formatters: [CDMDEXER::StripFormatter]},
-        {dest_path: 'es_rights_statement_uri', origin_path: 'sprigh', formatters: [CDMDEXER::StripFormatter]}
+        {dest_path: 'es_rights_statement_uri', origin_path: 'sprigh', formatters: [CDMDEXER::StripFormatter]},
+
+        # Finnish language fields
+        {dest_path: 'fi_title', origin_path: 'fititl', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_description', origin_path: 'fidesc', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_notes', origin_path: 'fiaddi', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_types', origin_path: 'fiitea', formatters: [CDMDEXER::StripFormatter, CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, CDMDEXER::UniqueFormatter]},
+        {dest_path: 'fi_format', origin_path: 'fiitem', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_format_name', origin_path: 'fiitem', formatters: [FormatNameFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_dimensions', origin_path: 'fidime', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_subject', origin_path: 'filoca', formatters: [CDMDEXER::StripFormatter, CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_country', origin_path: 'ficoun', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_continent', origin_path: 'ficont', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_language', origin_path: 'filang', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_local_rights', origin_path: 'filocb', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_rights_statement_uri', origin_path: 'firigh', formatters: [CDMDEXER::StripFormatter]},
 
       ]
     end
