@@ -265,6 +265,7 @@ module Umedia
 
         # Finnish language fields
         {dest_path: 'fi_title', origin_path: 'fititl', formatters: [CDMDEXER::StripFormatter]},
+        {dest_path: 'fi_title_alternative', origin_path: 'fialte', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'fi_description', origin_path: 'fidesc', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'fi_notes', origin_path: 'fiaddi', formatters: [CDMDEXER::StripFormatter]},
         {dest_path: 'fi_types', origin_path: 'fiitea', formatters: [CDMDEXER::StripFormatter, CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, CDMDEXER::UniqueFormatter]},
