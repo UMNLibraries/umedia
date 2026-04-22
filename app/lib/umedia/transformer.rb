@@ -139,6 +139,19 @@ module Umedia
           end
         end
       end
+
+      # Different from ActiveSupport::Inflector.titleize, does not strip hyphen, by not calling underscore()
+      # which would convert hyphen-word to hyphen_word and then strip out the underscore resulting
+      # in two separate words where we sometimes want a hyphenated word
+      class SubjectTitleize
+        def self.format(subjects)
+          subjects.map do |subject|
+            ActiveSupport::Inflector.humanize(subject).gsub(/\b(?<!\w['’`()])[a-z]/) do |match|
+              match.capitalize
+            end
+          end
+        end
+      end
     end
 
     class ToSolrDateFormatter
@@ -178,8 +191,8 @@ module Umedia
         {dest_path: 'format_name', origin_path: 'format', formatters: [FormatNameFormatter,CDMDEXER::StripFormatter]},
         {dest_path: 'dimensions', origin_path: 'dimens', formatters: [CDMDEXER::StripFormatter]},
       # Topics
-        {dest_path: 'subject', origin_path: 'subjec', formatters: [CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, SubjectFormatter, CDMDEXER::StripFormatter]},
-        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [CDMDEXER::Titlieze, CDMDEXER::SplitFormatter, SubjectFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'subject', origin_path: 'subjec', formatters: [SubjectTitleize, CDMDEXER::SplitFormatter, SubjectFormatter, CDMDEXER::StripFormatter]},
+        {dest_path: 'subject_fast', origin_path: 'fast', formatters: [SubjectTitleize, CDMDEXER::SplitFormatter, SubjectFormatter, CDMDEXER::StripFormatter]},
         {dest_path: 'language', origin_path: 'langua', formatters: [CDMDEXER::StripFormatter,CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
       # Geographic Details
         {dest_path: 'city', origin_path: 'city', formatters: [CDMDEXER::SplitFormatter, CDMDEXER::StripFormatter]},
