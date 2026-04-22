@@ -145,11 +145,18 @@ module Umedia
     # which would convert hyphen-word to hyphen_word and then strip out the underscore resulting
     # in two separate words where we sometimes want a hyphenated word
     class SubjectTitleize
-      def self.format(subjects)
-        subjects.map do |subject|
-          ActiveSupport::Inflector.humanize(subject).gsub(/\b(?<!\w['’`()])[a-z]/) do |match|
-            match.capitalize
+      def self.format(value)
+        if value.respond_to?(:map)
+          value.map do |subject|
+            self.cap(subject)
           end
+        else
+          self.cap(value)
+        end
+      end
+      def self.cap(value)
+        ActiveSupport::Inflector.humanize(value).gsub(/\b(?<!\w['’`()])[a-z]/) do |match|
+          match.capitalize
         end
       end
     end
