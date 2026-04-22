@@ -139,16 +139,16 @@ module Umedia
           end
         end
       end
+    end
 
-      # Different from ActiveSupport::Inflector.titleize, does not strip hyphen, by not calling underscore()
-      # which would convert hyphen-word to hyphen_word and then strip out the underscore resulting
-      # in two separate words where we sometimes want a hyphenated word
-      class SubjectTitleize
-        def self.format(subjects)
-          subjects.map do |subject|
-            ActiveSupport::Inflector.humanize(subject).gsub(/\b(?<!\w['’`()])[a-z]/) do |match|
-              match.capitalize
-            end
+    # Different from ActiveSupport::Inflector.titleize, does not strip hyphen, by not calling underscore()
+    # which would convert hyphen-word to hyphen_word and then strip out the underscore resulting
+    # in two separate words where we sometimes want a hyphenated word
+    class SubjectTitleize
+      def self.format(subjects)
+        subjects.map do |subject|
+          ActiveSupport::Inflector.humanize(subject).gsub(/\b(?<!\w['’`()])[a-z]/) do |match|
+            match.capitalize
           end
         end
       end
