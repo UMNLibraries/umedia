@@ -1,15 +1,18 @@
 # UMedia
 
-> UMedia provides access to digitized collections from across the
-> University of Minnesota. These materials include photographs, archives,
-> audio, video, maps, and more, with new items added on a regular basis.
-> These open and freely available resources support the teaching and
-> research needs of scholars, educators, students, and the public.
+> UMedia provides access to digitized collections from across the University of
+> Minnesota. These materials include photographs, archives, audio, video, maps,
+> and more, with new items added on a regular basis. These open and freely
+> available resources support the teaching and research needs of scholars,
+> educators, students, and the public.
 
 Site: [https://umedia.lib.umn.edu](https://umedia.lib.umn.edu)
 
-Data is ingested from CONTENTdm into a Solr index and served by this Ruby
-on Rails application.
+[contentdm]: https://www.oclc.org/en/contentdm.html
+[solr]: https://solr.apache.org/
+
+Data is ingested from [CONTENTdm][contentdm] into a [Solr][solr] database and
+served by this Ruby on Rails application.
 
 # Developer Quickstart
 
@@ -397,3 +400,10 @@ $ RAILS_ENV=production bundle exec rake umedia_cache:clear_counts
 - Resume listing (next page) of that same set with its `resumptionToken` found at the end of the XML (note some params replaced by `resumptionToken`) `https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=ListRecords&resumptionToken=p16022coll345:25539:p16022coll345:0000-00-00:9999-99-99:oai_dc`
 - Get a single full record (`GetRecord`, identifier `oai:cdm16022.contentdm.oclc.org:p16022coll264/133`) `https://cdm16022.contentdm.oclc.org/oai/oai.php?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:cdm16022.contentdm.oclc.org:p16022coll264/133`
 - Get the full JSON for a record as CDMDEXER will retrieve and transform it into a UMedia Solr record `https://cdm16022.contentdm.oclc.org/digital/bl/dmwebservices/index.php?q=dmGetItemInfo/p16022coll211/11/json`
+
+# Build Debugging
+
+A handy command for debugging intermediate docker image build stages is:
+
+    docker run -it --rm ghcr.io/umnlibraries/ruby2.6-jemalloc:latest /bin/bash
+
