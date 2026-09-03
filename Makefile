@@ -1,4 +1,4 @@
-TARGET := $(or $(TARGET), production)
+TARGET := $(or $(TARGET), dev)
 VERSION := $(shell cat version.txt)
 
 .PHONY: usage
@@ -10,10 +10,10 @@ usage:
 clean:
 	-docker rmi --force umedia-rails:latest
 
+# for debug output, prepend environment variable DOCKER_BUILDKIT=0 to the make invocation
 .PHONY: build
 build:
-	docker build --no-cache --target $(TARGET) --progress=plain --tag umedia-rails:$(VERSION) --platform 'linux/amd64,linux/arm64' .
-	@echo "\n\ndocker run --rm -it umedia-rails:$(VERSION) /bin/bash"
+	docker build --tag umedia-rails:$(VERSION) --platform 'linux/amd64' --platform 'linux/arm64' .
 
 .PHONY: tags
 tags:

@@ -1,12 +1,20 @@
-FROM ruby:2.6 AS production
+FROM ghcr.io/umnlibraries/ruby2.6-jemalloc:0.0.6
 
-LABEL maintainer="libwebdev@umn.edu"
-LABEL org.opencontainers.image.source=https://github.com/UMNLibraries/umedia
+LABEL maintainer="libwebdev@umn.edu" \
+      org.opencontainers.image.source="https://github.com/UMNLibraries/umedia"
+
+# Optimize jemalloc memory arena behavior for Ruby
+ENV MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true"
+
+#### Set your working directory and app configurations
+###WORKDIR /app
+
 
 SHELL ["/bin/bash", "-c"]
-ENV RAILS_ENV=production
-ENV NODE_ENV=production
-ENV RAILS_LOG_TO_STDOUT=true
+
+ENV RAILS_ENV=production \
+    NODE_ENV=production \
+    RAILS_LOG_TO_STDOUT=true
 
 # this value is good enough for build time, but needs to be fixed at runtime
 ENV UMEDIA_NAILER_CDN_URI=https://example.cloudfront.net
@@ -17,46 +25,51 @@ ENV NODE_OPTIONS="--openssl-legacy-provider"
 # make Yarn a little less chatty
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
-# set up system
-RUN <<EOF
-# install package dependencies
-apt update --quiet
-apt install -y less neovim
+# create the deploy user
+RUN <<__uldeploy__
+groupadd --gid 30000 uldeploy
+useradd --uid 30000 --gid 30000 --no-create-home uldeploy
+__uldeploy__
 
-# create the deploy and runtime users
-useradd uldeploy --uid 30000 --user-group --no-create-home
+# create the runtime user
+RUN <<__ulapps__
 mkdir -p /srv/umedia
-useradd ulapps --uid 40000 --user-group --home-dir /srv/umedia
-EOF
+groupadd --gid 40000 ulapps
+useradd --uid 40000 --gid 40000 --home-dir /srv/umedia ulapps
+__ulapps__
 
 # Install application files
 WORKDIR /srv/umedia
-COPY --chown=uldeploy:uldeploy . .
+COPY --chown=30000:30000 . .
 
-# install dependencies
-RUN <<EOF
-
-# ruby
-gem update --system 3.2.3
+# install ruby dependencies
+RUN <<__ruby__
+gem update --system 3.2.3 --quiet
 gem install bundler -v 2.4.22
 bundle check || bundle install
 bundle binstubs --all
+__ruby__
 
-# nodejs (v22.x)
+# install node and yarn dependencies
+RUN <<__node__
+apt update
+apt upgrade -y
+apt install -y --no-install-recommends build-essential curl nodejs
 curl -sL https://deb.nodesource.com/setup_22.x | bash
-apt-get update
-apt-get install -qq -y --no-install-recommends build-essential nodejs
 corepack enable yarn
 yarn install --production
 
-# rails assets
+corepack enable yarn
+yarn install --production
+__node__
+
+# compile rails assets
+RUN <<__rake__
 rake assets:precompile
-EOF
+__rake__
 
 # set up image entrypoint
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
+USER ulapps:ulapps
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-# USER ulapps:ulapps
-
