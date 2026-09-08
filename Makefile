@@ -13,13 +13,8 @@ clean:
 # for debug output, prepend environment variable DOCKER_BUILDKIT=0 to the make invocation
 .PHONY: build
 build:
-	docker build --tag umedia-rails:$(VERSION) --platform 'linux/amd64' --platform 'linux/arm64' .
-
-.PHONY: tags
-tags:
-	docker tag umedia-rails:$(VERSION) umedia-rails:latest
-	docker tag umedia-rails:$(VERSION) ghcr.io/umnlibraries/umedia-rails:$(VERSION)
-	docker tag umedia-rails:$(VERSION) ghcr.io/umnlibraries/umedia-rails:latest
+	docker build --tag ghcr.io/umnlibraries/umedia-rails:$(VERSION) --platform 'linux/amd64' --platform 'linux/arm64' .
+	docker tag ghcr.io/umnlibraries/umedia-rails:$(VERSION) ghcr.io/umnlibraries/umedia-rails:latest
 
 .PHONY: push
 push:
