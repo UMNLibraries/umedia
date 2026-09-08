@@ -6,10 +6,6 @@ LABEL maintainer="libwebdev@umn.edu" \
 # Optimize jemalloc memory arena behavior for Ruby
 ENV MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true"
 
-#### Set your working directory and app configurations
-###WORKDIR /app
-
-
 SHELL ["/bin/bash", "-c"]
 
 ENV RAILS_ENV=production \
@@ -25,22 +21,15 @@ ENV NODE_OPTIONS="--openssl-legacy-provider"
 # make Yarn a little less chatty
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
-# create the deploy user
-RUN <<__uldeploy__
-groupadd --gid 30000 uldeploy
-useradd --uid 30000 --gid 30000 --no-create-home uldeploy
-__uldeploy__
-
-# create the runtime user
-RUN <<__ulapps__
-mkdir -p /srv/umedia
-groupadd --gid 40000 ulapps
-useradd --uid 40000 --gid 40000 --home-dir /srv/umedia ulapps
-__ulapps__
+# create the umedia user
+RUN <<__user__
+groupadd --gid 1000 umedia
+useradd --uid 1000 -g umedia --home-dir /srv/umedia umedia
+__user__
 
 # Install application files
 WORKDIR /srv/umedia
-COPY --chown=30000:30000 . .
+COPY --chown=1000:1000 . .
 
 # install ruby dependencies
 RUN <<__ruby__
@@ -71,5 +60,5 @@ __rake__
 # set up image entrypoint
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
-USER ulapps:ulapps
+USER umedia:umedia
 ENTRYPOINT ["/docker-entrypoint.sh"]
